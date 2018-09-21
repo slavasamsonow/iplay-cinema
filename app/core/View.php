@@ -11,8 +11,19 @@ class View{
         $this->path = $route['controller'].'/'.$route['action'];
     }
 
-    public function render($title, $vars=[]){
+    public function render($vars=[]){
         extract($vars);
+
+        if(!isset($seo['title'])){
+            $seo['title'] = 'Киношкола iPlay';
+        }else{
+            $seo['title'] .= ' | Киношкола iPlay';
+        }
+
+        if(!isset($seo['description'])){
+            $seo['description'] = 'Киношкола iPlay - место, которое мотивирует и обучает создавать кино, и экспериментировать с его формами.';
+        }
+
         if(isset($_SESSION['user'])){
             $user = $_SESSION['user'];
         }
@@ -50,7 +61,7 @@ class View{
 	public function location($url) {
 		exit(json_encode(['url' => $url]));
     }
-    
+
     public function locationOut($url) {
 		exit(json_encode(['urlo' => $url]));
 	}
