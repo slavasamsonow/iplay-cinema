@@ -8,6 +8,7 @@ class MainController extends Controller{
 
     public function indexAction(){
         $this->view->layout = 'empty';
-        $this->view->render('');
+        $vars = [];
+        $this->view->render($vars);
     }
 }
