@@ -129,6 +129,11 @@ class Account extends Model{
 
         $this->db->query('UPDATE `users` SET `token` = NULL, '.$paramNV.' WHERE `id` = :id AND `token` = :token', $params);
 
+        if(isset($_SESSION['id'])){
+            $_SESSION['user']['active'] = 1;
+            $_SESSION['user']['token'] = '';
+        }
+
         $email = $user['email'];
         $name = $email;
         $subject = 'Добро пожаловать в киношколу!';
@@ -179,5 +184,13 @@ class Account extends Model{
         $params['id'] = $id;
 
         $this->db->query('UPDATE `users` SET '.$paramNV.' WHERE `id` = :id', $params);
+    }
+
+    // Список курсов
+    public function activeCoursesList(){
+        $params = [
+            'userid' => $_SESSION['user']['id'],
+        ];
+        return $this->db->row('SELECT c.id, c.name, c.description, c.teacher, c.curator, u.percent FROM courses c JOIN user_courses u ON c.id=u.course WHERE u.user=:userid', $params);
     }
 }
