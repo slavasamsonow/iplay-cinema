@@ -19,7 +19,7 @@ class Amo{
     protected function query($link, $data=[]){
         $link = $this->path.$link;
 
-        $curl=curl_init(); 
+        $curl=curl_init();
         curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
         curl_setopt($curl,CURLOPT_USERAGENT,'amoCRM-API-client/1.0');
         curl_setopt($curl,CURLOPT_URL,$link);
@@ -63,7 +63,7 @@ class Amo{
 
     public function start(){
         $user=array(
-            'USER_LOGIN' => $this->userlogin, 
+            'USER_LOGIN' => $this->userlogin,
             'USER_HASH' => $this->userhash,
         );
         $link = 'private/api/auth.php?type=json';
@@ -75,25 +75,35 @@ class Amo{
     public function newLead($data){
         if($this->start() == true){
             $leads['add'][0] = [
-                  'name'=>'Заявка на сайте',
                   'created_at'=>time(),
                   'status_id' => '11316085',
                   'tags' => 'Сайт',
-                  'sale' => $data['sale'],
-                  'contacts_id' => [
-                      $_SESSION['user']['amoid'],
-                  ],
-                  'custom_fields' => [
-                      [
-                        'id' => "450871",
+            ];
+
+            if(isset($data['name'])){
+                $leads['add'][0]['name'] = $data['name'];
+            }else{
+                $leads['add'][0]['name'] = 'Заявка с сайта';
+            }
+
+            if(isset($data['sale'])){
+                $leads['add'][0]['sale'] = $data['sale'];
+            }
+
+            if(isset($data['contact_id'])){
+                $leads['add'][0]['contacts_id'] = $data['contact_id'];
+            }
+
+            if(isset($data['nameCourse'])){
+                $leads['add'][0]['custom_fields'][] = [
+                    'id' => "450871",
                         'values' => [
                             [
                                 'value' => $data['nameCourse']
-                            ],
-                        ],
-                    ],
-                ],
-            ];
+                            ]
+                        ]
+                ];
+            }
 
 
             $link = 'api/v2/leads';
@@ -106,7 +116,7 @@ class Amo{
         }else{
             //echo 'Не авторизован';
             // Писать на email об ошибке
-        };        
+        };
     }
 
     public function newContact($vars){
@@ -170,7 +180,7 @@ class Amo{
         }else{
             //echo 'Не авторизован';
             // Писать на email об ошибке
-        }; 
+        };
     }
 
     public function updateStatusLead($id, $status){
@@ -192,6 +202,6 @@ class Amo{
         }else{
             //echo 'Не авторизован';
             // Писать на email об ошибке
-        };      
+        };
     }
 }
