@@ -64,5 +64,32 @@ $(document).ready(function() {
 	var footerHeight = $('footer').css('height');
 	$('.wrapper').css('min-height', 'calc(100vh - '+ headerHeight +' - '+ footerHeight +')');
 
+	// Взаимодействие с заданием курса
+	$('.tasks.course .task.active').click(function(){
+		var elem = $(this);
+		if(elem.hasClass('process')){
+			return;
+		}
+		var taskId = Number(elem.attr('data-id'));
+
+		//elem.addClass('process');
+		$.ajax({
+			url: '/study/checkTask',
+			type: 'post',
+			data: 'task='+taskId,
+			success: function(result){
+				json = jQuery.parseJSON(result);
+				if(json.data.status){
+					elem.attr('data-status',json.data.status);
+				}
+				if(json.data.percent){
+					$('.progress-bar').css('width', json.data.percent+'%');
+					$('.progress-bar .sr-only .percent').html(json.data.percent);
+				}
+				elem.removeClass('process');
+			}
+		})
+	})
+
 
 });
