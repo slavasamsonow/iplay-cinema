@@ -7,6 +7,7 @@ use app\core\Controller;
 class MainController extends Controller{
 
     public function indexAction(){
-        //
+        $this->view->layout = 'empty';
+        $this->view->render('');
     }
 }
