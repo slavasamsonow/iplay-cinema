@@ -212,7 +212,7 @@ footer>.container-fluid{
     height: 20px;
     border: 2px solid #aaa;
     cursor: pointer;
-    transition: 0.5s;
+    transition: 0.2s;
 }
 .tasks.course .task.active:before{
     border-color: #111;
@@ -224,8 +224,12 @@ footer>.container-fluid{
     border-color: green;
     Background-color: green;
 }
+.tasks.course .task.error:before{
+    border-color: red;
+}
 .tasks.course .task.process:before{
-    transform: scale(0);
+    border: 2px solid #aaa;
+    background-color: #eee;
 }
 
 footer{
