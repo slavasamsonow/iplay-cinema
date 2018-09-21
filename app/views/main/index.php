@@ -1,4 +1,9 @@
-<button data-action="modal" data-modal="register">Записаться</button>
+<?php if(isset($_SESSION['user']['id'])):?>
+    <a href="account">Перейти в личный кабинет</a>
+<? else:?>
+    <button data-action="modal" data-modal="register">Записаться</button>
+<? endif ?>
+
 <div class="modal register">
     <button type="button" class="close">&times;</button>
     <div class="modal-header">
