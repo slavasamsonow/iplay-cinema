@@ -32,4 +32,14 @@ return [
         'action' => 'editpassword',
     ],
 
+    // courseController
+    'study/{courseid:\d+}' => [
+        'controller' => 'course',
+        'action' => 'study',
+    ],
+    'study/checkTask' => [
+        'controller' => 'course',
+        'action' => 'checkTask',
+    ]
+
 ];
