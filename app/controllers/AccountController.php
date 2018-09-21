@@ -75,11 +75,14 @@ class AccountController extends Controller{
 
     public function indexAction(){
         if($this->model->auth == 'auth'){
-            //$activeCourses = $this->model->activeCoursesList();
-            /*$vars = [
+            if($_SESSION['user']['active'] == 0){
+                echo 'Не активен';
+            }
+            $activeCourses = $this->model->activeCoursesList();
+            $vars = [
                 'activeCourses' => $activeCourses,
-            ];*/
-            $this->view->render();
+            ];
+            $this->view->render($vars);
         }else{
             $this->view->redirect('login');
         }
