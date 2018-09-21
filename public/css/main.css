@@ -205,10 +205,19 @@ footer{
     background-color: #111;
     color: #fff;
 }
+footer.transparent{
+    background-color: transparent;
+}
 footer a{
     color: #fff;
 }
 footer a:hover{
     color: #fff;
     text-decoration: none;
+}
+footer.transparent a{
+    color: #111;
+}
+footer.transparent a:hover{
+    color: #111;
 }

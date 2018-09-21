@@ -57,5 +57,7 @@ $(document).ready(function() {
     // Высота окна
     var headerHeight = $('.navbar').css('height');
 	var footerHeight = $('footer').css('height');
-    $('.wrapper').css('min-height', 'calc(100vh - '+ headerHeight +' - '+ footerHeight +')');
+	$('.wrapper').css('min-height', 'calc(100vh - '+ headerHeight +' - '+ footerHeight +')');
+
+
 });
