@@ -123,6 +123,6 @@
         <div class="modal-header"></div>
         <div class="modal-body"></div>
     </div>
-    <div class="overlay"></div>
+    <div id="overlay"></div>
 </body>
 </html>
