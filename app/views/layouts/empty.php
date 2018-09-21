@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?=$title?> | Киношкола iPlay</title>
+    <title><?=$seo['title']?></title>
 
-    <meta name="description" content="Киношкола iPlay - место, которое мотивирует и обучает создавать кино, и экспериментировать с его формами.">
+    <meta name="description" content="<?=$seo['description']?>">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/public/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon/favicon-32x32.png">
@@ -71,7 +71,7 @@
             <div class="navbar-right">
                 <ul>
                     <li>
-                        <a href="/login" class="lk">Личный кабинет/a>
+                        <a href="/login" class="lk">Личный кабинет</a>
                     </li>
                 </ul>
             </div>
