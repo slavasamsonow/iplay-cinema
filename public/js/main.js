@@ -31,18 +31,21 @@ $(document).ready(function() {
 				}else if(json.urlo){
 					window.location.href = json.urlo;
 				}else if(json.modal == 'modalmessage') {
-					$('.modal').hide();
-					$('.modal.message .modal-header').html(json.modalheader);
-					$('.modal.message .modal-body').html(json.modalbody);
-					$('body').addClass('modalopen');
-					$('.modal.message').show();
-					$('#overlay').show();
+					openModal('message', json.modalheader, json.modalbody);
 				}
 			},
 		});
     });
 
-    // Модальные окна
+	// Модальные окна
+	function openModal(type,header,body){
+		$('.modal').hide();
+		$('.modal.'+type+' .modal-header').html(header);
+		$('.modal.'+type+' .modal-body').html(body);
+		$('body').addClass('modalopen');
+		$('.modal.'+type).show();
+		$('#overlay').show();
+	}
     $("#overlay").click(function(){
 		$(".modal").hide();
 		$("#overlay").hide();
@@ -72,7 +75,7 @@ $(document).ready(function() {
 		}
 		var taskId = Number(elem.attr('data-id'));
 
-		//elem.addClass('process');
+		elem.addClass('process');
 		$.ajax({
 			url: '/study/checkTask',
 			type: 'post',
@@ -85,6 +88,14 @@ $(document).ready(function() {
 				if(json.data.percent >= 0){
 					$('.progress-bar').css('width', json.data.percent+'%');
 					$('.progress-bar .sr-only .percent').html(json.data.percent);
+				}
+				if(json.data.error){
+					elem.addClass('error');
+					setTimeout(function(){
+						elem.removeClass('error')
+					}, 1000);
+					$('span.error').remove();
+					openModal('message', 'Ошибка', json.data.error)
 				}
 				elem.removeClass('process');
 			}
