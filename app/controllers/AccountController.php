@@ -75,9 +75,6 @@ class AccountController extends Controller{
 
     public function indexAction(){
         if($this->model->auth == 'auth'){
-            if($_SESSION['user']['active'] == 0){
-                echo 'Не активен';
-            }
             $activeCourses = $this->model->activeCoursesList();
             $vars = [
                 'activeCourses' => $activeCourses,
