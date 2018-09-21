@@ -71,7 +71,7 @@ class Course extends Model{
             'task' => $taskId,
             'user' => $userid,
         ];
-        $task = $this->db->row('SELECT u.id, t.course, t.verify, t.active, t.percent, u.status FROM courses_tasks t JOIN user_tasks u ON u.task=t.id WHERE u.id = :task AND u.user=:user',$params);
+        $task = $this->db->row('SELECT t.id AS taskid, u.id, t.course, t.verify, t.active, t.percent, u.status FROM courses_tasks t JOIN user_tasks u ON u.task=t.id WHERE u.id = :task AND u.user=:user',$params);
 
         if(empty($task)){
             return 'error';
@@ -89,7 +89,15 @@ class Course extends Model{
             if($task['status'] == 'done'){
                 return 'error';
             }
-            $params['status'] = 'verify';
+            if($task['taskid'] == '1'){
+                if($_SESSION['user']['active'] == 1){
+                    $params['status'] = 'done';
+                }else{
+                    $params['status'] = 'ndone';
+                }
+            }else{
+                $params['status'] = 'verify';
+            }
         }else{
             if($task['status'] == 'done'){
                 $params['status'] = 'ndone';
