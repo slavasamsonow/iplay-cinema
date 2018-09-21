@@ -23,42 +23,53 @@ class Course extends Model{
         }
     }
 
-    public function getTasksCourse($courseId, $userid = ''){
-        if($userid == ''){
-            $userid = $_SESSION['user']['id'];
+    public function getTasksCourse($courseId, $userId = ''){
+        if($userId == ''){
+            $userId = $_SESSION['user']['id'];
         }
 
         $params = [
-            'userid' => $userid,
+            'course' => $courseId,
         ];
-        $tasks = $this->db->row('SELECT t.id AS taskid, u.id, t.timestart, t.description, t.active, t.percent, u.status FROM courses_tasks t LEFT JOIN user_tasks u ON u.task=t.id WHERE u.user = :userid',$params);
+        $tasksCourse = $this->db->row('SELECT * FROM courses_tasks WHERE course = :course',$params);
+        $params = [
+            'user' => $userId,
+        ];
+        $tasks = $this->db->row('SELECT task FROM user_tasks WHERE user = :user',$params);
+
+        $taskId = [];
+        foreach($tasks as $task){
+            $taskId[] = $task['task'];
+        }
 
         $params = [];
         $i=0;
-        foreach($tasks as $task){
-            if($task['timestart'] <= time()){
-                if(!isset($task['id'])){
-                    $params['task'.$i] = $task['taskid'];
-                    $params['user'.$i] = $_SESSION['user']['id'];
-                    if($i == 0){
-                        $values = '(:task'.$i.',:user'.$i.')';
-                    }else{
-                        $values .= ', (:task'.$i.',:user'.$i.')';
-                    }
+        foreach($tasksCourse as $taskC){
+            if(!in_array($taskC['id'], $taskId)){
+                $params['task'.$i] = $taskC['id'];
+                $params['user'.$i] = $_SESSION['user']['id'];
+                if($i == 0){
+                    $values = '(:task'.$i.',:user'.$i.')';
+                }else{
+                    $values .= ', (:task'.$i.',:user'.$i.')';
                 }
+                $i++;
             }
-            $i++;
         }
 
-        if(isset($values)){
+       if(isset($values)){
             $this->db->query('INSERT INTO user_tasks (task, user) VALUES '.$values, $params);
 
             $params = [
-                'userid' => $userid,
+                'userid' => $userId,
+            ];
+            $tasks = $this->db->row('SELECT t.id AS taskid, u.id, t.timestart, t.description, t.active, t.percent, u.status FROM courses_tasks t LEFT JOIN user_tasks u ON u.task=t.id WHERE u.user = :userid',$params);
+        }else{
+            $params = [
+                'userid' => $userId,
             ];
             $tasks = $this->db->row('SELECT t.id AS taskid, u.id, t.timestart, t.description, t.active, t.percent, u.status FROM courses_tasks t LEFT JOIN user_tasks u ON u.task=t.id WHERE u.user = :userid',$params);
         }
-
         return $tasks;
     }
 
@@ -74,12 +85,16 @@ class Course extends Model{
         $task = $this->db->row('SELECT t.id AS taskid, u.id, t.course, t.verify, t.active, t.percent, u.status FROM courses_tasks t JOIN user_tasks u ON u.task=t.id WHERE u.id = :task AND u.user=:user',$params);
 
         if(empty($task)){
-            return 'error';
+            return [
+                'error' => 'Ошибка инициализации'
+            ];
         }else{
             $task = $task[0];
         }
         if($task['status'] == 'verify'){
-            return 'error';
+            return [
+                'error' => 'Это поле сейчас на стадии проверки'
+            ];
         }
 
         $params = [
@@ -87,13 +102,17 @@ class Course extends Model{
         ];
         if($task['verify'] == 1){
             if($task['status'] == 'done'){
-                return 'error';
+                return [
+                    'error' => 'Это поле уже проверено. Его нельзя менять'
+                ];
             }
             if($task['taskid'] == '1'){
                 if($_SESSION['user']['active'] == 1){
                     $params['status'] = 'done';
                 }else{
-                    $params['status'] = 'ndone';
+                    return [
+                        'error' => 'Вы не подтвердили свой email'
+                    ];
                 }
             }else{
                 $params['status'] = 'verify';
