@@ -42,7 +42,7 @@ class Db{
     public function lastInsertId() {
 		return $this->db->lastInsertId();
     }
-    
+
     public function paramNV($params){
         $paramNV = '';
         foreach($params as $param => $val){
