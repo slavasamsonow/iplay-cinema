@@ -81,6 +81,7 @@ class Account extends Model{
         $id = $this->db->lastInsertId();
         $params['id'] = $id;
 
+        $this->createUserCourse(2, $id);
 
         $email = $data['email'];
         $name = $email;
@@ -192,5 +193,21 @@ class Account extends Model{
             'userid' => $_SESSION['user']['id'],
         ];
         return $this->db->row('SELECT c.id, c.name, c.description, c.teacher, c.curator, u.percent FROM courses c JOIN user_courses u ON c.id=u.course WHERE u.user=:userid', $params);
+    }
+
+    public function createUserCourse($course, $user){
+        $params = [
+            'course' => $course,
+            'user' => $user,
+        ];
+        $course = $this->db->column('SELECT id FROM `user_courses` WHERE `course` = :course AND `user` = :user',$params);
+
+        if(!empty($course)){
+            $this->error = 'У этого пользователя уже есть такой курс';
+            return false;
+        }
+
+        $this->db->query('INSERT INTO `user_courses` (`course`, `user`) VALUES (:course, :user)', $params);
+        return true;
     }
 }

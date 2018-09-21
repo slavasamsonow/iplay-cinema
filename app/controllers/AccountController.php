@@ -82,6 +82,7 @@ class AccountController extends Controller{
             $vars = [
                 'activeCourses' => $activeCourses,
             ];
+
             $this->view->render($vars);
         }else{
             $this->view->redirect('login');
