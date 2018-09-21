@@ -36,22 +36,27 @@ $(document).ready(function() {
 					$('.modal.message .modal-body').html(json.modalbody);
 					$('body').addClass('modalopen');
 					$('.modal.message').show();
-					$('.overlay').show();
+					$('#overlay').show();
 				}
 			},
 		});
     });
 
     // Модальные окна
-    $(".overlay").click(function(){
+    $("#overlay").click(function(){
 		$(".modal").hide();
-		$(".overlay").hide();
+		$("#overlay").hide();
 		$("body").removeClass('modalopen');
 	})
 	$(".modal .close").click(function(){
 		$(this).parent().hide();
-		$(".overlay").hide();
+		$("#overlay").hide();
 		$("body").removeClass('modalopen');
+	})
+	$("button[data-action='modal']").click(function(){
+		var modal = $(this).data('modal');
+		$('.modal.'+modal).show();
+		$('#overlay').show();
 	})
 
     // Высота окна

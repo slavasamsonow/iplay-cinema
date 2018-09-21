@@ -56,6 +56,9 @@ button{
     outline: none;
 }
 
+input[type='checkbox']{
+    cursor: pointer;
+}
 .form-control{
     border: 2px solid #111;
     border-radius: 0;
@@ -116,7 +119,7 @@ button{
 .close:hover{
     opacity: 1;
 }
-.overlay{
+#overlay{
     display: none;
     position: fixed;
     left: 0;
