@@ -201,6 +201,33 @@ footer>.container-fluid{
     font-size: 1.5em;
 }
 
+.tasks.course{
+    list-style: none;
+    padding: 0;
+}
+.tasks.course .task:before{
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #aaa;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.tasks.course .task.active:before{
+    border-color: #111;
+}
+.tasks.course .task[data-status="verify"]:before{
+    border-color: orange;
+}
+.tasks.course .task[data-status="done"]:before{
+    border-color: green;
+    Background-color: green;
+}
+.tasks.course .task.process:before{
+    transform: scale(0);
+}
+
 footer{
     width: 100%;
     bottom: 0;
