@@ -82,7 +82,7 @@ $(document).ready(function() {
 				if(json.data.status){
 					elem.attr('data-status',json.data.status);
 				}
-				if(json.data.percent){
+				if(json.data.percent >= 0){
 					$('.progress-bar').css('width', json.data.percent+'%');
 					$('.progress-bar .sr-only .percent').html(json.data.percent);
 				}
