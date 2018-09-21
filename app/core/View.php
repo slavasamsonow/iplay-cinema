@@ -4,7 +4,7 @@ namespace app\core;
 class View{
     public $path;
     public $route;
-    public $layout = 'default';
+    public $layout = 'empty';
 
     public function __construct($route){
         $this->route = $route;
@@ -12,13 +12,16 @@ class View{
     }
 
     public function render($vars=[]){
-        extract($vars);
+        if(is_array($vars)){
+            extract($vars);
+        }
 
         if(!isset($seo['title'])){
             $seo['title'] = 'Киношкола iPlay';
         }else{
             $seo['title'] .= ' | Киношкола iPlay';
         }
+        //print_r($seo);
 
         if(!isset($seo['description'])){
             $seo['description'] = 'Киношкола iPlay - место, которое мотивирует и обучает создавать кино, и экспериментировать с его формами.';
@@ -27,6 +30,7 @@ class View{
         if(isset($_SESSION['user'])){
             $user = $_SESSION['user'];
         }
+
         if(file_exists('app/views/'.$this->path.'.php')){
             ob_start();
             require 'app/views/'.$this->path.'.php';
@@ -46,7 +50,10 @@ class View{
         if($code == 403 || $code == 404){
             http_response_code($code);
         }
-        $title = 'Ошибка '.$code;
+        $seo = [
+            'title' => 'Ошибка '.$code.' | Киношкола iPlay',
+            'description' => 'Киношкола iPlay - место, которое мотивирует и обучает создавать кино, и экспериментировать с его формами.',
+        ];
         ob_start();
         require 'app/views/errors/'.$code.'.php';
         $content = ob_get_clean();
