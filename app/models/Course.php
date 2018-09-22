@@ -59,17 +59,12 @@ class Course extends Model{
 
        if(isset($values)){
             $this->db->query('INSERT INTO user_tasks (task, user) VALUES '.$values, $params);
-
-            $params = [
-                'userid' => $userId,
-            ];
-            $tasks = $this->db->row('SELECT t.id AS taskid, u.id, t.timestart, t.description, t.active, t.percent, u.status FROM courses_tasks t LEFT JOIN user_tasks u ON u.task=t.id WHERE u.user = :userid',$params);
-        }else{
-            $params = [
-                'userid' => $userId,
-            ];
-            $tasks = $this->db->row('SELECT t.id AS taskid, u.id, t.timestart, t.description, t.active, t.percent, u.status FROM courses_tasks t LEFT JOIN user_tasks u ON u.task=t.id WHERE u.user = :userid',$params);
-        }
+       }
+        $params = [
+            'user' => $userId,
+            'course' => $courseId
+        ];
+        $tasks = $this->db->row('SELECT t.id AS taskid, u.id, t.timestart, t.description, t.active, t.percent, u.status FROM courses_tasks t LEFT JOIN user_tasks u ON u.task=t.id WHERE u.user = :user AND t.course = :course',$params);
         return $tasks;
     }
 
