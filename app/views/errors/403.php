@@ -1,7 +1,9 @@
-<h1>
-    <span class="big">
-        Доступ закрыт
-    </span>
-</h1>
+<div class="container-fluid">
+    <h1>
+        <span class="big">
+            Доступ закрыт
+        </span>
+    </h1>
 
-<a href="/">На главную</a>
+    <a href="/">На главную</a>
+</div>
