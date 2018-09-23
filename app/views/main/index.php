@@ -8,11 +8,11 @@
         <div class="row body">
             <div class="col-md-5 col-md-offset-1 description">
                 <div class="text">
-                    На Ваших глазах <br> и с Вашим участием эксперты кино <br> и видеоиндустрии создадут фильм!
+                    На Ваших глазах <br> и с Вашим участием <br>эксперты кино и видеоиндустрии <br>создадут фильм!
                 </div>
                 <div class="bitton">
                     <?php if(isset($_SESSION['user']['id'])):?>
-                    <a href="account">Перейти в личный кабинет</a>
+                    <a href="account" class="btn">Перейти в личный кабинет</a>
                     <? else:?>
                     <button class="btn" data-action="modal" data-modal="register">Узнать больше</button>
                     <? endif ?>
