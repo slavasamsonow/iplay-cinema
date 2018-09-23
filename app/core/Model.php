@@ -5,6 +5,7 @@ namespace app\core;
 use app\lib\Db;
 use app\lib\Amo;
 use app\lib\YandexMoney;
+use app\lib\SxGeo;
 use app\lib\phpmailer\PHPMailer;
 use app\lib\phpmailer\Exception;
 use app\lib\phpmailer\SMTP;
@@ -14,12 +15,15 @@ abstract class Model{
     public $db;
     public $amo;
     public $auth;
+    public $geo;
+    public $geoCity;
 
     public function __construct(){
         $this->db = new Db;
         $this->amo = new Amo;
         $this->yandexMoney = new YandexMoney;
         $this->auth = $this->checkAuth();
+        $this->geo = $this->SxGeoCity();
     }
 
     public function phpmailer($toEmail, $toName = '', $subject, $body){
@@ -52,8 +56,8 @@ abstract class Model{
         //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
         //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // вставка файла ('путь','название(не обязательно)')
 
-        //Контент  
-        $mail->Subject = $subject; 
+        //Контент
+        $mail->Subject = $subject;
         $mail->msgHTML($body);
         //$mail->AltBody = 'Сообщение от киношколы iPlay. Рекомендуется просмотр с содержимым';
 
@@ -65,7 +69,7 @@ abstract class Model{
         }
     }
 
-    public function checkAuth(){
+    protected function checkAuth(){
         if(isset($_SESSION['user']['email']) && isset($_SESSION['user']['password'])){
             $params = [
                 'email' => $_SESSION['user']['email'],
@@ -141,5 +145,19 @@ abstract class Model{
     public function createToken($len = 30){
         return substr(str_shuffle(str_repeat('1234567890qwertyuiopasdfghjklzxcvbnm', 20)),0,$len);
     }
-    
+
+    protected function SxGeoCity(){
+        if(isset($_SESSION['geo'])){
+            return $_SESSION['geo'];
+        }else{
+            $ip = $_SERVER['REMOTE_ADDR'];
+            if($ip == '127.0.0.1'){
+                $ip = '46.147.163.208';
+            }
+
+            $SxGeo = new SxGeo('app/lib/SxGeoCity.dat');
+            return $_SESSION['geo'] = $SxGeo->getCityFull($ip);
+        }
+    }
+
 }
