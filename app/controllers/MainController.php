@@ -28,6 +28,7 @@ class MainController extends Controller{
                 $this->view->message('Вы зарегестрировались', 'На вашу почту отправлено письмо. Дальнейшие указания вы найдете в нем.');
             }
         }
+        $this->view->layout="intro";
         $this->view->render();
     }
 }
