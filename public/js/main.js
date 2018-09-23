@@ -62,10 +62,27 @@ $(document).ready(function() {
 		$('#overlay').show();
 	})
 
-    // Высота окна
+	// Отступы у Прокручиваемого
     var headerHeight = $('.navbar').css('height');
 	var footerHeight = $('footer').css('height');
-	$('.wrapper').css('min-height', 'calc(100vh - '+ headerHeight +' - '+ footerHeight +')');
+	$('.wrapper').css('padding-top', headerHeight);
+	$('.wrapper').css('padding-bottom', footerHeight);
+
+	//Блок Интро включает в себя шупку и подвал
+	$('.intro').css('margin-top', '-'+headerHeight);
+	$('.intro').css('margin-bottom', '-'+footerHeight);
+	/*$('.intro').css('padding-top', headerHeight);
+	$('.intro').css('padding-bottom', footerHeight);
+	*/
+	$('.intro .background .video-shape').addClass('end');
+	setTimeout(function(){
+		$('.intro .background .video-shape').addClass('out');
+		$('.intro .background .big-left-triangle').addClass('left');
+	}, 3000)
+
+	var introvideo = document.getElementById('introVideo');
+	introvideo.volume = 0;
+	introvideo.play();
 
 	// Взаимодействие с заданием курса
 	$('.tasks.course .task.active').click(function(){
