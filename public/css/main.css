@@ -1,3 +1,5 @@
+@import "/public/css/media.css";
+
 /* Шрифты */
 @font-face {
     font-family: Montserrat;
@@ -39,7 +41,7 @@ body.modalopen {
     overflow: hidden;
 }
 
-svg{
+svg {
     fill: #fff;
 }
 
@@ -203,15 +205,17 @@ input[type='checkbox']+span {
 }
 
 /* Прогресс */
-.progress{
+.progress {
     box-shadow: none;
     border: none;
     border-radius: 1000px;
 }
-.progress-bar{
+
+.progress-bar {
     background-color: #ffdd00;
 }
-.sr-only{
+
+.sr-only {
     position: initial;
     padding: 2px 5px;
     color: #111;
@@ -327,6 +331,10 @@ input[type='checkbox']+span {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+.intro .background .introplay {
+    position: absolute;
+    opacity: 0;
+}
 
 .intro .background .video-shape {
     /* overflow: hidden; */
@@ -417,11 +425,12 @@ input[type='checkbox']+span {
 }
 
 /* Страница курса - чекбоксы */
-.tasks.course{
+.tasks.course {
     list-style: none;
     padding: 0;
 }
-.tasks.course .task:before{
+
+.tasks.course .task:before {
     content: '';
     display: inline-block;
     width: 20px;
@@ -430,20 +439,25 @@ input[type='checkbox']+span {
     cursor: pointer;
     transition: 0.2s;
 }
-.tasks.course .task.active:before{
+
+.tasks.course .task.active:before {
     border-color: #fff;
 }
-.tasks.course .task[data-status="verify"]:before{
+
+.tasks.course .task[data-status="verify"]:before {
     border-color: #ffdd00;
 }
-.tasks.course .task[data-status="done"]:before{
+
+.tasks.course .task[data-status="done"]:before {
     border-color: green;
     Background-color: green;
 }
-.tasks.course .task.error:before{
+
+.tasks.course .task.error:before {
     border-color: #d43;
 }
-.tasks.course .task.process:before{
+
+.tasks.course .task.process:before {
     border: 2px solid #777;
     background-color: #777;
 }
