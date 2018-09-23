@@ -1,3 +1,4 @@
+/* Шрифты */
 @font-face {
     font-family: Montserrat;
     src: url('/public/fonts/Montserrat-Regular.ttf');
@@ -15,6 +16,8 @@
     src: url('/public/fonts/Montserrat-Bold.ttf');
 }
 
+/* Главные */
+
 html {
     width: 100%;
     height: 100%;
@@ -25,9 +28,10 @@ body {
     height: 100%;
     color: #111;
     background-color: #fff;
-    /* background: #111; */
+    background: #111;
     min-height: 100vh;
     font-family: Montserrat;
+    color: #fff;
 }
 
 body.modalopen {
@@ -35,36 +39,30 @@ body.modalopen {
     overflow: hidden;
 }
 
+svg{
+    fill: #fff;
+}
+
+/* Ссылки и кнопки */
 a {
-    color: #111;
+    color: #fff;
     text-decoration: underline;
 }
 
 a:hover {
-    color: #111;
+    color: #fff;
     text-decoration: underline;
 }
 
-.white-text {
-    color: #fff;
-}
-
-.white-text svg {
-    fill: #fff;
-}
-
-.white-text a {
-    color: #fff;
-}
-
-button:focus{
-    outline: none;
-}
-button:focus:active{
+button:focus {
     outline: none;
 }
 
-.btn{
+button:focus:active {
+    outline: none;
+}
+
+.btn {
     /* padding: 20px 35px; */
     font-size: 16px;
     font-weight: 500;
@@ -73,31 +71,56 @@ button:focus:active{
     border: none;
     outline: none;
     border-radius: 1000px;
-    box-shadow: 0 3px 10px 0px rgba(0,0,0,0.16);
+    box-shadow: 0 3px 10px 0px rgba(0, 0, 0, 0.16);
     transition: 0.2s;
     padding: 15px 35px;
 }
-.btn:hover{
+
+.btn:hover {
     color: #dd3322;
-    box-shadow: 0 6px 15px 0px rgba(0,0,0,0.16);
-}
-.btn:focus{
-    outline: none;
-}
-.btn:active:focus{
-    outline: none;
-    box-shadow: inset 0 3px 10px 0 rgba(0,0,0,0.23);
+    box-shadow: 0 6px 15px 0px rgba(0, 0, 0, 0.16);
 }
 
-.checkbox{
+.btn:focus {
+    outline: none;
+}
+
+.btn:active:focus {
+    outline: none;
+    box-shadow: inset 0 3px 10px 0 rgba(0, 0, 0, 0.23);
+}
+
+a.btn {
+    text-decoration: none;
+}
+
+/* Формы */
+.form-control {
+    border: none;
+    border-radius: 1000px;
+    box-shadow: none;
+    padding: 20px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.form-group {
+    position: relative;
+}
+
+.checkbox {
     margin-bottom: 20px;
 }
-.checkbox input[type='checkbox']{
+
+.checkbox input[type='checkbox'] {
     cursor: pointer;
     margin-right: 20px;
     position: relative;
 }
-input[type='checkbox']::before{
+
+input[type='checkbox']::before {
     content: '';
     display: block;
     position: absolute;
@@ -112,27 +135,18 @@ input[type='checkbox']::before{
     height: 20px;
     transition: 0.3s;
 }
-input[type='checkbox']:checked::before{
+
+input[type='checkbox']:checked::before {
     background-size: 40%;
 }
-input[type='checkbox'] + span{
+
+input[type='checkbox']+span {
     display: inline-block;
     vertical-align: top;
 }
-.form-control{
-    border: none;
-    border-radius: 1000px;
-    box-shadow: none;
-    padding: 20px;
-}
-.form-control:focus{
-    box-shadow: none;
-}
-.form-group{
-    position: relative;
-}
 
-.modal{
+/* Модальные окна */
+.modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -140,26 +154,30 @@ input[type='checkbox'] + span{
     padding: 10px 120px 30px;
     overflow-y: auto;
     background: url('/public/img/triangle-right-bottom-red.svg') no-repeat right bottom/40%,
-    url('/public/img/pattern-more-triangle.svg') no-repeat -15% 110%/40%,
-    url('/public/img/triangle-to-right-red.svg') no-repeat 0% 50%/50%,#aaccdd;
+        url('/public/img/pattern-more-triangle.svg') no-repeat -15% 110%/40%,
+        url('/public/img/triangle-to-right-red.svg') no-repeat 0% 50%/50%, #aaccdd;
     border: none;
     height: auto;
     max-height: 100%;
     right: auto;
     bottom: auto;
+    color: #111;
 }
-.modal-header{
+
+.modal-header {
     font-size: 35px;
     font-weight: bold;
     text-align: center;
     border-bottom: none;
     max-width: 440px;
 }
-.modal input[type='submit']{
+
+.modal input[type='submit'] {
     display: block;
     margin: 0 auto;
 }
-.close{
+
+.close {
     float: none;
     position: absolute;
     right: 15px;
@@ -168,10 +186,12 @@ input[type='checkbox'] + span{
     text-shadow: none;
     font-size: 50px;
 }
-.close:hover{
+
+.close:hover {
     opacity: 1;
 }
-#overlay{
+
+#overlay {
     display: none;
     position: fixed;
     left: 0;
@@ -182,10 +202,32 @@ input[type='checkbox'] + span{
     background-color: rgba(17, 17, 17, 0.8);
 }
 
-.content{
+/* Прогресс */
+.progress{
+    box-shadow: none;
+    border: none;
+    border-radius: 1000px;
+}
+.progress-bar{
+    background-color: #ffdd00;
+}
+.sr-only{
+    position: initial;
+    padding: 2px 5px;
+    color: #111;
+    display: inline-block;
+    width: auto;
+    min-width: 100px;
+    height: auto;
+    font-weight: 500;
+}
+
+/* Основная часть */
+.content {
     position: relative;
 }
 
+/* Навигация */
 .navbar {
     position: absolute;
     top: 0;
@@ -196,7 +238,8 @@ input[type='checkbox'] + span{
     font-size: 16px;
     z-index: 100;
 }
-.navbar-right{
+
+.navbar-right {
     margin-right: 0;
 }
 
@@ -218,15 +261,18 @@ input[type='checkbox'] + span{
     min-height: 100vh;
 }
 
+/* Интро */
 .intro {
     height: 100vh;
     position: relative;
     z-index: 1;
 }
-.intro .title{
+
+.intro .title {
     padding-top: 20vh;
 }
-.intro h1{
+
+.intro h1 {
     margin: 0;
     margin-bottom: 7vh;
     text-transform: uppercase;
@@ -237,29 +283,34 @@ input[type='checkbox'] + span{
     display: inline-block;
     letter-spacing: 0.1em;
 }
-.intro .body{
+
+.intro .body {
     font-size: 34px;
     font-weight: bold;
     letter-spacing: 0.1em;
     color: #fff;
 }
-.intro .description .text{
+
+.intro .description .text {
     margin-bottom: 10vh;
 }
-.intro .data-place{
+
+.intro .data-place {
     padding-bottom: 20vh;
     background: url('/public/img/pattern-more-triangle.svg') no-repeat 15px bottom/auto 15vh;
 }
-.intro .place{
+
+.intro .place {
     font-size: 18px;
     font-weight: normal;
     margin-bottom: 20px;
 }
-.intro .date{
+
+.intro .date {
     text-transform: uppercase;
 }
 
-.intro .background{
+.intro .background {
     position: absolute;
     z-index: -1;
     width: 100vw;
@@ -269,13 +320,15 @@ input[type='checkbox'] + span{
     overflow: hidden;
     background-color: #111;
 }
-.intro .background video{
+
+.intro .background video {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.intro .background .video-shape{
+
+.intro .background .video-shape {
     /* overflow: hidden; */
     position: absolute;
     height: 100vh;
@@ -284,45 +337,52 @@ input[type='checkbox'] + span{
     transition: 3s;
     z-index: 1;
 }
-.intro .background .video-shape.end{
+
+.intro .background .video-shape.end {
     left: 0%;
 }
 
-.intro .background .video-shape .left-screen{
+.intro .background .video-shape .left-screen {
     position: absolute;
     width: 100%;
     height: 100vh;
     left: -100%;
     background-color: #aaccdd;
 }
-.intro .background .video-shape .left{
+
+.intro .background .video-shape .left {
     position: absolute;
     height: 100vh;
     fill: #aaccdd;
     left: 0;
     transition: 3s;
 }
-.intro .background .video-shape.out .left{
+
+.intro .background .video-shape.out .left {
     left: -100%;
 }
-.intro .background .video-shape .right{
+
+.intro .background .video-shape .right {
     position: absolute;
     height: 100vh;
     fill: #aaccdd;
     right: -10%;
     transition: 3s;
 }
-.intro .background .video-shape.out .right{
+
+.intro .background .video-shape.out .right {
     right: -100%;
 }
-.intro .background .video-shape .right-screen{
+
+.intro .background .video-shape .right-screen {
     position: absolute;
     width: 100%;
     height: 100vh;
     right: -110%;
     background-color: #aaccdd;
 }
-.intro .background .more-triangle{
+
+.intro .background .more-triangle {
     width: 20vw;
     position: absolute;
     left: 15vw;
@@ -332,7 +392,8 @@ input[type='checkbox'] + span{
     transform: none;
     z-index: 1;
 }
-.intro .background .big-left-triangle{
+
+.intro .background .big-left-triangle {
     position: absolute;
     height: 100vh;
     left: 100%;
@@ -340,10 +401,12 @@ input[type='checkbox'] + span{
     transform: none;
     fill: #d43;
 }
-.intro .background .big-left-triangle.left{
+
+.intro .background .big-left-triangle.left {
     left: -50vw;
 }
-.intro .background .big-right-triangle{
+
+.intro .background .big-right-triangle {
     position: absolute;
     height: 30vh;
     right: 0;
@@ -353,16 +416,39 @@ input[type='checkbox'] + span{
     fill: #d43;
 }
 
+/* Страница курса - чекбоксы */
+.tasks.course{
+    list-style: none;
+    padding: 0;
+}
+.tasks.course .task:before{
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #777;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.tasks.course .task.active:before{
+    border-color: #fff;
+}
+.tasks.course .task[data-status="verify"]:before{
+    border-color: #ffdd00;
+}
+.tasks.course .task[data-status="done"]:before{
+    border-color: green;
+    Background-color: green;
+}
+.tasks.course .task.error:before{
+    border-color: #d43;
+}
+.tasks.course .task.process:before{
+    border: 2px solid #777;
+    background-color: #777;
+}
 
-/* .intro .background img{
-    min-width: 100vw;
-    min-height: 100vh;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-} */
-
+/* Подвал */
 footer {
     position: absolute;
     left: 0;
