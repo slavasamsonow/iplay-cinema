@@ -32,8 +32,9 @@
         <!-- <img src="/public/img/back.png" alt=""> -->
         <video preload id="introVideo">
             <source src="/public/video/intro.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-            <source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' />
+            <source src="/public/video/intro.webm" type='video/webm; codecs="vp8, vorbis"' />
         </video>
+        <div class="btn introplay">ПЛЭЙ</div>
         <div class="video-shape">
             <div class="left-screen"></div>
             <svg viewbox="0 0 3 9" class="left">
