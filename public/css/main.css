@@ -1,5 +1,3 @@
-@import "/public/css/media.css";
-
 /* Шрифты */
 @font-face {
     font-family: Montserrat;
@@ -411,7 +409,7 @@ input[type='checkbox']+span {
 }
 
 .intro .background .big-left-triangle.left {
-    left: -50vw;
+    left: -100vh;
 }
 
 .intro .background .big-right-triangle {
