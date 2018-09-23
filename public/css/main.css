@@ -1,93 +1,135 @@
-html{
+@font-face {
+    font-family: Montserrat;
+    src: url('/public/fonts/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: Montserrat;
+    font-weight: 500;
+    src: url('/public/fonts/Montserrat-Medium.ttf');
+}
+
+@font-face {
+    font-family: Montserrat;
+    font-weight: bold;
+    src: url('/public/fonts/Montserrat-Bold.ttf');
+}
+
+html {
     width: 100%;
     height: 100%;
 }
-body{
+
+body {
     width: 100%;
     height: 100%;
     color: #111;
     background-color: #fff;
+    /* background: #111; */
     min-height: 100vh;
+    font-family: Montserrat;
 }
-body.modalopen{
+
+body.modalopen {
     height: 100vh;
     overflow: hidden;
 }
 
-a{
+a {
     color: #111;
     text-decoration: underline;
-}
-a:hover{
-    color: #111;
-    text-decoration: underline;
-}
-h1 .big{
-    color: #f25043;
-    font-size: 1.5em;
-}
-h2{
-    font-size: 24px;
 }
 
-button{
+a:hover {
+    color: #111;
+    text-decoration: underline;
+}
+
+.white-text {
+    color: #fff;
+}
+
+.white-text svg {
+    fill: #fff;
+}
+
+.white-text a {
+    color: #fff;
+}
+
+button:focus{
     outline: none;
 }
-.btn-default{
-    padding: 5px 10px;
-    border: 2px solid #5766ab;
-    border-radius: 0;
+button:focus:active{
+    outline: none;
+}
+
+.btn{
+    /* padding: 20px 35px; */
+    font-size: 16px;
+    font-weight: 500;
     background: #fff;
-    text-decoration: none;
-    transition: 0.5s;
+    color: #111;
+    border: none;
+    outline: none;
+    border-radius: 1000px;
+    box-shadow: 0 3px 10px 0px rgba(0,0,0,0.16);
+    transition: 0.2s;
+    padding: 15px 35px;
+}
+.btn:hover{
+    color: #dd3322;
+    box-shadow: 0 6px 15px 0px rgba(0,0,0,0.16);
+}
+.btn:focus{
     outline: none;
 }
-.btn-default:hover{
-    background-color: #5766ab;
-    border-color: #111;
-}
-.btn-default:active:focus{
-    background-color: #4d5a96;
-    border-color: #111;
-}
-.btn-default:focus{
-    background-color: #5766ab;
-    border-color: #111;
+.btn:active:focus{
     outline: none;
+    box-shadow: inset 0 3px 10px 0 rgba(0,0,0,0.23);
 }
 
-input[type='checkbox']{
+.checkbox{
+    margin-bottom: 20px;
+}
+.checkbox input[type='checkbox']{
     cursor: pointer;
+    margin-right: 20px;
+    position: relative;
+}
+input[type='checkbox']::before{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-image: url('/public/img/triangle-to-right-red.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 0;
+    background-color: #fff;
+    width: 20px;
+    height: 20px;
+    transition: 0.3s;
+}
+input[type='checkbox']:checked::before{
+    background-size: 40%;
+}
+input[type='checkbox'] + span{
+    display: inline-block;
+    vertical-align: top;
 }
 .form-control{
-    border: 2px solid #111;
-    border-radius: 0;
+    border: none;
+    border-radius: 1000px;
     box-shadow: none;
+    padding: 20px;
 }
 .form-control:focus{
     box-shadow: none;
-    border-color: #5766ab;
-}
-.form-control[readonly]{
-    background: none;
-    border-color: #f25043;
 }
 .form-group{
     position: relative;
-}
-.form-group:before{
-    content: attr(data-name);
-    position: absolute;
-    left: 5px;
-    top: 50%;
-    transform: translate(0, -50%);
-    background-color: #fff;
-    padding: 0 10px;
-    transition: 0.5s;
-}
-.form-group.active:before{
-    font-size: 10px;
-    top: 0;
 }
 
 .modal{
@@ -95,26 +137,36 @@ input[type='checkbox']{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 15px 20px;
+    padding: 10px 120px 30px;
     overflow-y: auto;
-    background-color: #fff;
-    border: 2px solid #111;
+    background: url('/public/img/triangle-right-bottom-red.svg') no-repeat right bottom/40%,
+    url('/public/img/pattern-more-triangle.svg') no-repeat -15% 110%/40%,
+    url('/public/img/triangle-to-right-red.svg') no-repeat 0% 50%/50%,#aaccdd;
+    border: none;
     height: auto;
     max-height: 100%;
     right: auto;
     bottom: auto;
 }
 .modal-header{
-    font-size: 18px;
+    font-size: 35px;
     font-weight: bold;
     text-align: center;
+    border-bottom: none;
+    max-width: 440px;
+}
+.modal input[type='submit']{
+    display: block;
+    margin: 0 auto;
 }
 .close{
     float: none;
     position: absolute;
     right: 15px;
-    top: 15px;
+    top: 10px;
     opacity: 0.5;
+    text-shadow: none;
+    font-size: 50px;
 }
 .close:hover{
     opacity: 1;
@@ -127,131 +179,195 @@ input[type='checkbox']{
     bottom: 0;
     right: 0;
     z-index: 1;
-    background-color: rgba(17, 17, 17, 0.9);
+    background-color: rgba(17, 17, 17, 0.8);
 }
 
-.progress{
-    box-shadow: none;
-    border: 2px solid #111;
-    border-radius: 0;
-    height: 30px;
-}
-.progress-bar{
-    background-color: #ece83d;
-}
-.sr-only{
-    position: initial;
-    padding: 4px 5px;
-    color: #111;
-    display: inline-block;
-    width: auto;
-    min-width: 100px;
-    height: auto;
+.content{
+    position: relative;
 }
 
-.navbar>.container-fluid,
-.wrapper>.container-fluid,
-footer>.container-fluid{
-    padding-left: 30px;
-    padding-right: 30px;
-}
-
-.navbar{
-    padding: 20px 0;
-    background: #fff;
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 0;
     margin-bottom: 0;
-}
-.navbar-left{
-    float: left;
+    font-size: 16px;
+    z-index: 100;
 }
 .navbar-right{
-    float: right;
-    padding: 30px 0;
+    margin-right: 0;
 }
-.navbar-right ul{
+
+.navbar .city svg {
+    width: 21px;
+    margin-right: 12px;
+    vertical-align: top;
+}
+
+.navbar-right ul {
     list-style: none;
 }
-.navbar-right ul li{
+
+.navbar-right ul li {
     display: inline-block;
 }
-.navbar-right ul li a{
-    padding: 10px 10px;
-    text-decoration: none;
-}
-.navbar-right ul li .lk{
-    border: 2px solid #f25043;
-    transition: 0.5s;
-}
-.navbar-right ul li .lk:hover{
-    /* background-color: #eee; */
-    border-color: #111;
-    text-decoration: none;
+
+.wrapper {
+    min-height: 100vh;
 }
 
-.wrapper{
-    padding-bottom: 60px;
-    min-height: calc(100vh - 140px - 60px);
+.intro {
+    height: 100vh;
+    position: relative;
+    z-index: 1;
 }
-
-.intro{
-    text-align: center;
+.intro .title{
+    padding-top: 20vh;
 }
-.intro h1 .big{
-    color: #f25043;
-    font-size: 1.5em;
-}
-
-.tasks.course{
-    list-style: none;
-    padding: 0;
-}
-.tasks.course .task:before{
-    content: '';
+.intro h1{
+    margin: 0;
+    margin-bottom: 7vh;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 40px;
+    padding: 25px;
+    background-color: #ffdd00;
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #aaa;
-    cursor: pointer;
-    transition: 0.2s;
+    letter-spacing: 0.1em;
 }
-.tasks.course .task.active:before{
-    border-color: #111;
+.intro .body{
+    font-size: 34px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    color: #fff;
 }
-.tasks.course .task[data-status="verify"]:before{
-    border-color: orange;
+.intro .description .text{
+    margin-bottom: 10vh;
 }
-.tasks.course .task[data-status="done"]:before{
-    border-color: green;
-    Background-color: green;
+.intro .data-place{
+    padding-bottom: 20vh;
+    background: url('/public/img/pattern-more-triangle.svg') no-repeat 15px bottom/auto 15vh;
 }
-.tasks.course .task.error:before{
-    border-color: red;
+.intro .place{
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 20px;
 }
-.tasks.course .task.process:before{
-    border: 2px solid #aaa;
-    background-color: #eee;
+.intro .date{
+    text-transform: uppercase;
 }
 
-footer{
-    width: 100%;
-    bottom: 0;
-    padding: 20px 0;
+.intro .background{
+    position: absolute;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
     background-color: #111;
-    color: #fff;
 }
-footer.transparent{
-    background-color: transparent;
+.intro .background video{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-footer a{
-    color: #fff;
+.intro .background .video-shape{
+    /* overflow: hidden; */
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    left: -110%;
+    transition: 3s;
+    z-index: 1;
 }
-footer a:hover{
-    color: #fff;
-    text-decoration: none;
+.intro .background .video-shape.end{
+    left: 0%;
 }
-footer.transparent a{
-    color: #111;
+
+.intro .background .video-shape .left-screen{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    left: -100%;
+    background-color: #aaccdd;
 }
-footer.transparent a:hover{
-    color: #111;
+.intro .background .video-shape .left{
+    position: absolute;
+    height: 100vh;
+    fill: #aaccdd;
+    left: 0;
+    transition: 3s;
+}
+.intro .background .video-shape.out .left{
+    left: -100%;
+}
+.intro .background .video-shape .right{
+    position: absolute;
+    height: 100vh;
+    fill: #aaccdd;
+    right: -10%;
+    transition: 3s;
+}
+.intro .background .video-shape.out .right{
+    right: -100%;
+}
+.intro .background .video-shape .right-screen{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    right: -110%;
+    background-color: #aaccdd;
+}
+.intro .background .more-triangle{
+    width: 20vw;
+    position: absolute;
+    left: 15vw;
+    top: -5vh;
+    min-width: auto;
+    min-height: auto;
+    transform: none;
+    z-index: 1;
+}
+.intro .background .big-left-triangle{
+    position: absolute;
+    height: 100vh;
+    left: 100%;
+    transition: left 3s;
+    transform: none;
+    fill: #d43;
+}
+.intro .background .big-left-triangle.left{
+    left: -50vw;
+}
+.intro .background .big-right-triangle{
+    position: absolute;
+    height: 30vh;
+    right: 0;
+    bottom: 0;
+    transition: left 3s;
+    transform: none;
+    fill: #d43;
+}
+
+
+/* .intro .background img{
+    min-width: 100vw;
+    min-height: 100vh;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+} */
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 30px 0;
+    z-index: 100;
 }
