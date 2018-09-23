@@ -4,7 +4,8 @@ namespace app\core;
 class View{
     public $path;
     public $route;
-    public $layout = 'empty';
+    public $layout = 'default';
+    public $geo;
 
     public function __construct($route){
         $this->route = $route;
@@ -21,7 +22,6 @@ class View{
         }else{
             $seo['title'] .= ' | Киношкола iPlay';
         }
-        //print_r($seo);
 
         if(!isset($seo['description'])){
             $seo['description'] = 'Киношкола iPlay - место, которое мотивирует и обучает создавать кино, и экспериментировать с его формами.';
@@ -30,6 +30,8 @@ class View{
         if(isset($_SESSION['user'])){
             $user = $_SESSION['user'];
         }
+
+        $geo['city'] = ($this->geo['region']['name_ru'] == 'Удмуртия')?'Ижевск':'Москва';
 
         if(file_exists('app/views/'.$this->path.'.php')){
             ob_start();
