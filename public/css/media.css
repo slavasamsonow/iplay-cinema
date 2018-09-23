@@ -1,0 +1,18 @@
+@media(max-width: 1366px){
+    .intro .title{
+        /* padding-top: 17vh; */
+    }
+    .intro h1 {
+        margin-bottom: 4vh;
+        font-size: 36px;
+    }
+    .intro .body {
+        font-size: 30px;
+    }
+    .intro .description .text {
+        margin-bottom: 5vh;
+    }
+}
+
+@media(max-width: 1366px){
+}
