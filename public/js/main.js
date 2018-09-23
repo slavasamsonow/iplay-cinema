@@ -1,17 +1,17 @@
-$(document).ready(function() {
-    // Обработка форм
-    $('input').focusin(function(){
+$(document).ready(function () {
+	// Обработка форм
+	$('input').focusin(function () {
 		$(this).parent().addClass('active');
 	});
-	$('input').focusout(function(){
-		if($(this).val().length <= 0){
+	$('input').focusout(function () {
+		if ($(this).val().length <= 0) {
 			$(this).parent().removeClass('active');
 		}
-    });
-    // Маска для телефона
-    $("input[type=tel]").mask("+7 (999) 999-99-99");
+	});
+	// Маска для телефона
+	$("input[type=tel]").mask("+7 (999) 999-99-99");
 
-	$('form').submit(function(event) {
+	$('form').submit(function (event) {
 		if ($(this).hasClass('no_ajax')) {
 			return;
 		}
@@ -24,70 +24,73 @@ $(document).ready(function() {
 			contentType: false,
 			cache: false,
 			processData: false,
-			success: function(result) {
+			success: function (result) {
 				json = jQuery.parseJSON(result);
 				if (json.url) {
 					window.location.href = '/' + json.url;
-				}else if(json.urlo){
+				} else if (json.urlo) {
 					window.location.href = json.urlo;
-				}else if(json.modal == 'modalmessage') {
+				} else if (json.modal == 'modalmessage') {
 					openModal('message', json.modalheader, json.modalbody);
 				}
 			},
 		});
-    });
+	});
 
 	// Модальные окна
-	function openModal(type,header,body){
+	function openModal(type, header, body) {
 		$('.modal').hide();
-		$('.modal.'+type+' .modal-header').html(header);
-		$('.modal.'+type+' .modal-body').html(body);
+		$('.modal.' + type + ' .modal-header').html(header);
+		$('.modal.' + type + ' .modal-body').html(body);
 		$('body').addClass('modalopen');
-		$('.modal.'+type).show();
+		$('.modal.' + type).show();
 		$('#overlay').show();
 	}
-    $("#overlay").click(function(){
+	$("#overlay").click(function () {
 		$(".modal").hide();
 		$("#overlay").hide();
 		$("body").removeClass('modalopen');
 	})
-	$(".modal .close").click(function(){
+	$(".modal .close").click(function () {
 		$(this).parent().hide();
 		$("#overlay").hide();
 		$("body").removeClass('modalopen');
 	})
-	$("button[data-action='modal']").click(function(){
+	$("button[data-action='modal']").click(function () {
 		var modal = $(this).data('modal');
-		$('.modal.'+modal).show();
+		$('.modal.' + modal).show();
 		$('#overlay').show();
 	})
 
 	// Отступы у Прокручиваемого
-    var headerHeight = $('.navbar').css('height');
+	var headerHeight = $('.navbar').css('height');
 	var footerHeight = $('footer').css('height');
 	$('.wrapper').css('padding-top', headerHeight);
 	$('.wrapper').css('padding-bottom', footerHeight);
 
 	//Блок Интро включает в себя шупку и подвал
-	$('.intro').css('margin-top', '-'+headerHeight);
-	$('.intro').css('margin-bottom', '-'+footerHeight);
+	$('.intro').css('margin-top', '-' + headerHeight);
+	$('.intro').css('margin-bottom', '-' + footerHeight);
 	/*$('.intro').css('padding-top', headerHeight);
 	$('.intro').css('padding-bottom', footerHeight);
 	*/
 	$('.intro .background .video-shape').addClass('end');
-	setTimeout(function(){
+	setTimeout(function () {
 		$('.intro .background .video-shape').addClass('out');
 		$('.intro .background .big-left-triangle').addClass('left');
 	}, 3000)
 
-	var introvideo = document.getElementById('introVideo');
-	introvideo.volume = 0;
-	introvideo.play();
+	if($('#introVideo').length){
+		var introvideo = document.getElementById('introVideo');
+		introvideo.volume = 0;
+	 	introvideo.play();
+	}
+
 
 	// Взаимодействие с заданием курса
-	$('.tasks.course .task.active').click(function(){
+	$('.tasks.course .task.active').click(function () {
 		var elem = $(this);
-		if(elem.hasClass('process')){
+		if (elem.hasClass('process')) {
 			return;
 		}
 		var taskId = Number(elem.attr('data-id'));
@@ -96,19 +99,19 @@ $(document).ready(function() {
 		$.ajax({
 			url: '/study/checkTask',
 			type: 'post',
-			data: 'task='+taskId,
-			success: function(result){
+			data: 'task=' + taskId,
+			success: function (result) {
 				json = jQuery.parseJSON(result);
-				if(json.data.status){
-					elem.attr('data-status',json.data.status);
+				if (json.data.status) {
+					elem.attr('data-status', json.data.status);
 				}
-				if(json.data.percent >= 0){
-					$('.progress-bar').css('width', json.data.percent+'%');
+				if (json.data.percent >= 0) {
+					$('.progress-bar').css('width', json.data.percent + '%');
 					$('.progress-bar .sr-only .percent').html(json.data.percent);
 				}
-				if(json.data.error){
+				if (json.data.error) {
 					elem.addClass('error');
-					setTimeout(function(){
+					setTimeout(function () {
 						elem.removeClass('error')
 					}, 1000);
 					$('span.error').remove();
