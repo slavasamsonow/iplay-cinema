@@ -70,8 +70,24 @@
             </div>
             <div class="navbar-right">
                 <ul>
+                    <!-- <li>
+                        <a href="#">Новости</a>
+                    </li>
                     <li>
-                        <a href="/login" class="lk">Личный кабинет</a>
+                        <a href="#">Статьи</a>
+                    </li> -->
+                    <li>
+                        <a href="/login" class="lk">
+                            <?php
+                                if(isset($user['fname']) || isset($user['lname'])){
+                                    echo $user['fname'].' '.$user['lname'];
+                                }elseif(isset($user['username'])){
+                                    echo $user['username'];
+                                }else{
+                                    echo 'Личный кабинет';
+                                }
+                            ?>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -86,12 +102,22 @@
 
         </div>
     </div>
-    <footer class="transparent">
+
+    <footer>
         <div class="container-fluid">
-            <a href="/public/docs/protect_policy_of_personal_information.pdf" target="_blank">Политика конфеденциальности</a>
+            <div class="col-md-3">
+                &#169; Киношкола iPlay, 2015-<?=date('Y', time())?> <br>
+                <a href="mailto:videolab.play@gmail.com">videolab.play@gmail.com</a>
+            </div>
+            <div class="col-md-3 col-md-offset-3">
+                <a href="/public/docs/protect_policy_of_personal_information.pdf" target="_blank">Политика конфеденциальности</a>
+                <hr>
+                ИП Муратова Татьяна Сергеевна <br>
+                ИНН 183402585126 <br>
+                ОГРНИП 310184015100083
+            </div>
         </div>
     </footer>
-
     <div class="modal message">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <div class="modal-header"></div>
