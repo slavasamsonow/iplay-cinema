@@ -9,11 +9,13 @@ abstract class Controller{
     public $route;
     public $view;
     public $model;
-    
+
     public function __construct($route){
         $this->route = $route;
         $this->view = new View($route);
         $this->model = $this->loadModel($route['controller']);
+
+        $this->view->geo = $this->model->geo;
     }
 
     public function loadModel($name){
