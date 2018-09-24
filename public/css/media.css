@@ -1,7 +1,6 @@
+/* v.1.0 */
+
 @media(max-width: 1366px){
-    .intro .title{
-        /* padding-top: 17vh; */
-    }
     .intro h1 {
         margin-bottom: 4vh;
         font-size: 36px;
