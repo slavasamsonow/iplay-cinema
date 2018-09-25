@@ -23,8 +23,8 @@ class PayController extends Controller{
             if(!$course = $this->model->courseInfo($id)){
                 $this->view->redirect('account');
             }
-            if(!$course['timestart'] > time()){
-                $this->view->redirect('');
+            if(!$course['timestart'] > time() || $course['payment'] == 0){
+                $this->view->redirect('account');
             }
 
             $paymentData = $this->model->createPayment($course);
@@ -38,7 +38,7 @@ class PayController extends Controller{
             ];
             $this->view->render($vars);
         }else{
-            $this->view->redirect('account');
+            $this->view->redirect('login?request_url='.substr(explode('?',$_SERVER['REQUEST_URI'])[0],1));
         }
     }
 
