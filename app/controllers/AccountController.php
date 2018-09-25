@@ -59,6 +59,9 @@ class AccountController extends Controller{
                 $remember = '';
             }
             $this->model->login($_POST['username'], $remember);
+            if($_POST['request_url']){
+                $this->view->location($_POST['request_url']);
+            }
             $this->view->location('account');
         }
         if($this->model->auth == 'guest'){

@@ -2,6 +2,7 @@
     <h1>Вход</h1>
     <div class="col-md-3">
         <form action="/login" method="post">
+            <input type="hidden" name="request_url" value="<?php if(isset($_GET['request_url'])) echo $_GET['request_url']?>">
             <div class="control-group form-group">
                 <label>Логин:</label>
                 <input type="text" class="form-control" name="username" required="true">
