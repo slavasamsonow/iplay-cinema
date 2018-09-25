@@ -10,7 +10,7 @@ class YandexMoney{
     protected function query($link, $idempotence = '', $data=[]){
         $link = $this->path.$link;
 
-        $curl=curl_init(); 
+        $curl=curl_init();
         curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
         curl_setopt($curl,CURLOPT_USERPWD,$this->shopid.':'.$this->secret);
         curl_setopt($curl,CURLOPT_URL,$link);
