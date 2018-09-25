@@ -30,7 +30,7 @@
     </div>
     <div class="background">
         <!-- <img src="/public/img/back.png" alt=""> -->
-        <video preload id="introVideo">
+        <video preload muted loop id="introVideo">
             <source src="/public/video/intro.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
             <source src="/public/video/intro.webm" type='video/webm; codecs="vp8, vorbis"' />
         </video>
