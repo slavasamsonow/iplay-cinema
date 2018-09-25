@@ -40,7 +40,7 @@ class Pay extends Model{
             $varsAmo = [
                 'sale' => $data['price'],
                 'nameCourse' => $data['name'],
-                // Еще номер amoid!
+                'contact_id' => $_SESSION['user']['amoid'],
             ];
             $amoid = $this->amo->newLead($varsAmo);
 
