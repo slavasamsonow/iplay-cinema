@@ -36,6 +36,7 @@ class PayController extends Controller{
                 'course' => $course,
                 'pay' => $paymentData
             ];
+            $this->view->layout = 'pay';
             $this->view->render($vars);
         }else{
             $this->view->redirect('login?request_url='.substr(explode('?',$_SERVER['REQUEST_URI'])[0],1));
