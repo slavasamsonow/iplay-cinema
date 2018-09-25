@@ -40,6 +40,16 @@ return [
     'study/checkTask' => [
         'controller' => 'course',
         'action' => 'checkTask',
-    ]
+    ],
+
+    // payController
+    'pay/{courseid:\d+}' => [
+        'controller' => 'pay',
+        'action' => 'pay',
+    ],
+    'pay/yandexkassa' => [
+        'controller' => 'pay',
+        'action' => 'yandexkassa',
+    ],
 
 ];
