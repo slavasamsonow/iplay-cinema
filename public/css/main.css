@@ -1,4 +1,4 @@
-/* V.1.0 */
+/* V.1.1 */
 
 /* Шрифты */
 @font-face {
@@ -279,6 +279,7 @@ input[type='checkbox']+span {
 .intro h1 {
     margin: 0;
     margin-bottom: 7vh;
+    color: #111;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 40px;

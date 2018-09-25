@@ -1,3 +1,5 @@
+// V.1.1
+
 $(document).ready(function () {
 	// Обработка форм
 	$('input').focusin(function () {
