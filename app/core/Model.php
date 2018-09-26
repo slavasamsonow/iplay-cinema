@@ -15,6 +15,7 @@ abstract class Model{
     public $db;
     public $amo;
     public $auth;
+    public $role;
     public $geo;
     public $geoCity;
 
@@ -70,35 +71,40 @@ abstract class Model{
     }
 
     protected function checkAuth(){
-        if(isset($_SESSION['user']['email']) && isset($_SESSION['user']['password'])){
+        if(isset($_SESSION['user']['id']) && isset($_SESSION['user']['password'])){
             $params = [
-                'email' => $_SESSION['user']['email'],
+                'id' => $_SESSION['user']['id'],
             ];
-            $password = $this->db->column('SELECT `password` FROM `users` WHERE `email` = :email', $params);
-            if($password = $_SESSION['user']['password']){
-                return 'auth';
-            }else{
-                unset($_SESSION['user']);
-                setcookie('i','',time());
-                setcookie('p','',time());
-                return 'guest';
-            }
-        }elseif(isset($_COOKIE['i']) && isset($_COOKIE['p'])){
+            $password = $_SESSION['user']['password'];
+        }
+        elseif(isset($_COOKIE['i']) && isset($_COOKIE['p'])){
             $params = [
                 'id' => $_COOKIE['i'],
             ];
-            $data = $this->db->row('SELECT * FROM `users` WHERE `id` = :id', $params)[0];
-            if($data['password'] == $_COOKIE['p']){
-                $_SESSION['user'] = $data;
-                return 'auth';
-            }else{
-                setcookie('i','',time());
-                setcookie('p','',time());
-                return 'guest';
-            }
-        }else{
+            $password = $_COOKIE['p'];
+        }
+        else{
             return 'guest';
         }
+
+        $data = $this->db->row('SELECT * FROM `users` WHERE `id` = :id', $params);
+
+        if(empty($data[0])){
+            return 'guest';
+        }
+        $data = $data[0];
+
+        if($data['password'] != $password){
+            if(isset($_SESSION['user'])) unset($_SESSION['user']);
+            setcookie('i','',time());
+            setcookie('p','',time());
+            return 'guest';
+        }
+
+        $_SESSION['user'] = $data;
+        $this->role = $_SESSION['user']['role'];
+        return 'auth';
+
     }
 
     public function validate($input, $data){
