@@ -210,4 +210,37 @@ class Account extends Model{
         $this->db->query('INSERT INTO `user_courses` (`course`, `user`) VALUES (:course, :user)', $params);
         return true;
     }
+
+    public function usersList($param = []){
+        $countElem = $this->db->column('SELECT COUNT(*) FROM `users`');
+        $pagination = $this->pagination($countElem);
+
+        $params = [
+            'start' => (int) $pagination['start'],
+            'limit' => (int) $pagination['limit']
+        ];
+
+        //debug($pagination);
+
+        $usersList = $this->db->row('SELECT `id`, `username`, `fname`, `lname` FROM `users` LIMIT :start,:limit', $params);
+        return $usersList;
+    }
+
+    public function userInfo($username){
+        if(preg_match('/^id(\d+)$/', $username)){
+            $params = [
+                'id' => substr($username, 2),
+            ];
+            $userData = $this->db->row('SELECT `fname`, `lname` FROM `users` WHERE id = :id', $params);
+        }else{
+            $params = [
+                'username' => $username,
+            ];
+            $userData = $this->db->row('SELECT `fname`, `lname` FROM `users` WHERE username = :username', $params);
+        }
+        if(empty($userData)){
+            return false;
+        }
+        return $userData[0];
+    }
 }
