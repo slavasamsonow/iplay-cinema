@@ -15,7 +15,7 @@
                 <?php foreach($tasks as $task): ?>
                 <?php if($task['timestart'] <= time()):?>
                 <li class="task <? if($task['active'] == 1)echo 'active';?>" data-status="<?=$task['status']?>" data-id="<?=$task['id']?>">
-                    <?=$task['description']?>
+                    <?=$task['title']?>
                 </li>
                 <?php endif ?>
                 <?php endforeach ?>
