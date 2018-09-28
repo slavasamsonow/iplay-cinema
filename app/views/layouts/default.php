@@ -16,12 +16,12 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon/favicon-16x16.png">
 
         <link rel="stylesheet" href="/public/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/public/css/main.css?v=1.2">
-        <link rel="stylesheet" href="/public/css/media.css?v=1.0">
+        <link rel="stylesheet" href="/public/css/main.css?v=2.1.0">
+        <link rel="stylesheet" href="/public/css/media.css?v=2.1.0">
 
         <script src="/public/js/jquery.js"></script>
         <script src="/public/js/jquery.maskedinput.min.js"></script>
-        <script src="/public/js/main.js?v=1.2"></script>
+        <script src="/public/js/main.js?v=2.1.0"></script>
 
         <!-- Yandex.Metrika counter -->
         <script type="text/javascript">
@@ -72,7 +72,7 @@
     </head>
 
     <body>
-    <div class="content">
+        <div class="content">
             <nav class="navbar white-text">
                 <div class="container-fluid">
                     <div class="navbar-left">
@@ -107,7 +107,7 @@
                 <?=$content?>
             </div>
 
-            <footer class="white-text">
+            <footer class="white-text load">
                 <div class="container-fluid">
                     <a href="/public/docs/protect_policy_of_personal_information.pdf" target="_blank">Политика
                         конфеденциальности</a>
