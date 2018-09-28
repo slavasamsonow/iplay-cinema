@@ -80,6 +80,9 @@ class AccountController extends Controller{
         if($this->model->auth == 'auth'){
             $activeCourses = $this->model->activeCoursesList();
             $vars = [
+                'seo' => [
+                    'title' => 'Личный кабинет',
+                ],
                 'activeCourses' => $activeCourses,
             ];
 
@@ -114,10 +117,43 @@ class AccountController extends Controller{
             $this->view->location('account');
         }
         if($this->model->auth == 'auth'){
-            $this->view->render('Сменить пароль');
+            $vars = [
+                'seo' => [
+                    'title' => 'Сменить пароль'
+                ]
+            ];
+            $this->view->render($vars);
         }else{
-            $this->view->redirect('login');
+            $this->view->redirect('account');
         }
+    }
+
+    public function usersAction(){
+        if($this->model->auth == 'auth'){
+            $users = $this->model->usersList($_GET);
+            $vars = [
+                'seo' => [
+                    'title' => 'Пользователи',
+                ],
+                'users' => $users
+            ];
+            $this->view->render($vars);
+        }else{
+            $this->view->redirect('account');
+        }
+    }
+
+    public function userAction(){
+        if(!$userPage = $this->model->userInfo($this->route['username'])){
+            $this->view->errorCode('404');
+        }
+        $vars = [
+            'seo' => [
+                'title' => $userPage['fname'].' '.$userPage['lname'],
+            ],
+            'userPage' => $userPage,
+        ];
+        $this->view->render($vars);
     }
 
 }
