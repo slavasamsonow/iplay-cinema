@@ -71,5 +71,9 @@ class View{
 
     public function locationOut($url) {
 		exit(json_encode(['urlo' => $url]));
+    }
+
+    public function data($data) {
+		exit(json_encode(['data' => $data]));
 	}
 }
