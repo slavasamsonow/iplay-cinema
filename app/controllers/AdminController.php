@@ -9,8 +9,7 @@ class AdminController extends Controller{
         if($this->model->role == 'admin'){
             if(!empty($_POST)){
                 $data = $this->model->saveStatusTask($_POST);
-                echo json_encode(['data' => $data]);
-                exit();
+                $this->view->data($data);
             }
             $tasks = $this->model->getNoverifyTasks();
             $vars = [

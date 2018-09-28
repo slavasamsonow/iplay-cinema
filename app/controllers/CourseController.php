@@ -25,7 +25,7 @@ class CourseController extends Controller{
         if(!empty($_POST)){
             $task = (int) $_POST['task'];
             $data = $this->model->changeTask($task);
-            echo json_encode(['data' => $data]);
+            $this->view->data($data);
         }else{
             $this->model->errorCode(404);
         }
