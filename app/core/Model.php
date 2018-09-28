@@ -166,4 +166,52 @@ abstract class Model{
         }
     }
 
+    public function pagination($countElem, $params = []){
+        $onPage = (isset($params['onpage']))?$params['onpage']:10;
+
+        $currentPage = (isset($_GET['page'])) ? intval($_GET['page']) : 1;
+
+        $countPage = ceil($countElem / $onPage);
+
+        if($currentPage > $countPage){
+            $currentPage = $countPage;
+        }else if($currentPage < 1){
+            $currentPage = 1;
+        }
+
+        $startElem = ($currentPage - 1) * $onPage;
+
+        if($countPage != 1){
+            $strPagination = '';
+            $url = explode('?', $_SERVER['REQUEST_URI']);
+        }else{
+            $strPagination = '';
+        }
+
+        $url = explode('?', $_SERVER['REQUEST_URI']);
+        if(isset($url['1'])){
+            $params = explode('&', $url['1']);
+            foreach($params as $key => $param){
+                $paramval = explode('=',$param);
+                if($paramval[0] == 'page'){
+                    unset($params[$key]);
+                }
+            }
+        }
+
+        //Дописать ссылки на страницы
+
+
+
+        $params['page'] = 'page='. 3;
+        $fullurl = $url[0].'?'.implode('&', $params);
+
+        $out = [
+            'start' => $startElem,
+            'limit' => $onPage,
+            'pagination' => $strPagination,
+        ];
+        return $out;
+    }
+
 }
