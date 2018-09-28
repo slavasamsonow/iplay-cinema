@@ -1,4 +1,8 @@
 <?php
+
+// header('Location: /timely');
+// exit;
+
 require 'app/lib/Dev.php';
 
 use app\core\Router;
