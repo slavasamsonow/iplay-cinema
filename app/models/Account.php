@@ -223,6 +223,11 @@ class Account extends Model{
         //debug($pagination);
 
         $usersList = $this->db->row('SELECT `id`, `username`, `fname`, `lname` FROM `users` LIMIT :start,:limit', $params);
+        foreach($usersList as $key => $user){
+            if($user['username'] == ''){
+                $usersList[$key]['username'] = 'id'.$user['id'];
+            }
+        }
         return $usersList;
     }
 
@@ -231,12 +236,12 @@ class Account extends Model{
             $params = [
                 'id' => substr($username, 2),
             ];
-            $userData = $this->db->row('SELECT `fname`, `lname` FROM `users` WHERE id = :id', $params);
+            $userData = $this->db->row('SELECT `fname`, `lname`, `about`, `video` FROM `users` WHERE id = :id', $params);
         }else{
             $params = [
                 'username' => $username,
             ];
-            $userData = $this->db->row('SELECT `fname`, `lname` FROM `users` WHERE username = :username', $params);
+            $userData = $this->db->row('SELECT `fname`, `lname`, `about`, `video` FROM `users` WHERE username = :username', $params);
         }
         if(empty($userData)){
             return false;
