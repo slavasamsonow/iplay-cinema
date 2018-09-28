@@ -64,7 +64,7 @@ class Course extends Model{
             'user' => $userId,
             'course' => $courseId
         ];
-        $tasks = $this->db->row('SELECT t.id AS taskid, u.id, t.timestart, t.description, t.active, t.percent, u.status FROM courses_tasks t LEFT JOIN user_tasks u ON u.task=t.id WHERE u.user = :user AND t.course = :course',$params);
+        $tasks = $this->db->row('SELECT t.id AS taskid, u.id, t.timestart, t.title, t.active, t.percent, u.status FROM courses_tasks t LEFT JOIN user_tasks u ON u.task=t.id WHERE u.user = :user AND t.course = :course',$params);
         return $tasks;
     }
 

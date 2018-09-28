@@ -52,4 +52,10 @@ return [
         'action' => 'yandexkassa',
     ],
 
+    // adminController
+    'admin/confirmtasks' => [
+        'controller' => 'admin',
+        'action' => 'confirmTasks',
+    ],
+
 ];
