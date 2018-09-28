@@ -1,4 +1,4 @@
-// V.1.1
+// V.1.2
 
 $(document).ready(function () {
 	// Обработка форм
@@ -140,6 +140,46 @@ $(document).ready(function () {
 					$('span.error').remove();
 					openModal('message', 'Ошибка', json.data.error)
 				}
+				elem.removeClass('process');
+			}
+		})
+	})
+
+	$('button[data-action="confimTask"]').click(function(){
+		var elem = $(this);
+		if (elem.hasClass('process')) {
+			return;
+		}
+		var status = elem.attr('data-status');
+		var taskid = elem.attr('data-id');
+		var description = $('textarea[data-task='+taskid+']').val();
+
+		$('button[data-task='+taskid+']').addClass('process');
+		$.ajax({
+			url: '/admin/confirmtasks',
+			type: 'post',
+			data: 'id=' + taskid + '&status=' + status + '&description=' + description,
+			success: function (result) {
+				json = jQuery.parseJSON(result);
+				console.log(json);
+				if (json.data.status) {
+					$('tr[data-task='+json.data.id+']').remove();
+				}
+				/*if (json.data.status) {
+					elem.attr('data-status', json.data.status);
+				}
+				if (json.data.percent >= 0) {
+					$('.progress-bar').css('width', json.data.percent + '%');
+					$('.progress-bar .sr-only .percent').html(json.data.percent);
+				}
+				if (json.data.error) {
+					elem.addClass('error');
+					setTimeout(function () {
+						elem.removeClass('error')
+					}, 1000);
+					$('span.error').remove();
+					openModal('message', 'Ошибка', json.data.error)
+				}*/
 				elem.removeClass('process');
 			}
 		})
