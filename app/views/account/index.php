@@ -13,6 +13,7 @@
     <div class="row">
         <div class="col-md-2">
             <a href="/user/<?=$user['username']?>">Моя страница</a> <br>
+            <a href="/account/editinfo">Редактировать информацию</a> <br>
             <a href="/account/editpass">Сменить пароль</a> <br>
             <a href="/account/logout">Выйти</a> <br>
             <br>

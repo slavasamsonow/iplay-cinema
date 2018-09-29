@@ -113,13 +113,52 @@ class AccountController extends Controller{
             $data = [
                 'password' => password_hash($_POST['password'], PASSWORD_BCRYPT),
             ];
-            $this->model->saveUserData($_SESSION['user']['id'], ['password'], $data);
+            $this->model->saveUserData($_SESSION['user']['id'], $data);
             $this->view->location('account');
         }
         if($this->model->auth == 'auth'){
             $vars = [
                 'seo' => [
                     'title' => 'Сменить пароль'
+                ]
+            ];
+            $this->view->render($vars);
+        }else{
+            $this->view->redirect('account');
+        }
+    }
+
+    public function editinfoAction(){
+        if(!empty($_POST)){
+            if(!$this->model->validate(['username'], $_POST)){
+                $this->view->message('Ошибка', $this->model->error);
+            }
+            if($_POST['username'] != $_SESSION['user']['username']){
+                if($this->model->checkExists('username', $_POST['username'])){
+                    $this->view->message('Ошибка', 'Пользователь с таким логином уже существует');
+                }
+            }
+
+            foreach($_POST as $key => $postD){
+                $data[$key] = $postD;
+            }
+            if(isset($data['public'])){
+                if($data['public'] == 'public'){
+                    $data['public'] = 1;
+                }else{
+                    $data['public'] = 0;
+                }
+            }else{
+                $data['public'] = 0;
+            }
+
+            $this->model->saveUserData($_SESSION['user']['id'], $data);
+            $this->view->message('Данные сохранены', '');
+        }
+        if($this->model->auth == 'auth'){
+            $vars = [
+                'seo' => [
+                    'title' => 'Редактирование информации'
                 ]
             ];
             $this->view->render($vars);
