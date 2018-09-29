@@ -107,10 +107,9 @@
                 <?=$content?>
             </div>
 
-            <footer class="white-text load">
+            <footer class="white-text">
                 <div class="container-fluid">
-                    <a href="/public/docs/protect_policy_of_personal_information.pdf" target="_blank">Политика
-                        конфеденциальности</a>
+                    <a href="/public/docs/protect_policy_of_personal_information.pdf" target="_blank">Политика конфеденциальности</a>
                 </div>
             </footer>
         </div>

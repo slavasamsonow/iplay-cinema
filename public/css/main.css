@@ -528,12 +528,6 @@ tr:hover td {
     bottom: 0;
 }
 
-footer.load {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-
 footer {
     width: 100%;
     padding: 30px 0;
