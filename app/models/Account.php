@@ -220,9 +220,12 @@ class Account extends Model{
             'limit' => (int) $pagination['limit']
         ];
 
-        //debug($pagination);
+        if(isset($_SESSION['user']['id'])){
+            $params['userId'] = $_SESSION['user']['id'];
+            $noId = 'AND `id` != :userId';
+        }
 
-        $usersList = $this->db->row('SELECT `id`, `username`, `fname`, `lname` FROM `users` LIMIT :start,:limit', $params);
+        $usersList = $this->db->row('SELECT `id`, `username`, `fname`, `lname` FROM `users` WHERE `active` = 1 '.$noId.' LIMIT :start,:limit', $params);
         foreach($usersList as $key => $user){
             if($user['username'] == ''){
                 $usersList[$key]['username'] = 'id'.$user['id'];
