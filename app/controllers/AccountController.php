@@ -140,7 +140,7 @@ class AccountController extends Controller{
             }
 
             foreach($_POST as $key => $postD){
-                $data[$key] = $postD;
+                $data[$key] = htmlentities($postD);
             }
             if(isset($data['public'])){
                 if($data['public'] == 'public'){
