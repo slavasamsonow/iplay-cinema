@@ -31,6 +31,7 @@ class View{
 
         if(isset($_SESSION['user'])){
             $user = $_SESSION['user'];
+            $user['username'] = (isset($user['username']))?$user['username']:'id'.$user['id'];
         }
 
         if(file_exists('app/views/'.$this->path.'.php')){
