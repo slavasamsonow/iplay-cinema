@@ -169,13 +169,13 @@ class Account extends Model{
     }
 
     // Смена данных
-    public function saveUserData($id, $names, $data){
-        foreach($names as $name){
-            $params[$name] = $data[$name];
-            $_SESSION['user'][$name] = $data[$name];
-            if($name == 'password'){
+    public function saveUserData($id, $data){
+        foreach($data as $key=>$val){
+            $params[$key] = $val;
+            if($key == 'password'){
+                $_SESSION['user']['password'] = $val;
                 if(isset($_COOKIE['p'])){
-                    setcookie('p',$data[$name], time()+3600+24+30, '/');
+                    setcookie('p',$data[$key], time()+3600+24+30, '/');
                 }
             }
         }
@@ -235,7 +235,7 @@ class Account extends Model{
     }
 
     public function userInfo($username){
-        if(preg_match('/^id(\d+)$/', $username)){
+        if(preg_match('/^id[0-9]+$/', $username)){
             $params = [
                 'id' => substr($username, 2),
             ];
