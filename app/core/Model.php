@@ -114,8 +114,8 @@ abstract class Model{
                 'message' => 'E-mail адрес указан неверно'
             ],
             'username' => [
-                'pattern' => '#^([a-z0-9_-]{3,20})$#',
-                'message' => 'Логин указан неверно. <br> Логин может состоять из латинских букв, цифр, знаков - и _, длина логина от 3 до 20 символов'
+                'pattern' => '#^[a-z0-9][a-z0-9_]{1,20}[a-z0-9]$#',
+                'message' => 'Логин указан неверно. <br> Логин может состоять из латинских букв, цифр, знака _, длина логина от 3 до 20 символов. Логин не должен начинаться и кончаться знаком подчеркивания'
             ],
             'password' => [
                 'pattern' => '#(?=.*\d)(?=.*[A-Za-zА-Яа-я])#',
@@ -131,13 +131,22 @@ abstract class Model{
                 $this->error = $rules[$val]['message'];
                 return false;
             }
-        }
-        if(isset($input['password'])){
-            if(iconv_strlen($data['password']) < 10){
-                $this->error = 'Длина пароля должна быть больше 10 символов';
-                return false;
+
+            if($val == 'password'){
+                if(iconv_strlen($data['password']) < 10){
+                    $this->error = 'Длина пароля должна быть больше 10 символов';
+                    return false;
+                }
+            }
+
+            if($val == 'username'){
+                if(preg_match('#^id[0-9]+$#', $data['username'])){
+                    $this->error = 'Недопустимый логин';
+                    return false;
+                }
             }
         }
+
         return true;
     }
 
