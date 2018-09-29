@@ -85,8 +85,8 @@
                 <label>
                     <input type="checkbox" name="confident" value="confident" checked required>
                     <span> Я ознакомлен и согласен <br> с <a href="/public/docs/protect_policy_of_personal_information.pdf"
-                        target="_blank">Политикой конфеденциальности</a>
-</span>
+                            target="_blank">Политикой конфеденциальности</a>
+                    </span>
                 </label>
             </div>
             <input type="submit" class="btn" value="Записаться">
