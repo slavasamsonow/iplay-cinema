@@ -31,6 +31,10 @@ return [
         'controller' => 'account',
         'action' => 'editpassword',
     ],
+    'account/editinfo' => [
+        'controller' => 'account',
+        'action' => 'editinfo',
+    ],
     'users' => [
         'controller' => 'account',
         'action' => 'users',
