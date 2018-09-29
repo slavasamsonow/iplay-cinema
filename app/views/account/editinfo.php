@@ -26,7 +26,7 @@
                     <span> Публичный профиль </span>
                 </label>
             </div>
-            <button type="submit" class="btn btn-default">Сменить пароль</button>
+            <button type="submit" class="btn btn-default">Сохранить данные</button>
         </form>
     </div>
 </div>
