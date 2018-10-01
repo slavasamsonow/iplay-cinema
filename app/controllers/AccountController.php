@@ -152,8 +152,19 @@ class AccountController extends Controller{
                 $data['public'] = 0;
             }
 
+            if(isset($_FILES['photo']['tmp_name']) && $_FILES['photo']['tmp_name'] != ''){
+                if($file = $this->model->saveFile($_FILES['photo'], 'public/img/users/', 'image')){
+                    $data['photo'] = $file;
+                    if(!empty($data['oldphoto'])){
+                        $oldPhotoPath = $_SERVER['DOCUMENT_ROOT'].'/public/img/users/'.$data['oldphoto'];
+                        unlink($oldPhotoPath);
+                    }
+                }
+            }
+            unset($data['oldphoto']);
+
             $this->model->saveUserData($_SESSION['user']['id'], $data);
-            $this->view->message('Данные сохранены', '');
+            $this->view->location('account');
         }
         if($this->model->auth == 'auth'){
             $vars = [
