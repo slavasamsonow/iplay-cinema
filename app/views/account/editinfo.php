@@ -1,7 +1,8 @@
 <div class="container-fluid">
     <h1>Изменение информации</h1>
     <div class="col-md-3">
-        <form action="/account/editinfo" method="post">
+        <form action="/account/editinfo" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="oldphoto" value="<?=$user['photo']?>">
             <div class="row">
                 <div class="control-group form-group col-md-6">
                     <label>Имя:</label>
@@ -25,6 +26,10 @@
                     <input type="checkbox" name="public" value="public" <? if($user['public'] == 1) echo 'checked';?>>
                     <span> Публичный профиль </span>
                 </label>
+            </div>
+            <div class="div" class="control-group form-group">
+                <label>Загрузить новое фото:</label>
+                <input type="file" name="photo">
             </div>
             <button type="submit" class="btn btn-default">Сохранить данные</button>
         </form>
