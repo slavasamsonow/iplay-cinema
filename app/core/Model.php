@@ -223,4 +223,42 @@ abstract class Model{
         return $out;
     }
 
+    public function saveFile($file, $path, $fileType = ''){
+        $newFilename = $_SESSION['user']['id'].'-'.$this->createToken(15);
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'].'/'.$path;
+
+        $types = [
+            [
+                'type' => 'image',
+                'mime' => 'image/jpeg',
+                'suf' => '.jpeg'
+            ],
+            [
+                'type' => 'image',
+                'mime' => 'image/png',
+                'suf' => '.png'
+            ]
+        ];
+
+        foreach($types as $type){
+            if($type['type'] == $fileType && $type['mime'] == $file['type']){
+                $fileMime = $type['mime'];
+                $newFilename .= $type['suf'];
+            }
+        }
+
+        if(!isset($fileMime)){
+            $this->error = 'Неправильный формат файла';
+            return false;
+        }
+
+        $uploadFile = $uploadDir . $newFilename;
+        if (!move_uploaded_file($file['tmp_name'], $uploadFile)) {
+            $this->error = 'Не удалось осуществить сохранение файла';
+            return false;
+        }
+
+        return $newFilename;
+    }
+
 }
