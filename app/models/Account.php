@@ -239,13 +239,14 @@ class Account extends Model{
             $params = [
                 'id' => substr($username, 2),
             ];
-            $userData = $this->db->row('SELECT `fname`, `lname`, `about`, `video` FROM `users` WHERE id = :id', $params);
+            $usl = 'WHERE id = :id';
         }else{
             $params = [
                 'username' => $username,
             ];
-            $userData = $this->db->row('SELECT `fname`, `lname`, `about`, `video` FROM `users` WHERE username = :username', $params);
+            $usl = 'WHERE username = :username';
         }
+        $userData = $this->db->row('SELECT `fname`, `lname`, `about`, `video`, `photo` FROM `users` '.$usl, $params);
         if(empty($userData)){
             return false;
         }
