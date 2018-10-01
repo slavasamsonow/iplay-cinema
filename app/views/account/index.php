@@ -17,7 +17,11 @@
             <a href="/account/editpass">Сменить пароль</a> <br>
             <a href="/account/logout">Выйти</a> <br>
             <br>
-            <a href="/users">Пользователи</a>
+            <a href="/users">Пользователи</a> <br>
+            <br>
+            <?php if($_SESSION['user']['role'] == 'admin'):?>
+            <a href="/admin/confirmtasks">Проверка заданий</a>
+            <?php endif ?>
         </div>
         <div class="col-md-8">
             Для повышения уровня вам нужно проходить курсы:
