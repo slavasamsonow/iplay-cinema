@@ -13,7 +13,14 @@
     </div>
     <div class="control-group form-group">
         <label>Имя пользователя:</label>
-        <input type="text" class="form-control" name="username" value="<?=$user['username']?>">
+        <?php
+        if(preg_match('#^id[0-9]+$#', $user['username'])){
+            $oldusername = '';
+        }else{
+            $oldusername = $user['username'];;
+        }
+        ?>
+        <input type="text" class="form-control" name="username" value="<?=$oldusername?>">
     </div>
     <div class="control-group form-group">
         <label>Обо мне:</label>
