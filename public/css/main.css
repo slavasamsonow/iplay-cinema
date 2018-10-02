@@ -39,13 +39,14 @@ body.modalopen {
     overflow: hidden;
 }
 
-h2 .big{
+h2 .big {
     text-transform: uppercase;
     font-size: 40px;
     font-weight: bold;
     position: relative;
 }
-h2 .big:before{
+
+h2 .big:before {
     content: '';
     display: block;
     position: absolute;
@@ -57,16 +58,16 @@ h2 .big:before{
     background-color: #111;
 }
 
-h3{
+h3 {
     font-size: 20px;
     font-weight: bold;
 }
 
 svg {
-    fill: #fff;
+    fill: #111;
 }
 
-img{
+img {
     max-width: 100%;
 }
 
@@ -126,33 +127,33 @@ button:focus:active {
     padding: 6px 20px;
 }
 
-.btn-success {
-    background-color: green;
-}
-
-.btn-success:hover {
-    color: #fff;
-}
-
-.btn-default{
+.btn-default {
     background: none;
     border: 1px solid #111;
     box-shadow: none;
 }
 
-.btn-default:hover{
+.btn-default:hover {
     box-shadow: none;
     background-color: #fff;
     color: #111;
+}
+
+.btn-success {
+    background-color: green;
+}
+
+.btn-success:hover {
+    color: green;
 }
 
 .btn-danger {
     background-color: #d43;
 }
 
-.btn-danger:hover {
+/* .btn-danger:hover {
     color: #fff;
-}
+} */
 
 a.btn {
     text-decoration: none;
@@ -321,11 +322,31 @@ tr:hover td {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.white-text{
+.white-text {
     color: #fff;
 }
-.white-text a{
+
+.white-text a {
     color: #fff;
+}
+
+.user .photo {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    overflow: hidden;
+    background: #111;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+
+.user .photo img {
+    max-height: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* Основная часть */
@@ -333,7 +354,7 @@ tr:hover td {
     position: relative;
 }
 
-.container-fluid{
+.container-fluid {
     padding-left: 30px;
     padding-right: 30px;
 }
@@ -372,66 +393,53 @@ tr:hover td {
     display: inline-block;
 }
 
-.navbar .user{
+.navbar .user {
     color: #fff;
     position: relative;
     padding: 10px;
     margin-top: -10px;
     cursor: pointer;
     border-radius: 5px 5px 5px 5px;
+    border: 1px solid transparent;
 }
+
 .navbar .user:hover,
-.navbar .user.active{
+.navbar .user.active {
     /* background-color: rgba(255, 255, 255, 0.2); */
     background-color: #6ae;
 }
-.navbar .user.active{
+
+.navbar .user.active {
     border-radius: 5px 5px 0 0;
+    border-color: #111;
 }
 
-
-.navbar .user .photo{
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    overflow: hidden;
-    background: #111;
-    vertical-align: middle;
-    margin-right: 15px;
-}
-.navbar .user .photo img{
-    max-height: 100%;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.navbar .user .name{
+.navbar .user .name {
     vertical-align: middle;
 }
 
-.navbar .user .user-menu{
+.navbar .user .user-menu {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
     /* background: #111; */
     width: 100%;
-    border: 1px solid #fff;
+    border: 1px solid #111;
     background-color: #acd;
     font-size: 14px;
     border-radius: 0 0 5px 5px;
+    overflow: hidden;
 }
 
-.navbar .user .user-menu a{
-    color: #fff;
+.navbar .user .user-menu a {
+    /* color: #111; */
     text-decoration: none;
     padding: 10px;
     display: block;
 }
-.navbar .user .user-menu a:hover{
+
+.navbar .user .user-menu a:hover {
     background-color: #6ae;
 }
 
@@ -440,13 +448,15 @@ tr:hover td {
     min-height: 0;
 }
 
-.left-menu a{
+.left-menu a {
     text-decoration: none;
 }
-.left-menu a.thisPage{
+
+.left-menu a.thisPage {
     text-decoration: none;
     position: relative;
 }
+
 /* .left-menu a.thisPage:before{
     content: '';
     display: block;
@@ -460,7 +470,7 @@ tr:hover td {
     border-left-width: 10px;
     border-left-color: #111;
 } */
-.left-menu a.thisPage:before{
+.left-menu a.thisPage:before {
     content: '';
     display: block;
     position: absolute;
@@ -470,32 +480,41 @@ tr:hover td {
     top: 100%;
     background-color: #111;
 }
-.left-menu ul{
+
+.left-menu ul {
     list-style: none;
     margin: 0;
     padding: 0;
     font-size: 16px;
     font-weight: bold;
 }
-.left-menu ul li{
+
+.left-menu ul li {
     margin-bottom: 5px;
 }
-.left-menu ul li.parent{
+
+.left-menu ul li.parent {
     cursor: pointer;
 }
-.left-menu li ul{
+
+.left-menu li ul {
     padding: 10px 20px;
     font-size: 14px;
     font-weight: normal;
     display: none;
 }
-.left-menu li.open ul{
+
+.left-menu li.open ul {
     display: block;
 }
 
 /* Интро */
-.content.intro{
+.content.intro {
     color: #fff;
+}
+
+.content.intro svg {
+    fill: #fff;
 }
 
 .content .intro {
@@ -521,11 +540,11 @@ tr:hover td {
     letter-spacing: 0.1em;
 }
 
-.intro a{
+.intro a {
     color: #fff;
 }
 
-.intro .btn{
+.intro .btn {
     color: #111;
 }
 
@@ -705,9 +724,26 @@ tr:hover td {
 }
 
 /* Элемент курсов */
-.courses .course p{
+.courses .course p {
     height: 50px;
     overflow-y: auto;
+}
+
+.userList .user a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px;
+    transition: 0.2s;
+}
+
+.userList .user a:hover {
+    background-color: #6ae;
+}
+
+.userList .user .photo,
+.userList .user .name {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 /* Подвал */
