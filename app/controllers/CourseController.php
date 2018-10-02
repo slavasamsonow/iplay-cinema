@@ -5,6 +5,12 @@ namespace app\controllers;
 use app\core\Controller;
 
 class CourseController extends Controller{
+
+    public function __construct($route){
+        parent::__construct($route);
+        $this->view->layout = 'lk';
+    }
+
     public function studyAction(){
         if($this->model->auth == 'auth'){
             if(!$course = $this->model->checkCourse($this->route['courseid'])){
