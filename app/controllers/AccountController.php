@@ -216,6 +216,9 @@ class AccountController extends Controller{
             ],
             'userPage' => $userPage,
         ];
+        if($this->model->auth == 'guest'){
+            $this->view->layout = 'default';
+        }
         $this->view->render($vars);
     }
 
