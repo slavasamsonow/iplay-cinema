@@ -1,53 +1,32 @@
-<div class="container-fluid">
-    <h1>
-        <?php if(isset($user['fname']) || isset($user['lname'])){
-        echo $user['fname'].' '.$user['lname'];
-    }elseif(isset($user['username'])){
-        echo $user['username'];
-    }else{
-        echo $user['email'];
-    }?>
-        <small>(уровень:
-            <?=$user['level']?>)</small>
+<div class="hello-message">
+    <h1> Добро пожаловать,
+        <?=$user['fname']?>
     </h1>
+    Для ознакомления с системой, вам нужно пройти курс "Знакомство"
+</div>
+<div class="courses">
+    <?php if(count($activeCourses) > 0):?>
+    <h2><span class="big">Мои курсы</span></h2>
     <div class="row">
-        <div class="col-md-2">
-            <a href="/user/<?=$user['username']?>">Моя страница</a> <br>
-            <a href="/account/editinfo">Редактировать информацию</a> <br>
-            <a href="/account/editpass">Сменить пароль</a> <br>
-            <a href="/account/logout">Выйти</a> <br>
-            <br>
-            <a href="/users">Пользователи</a> <br>
-            <br>
-            <?php if($_SESSION['user']['role'] == 'admin'):?>
-            <a href="/admin/confirmtasks">Проверка заданий</a>
-            <?php endif ?>
-        </div>
-        <div class="col-md-8">
-            Для повышения уровня вам нужно проходить курсы:
-            <div class="row courses">
-                <?php if(count($activeCourses) > 0):?>
-                <?php foreach($activeCourses as $course): ?>
-                <div class="col-md-3 course">
-                    <h3>
-                        <?=$course['name']?>
-                    </h3>
-                    <p>
-                        <?=$course['description']?>
-                    </p>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: <?=$course['percent']?>%">
-                            <span class="sr-only">Прогресс:
-                                <?=$course['percent']?> %</span>
-                        </div>
-                    </div>
-                    <a href="/study/<?=$course['id']?>" class="btn">Открыть</a>
+        <?php foreach($activeCourses as $course): ?>
+        <div class="col-lg-4 col-sm-6 course">
+            <h3>
+                <?=$course['name']?>
+            </h3>
+            <p>
+                <?=$course['description']?>
+            </p>
+            <div class="progress">
+                <div class="progress-bar" style="width: <?=$course['percent']?>%">
+                    <span class="sr-only">Прогресс:
+                        <?=$course['percent']?> %</span>
                 </div>
-                <? endforeach ?>
-                <?php else:?>
-                Сейчас у вас нет активных курсов
-                <?php endif ?>
             </div>
+            <a href="/study/<?=$course['id']?>" class="btn btn-default btn-sm">Открыть</a>
         </div>
+        <? endforeach ?>
     </div>
+    <?php else:?>
+    Сейчас у вас нет активных курсов
+    <?php endif ?>
 </div>
