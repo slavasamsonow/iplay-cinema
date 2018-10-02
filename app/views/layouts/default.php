@@ -73,7 +73,7 @@
 
     <body>
         <div class="content">
-            <nav class="navbar white-text">
+            <nav class="navbar">
                 <div class="container-fluid">
                     <div class="navbar-left">
                         <? if(isset($geo['city'])): ?>
@@ -107,7 +107,7 @@
                 <?=$content?>
             </div>
 
-            <footer class="white-text">
+            <footer>
                 <div class="container-fluid">
                     <a href="/public/docs/protect_policy_of_personal_information.pdf" target="_blank">Политика конфеденциальности</a>
                 </div>
