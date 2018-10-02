@@ -169,13 +169,13 @@ class Account extends Model{
     }
 
     // Смена данных
-    public function saveUserData($id, $names, $data){
-        foreach($names as $name){
-            $params[$name] = $data[$name];
-            $_SESSION['user'][$name] = $data[$name];
-            if($name == 'password'){
+    public function saveUserData($id, $data){
+        foreach($data as $key=>$val){
+            $params[$key] = $val;
+            if($key == 'password'){
+                $_SESSION['user']['password'] = $val;
                 if(isset($_COOKIE['p'])){
-                    setcookie('p',$data[$name], time()+3600+24+30, '/');
+                    setcookie('p',$data[$key], time()+3600+24+30, '/');
                 }
             }
         }
@@ -209,5 +209,47 @@ class Account extends Model{
 
         $this->db->query('INSERT INTO `user_courses` (`course`, `user`) VALUES (:course, :user)', $params);
         return true;
+    }
+
+    public function usersList($param = []){
+        $countElem = $this->db->column('SELECT COUNT(*) FROM `users`');
+        $pagination = $this->pagination($countElem);
+
+        $params = [
+            'start' => (int) $pagination['start'],
+            'limit' => (int) $pagination['limit']
+        ];
+
+        if(isset($_SESSION['user']['id'])){
+            $params['userId'] = $_SESSION['user']['id'];
+            $noId = 'AND `id` != :userId';
+        }
+
+        $usersList = $this->db->row('SELECT `id`, `username`, `fname`, `lname`, `photo` FROM `users` WHERE `active` = 1 '.$noId.' LIMIT :start,:limit', $params);
+        foreach($usersList as $key => $user){
+            if($user['username'] == ''){
+                $usersList[$key]['username'] = 'id'.$user['id'];
+            }
+        }
+        return $usersList;
+    }
+
+    public function userInfo($username){
+        if(preg_match('/^id[0-9]+$/', $username)){
+            $params = [
+                'id' => substr($username, 2),
+            ];
+            $usl = 'WHERE id = :id';
+        }else{
+            $params = [
+                'username' => $username,
+            ];
+            $usl = 'WHERE username = :username';
+        }
+        $userData = $this->db->row('SELECT `fname`, `lname`, `about`, `video`, `photo` FROM `users` '.$usl, $params);
+        if(empty($userData)){
+            return false;
+        }
+        return $userData[0];
     }
 }

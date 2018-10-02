@@ -6,6 +6,11 @@ use app\core\Controller;
 
 class AccountController extends Controller{
 
+    public function __construct($route){
+        parent::__construct($route);
+        $this->view->layout = 'lk';
+    }
+
     public function registerAction(){
         if(!empty($_POST)){
             if(!$this->model->validate(['username','email','password'], $_POST)){
@@ -70,6 +75,7 @@ class AccountController extends Controller{
                     'title' => 'Вход в личный кабинет',
                 ]
             ];
+            $this->view->layout = "default";
             $this->view->render($vars);
         }else{
             $this->view->redirect('account');
@@ -80,9 +86,13 @@ class AccountController extends Controller{
         if($this->model->auth == 'auth'){
             $activeCourses = $this->model->activeCoursesList();
             $vars = [
+                'seo' => [
+                    'title' => 'Личный кабинет',
+                ],
                 'activeCourses' => $activeCourses,
             ];
 
+            // $this->view->layout = 'lk';
             $this->view->render($vars);
         }else{
             $this->view->redirect('login');
@@ -110,14 +120,103 @@ class AccountController extends Controller{
             $data = [
                 'password' => password_hash($_POST['password'], PASSWORD_BCRYPT),
             ];
-            $this->model->saveUserData($_SESSION['user']['id'], ['password'], $data);
+            $this->model->saveUserData($_SESSION['user']['id'], $data);
             $this->view->location('account');
         }
         if($this->model->auth == 'auth'){
-            $this->view->render('Сменить пароль');
+            $vars = [
+                'seo' => [
+                    'title' => 'Сменить пароль'
+                ]
+            ];
+            $this->view->render($vars);
         }else{
-            $this->view->redirect('login');
+            $this->view->redirect('account');
         }
+    }
+
+    public function editinfoAction(){
+        if(!empty($_POST)){
+            if(!$this->model->validate(['username'], $_POST)){
+                $this->view->message('Ошибка', $this->model->error);
+            }
+            if($_POST['username'] != $_SESSION['user']['username']){
+                if($this->model->checkExists('username', $_POST['username'])){
+                    $this->view->message('Ошибка', 'Пользователь с таким логином уже существует');
+                }
+            }
+
+            foreach($_POST as $key => $postD){
+                $data[$key] = htmlentities($postD);
+            }
+            if(isset($data['public'])){
+                if($data['public'] == 'public'){
+                    $data['public'] = 1;
+                }else{
+                    $data['public'] = 0;
+                }
+            }else{
+                $data['public'] = 0;
+            }
+
+            if(isset($_FILES['photo']['tmp_name']) && $_FILES['photo']['tmp_name'] != ''){
+                if($file = $this->model->saveFile($_FILES['photo'], 'public/img/users/', 'image')){
+                    $data['photo'] = $file;
+                    if(!empty($data['oldphoto'])){
+                        $oldPhotoPath = $_SERVER['DOCUMENT_ROOT'].'/public/img/users/'.$data['oldphoto'];
+                        $oldPhotoThumbPath = $_SERVER['DOCUMENT_ROOT'].'/public/img/users/thumb/'.$data['oldphoto'];
+                        if(file_exists($oldPhotoPath)){
+                            unlink($oldPhotoPath);
+                        }
+                        if(file_exists($oldPhotoThumbPath)){
+                            unlink($oldPhotoThumbPath);
+                        }
+                    }
+                }
+            }
+            unset($data['oldphoto']);
+
+            $this->model->saveUserData($_SESSION['user']['id'], $data);
+            $this->view->location('account');
+        }
+        if($this->model->auth == 'auth'){
+            $vars = [
+                'seo' => [
+                    'title' => 'Редактирование информации'
+                ]
+            ];
+            $this->view->render($vars);
+        }else{
+            $this->view->redirect('account');
+        }
+    }
+
+    public function usersAction(){
+        if($this->model->auth == 'auth'){
+            $users = $this->model->usersList($_GET);
+            $vars = [
+                'seo' => [
+                    'title' => 'Пользователи',
+                ],
+                'users' => $users
+            ];
+            $this->view->render($vars);
+        }else{
+            $this->view->redirect('account');
+        }
+    }
+
+    public function userAction(){
+        if(!$userPage = $this->model->userInfo($this->route['username'])){
+            $this->view->errorCode('404');
+        }
+        $vars = [
+            'seo' => [
+                'title' => $userPage['fname'].' '.$userPage['lname'],
+            ],
+            'userPage' => $userPage,
+        ];
+        $this->view->render($vars);
     }
 
 }

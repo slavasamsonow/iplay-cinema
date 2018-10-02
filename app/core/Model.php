@@ -10,6 +10,8 @@ use app\lib\phpmailer\PHPMailer;
 use app\lib\phpmailer\Exception;
 use app\lib\phpmailer\SMTP;
 
+use Imagick;
+
 abstract class Model{
 
     public $db;
@@ -114,8 +116,8 @@ abstract class Model{
                 'message' => 'E-mail адрес указан неверно'
             ],
             'username' => [
-                'pattern' => '#^([a-z0-9_-]{3,20})$#',
-                'message' => 'Логин указан неверно. <br> Логин может состоять из латинских букв, цифр, знаков - и _, длина логина от 3 до 20 символов'
+                'pattern' => '#^[a-z0-9][a-z0-9_]{1,20}[a-z0-9]$#',
+                'message' => 'Логин указан неверно. <br> Логин может состоять из латинских букв, цифр, знака _, длина логина от 3 до 20 символов. Логин не должен начинаться и кончаться знаком подчеркивания'
             ],
             'password' => [
                 'pattern' => '#(?=.*\d)(?=.*[A-Za-zА-Яа-я])#',
@@ -131,13 +133,22 @@ abstract class Model{
                 $this->error = $rules[$val]['message'];
                 return false;
             }
-        }
-        if(isset($input['password'])){
-            if(iconv_strlen($data['password']) < 10){
-                $this->error = 'Длина пароля должна быть больше 10 символов';
-                return false;
+
+            if($val == 'password'){
+                if(iconv_strlen($data['password']) < 10){
+                    $this->error = 'Длина пароля должна быть больше 10 символов';
+                    return false;
+                }
+            }
+
+            if($val == 'username'){
+                if(preg_match('#^id[0-9]+$#', $data['username'])){
+                    $this->error = 'Недопустимый логин';
+                    return false;
+                }
             }
         }
+
         return true;
     }
 
@@ -164,6 +175,108 @@ abstract class Model{
             $SxGeo = new SxGeo('app/lib/SxGeoCity.dat');
             return $_SESSION['geo'] = $SxGeo->getCityFull($ip);
         }
+    }
+
+    public function pagination($countElem, $params = []){
+        $onPage = (isset($params['onpage']))?$params['onpage']:10;
+
+        $currentPage = (isset($_GET['page'])) ? intval($_GET['page']) : 1;
+
+        $countPage = ceil($countElem / $onPage);
+
+        if($currentPage > $countPage){
+            $currentPage = $countPage;
+        }else if($currentPage < 1){
+            $currentPage = 1;
+        }
+
+        $startElem = ($currentPage - 1) * $onPage;
+
+        if($countPage != 1){
+            $strPagination = '';
+            $url = explode('?', $_SERVER['REQUEST_URI']);
+        }else{
+            $strPagination = '';
+        }
+
+        $url = explode('?', $_SERVER['REQUEST_URI']);
+        if(isset($url['1'])){
+            $params = explode('&', $url['1']);
+            foreach($params as $key => $param){
+                $paramval = explode('=',$param);
+                if($paramval[0] == 'page'){
+                    unset($params[$key]);
+                }
+            }
+        }
+
+        //Дописать ссылки на страницы
+
+
+
+        $params['page'] = 'page='. 3;
+        $fullurl = $url[0].'?'.implode('&', $params);
+
+        $out = [
+            'start' => $startElem,
+            'limit' => $onPage,
+            'pagination' => $strPagination,
+        ];
+        return $out;
+    }
+
+    public function saveFile($file, $path, $fileType = ''){
+        $newFilename = $_SESSION['user']['id'].'-'.$this->createToken(15);
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'].'/'.$path;
+
+        $types = [
+            [
+                'type' => 'image',
+                'mime' => 'image/jpeg',
+                'suf' => '.jpeg'
+            ],
+            [
+                'type' => 'image',
+                'mime' => 'image/png',
+                'suf' => '.png'
+            ]
+        ];
+
+        foreach($types as $type){
+            if($type['type'] == $fileType && $type['mime'] == $file['type']){
+                $fileMime = $type['mime'];
+                $newFilename .= $type['suf'];
+            }
+        }
+
+        if(!isset($fileMime)){
+            $this->error = 'Неправильный формат файла';
+            return false;
+        }
+
+        $uploadFile = $uploadDir . $newFilename;
+        if($fileType = 'image'){
+            $uploadFileThumb = $uploadDir.'thumb/'.$newFilename;
+            $sizeImage = getimagesize($file['tmp_name']);
+            $image = new Imagick($file['tmp_name']);
+            if($sizeImage[0] > 2000){
+                $image->thumbnailImage(2000, 0);
+            }else if($sizeImage[1] > 2000){
+                $image->thumbnailImage(0, 2000);
+            }
+            $image->setImageCompressionQuality(80);
+            $image->writeImage($uploadFile);
+            $image->cropThumbnailImage(100, 100);
+            $image->writeImage($uploadFileThumb);
+        }
+        else{
+            if (!move_uploaded_file($file['tmp_name'], $uploadFile)) {
+                $this->error = 'Не удалось осуществить сохранение файла';
+                return false;
+            }
+        }
+
+        return $newFilename;
     }
 
 }

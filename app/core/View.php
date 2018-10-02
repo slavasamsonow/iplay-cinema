@@ -20,15 +20,18 @@ class View{
         $geo['city'] = ($this->geo['region']['name_ru'] == 'Удмуртия')?'Ижевск':'Москва';
 
         if(!isset($seo['title'])){
-            $seo['title'] = 'Киношкола iPlay '.$geo['city'];
+            //$seo['title'] = 'Киношкола iPlay '.$geo['city'];
+            $seo['title'] = 'Киношкола iPlay';
         }else{
-            $seo['title'] .= ' | Киношкола iPlay '.$geo['city'];
+            // $seo['title'] .= ' | Киношкола iPlay '.$geo['city'];
+            $seo['title'] .= ' | Киношкола iPlay';
         }
 
         $seo['description'] = (isset($seo['description']))?$seo['description']:'Киношкола iPlay - место, которое мотивирует и обучает создавать кино, и экспериментировать с его формами.';
 
         if(isset($_SESSION['user'])){
             $user = $_SESSION['user'];
+            $user['username'] = (isset($user['username']))?$user['username']:'id'.$user['id'];
         }
 
         if(file_exists('app/views/'.$this->path.'.php')){

@@ -6,7 +6,7 @@ return [
         'action' => 'index',
     ],
 
-    // userController
+    // accountController
     'login' => [
         'controller' => 'account',
         'action' => 'login',
@@ -30,6 +30,18 @@ return [
     'account/editpass' => [
         'controller' => 'account',
         'action' => 'editpassword',
+    ],
+    'account/editinfo' => [
+        'controller' => 'account',
+        'action' => 'editinfo',
+    ],
+    'users' => [
+        'controller' => 'account',
+        'action' => 'users',
+    ],
+    'user/{username:\w+}' => [
+        'controller' => 'account',
+        'action' => 'user',
     ],
 
     // courseController

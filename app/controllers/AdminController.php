@@ -5,6 +5,12 @@ namespace app\controllers;
 use app\core\Controller;
 
 class AdminController extends Controller{
+
+    public function __construct($route){
+        parent::__construct($route);
+        $this->view->layout = 'lk';
+    }
+
     public function confirmTasksAction(){
         if($this->model->role == 'admin'){
             if(!empty($_POST)){

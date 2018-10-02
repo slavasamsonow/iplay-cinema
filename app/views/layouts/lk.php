@@ -76,26 +76,30 @@
             <nav class="navbar">
                 <div class="container-fluid">
                     <div class="navbar-left">
-                        <? if(isset($geo['city'])): ?>
-                        <div class="city">
-                            <svg viewBox="0 0 97.713 97.713">
-                                <path d="M48.855,0C29.021,0,12.883,16.138,12.883,35.974c0,5.174,1.059,10.114,3.146,14.684
-                                c8.994,19.681,26.238,40.46,31.31,46.359c0.38,0.441,0.934,0.695,1.517,0.695s1.137-0.254,1.517-0.695
-                                c5.07-5.898,22.314-26.676,31.311-46.359c2.088-4.57,3.146-9.51,3.146-14.684C84.828,16.138,68.69,0,48.855,0z M48.855,54.659
-                                c-10.303,0-18.686-8.383-18.686-18.686c0-10.304,8.383-18.687,18.686-18.687s18.686,8.383,18.686,18.687
-                                C67.542,46.276,59.159,54.659,48.855,54.659z" />
-                            </svg>
-                            <span class="name">
-                                <?=$geo['city']?>
-                            </span>
+                        <div class="logo">
+                            <a href="/">
+                                <img src="/public/img/logo-black.png" alt="">
+                            </a>
                         </div>
-                        <? endif ?>
-
                     </div>
                     <div class="navbar-right">
                         <ul>
-                            <li>
-                                <a href="/login" class="lk">Личный кабинет</a>
+                            <li class="user">
+                                <?php if(!empty($user['photo'])):?>
+                                <span class="photo">
+                                    <img src="/public/img/users/thumb/<?=$user['photo']?>" alt="">
+                                </span>
+                                <?php endif ?>
+                                <span class="name">
+                                    <?=$user['fname'].' '.$user['lname']?>
+                                </span>
+                                <div class="user-menu">
+                                    <a href="/user/<?=$user['username']?>">Моя страница</a>
+                                    <a href="/account" class="lk">Личный кабинет</a>
+                                    <a href="/account/editinfo">Редактировать профиль</a>
+                                    <a href="/account/editpass">Сменить пароль</a>
+                                    <a href="/account/logout">Выйти</a>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -104,12 +108,40 @@
             </nav>
 
             <div class="wrapper">
-                <?=$content?>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-3 left-menu">
+                            <ul>
+                                <li class="parent"><span>Мои курсы</span>
+                                    <ul>
+                                        <li><a href="/account">Активные</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="/users">Участники</a>
+                                </li>
+
+                                <?php if($_SESSION['user']['role'] == 'admin'):?>
+                                <li class="parent"><span>Админ</span>
+                                    <ul>
+                                        <li><a href="/admin/confirmtasks">Проверка заданий</a></li>
+                                    </ul>
+                                </li>
+                                <?php endif ?>
+                            </ul>
+                            <br>
+                        </div>
+                        <div class="col-md-8 col-sm-6">
+                            <?=$content?>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <footer>
                 <div class="container-fluid">
-                    <a href="/public/docs/protect_policy_of_personal_information.pdf" target="_blank">Политика конфеденциальности</a>
+                    <a href="/public/docs/protect_policy_of_personal_information.pdf" target="_blank">Политика
+                        конфеденциальности</a>
                 </div>
             </footer>
         </div>

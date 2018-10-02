@@ -1,6 +1,32 @@
-// V.1.2
-
 $(document).ready(function () {
+	// Закрываем все выпадающие окна
+
+	// Выпадающее меню юзера
+	$('.navbar .user').click(function () {
+		var userController = $(this);
+		userController.toggleClass('active');
+		$('.navbar .user .user-menu').slideToggle();
+		userController.mouseleave(function () {
+			var closeUsercontroller = setTimeout(function () {
+				userController.removeClass('active');
+				$('.navbar .user .user-menu').slideUp();
+			}, 500)
+			userController.mouseenter(function(){
+				clearTimeout(closeUsercontroller);
+			})
+		})
+	})
+
+	// Левое меню
+	$('.left-menu .parent span').click(function(){
+		$(this).parent().children('ul').slideToggle();
+	})
+
+	var thisPage = document.location.pathname;
+	$('a[href="'+thisPage+'"]').addClass('thisPage');
+	$('a[href="'+thisPage+'"]').removeAttr('href');
+	$('.left-menu .thisPage').parents('ul').slideDown();
+
 	// Обработка форм
 	$('input').focusin(function () {
 		$(this).parent().addClass('active');
@@ -64,31 +90,30 @@ $(document).ready(function () {
 		$('#overlay').show();
 	})
 
-	// Отступы у Прокручиваемого
+	// Для блока интро
 	var headerHeight = $('.navbar').css('height');
 	var footerHeight = $('footer').css('height');
-	$('.wrapper').css('padding-top', headerHeight);
-	$('.wrapper').css('padding-bottom', footerHeight);
+	$('.content .intro').css('margin-bottom', '-' + footerHeight);
+	$('.content .intro').css('padding-top', headerHeight);
 
-	//Блок Интро включает в себя шупку и подвал
-	$('.intro').css('margin-top', '-' + headerHeight);
-	$('.intro').css('margin-bottom', '-' + footerHeight);
-	/*$('.intro').css('padding-top', headerHeight);
-	$('.intro').css('padding-bottom', footerHeight);
-	*/
+	// Минимальная высота сайта
+	if (!$('.content.intro').length) {
+		$('.wrapper').css('min-height', 'calc(100vh - ' + headerHeight + ' - ' + footerHeight + ')');
+		$('footer').removeClass('load');
+	}
 
 
 	if ($('#introVideo').length) {
 		var introvideo = $("#introVideo")[0];
-		var durationTrue = setInterval(function(){
+		var durationTrue = setInterval(function () {
 			var duration = introvideo.duration;
-			if(duration){
+			if (duration) {
 				clearInterval(durationTrue);
 				startIntroVideo(introvideo);
 			}
 		}, 100)
 
-		function startIntroVideo(introvideo){
+		function startIntroVideo(introvideo) {
 			$('.intro .background .video-shape').addClass('end');
 			introvideo.play();
 
@@ -97,16 +122,6 @@ $(document).ready(function () {
 				$('.intro .background .big-left-triangle').addClass('left');
 			}, 3000)
 		}
-
-		/*$('.introplay').click(function () {
-			if (introvideo.paused) {
-				introvideo.play();
-			} else {
-				introvideo.pause();
-			}
-		})
-
-		$('.introplay').click();*/
 	}
 
 
@@ -145,16 +160,16 @@ $(document).ready(function () {
 		})
 	})
 
-	$('button[data-action="confimTask"]').click(function(){
+	$('button[data-action="confimTask"]').click(function () {
 		var elem = $(this);
 		if (elem.hasClass('process')) {
 			return;
 		}
 		var status = elem.attr('data-status');
 		var taskid = elem.attr('data-id');
-		var description = $('textarea[data-task='+taskid+']').val();
+		var description = $('textarea[data-task=' + taskid + ']').val();
 
-		$('button[data-task='+taskid+']').addClass('process');
+		$('button[data-task=' + taskid + ']').addClass('process');
 		$.ajax({
 			url: '/admin/confirmtasks',
 			type: 'post',
@@ -163,23 +178,8 @@ $(document).ready(function () {
 				json = jQuery.parseJSON(result);
 				console.log(json);
 				if (json.data.status) {
-					$('tr[data-task='+json.data.id+']').remove();
+					$('tr[data-task=' + json.data.id + ']').remove();
 				}
-				/*if (json.data.status) {
-					elem.attr('data-status', json.data.status);
-				}
-				if (json.data.percent >= 0) {
-					$('.progress-bar').css('width', json.data.percent + '%');
-					$('.progress-bar .sr-only .percent').html(json.data.percent);
-				}
-				if (json.data.error) {
-					elem.addClass('error');
-					setTimeout(function () {
-						elem.removeClass('error')
-					}, 1000);
-					$('span.error').remove();
-					openModal('message', 'Ошибка', json.data.error)
-				}*/
 				elem.removeClass('process');
 			}
 		})

@@ -1,14 +1,13 @@
-/* V.1.2 */
-
 /* Шрифты */
 @font-face {
     font-family: Montserrat;
+    font-weight: 400;
     src: url('/public/fonts/Montserrat-Regular.ttf');
 }
 
 @font-face {
     font-family: Montserrat;
-    font-weight: 500;
+    /* font-weight: 500; */
     src: url('/public/fonts/Montserrat-Medium.ttf');
 }
 
@@ -20,6 +19,7 @@
 
 /* Главные */
 
+
 html {
     width: 100%;
     height: 100%;
@@ -28,12 +28,10 @@ html {
 body {
     width: 100%;
     height: 100%;
-    color: #111;
-    background-color: #fff;
-    background: #111;
+    background-color: #acd;
     min-height: 100vh;
     font-family: Montserrat;
-    color: #fff;
+    color: #111;
 }
 
 body.modalopen {
@@ -41,23 +39,52 @@ body.modalopen {
     overflow: hidden;
 }
 
+h2 .big {
+    text-transform: uppercase;
+    font-size: 40px;
+    font-weight: bold;
+    position: relative;
+}
+
+h2 .big:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    width: 100%;
+    background-color: #111;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
 svg {
-    fill: #fff;
+    fill: #111;
+}
+
+img {
+    max-width: 100%;
 }
 
 /* Ссылки и кнопки */
 a {
-    color: #fff;
+    color: #111;
     text-decoration: underline;
 }
 
 a:hover {
-    color: #fff;
+    color: #111;
     text-decoration: underline;
 }
-a:focus{
+
+a:focus {
     outline: none;
-    color: #fff;
+    color: #111;
 }
 
 button:focus {
@@ -84,6 +111,7 @@ button:focus:active {
 .btn:hover {
     color: #dd3322;
     box-shadow: 0 6px 15px 0px rgba(0, 0, 0, 0.16);
+    background-color: #fff;
 }
 
 .btn:focus {
@@ -95,22 +123,37 @@ button:focus:active {
     box-shadow: inset 0 3px 10px 0 rgba(0, 0, 0, 0.23);
 }
 
-.btn-sm{
-    padding: 6px 12px;
+.btn-sm {
+    padding: 6px 20px;
 }
 
-.btn-success{
+.btn-default {
+    background: none;
+    border: 1px solid #111;
+    box-shadow: none;
+}
+
+.btn-default:hover {
+    box-shadow: none;
+    background-color: #fff;
+    color: #111;
+}
+
+.btn-success {
     background-color: green;
 }
-.btn-success:hover{
-    color: #fff;
+
+.btn-success:hover {
+    color: green;
 }
-.btn-danger{
+
+.btn-danger {
     background-color: #d43;
 }
-.btn-danger:hover{
+
+/* .btn-danger:hover {
     color: #fff;
-}
+} */
 
 a.btn {
     text-decoration: none;
@@ -119,7 +162,7 @@ a.btn {
 /* Формы */
 .form-control {
     border: none;
-    border-radius: 1000px;
+    border-radius: 20px;
     box-shadow: none;
     padding: 20px;
 }
@@ -166,9 +209,12 @@ input[type='checkbox']+span {
     display: inline-block;
     vertical-align: top;
 }
-textarea{
+
+textarea {
     border: 1px solid #fff;
-    background-color: transparent;
+    /* background-color: transparent; */
+    color: #111;
+    text-align: left;
     resize: vertical;
 }
 
@@ -252,23 +298,55 @@ textarea{
 }
 
 /* Таблицы */
-table{
+table {
     border: 2px solid #fff;
     max-width: 100%;
     width: 100%;
 }
-th, td{
+
+th,
+td {
     border-bottom: 1px solid #fff;
     padding: 10px 8px;
 }
-th{
+
+th {
     border-bottom-width: 2px;
 }
-td{
+
+td {
     transition: 0.5s;
 }
-tr:hover td{
+
+tr:hover td {
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+.white-text {
+    color: #fff;
+}
+
+.white-text a {
+    color: #fff;
+}
+
+.user .photo {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    overflow: hidden;
+    background: #111;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+
+.user .photo img {
+    max-height: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* Основная часть */
@@ -276,12 +354,20 @@ tr:hover td{
     position: relative;
 }
 
+.container-fluid {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
 /* Навигация */
-.navbar {
+.content.intro .navbar {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+}
+
+.navbar {
     padding: 30px 0;
     margin-bottom: 0;
     font-size: 16px;
@@ -300,18 +386,138 @@ tr:hover td{
 
 .navbar-right ul {
     list-style: none;
+    margin: 0;
 }
 
 .navbar-right ul li {
     display: inline-block;
 }
 
+.navbar .user {
+    /* color: #fff; */
+    position: relative;
+    padding: 10px;
+    margin-top: -10px;
+    cursor: pointer;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid transparent;
+}
+
+.navbar .user:hover,
+.navbar .user.active {
+    /* background-color: rgba(255, 255, 255, 0.2); */
+    background-color: #6ae;
+}
+
+.navbar .user.active {
+    border-radius: 5px 5px 0 0;
+    border-color: #111;
+}
+
+.navbar .user .name {
+    vertical-align: middle;
+}
+
+.navbar .user .user-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    /* background: #111; */
+    width: 100%;
+    border: 1px solid #111;
+    background-color: #acd;
+    font-size: 14px;
+    border-radius: 0 0 5px 5px;
+    overflow: hidden;
+}
+
+.navbar .user .user-menu a {
+    /* color: #111; */
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+}
+
+.navbar .user .user-menu a:hover {
+    background-color: #6ae;
+}
+
+/* Основа */
 .wrapper {
-    min-height: 100vh;
+    min-height: 0;
+}
+
+.left-menu a {
+    text-decoration: none;
+}
+
+.left-menu a.thisPage {
+    text-decoration: none;
+    position: relative;
+}
+
+/* .left-menu a.thisPage:before{
+    content: '';
+    display: block;
+    position: absolute;
+    right: 100%;
+    width: 0;
+    height: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 7px solid transparent;
+    border-left-width: 10px;
+    border-left-color: #111;
+} */
+.left-menu a.thisPage:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    top: 100%;
+    background-color: #111;
+}
+
+.left-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.left-menu ul li {
+    margin-bottom: 5px;
+}
+
+.left-menu ul li.parent {
+    cursor: pointer;
+}
+
+.left-menu li ul {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: normal;
+    display: none;
+}
+
+.left-menu li.open ul {
+    display: block;
 }
 
 /* Интро */
-.intro {
+.content.intro {
+    color: #fff;
+}
+
+.content.intro svg {
+    fill: #fff;
+}
+
+.content .intro {
     height: 100vh;
     position: relative;
     z-index: 1;
@@ -332,6 +538,14 @@ tr:hover td{
     background-color: #ffdd00;
     display: inline-block;
     letter-spacing: 0.1em;
+}
+
+.intro a {
+    color: #fff;
+}
+
+.intro .btn {
+    color: #111;
 }
 
 .intro .body {
@@ -377,6 +591,7 @@ tr:hover td{
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 .intro .background .introplay {
     position: absolute;
     opacity: 0;
@@ -508,11 +723,37 @@ tr:hover td{
     background-color: #777;
 }
 
+/* Элемент курсов */
+.courses .course p {
+    height: 100px;
+    overflow-y: auto;
+}
+
+.userList .user a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px;
+    transition: 0.2s;
+}
+
+.userList .user a:hover {
+    background-color: #6ae;
+}
+
+.userList .user .photo,
+.userList .user .name {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 /* Подвал */
-footer {
+.content.intro footer {
     position: absolute;
     left: 0;
     bottom: 0;
+}
+
+footer {
     width: 100%;
     padding: 30px 0;
     z-index: 100;
