@@ -164,7 +164,9 @@ class AccountController extends Controller{
                     $data['photo'] = $file;
                     if(!empty($data['oldphoto'])){
                         $oldPhotoPath = $_SERVER['DOCUMENT_ROOT'].'/public/img/users/'.$data['oldphoto'];
-                        unlink($oldPhotoPath);
+                        if(file_exists($oldPhotoPath)){
+                            unlink($oldPhotoPath);
+                        }
                     }
                 }
             }
