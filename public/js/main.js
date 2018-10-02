@@ -1,4 +1,32 @@
 $(document).ready(function () {
+	// Закрываем все выпадающие окна
+
+	// Выпадающее меню юзера
+	$('.navbar .user').click(function () {
+		var userController = $(this);
+		userController.toggleClass('active');
+		$('.navbar .user .user-menu').slideToggle();
+		userController.mouseleave(function () {
+			var closeUsercontroller = setTimeout(function () {
+				userController.removeClass('active');
+				$('.navbar .user .user-menu').slideUp();
+			}, 1000)
+			userController.mouseenter(function(){
+				clearTimeout(closeUsercontroller);
+			})
+		})
+	})
+
+	// Левое меню
+	$('.left-menu .parent span').click(function(){
+		$(this).parent().children('ul').slideToggle();
+	})
+
+	var thisPage = document.location.pathname;
+	$('a[href="'+thisPage+'"]').addClass('thisPage');
+	$('a[href="'+thisPage+'"]').removeAttr('href');
+	$('.left-menu .thisPage').parents('ul').slideDown();
+
 	// Обработка форм
 	$('input').focusin(function () {
 		$(this).parent().addClass('active');
@@ -67,6 +95,8 @@ $(document).ready(function () {
 	var footerHeight = $('footer').css('height');
 	$('.content .intro').css('margin-bottom', '-' + footerHeight);
 	$('.content .intro').css('padding-top', headerHeight);
+
+	// Минимальная высота сайта
 	if (!$('.content.intro').length) {
 		$('.wrapper').css('min-height', 'calc(100vh - ' + headerHeight + ' - ' + footerHeight + ')');
 		$('footer').removeClass('load');
