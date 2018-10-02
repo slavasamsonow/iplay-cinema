@@ -10,6 +10,8 @@ use app\lib\phpmailer\PHPMailer;
 use app\lib\phpmailer\Exception;
 use app\lib\phpmailer\SMTP;
 
+use Imagick;
+
 abstract class Model{
 
     public $db;
@@ -253,9 +255,25 @@ abstract class Model{
         }
 
         $uploadFile = $uploadDir . $newFilename;
-        if (!move_uploaded_file($file['tmp_name'], $uploadFile)) {
-            $this->error = 'Не удалось осуществить сохранение файла';
-            return false;
+        if($fileType = 'image'){
+            $uploadFileThumb = $uploadDir.'thumb/'.$newFilename;
+            $sizeImage = getimagesize($file['tmp_name']);
+            $image = new Imagick($file['tmp_name']);
+            if($sizeImage[0] > 2000){
+                $image->thumbnailImage(2000, 0);
+            }else if($sizeImage[1] > 2000){
+                $image->thumbnailImage(0, 2000);
+            }
+            $image->setImageCompressionQuality(80);
+            $image->writeImage($uploadFile);
+            $image->cropThumbnailImage(100, 100);
+            $image->writeImage($uploadFileThumb);
+        }
+        else{
+            if (!move_uploaded_file($file['tmp_name'], $uploadFile)) {
+                $this->error = 'Не удалось осуществить сохранение файла';
+                return false;
+            }
         }
 
         return $newFilename;
