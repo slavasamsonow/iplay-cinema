@@ -73,7 +73,7 @@
 
     <body>
         <div class="content">
-            <nav class="navbar white-text">
+            <nav class="navbar">
                 <div class="container-fluid">
                     <div class="navbar-left">
                         <div class="logo">
@@ -118,7 +118,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="/users">Пользователи</a>
+                                    <a href="/users">Участники</a>
                                 </li>
 
                                 <?php if($_SESSION['user']['role'] == 'admin'):?>
@@ -138,7 +138,7 @@
                 </div>
             </div>
 
-            <footer class="white-text">
+            <footer>
                 <div class="container-fluid">
                     <a href="/public/docs/protect_policy_of_personal_information.pdf" target="_blank">Политика
                         конфеденциальности</a>
