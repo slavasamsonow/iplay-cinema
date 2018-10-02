@@ -10,7 +10,7 @@ $(document).ready(function () {
 			var closeUsercontroller = setTimeout(function () {
 				userController.removeClass('active');
 				$('.navbar .user .user-menu').slideUp();
-			}, 1000)
+			}, 500)
 			userController.mouseenter(function(){
 				clearTimeout(closeUsercontroller);
 			})
