@@ -164,8 +164,12 @@ class AccountController extends Controller{
                     $data['photo'] = $file;
                     if(!empty($data['oldphoto'])){
                         $oldPhotoPath = $_SERVER['DOCUMENT_ROOT'].'/public/img/users/'.$data['oldphoto'];
+                        $oldPhotoThumbPath = $_SERVER['DOCUMENT_ROOT'].'/public/img/users/thumb/'.$data['oldphoto'];
                         if(file_exists($oldPhotoPath)){
                             unlink($oldPhotoPath);
+                        }
+                        if(file_exists($oldPhotoThumbPath)){
+                            unlink($oldPhotoThumbPath);
                         }
                     }
                 }
