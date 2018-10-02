@@ -6,6 +6,11 @@ use app\core\Controller;
 
 class AccountController extends Controller{
 
+    public function __construct($route){
+        parent::__construct($route);
+        $this->view->layout = 'lk';
+    }
+
     public function registerAction(){
         if(!empty($_POST)){
             if(!$this->model->validate(['username','email','password'], $_POST)){
@@ -70,6 +75,7 @@ class AccountController extends Controller{
                     'title' => 'Вход в личный кабинет',
                 ]
             ];
+            $this->view->layout = "default";
             $this->view->render($vars);
         }else{
             $this->view->redirect('account');
@@ -86,6 +92,7 @@ class AccountController extends Controller{
                 'activeCourses' => $activeCourses,
             ];
 
+            // $this->view->layout = 'lk';
             $this->view->render($vars);
         }else{
             $this->view->redirect('login');
