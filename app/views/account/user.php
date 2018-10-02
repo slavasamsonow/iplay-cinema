@@ -1,15 +1,18 @@
 <h1>
     <?=$userPage['fname'].' '.$userPage['lname']?>
 </h1>
-<?php if(!empty($userPage['photo'])): ?>
-<img src="/public/img/users/<?=$userPage['photo']?>" alt="" width="200">
-<?php else: ?>
-Нет фото
-<?php endif ?>
-<p>
-    <?=$userPage['about']?>
-</p>
 
-<?php if(!empty($userPage['video'])):?>
-Здесь может быть ваше видео
-<? endif ?>
+<div class="row">
+    <?php if(!empty($userPage['photo'])): ?>
+    <div class="col-md-3">
+        <img src="/public/img/users/<?=$userPage['photo']?>" alt="" width="200">
+    </div>
+    <div class="col-md-9">
+        <?php else: ?>
+        <div class="col-md-12">
+            <?php endif ?>
+            <p>
+                <?=$userPage['about']?>
+            </p>
+        </div>
+    </div>
