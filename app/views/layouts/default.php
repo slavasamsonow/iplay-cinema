@@ -76,8 +76,13 @@
             <nav class="navbar">
                 <div class="container-fluid">
                     <div class="navbar-left">
+                        <div class="logo" style="display: inline-block; margin-right: 50px;">
+                            <a href="/">
+                                <img src="/public/img/logo-black.png" alt="">
+                            </a>
+                        </div>
                         <? if(isset($geo['city'])): ?>
-                        <div class="city">
+                        <div class="city" style="display: inline-block;">
                             <svg viewBox="0 0 97.713 97.713">
                                 <path d="M48.855,0C29.021,0,12.883,16.138,12.883,35.974c0,5.174,1.059,10.114,3.146,14.684
                                 c8.994,19.681,26.238,40.46,31.31,46.359c0.38,0.441,0.934,0.695,1.517,0.695s1.137-0.254,1.517-0.695
@@ -104,12 +109,15 @@
             </nav>
 
             <div class="wrapper">
-                <?=$content?>
+                <div class="container-fluid">
+                    <?=$content?>
+                </div>
             </div>
 
             <footer>
                 <div class="container-fluid">
-                    <a href="/public/docs/protect_policy_of_personal_information.pdf" target="_blank">Политика конфеденциальности</a>
+                    <a href="/public/docs/protect_policy_of_personal_information.pdf" target="_blank">Политика
+                        конфеденциальности</a>
                 </div>
             </footer>
         </div>
