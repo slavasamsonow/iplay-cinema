@@ -225,7 +225,7 @@ class Account extends Model{
             $noId = 'AND `id` != :userId';
         }
 
-        $usersList = $this->db->row('SELECT `id`, `username`, `fname`, `lname` FROM `users` WHERE `active` = 1 '.$noId.' LIMIT :start,:limit', $params);
+        $usersList = $this->db->row('SELECT `id`, `username`, `fname`, `lname`, `photo` FROM `users` WHERE `active` = 1 '.$noId.' LIMIT :start,:limit', $params);
         foreach($usersList as $key => $user){
             if($user['username'] == ''){
                 $usersList[$key]['username'] = 'id'.$user['id'];
