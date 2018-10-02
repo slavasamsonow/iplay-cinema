@@ -1,12 +1,10 @@
-<div class="container-fluid">
-    <h1>Все пользователи</h1>
-    <? foreach($users as $user):?>
-    <div class="user">
-        <a href="/user/<?=$user['username']?>">
-            <div class="name">
-                <?=$user['fname'].' '.$user['lname']?>
-            </div>
-        </a>
-    </div>
-    <? endforeach ?>
+<h1>Все пользователи</h1>
+<? foreach($users as $userItem):?>
+<div class="user">
+    <a href="/user/<?=$userItem['username']?>">
+        <div class="name">
+            <?=$userItem['fname'].' '.$userItem['lname']?>
+        </div>
+    </a>
 </div>
+<? endforeach ?>
