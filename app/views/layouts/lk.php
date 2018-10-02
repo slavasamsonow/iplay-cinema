@@ -87,7 +87,7 @@
                             <li class="user">
                                 <?php if(!empty($user['photo'])):?>
                                 <span class="photo">
-                                    <img src="/public/img/users/<?=$user['photo']?>" alt="">
+                                    <img src="/public/img/users/thumb/<?=$user['photo']?>" alt="">
                                 </span>
                                 <?php endif ?>
                                 <span class="name">
