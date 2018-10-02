@@ -394,7 +394,7 @@ tr:hover td {
 }
 
 .navbar .user {
-    color: #fff;
+    /* color: #fff; */
     position: relative;
     padding: 10px;
     margin-top: -10px;
@@ -725,7 +725,7 @@ tr:hover td {
 
 /* Элемент курсов */
 .courses .course p {
-    height: 50px;
+    height: 100px;
     overflow-y: auto;
 }
 
