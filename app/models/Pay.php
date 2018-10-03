@@ -121,7 +121,7 @@ class Pay extends Model{
         ];
         $paramNV = $this->db->paramNandV($params);
 
-        $this->db->query('INSERT INTO `payments` ('.$paramNV['N'].') VALUES ('.$paramNV['V'].')', $params);
+        $this->db->query('INSERT INTO `payments` ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
 
         $this->amo->updateStatusLead($payment['amoid'], 142);
     }
