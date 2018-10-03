@@ -16,8 +16,8 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon/favicon-16x16.png">
 
         <link rel="stylesheet" href="/public/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/public/css/main.css?v=2.1.0">
-        <link rel="stylesheet" href="/public/css/media.css?v=2.1.0">
+        <link rel="stylesheet" href="/public/css/main.css?v=2.1.1">
+        <link rel="stylesheet" href="/public/css/media.css?v=2.1.1">
 
         <script src="/public/js/jquery.js"></script>
         <script src="/public/js/jquery.maskedinput.min.js"></script>
