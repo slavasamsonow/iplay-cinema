@@ -56,6 +56,13 @@ class Account extends Model{
             }
         }
 
+        if(isset($data['fname'])){
+            $params['fname'] = $data['fname'];
+        }
+        if(isset($data['lname'])){
+            $params['lname'] = $data['lname'];
+        }
+
         if(isset($data['password'])){
             $password = $data['password'];
         }else{
