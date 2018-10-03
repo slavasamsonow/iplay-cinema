@@ -92,6 +92,9 @@ abstract class Model{
         $data = $this->db->row('SELECT * FROM `users` WHERE `id` = :id', $params);
 
         if(empty($data[0])){
+            if(isset($_SESSION['user'])) unset($_SESSION['user']);
+            setcookie('i','',time());
+            setcookie('p','',time());
             return 'guest';
         }
         $data = $data[0];
