@@ -13,21 +13,22 @@ class AccountController extends Controller{
 
     public function registerAction(){
         if(!empty($_POST)){
-            if(!$this->model->validate(['username','email','password'], $_POST)){
+            if(!$this->model->validate(['email','password'], $_POST)){
                 $this->view->message('Ошибка', $this->model->error);
-            }
-            elseif($this->model->checkExists('username', $_POST['username'])){
-                $this->view->message('Ошибка', 'Пользователь с таким логином уже существует');
             }
             elseif($this->model->checkExists('email', $_POST['email'])){
                 $this->view->message('Ошибка', 'Пользователь с таким E-mail уже существует');
             }
             $this->model->register($_POST);
+            if($_POST['request_url']){
+                $this->view->location('login?request_url='.$_POST['request_url']);
+            }
             $this->view->message('OK', 'регистрируем!');
         }
         if($this->model->auth == 'guest'){
-            $this->view->redirect('account');
-            //$this->view->render('Регистрация');
+            //$this->view->redirect('account');
+            $this->view->layout = "default";
+            $this->view->render('Регистрация');
         }else{
             $this->view->redirect('account');
         }
