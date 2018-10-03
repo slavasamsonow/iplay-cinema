@@ -17,6 +17,7 @@
         Сумма:
         <?=$course['price']?>
     </p>
+    <p><?=$course['description']?></p>
 
     <?php if(isset($_SESSION['user']['id'])): ?>
     <form action="/pay/<?=$course['id']?>" method="post">

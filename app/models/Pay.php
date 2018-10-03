@@ -9,7 +9,7 @@ class Pay extends Model{
         $params = [
             'id' => $id,
         ];
-        $course = $this->db->row('SELECT courses.id, courses.name, courses.timestart, courses.active, courses.payment, courses_type.price, courses_type.name AS `type` FROM courses JOIN courses_type ON courses.type=courses_type.id WHERE courses.id=:id AND courses.type IS NOT NULL', $params);
+        $course = $this->db->row('SELECT courses.id, courses.name, courses.timestart, courses.active, courses.payment, courses.description, courses_type.price, courses_type.name AS `type` FROM courses JOIN courses_type ON courses.type=courses_type.id WHERE courses.id=:id AND courses.type IS NOT NULL', $params);
         if(!empty($course)){
             return $course[0];
         }else{
