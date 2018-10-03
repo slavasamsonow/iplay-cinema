@@ -27,8 +27,8 @@
         <input type="submit" class="btn btn-default" value='Оплатить'>
     </form>
     <?php else: ?>
-    Для оплаты требуется войти в личный кабинет, если вы уже зарегестрированы, либо зарегестрироваться <br><br>
+    Для оплаты требуется войти в личный кабинет, если вы уже зарегистрированы, либо зарегестрироваться <br><br>
     <a href="/login?request_url=pay/<?=$course['id']?>" class="btn" style="margin-right: 20px;">Войти</a>
-    <a href="/register?request_url=pay/<?=$course['id']?>" class="btn">Зарегестрироваться</a>
+    <a href="/register?request_url=pay/<?=$course['id']?>" class="btn">Зарегистрироваться</a>
     <?php endif ?>
 </div>
