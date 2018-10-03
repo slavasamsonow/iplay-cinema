@@ -11,36 +11,33 @@ class PayController extends Controller{
             $this->model->uploadPayment($_POST);
             $this->view->locationOut($_POST['yandexConfirmation']);
         }
+        if(!$id = $this->model->checkExists('id', $this->route['courseid'], 'courses')){
+            $this->view->redirect('account');
+        }
+        if(!$course = $this->model->courseInfo($id)){
+            $this->view->redirect('account');
+        }
+        if(!$course['timestart'] > time() || $course['payment'] == 0){
+            $this->view->redirect('account');
+        }
+        $vars = [
+            'seo' => [
+                'title' => 'Оплата '.$course['name']
+            ],
+            'course' => $course
+        ];
+
         if($this->model->auth == 'auth'){
             if($payment = $this->model->checkPayment($this->route['courseid'])){
                 if($payment[0]['status'] == 'succeeded'){
                     $this->view->redirect('account');
                 }
             }
-            if(!$id = $this->model->checkExists('id', $this->route['courseid'], 'courses')){
-                $this->view->redirect('account');
-            }
-            if(!$course = $this->model->courseInfo($id)){
-                $this->view->redirect('account');
-            }
-            if(!$course['timestart'] > time() || $course['payment'] == 0){
-                $this->view->redirect('account');
-            }
-
-            $paymentData = $this->model->createPayment($course);
-
-            $vars = [
-                'seo' => [
-                    'title' => 'Оплата '.$course['name']
-                ],
-                'course' => $course,
-                'pay' => $paymentData
-            ];
-            $this->view->layout = 'pay';
-            $this->view->render($vars);
-        }else{
-            $this->view->redirect('login?request_url='.substr(explode('?',$_SERVER['REQUEST_URI'])[0],1));
+            $vars['pay'] = $paymentData = $this->model->createPayment($course);
         }
+
+        $this->view->layout = 'pay';
+        $this->view->render($vars);
     }
 
     public function yandexkassaAction(){
