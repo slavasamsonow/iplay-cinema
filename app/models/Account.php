@@ -77,7 +77,7 @@ class Account extends Model{
                 $varsAmo['name'] = $data['fio'];
             }else if(isset($data['fname'])){
                 $varsAmo['name'] = $data['fname'];
-                if(isset($data['lname']){
+                if(isset($data['lname'])){
                     $varsAmo['name'] .= $data['lname'];
                 }
             }else{
