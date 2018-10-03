@@ -73,7 +73,17 @@ class Account extends Model{
         if($amo = $this->amo->searchContact($data['email'])){
             $params['amoid'] = $amo['id'];
         }else{
-            $varsAmo['name'] = (isset($data['fio']))?$data['fio']:$data['email'];
+            if(isset($data['fio'])){
+                $varsAmo['name'] = $data['fio'];
+            }else if(isset($data['fname'])){
+                $varsAmo['name'] = $data['fname'];
+                if(isset($data['lname']){
+                    $varsAmo['name'] .= $data['lname'];
+                }
+            }else{
+                $data['email'];
+            }
+
             $varsAmo['email'] = $data['email'];
             if(isset($data['phone'])){
                 $varsAmo['phone'] = $data['phone'];
