@@ -8,8 +8,8 @@
                     <?=$course['percent']?></span> %</span>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-3">
+    <!-- <div class="row">
+        <div class="col-md-3"> -->
             Список заданий:
             <ul class="tasks course">
                 <?php foreach($tasks as $task): ?>
@@ -20,6 +20,6 @@
                 <?php endif ?>
                 <?php endforeach ?>
             </ul>
-        </div>
-    </div>
+        <!-- </div>
+    </div> -->
 </div>
