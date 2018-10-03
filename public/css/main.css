@@ -1,4 +1,4 @@
-/* v.2.1.1 */
+/* v.2.1.2 */
 
 /* Шрифты */
 @font-face {
@@ -753,6 +753,7 @@ tr:hover td {
     position: absolute;
     left: 0;
     bottom: 0;
+    padding-top: 0;
 }
 
 footer {
