@@ -158,7 +158,7 @@ class Amo{
                 ];
             }
 
-            if(isset($vars['phone'])){
+            if(isset($vars['city'])){
                 $contacts['add'][0]['custom_fields'][] = [
                     'id' => "451461",
                     'values' => [
