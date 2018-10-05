@@ -1,3 +1,4 @@
+// v.2.1.3
 $(document).ready(function () {
 	// Закрываем все выпадающие окна
 
@@ -45,6 +46,8 @@ $(document).ready(function () {
 		}
 		var json;
 		event.preventDefault();
+		$('.process-load').show();
+		$('.process-load').addClass('active');
 		$.ajax({
 			type: $(this).attr('method'),
 			url: $(this).attr('action'),
@@ -61,6 +64,8 @@ $(document).ready(function () {
 				} else if (json.modal == 'modalmessage') {
 					openModal('message', json.modalheader, json.modalbody);
 				}
+				$('.process-load').removeClass('active');
+				$('.process-load').hide();
 			},
 		});
 	});

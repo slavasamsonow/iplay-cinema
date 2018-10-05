@@ -16,12 +16,12 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon/favicon-16x16.png">
 
         <link rel="stylesheet" href="/public/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/public/css/main.css?v=2.1.2">
-        <link rel="stylesheet" href="/public/css/media.css?v=2.1.2">
+        <link rel="stylesheet" href="/public/css/main.css?v=2.1.3">
+        <link rel="stylesheet" href="/public/css/media.css?v=2.1.3">
 
         <script src="/public/js/jquery.js"></script>
         <script src="/public/js/jquery.maskedinput.min.js"></script>
-        <script src="/public/js/main.js?v=2.1.0"></script>
+        <script src="/public/js/main.js?v=2.1.3"></script>
 
         <!-- Yandex.Metrika counter -->
         <script type="text/javascript">
@@ -124,6 +124,12 @@
             <div class="modal-body"></div>
         </div>
         <div id="overlay"></div>
+
+        <div class="process-load">
+            <div class="right-top">
+                <img src="/public/img/load.svg" alt="">
+            </div>
+        </div>
     </body>
 
 </html>
