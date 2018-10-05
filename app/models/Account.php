@@ -63,6 +63,10 @@ class Account extends Model{
             $params['lname'] = $data['lname'];
         }
 
+        if(isset($data['city'])){
+            $params['city'] = $data['city'];
+        }
+
         if(isset($data['password'])){
             $password = $data['password'];
         }else{
@@ -81,12 +85,15 @@ class Account extends Model{
                     $varsAmo['name'] .= $data['lname'];
                 }
             }else{
-                $data['email'];
+                $varsAmo['name'] = $data['email'];
             }
 
             $varsAmo['email'] = $data['email'];
             if(isset($data['phone'])){
                 $varsAmo['phone'] = $data['phone'];
+            }
+            if(isset($data['city'])){
+                $varsAmo['city'] = $data['city'];
             }
             $params['amoid'] = $this->amo->newContact($varsAmo);
         }

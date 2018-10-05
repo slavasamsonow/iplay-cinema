@@ -63,6 +63,9 @@
         <? endif ?> -->
 </div>
 
+</div>
+</div>
+
 
 <div class="modal register">
     <button type="button" class="close">&times;</button>
@@ -80,6 +83,9 @@
             </div>
             <div class="form-group">
                 <input type="tel" class="form-control" name="phone" required='required' placeholder="+7 (XXX) XXX-XX-XX">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="city" placeholder="Город">
             </div>
             <div class="checkbox">
                 <label>
