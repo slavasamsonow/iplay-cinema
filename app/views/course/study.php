@@ -2,6 +2,9 @@
     <h1>
         <?=$course['name']?>
     </h1>
+    <?php if($course['type'] == 1): ?>
+        Ждем вас <?=date('d.m.Y', $course['timestart'])?> в <?=date('H:i', $course['timestart'])?> (МСК)
+    <?php else: ?>
     <div class="progress">
         <div class="progress-bar" style="width: <?=$course['percent']?>%">
             <span class="sr-only">Прогресс: <span class="percent">
@@ -22,4 +25,5 @@
             </ul>
         <!-- </div>
     </div> -->
+    <?php endif?>
 </div>

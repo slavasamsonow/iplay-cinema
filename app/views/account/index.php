@@ -13,9 +13,12 @@
             <h3>
                 <?=$course['name']?>
             </h3>
-            <p>
+            <div class="small-desk">
                 <?=$course['description']?>
-            </p>
+            </div>
+            <?php if($course['type'] == 1): ?>
+            <div class="date"><h4><?=date('d.m.Y', $course['timestart'])?> в <?=date('H:i', $course['timestart'])?> (МСК) </h4></div>
+            <?php else: ?>
             <div class="progress">
                 <div class="progress-bar" style="width: <?=$course['percent']?>%">
                     <span class="sr-only">Прогресс:
@@ -23,6 +26,7 @@
                 </div>
             </div>
             <a href="/study/<?=$course['id']?>" class="btn btn-default btn-sm">Открыть</a>
+            <?php endif ?>
         </div>
         <? endforeach ?>
     </div>
