@@ -25,12 +25,18 @@ class Pay extends Model{
         return $this->db->row('SELECT `status` FROM `payments` WHERE `user` = :user AND `course` = :course ORDER BY `id` DESC', $params);
     }
 
-    public function createPayment($data){
+    public function createPayment($data, $dataPayer = []){
         $params = [
-            'user' => $_SESSION['user']['id'],
             'course' => $data['id'],
         ];
-        $payment = $this->db->row('SELECT `id`, `createdon`, `amoid` FROM `payments` WHERE `user` = :user AND `course` = :course', $params);
+        if(!empty($dataPayer)){
+            $params['email'] = $dataPayer['email'];
+            $payment = $this->db->row('SELECT `id`, `createdon`, `amoid` FROM `payments` WHERE `email` = :email AND `course` = :course', $params);
+        }else if(isset($_SESSION['user']['id'])){
+            $params['user'] = $_SESSION['user']['id'];
+            $payment = $this->db->row('SELECT `id`, `createdon`, `amoid` FROM `payments` WHERE `user` = :user AND `course` = :course', $params);
+        }
+
         if($payment && (int) $payment[0]['createdon'] + 3600*24 >= time()){
             $idempotence = $payment[0]['createdon'];
             $id = $payment[0]['id'];
@@ -40,20 +46,36 @@ class Pay extends Model{
             $varsAmo = [
                 'sale' => $data['price'],
                 'nameCourse' => $data['name'],
-                'contact_id' => $_SESSION['user']['amoid'],
             ];
+            if(!empty($dataPayer)){
+                if($AmoContact = $this->amo->searchContact($dataPayer['email'])){
+                    $varsAmo['contact_id'] = $AmoContact;
+                }else{
+                    $varsAmoNew = [
+                        'name' => $dataPayer['email'],
+                        'email' => $dataPayer['email']
+                    ];
+                    $varsAmo['contact_id'] = $this->amo->newContact($varsAmoNew);
+                }
+            }else if(isset($_SESSION['user']['amoid'])){
+                $varsAmo['contact_id'] = $_SESSION['user']['amoid'];
+            }
             $amoid = $this->amo->newLead($varsAmo);
 
             $params = [
                 'amoid' => $amoid,
                 'createdon' => time(),
-                'user' => $_SESSION['user']['id'],
                 'course' => $data['id'],
                 'amount' => $data['price'],
                 'status' => 'start',
-                'description' => 'Пользователь '.$_SESSION['user']['fname'].' '.$_SESSION['user']['lname'].' за '.$data['name'],
             ];
-
+            if(!empty($dataPayer)){
+                $params['email'] = $dataPayer['email'];
+                $params['description'] = 'Оплата без регистрации email: '.$dataPayer['email'].' за '.$data['name'];
+            }else if(isset($_SESSION['user']['id'])){
+                $params['user'] = $_SESSION['user']['id'];
+                $params['description'] = 'Пользователь '.$_SESSION['user']['fname'].' '.$_SESSION['user']['lname'].' за '.$data['name'];
+            }
             $paramNV = $this->db->paramNandV($params);
 
             $this->db->query('INSERT INTO `payments` ('.$paramNV['N'].') VALUES ('.$paramNV['V'].')', $params);
@@ -67,6 +89,15 @@ class Pay extends Model{
             'name' => $data['name'],
             'type' => $data['type'],
         ];
+        if(isset($dataPayer['email'])){
+            $paymentData['email'] = $dataPayer['email'];
+        }
+        if(!empty($dataPayer)){
+            $paymentData['email'] = $dataPayer['email'];
+        }else if(isset($_SESSION['user']['email'])){
+            $paymentData['email'] = $_SESSION['user']['email'];
+        }
+
         $yandexPaymentData = $this->yandexMoney->createPayment($paymentData);
 
         if(isset($yandexPaymentData['type']) && $yandexPaymentData['type'] == 'error'){

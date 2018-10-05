@@ -8,9 +8,18 @@ class PayController extends Controller{
 
     public function payAction(){
         if(!empty($_POST)){
-            $this->model->uploadPayment($_POST);
-            $this->view->locationOut($_POST['yandexConfirmation']);
+            if($this->model->auth == 'auth'){
+                $this->model->uploadPayment($_POST);
+                $this->view->locationOut($_POST['yandexConfirmation']);
+            }else{
+                $course = $this->model->courseInfo($this->route['courseid']);
+                $paymentData = $this->model->createPayment($course, $_POST);
+                $this->model->uploadPayment($paymentData);
+                $this->view->locationOut($paymentData['yandexConfirmation']);
+            }
+
         }
+
         if(!$id = $this->model->checkExists('id', $this->route['courseid'], 'courses')){
             $this->view->redirect('account');
         }
@@ -31,6 +40,7 @@ class PayController extends Controller{
             if($payment = $this->model->checkPayment($this->route['courseid'])){
                 if($payment[0]['status'] == 'succeeded'){
                     $this->view->redirect('account');
+                    exit();
                 }
             }
             $vars['pay'] = $paymentData = $this->model->createPayment($course);
