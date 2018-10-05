@@ -158,6 +158,17 @@ class Amo{
                 ];
             }
 
+            if(isset($vars['phone'])){
+                $contacts['add'][0]['custom_fields'][] = [
+                    'id' => "451461",
+                    'values' => [
+                        [
+                            'value' => $vars['city']
+                        ],
+                    ],
+                ];
+            }
+
             $link = 'api/v2/contacts';
             $Response = $this->query($link, $contacts);
             if(isset($Response['_embedded']['items']['0']['id'])){
