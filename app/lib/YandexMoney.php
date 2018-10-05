@@ -72,7 +72,7 @@ class YandexMoney{
                 'return_url' => 'https://iplay-cinema.ru',
             ],
             'receipt' => [
-                'email' => $_SESSION['user']['email'],
+                'email' => $data['email'],
                 'items' => [
                     [
                         'description' => $description,
