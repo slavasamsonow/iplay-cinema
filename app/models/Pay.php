@@ -52,9 +52,23 @@ class Pay extends Model{
                     $varsAmo['contact_id'] = $AmoContact;
                 }else{
                     $varsAmoNew = [
-                        'name' => $dataPayer['email'],
-                        'email' => $dataPayer['email']
+                        'email' => $dataPayer['email'],
                     ];
+
+                    if(isset($dataPayer['fio'])){
+                        $varsAmoNew['name'] = $dataPayer['fio'];
+                    }else{
+                        $varsAmoNew['name'] = $dataPayer['email'];
+                    }
+
+                    if(isset($dataPayer['city'])){
+                        $varsAmoNew['city'] = $dataPayer['city'];
+                    }
+
+                    if(isset($dataPayer['phone'])){
+                        $varsAmoNew['phone'] = $dataPayer['phone'];
+                    }
+
                     $varsAmo['contact_id'] = $this->amo->newContact($varsAmoNew);
                 }
             }else if(isset($_SESSION['user']['amoid'])){
@@ -89,9 +103,6 @@ class Pay extends Model{
             'name' => $data['name'],
             'type' => $data['type'],
         ];
-        if(isset($dataPayer['email'])){
-            $paymentData['email'] = $dataPayer['email'];
-        }
         if(!empty($dataPayer)){
             $paymentData['email'] = $dataPayer['email'];
         }else if(isset($_SESSION['user']['email'])){

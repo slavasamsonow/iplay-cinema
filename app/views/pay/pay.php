@@ -29,13 +29,28 @@
         <input type="submit" class="btn btn-default" value='Оплатить'>
     </form>
     <?php else: ?>
-    <form action="/pay/<?=$course['id']?>" method="post">
-        <div class="control-group form-group">
-            <label>E-mail:</label>
-            <input type="email" class="form-control" name="email" required="true">
-        </div>
-        <input type="submit" class="btn btn-default" value='Оплатить'>
-    </form>
+    <div class="row">
+        <form action="/pay/<?=$course['id']?>" method="post" class="col-md-3">
+            <div class="control-group form-group">
+                <label>ФИО:</label>
+                <input type="text" class="form-control" name="fio" required="true">
+            </div>
+            <div class="control-group form-group">
+                <label>E-mail:</label>
+                <input type="email" class="form-control" name="email" required="true">
+            </div>
+            <div class="control-group form-group">
+                <label>Телефон:</label>
+                <input type="phone" class="form-control" name="phone" required="true">
+            </div>
+            <div class="control-group form-group">
+                <label>Город:</label>
+                <input type="text" class="form-control" name="city">
+            </div>
+            <input type="submit" class="btn btn-default" value='Оплатить'>
+        </form>
+    </div>
+
     <!--
     Для оплаты требуется войти в личный кабинет, если вы уже зарегистрированы, либо зарегистрироваться <br><br>
     <a href="/login?request_url=pay/<?=$course['id']?>" class="btn" style="margin-right: 20px;">Войти</a>
