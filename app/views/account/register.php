@@ -22,6 +22,10 @@
                 <label>Пароль:</label>
                 <input type="password" class="form-control" name="password" required="true">
             </div>
+            <div class="control-group form-group">
+                <label>Город:</label>
+                <input type="text" class="form-control" name="city">
+            </div>
             <div class="checkbox">
                 <label>
                     <input type="checkbox" name="confident" value="confident" checked required>
