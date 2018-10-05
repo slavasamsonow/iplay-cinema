@@ -17,7 +17,8 @@ class View{
             extract($vars);
         }
 
-        $geo['city'] = ($this->geo['region']['name_ru'] == 'Удмуртия')?'Ижевск':'Москва';
+        //$geo['city'] = ($this->geo['region']['name_ru'] == 'Удмуртия')?'Ижевск':'Москва';
+        $geo['city'] = $this->geo['city']['name_ru'];
 
         if(!isset($seo['title'])){
             //$seo['title'] = 'Киношкола iPlay '.$geo['city'];
