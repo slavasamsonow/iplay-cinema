@@ -216,7 +216,7 @@ class Account extends Model{
         $params = [
             'userid' => $_SESSION['user']['id'],
         ];
-        return $this->db->row('SELECT c.id, c.name, c.description, c.teacher, c.curator, u.percent FROM courses c JOIN user_courses u ON c.id=u.course WHERE u.user=:userid', $params);
+        return $this->db->row('SELECT c.id, c.timestart, c.type, c.name, c.description, c.teacher, c.curator, u.percent FROM courses c JOIN user_courses u ON c.id=u.course WHERE u.user=:userid', $params);
     }
 
     public function createUserCourse($course, $user){

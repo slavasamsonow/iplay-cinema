@@ -14,7 +14,7 @@ class Course extends Model{
             'userid' => $userid,
             'courseid' => $courseId,
         ];
-        $course = $this->db->row('SELECT c.id, c.name, c.description, c.teacher, c.curator, u.percent FROM courses c JOIN user_courses u ON c.id=u.course WHERE u.user=:userid AND u.course = :courseid', $params);
+        $course = $this->db->row('SELECT c.id, c.type, c.timestart, c.name, c.description, c.teacher, c.curator, u.percent FROM courses c JOIN user_courses u ON c.id=u.course WHERE u.user=:userid AND u.course = :courseid', $params);
 
         if(isset($course[0])){
             return $course[0];
