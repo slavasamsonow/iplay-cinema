@@ -63,14 +63,26 @@
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125492467-1"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
             gtag('js', new Date());
 
             gtag('config', 'UA-125492467-1');
         </script>
 
         <!-- PIXEL VK -->
-        <script type="text/javascript">!function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://vk.com/js/api/openapi.js?159",t.onload=function(){VK.Retargeting.Init("VK-RTRG-290017-e59lI"),VK.Retargeting.Hit()},document.head.appendChild(t)}();</script><noscript><img src="https://vk.com/rtrg?p=VK-RTRG-290017-e59lI" style="position:fixed; left:-999px;" alt=""/></noscript>
+        <script type="text/javascript">
+            ! function () {
+                var t = document.createElement("script");
+                t.type = "text/javascript", t.async = !0, t.src = "https://vk.com/js/api/openapi.js?159", t.onload =
+                    function () {
+                        VK.Retargeting.Init("VK-RTRG-290017-e59lI"), VK.Retargeting.Hit()
+                    }, document.head.appendChild(t)
+            }();
+        </script><noscript><img src="https://vk.com/rtrg?p=VK-RTRG-290017-e59lI" style="position:fixed; left:-999px;"
+                alt="" /></noscript>
 
     </head>
 
@@ -133,7 +145,12 @@
                                 <li class="parent"><span>Админ</span>
                                     <ul>
                                         <li><a href="/admin/confirmtasks">Проверка заданий</a></li>
-                                        <li><a href="/admin/addproject">Создание проекта</a></li>
+                                        <li class="parent"><span>Проекты</span>
+                                            <ul>
+                                                <li><a href="/admin/projectslist">Список всех проектов</a></li>
+                                                <li><a href="/admin/addproject">Создание проекта</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <?php endif ?>
