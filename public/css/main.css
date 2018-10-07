@@ -1,4 +1,4 @@
-/* v.2.1.4 */
+/* v.2.1.5 */
 
 /* Шрифты */
 @font-face {
@@ -166,7 +166,7 @@ a.btn {
     border: none;
     border-radius: 20px;
     box-shadow: none;
-    padding: 20px;
+    padding: 8px 20px;
 }
 
 .form-control:focus {
