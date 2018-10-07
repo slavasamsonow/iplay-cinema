@@ -79,7 +79,7 @@ return [
         'controller' => 'admin',
         'action' => 'confirmTasks',
     ],
-    'admin/projectslist' => [
+    'admin/projects' => [
         'controller' => 'admin',
         'action' => 'projectslist',
     ],
@@ -90,6 +90,19 @@ return [
     'admin/editproject/{projectid:\d+}' => [
         'controller' => 'admin',
         'action' => 'editproject',
+    ],
+
+    'admin/courses' => [
+        'controller' => 'admin',
+        'action' => 'courseslist',
+    ],
+    'admin/addcourse' => [
+        'controller' => 'admin',
+        'action' => 'addcourse',
+    ],
+    'admin/editcourse/{courseid:\d+}' => [
+        'controller' => 'admin',
+        'action' => 'editcourse',
     ],
 
 ];
