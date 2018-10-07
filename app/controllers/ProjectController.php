@@ -12,7 +12,7 @@ class ProjectController extends Controller{
 
     public function projectAction(){
         if($this->model->auth == 'auth'){
-            if(!$project = $this->model->project($this->route['project'])){
+            if(!$project = $this->model->project($this->route['projectid'])){
                 $this->view->errorCode(404);
             }
             $vars = [
@@ -29,12 +29,11 @@ class ProjectController extends Controller{
 
     public function projectslistAction(){
         if($this->model->auth == 'auth'){
-            $projects = $this->model->projectsList();
             $vars = [
                 'seo' => [
                     'title' => 'Список проектов',
                 ],
-                'projects' => $projects,
+                'projects' => $this->model->projectsList(),
             ];
             $this->view->render($vars);
         }else{
