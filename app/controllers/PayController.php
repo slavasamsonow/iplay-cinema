@@ -9,15 +9,58 @@ class PayController extends Controller{
     public function payAction(){
         if(!empty($_POST)){
             if($this->model->auth == 'auth'){
-                $this->model->uploadPayment($_POST);
-                $this->view->locationOut($_POST['yandexConfirmation']);
+                $paymentData = $_POST;
             }else{
                 $course = $this->model->courseInfo($this->route['courseid']);
-                $paymentData = $this->model->createPayment($course, $_POST);
-                $this->model->uploadPayment($paymentData);
-                $this->view->locationOut($paymentData['yandexConfirmation']);
-            }
 
+                if(isset($_POST['promocode'])){
+                    $promocode = $_POST['promocode'];
+                    if($promocode == 'friendschool' && $course['id'] == 1){
+                        $course['price'] = 299;
+                    }
+                    if($promocode == 'onlyforcinema' && $course['id'] == 1){
+                        $course['price'] = 0;
+                    }
+                }
+
+                if($course['price'] == 0){
+                    $varsAmo = [
+                        'sale' => $course['price'],
+                        'nameCourse' => $course['name'].' Оплачено',
+                    ];
+                    if($AmoContact = $this->model->amo->searchContact($_POST['email'])){
+                        $varsAmo['contact_id'] = $AmoContact;
+                    }else{
+                        $varsAmoNew = [
+                            'email' => $_POST['email'],
+                        ];
+
+                        if(isset($_POST['fio'])){
+                            $varsAmoNew['name'] = $_POST['fio'];
+                        }else{
+                            $varsAmoNew['name'] = $_POST['email'];
+                        }
+
+                        if(isset($_POST['city'])){
+                            $varsAmoNew['city'] = $_POST['city'];
+                        }
+
+                        if(isset($_POST['phone'])){
+                            $varsAmoNew['phone'] = $_POST['phone'];
+                        }
+
+                        $varsAmo['contact_id'] = $this->model->amo->newContact($varsAmoNew);
+                    }
+                    $amoid = $this->model->amo->newLead($varsAmo);
+                    $this->model->amo->updateStatusLead($amoid, 142);
+
+                    $this->view->message('Заявка отправлена', 'Ожидайте, скоро мы с вами свяжемся');
+                }
+
+                $paymentData = $this->model->createPayment($course, $_POST);
+            }
+            $this->model->uploadPayment($paymentData);
+            $this->view->locationOut($paymentData['yandexConfirmation']);
         }
 
         if(!$id = $this->model->checkExists('id', $this->route['courseid'], 'courses')){

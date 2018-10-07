@@ -47,6 +47,10 @@
                 <label>Город:</label>
                 <input type="text" class="form-control" name="city">
             </div>
+            <div class="control-group form-group">
+                <label>Промо-код:</label>
+                <input type="text" class="form-control" name="promocode">
+            </div>
             <input type="submit" class="btn btn-default" value='Оплатить'>
         </form>
     </div>
