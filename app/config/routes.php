@@ -79,5 +79,9 @@ return [
         'controller' => 'admin',
         'action' => 'confirmTasks',
     ],
+    'admin/addproject' => [
+        'controller' => 'admin',
+        'action' => 'addproject',
+    ],
 
 ];
