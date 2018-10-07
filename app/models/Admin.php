@@ -67,4 +67,40 @@ class Admin extends Model{
     public function projectsList(){
         return $this->db->row('SELECT p.id, p.name, p.description, p.timestart, u.id AS creatorid,u.fname AS creatorfname, u.lname AS creatorlname FROM projects p JOIN users u ON p.creator = u.id');
     }
+
+    public function courseinfo($courseid){
+        $params = [
+            'id' => $courseid,
+        ];
+        $course = $this->db->row('SELECT * FROM courses c WHERE c.id = :id', $params);
+        if(empty($course)){
+            return false;
+        }
+        return $course[0];
+    }
+
+    public function coursesTypeList(){
+        return $this->db->row('SELECT ct.id, ct.name FROM courses_type ct');
+    }
+
+    public function coursesList(){
+        return $this->db->row('SELECT * FROM courses c');
+    }
+    public function createCourse($indata){
+        $params = $this->textFormatting($indata);
+        $params['timestart'] = time();
+        $paramNandV = $this->db->paramNandV($params);
+
+        $this->db->query('INSERT INTO `courses` ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
+        return $this->db->lastInsertId();
+    }
+
+    public function updateCourse($id, $indata){
+        $params = $this->textFormatting($indata);
+        $paramNV = $this->db->paramNV($params);
+        $params['id'] = $id;
+
+        $this->db->query('UPDATE `courses` SET '.$paramNV.' WHERE `id` = :id', $params);
+        return true;
+    }
 }
