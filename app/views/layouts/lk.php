@@ -133,6 +133,7 @@
                                 <li class="parent"><span>Админ</span>
                                     <ul>
                                         <li><a href="/admin/confirmtasks">Проверка заданий</a></li>
+                                        <li><a href="/admin/addproject">Создание проекта</a></li>
                                     </ul>
                                 </li>
                                 <?php endif ?>
