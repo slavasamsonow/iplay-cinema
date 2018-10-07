@@ -70,4 +70,44 @@ class AdminController extends Controller{
         ];
         $this->view->render($vars);
     }
+
+    public function courseslistAction(){
+        $vars = [
+            'seo' => [
+                'title' => 'Список курсов',
+            ],
+            'courses' => $this->model->coursesList(),
+        ];
+        $this->view->render($vars);
+    }
+
+    public function addcourseAction(){
+        if(!empty($_POST)){
+            if($courseid = $this->model->createCourse($_POST)){
+                $this->view->location('admin/courses');
+            }
+        }
+        $vars = [
+            'coursesTypes' => $this->model->coursesTypeList(),
+        ];
+        $this->view->render($vars);
+    }
+
+    public function editcourseAction(){
+        if(!empty($_POST)){
+            $id = $_POST['courseid'];
+            unset($_POST['courseid']);
+            if($this->model->updateCourse($id, $_POST)){
+                $this->view->location('admin/courses');
+            }
+        }
+        if(!$this->model->checkExists('id', $this->route['courseid'], 'courses')){
+            $this->view->errorCode(404);
+        }
+        $vars = [
+            'coursesTypes' => $this->model->coursesTypeList(),
+            'course' => $this->model->courseinfo($this->route['courseid']),
+        ];
+        $this->view->render($vars);
+    }
 }
