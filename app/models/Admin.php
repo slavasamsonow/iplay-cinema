@@ -63,4 +63,8 @@ class Admin extends Model{
     public function userlist(){
         return $this->db->row('SELECT u.id, u.fname, u.lname FROM users u');
     }
+
+    public function projectsList(){
+        return $this->db->row('SELECT p.id, p.name, p.description, p.timestart, u.id AS creatorid,u.fname AS creatorfname, u.lname AS creatorlname FROM projects p JOIN users u ON p.creator = u.id');
+    }
 }
