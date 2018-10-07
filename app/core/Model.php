@@ -282,4 +282,11 @@ abstract class Model{
         return $newFilename;
     }
 
+    public function textformatting($data){
+        foreach($data as $key => $val){
+            $datanew = trim($val);
+            $dataout[$key]  = htmlspecialchars($datanew);
+        }
+        return $dataout;
+    }
 }
