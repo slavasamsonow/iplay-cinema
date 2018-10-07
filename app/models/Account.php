@@ -270,10 +270,17 @@ class Account extends Model{
             ];
             $usl = 'WHERE username = :username';
         }
-        $userData = $this->db->row('SELECT `fname`, `lname`, `about`, `video`, `photo` FROM `users` '.$usl, $params);
+        $userData = $this->db->row('SELECT `id`, `fname`, `lname`, `about`, `video`, `photo` FROM `users` '.$usl, $params);
         if(empty($userData)){
             return false;
         }
         return $userData[0];
+    }
+
+    public function userProjects($userid){
+        $params = [
+            'userid' => $userid
+        ];
+        return $this->db->row('SELECT p.id, p.name FROM projects p JOIN users u ON p.creator = u.id WHERE p.active = 1 AND u.id = :userid', $params);
     }
 }

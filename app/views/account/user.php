@@ -14,5 +14,12 @@
             <p>
                 <?=$userPage['about']?>
             </p>
+            <div class="projects">
+            <h2>Проекты:</h2>
+            <?php foreach($userProjects as $userProject):?>
+                <a href="/project/<?=$userProject['id']?>"><?=$userProject['name']?></a>
+            <?php endforeach ?>
+            </div>
+
         </div>
     </div>

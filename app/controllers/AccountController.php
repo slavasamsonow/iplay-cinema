@@ -211,11 +211,13 @@ class AccountController extends Controller{
         if(!$userPage = $this->model->userInfo($this->route['username'])){
             $this->view->errorCode('404');
         }
+        $userProjects = $this->model->userProjects($userPage['id']);
         $vars = [
             'seo' => [
                 'title' => $userPage['fname'].' '.$userPage['lname'],
             ],
             'userPage' => $userPage,
+            'userProjects' => $userProjects,
         ];
         if($this->model->auth == 'guest'){
             $this->view->layout = 'default';
