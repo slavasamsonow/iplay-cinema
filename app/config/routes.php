@@ -59,7 +59,7 @@ return [
         'controller' => 'project',
         'action' => 'projectslist',
     ],
-    'project/{project:\w+}' => [
+    'project/{projectid:\w+}' => [
         'controller' => 'project',
         'action' => 'project',
     ],
@@ -79,9 +79,17 @@ return [
         'controller' => 'admin',
         'action' => 'confirmTasks',
     ],
+    'admin/projectslist' => [
+        'controller' => 'admin',
+        'action' => 'projectslist',
+    ],
     'admin/addproject' => [
         'controller' => 'admin',
         'action' => 'addproject',
+    ],
+    'admin/editproject/{projectid:\d+}' => [
+        'controller' => 'admin',
+        'action' => 'editproject',
     ],
 
 ];
