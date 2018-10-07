@@ -115,6 +115,11 @@
                     <div class="row">
                         <div class="col-md-2 col-sm-3 left-menu">
                             <ul>
+                                <li class="parent"><span>Проекты</span>
+                                    <ul>
+                                        <li><a href="/projects">Список всех проектов</a></li>
+                                    </ul>
+                                </li>
                                 <li class="parent"><span>Мои курсы</span>
                                     <ul>
                                         <li><a href="/account">Активные</a></li>
