@@ -54,6 +54,16 @@ return [
         'action' => 'checkTask',
     ],
 
+    // projectController
+    'projects' => [
+        'controller' => 'project',
+        'action' => 'projectslist',
+    ],
+    'project/{project:\w+}' => [
+        'controller' => 'project',
+        'action' => 'project',
+    ],
+
     // payController
     'pay/{courseid:\d+}' => [
         'controller' => 'pay',
