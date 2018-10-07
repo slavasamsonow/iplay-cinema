@@ -28,13 +28,14 @@ class Pay extends Model{
     public function createPayment($data, $dataPayer = []){
         $params = [
             'course' => $data['id'],
+            'amount' => $data['price']
         ];
         if(!empty($dataPayer)){
             $params['email'] = $dataPayer['email'];
-            $payment = $this->db->row('SELECT `id`, `createdon`, `amoid` FROM `payments` WHERE `email` = :email AND `course` = :course', $params);
+            $payment = $this->db->row('SELECT `id`, `createdon`, `amoid` FROM `payments` WHERE `email` = :email AND `course` = :course AND `amount` = :amount', $params);
         }else if(isset($_SESSION['user']['id'])){
             $params['user'] = $_SESSION['user']['id'];
-            $payment = $this->db->row('SELECT `id`, `createdon`, `amoid` FROM `payments` WHERE `user` = :user AND `course` = :course', $params);
+            $payment = $this->db->row('SELECT `id`, `createdon`, `amoid` FROM `payments` WHERE `user` = :user AND `course` = :course AND `amount` = :amount', $params);
         }
 
         if($payment && (int) $payment[0]['createdon'] + 3600*24 >= time()){
@@ -157,13 +158,15 @@ class Pay extends Model{
         ];
         $this->db->query('UPDATE `payments` SET `status` = :status WHERE `id` = :id', $params);
 
-        $params = [
-            'user' => $payment['user'],
-            'course' => $payment['course'],
-        ];
-        $paramNV = $this->db->paramNandV($params);
+        if($payment['user'] != '0'){
+            $params = [
+                'user' => $payment['user'],
+                'course' => $payment['course'],
+            ];
+            $paramNV = $this->db->paramNandV($params);
 
-        $this->db->query('INSERT INTO `payments` ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
+            $this->db->query('INSERT INTO `user_courses` ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
+        }
 
         $this->amo->updateStatusLead($payment['amoid'], 142);
     }
