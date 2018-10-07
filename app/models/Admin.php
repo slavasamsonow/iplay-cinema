@@ -59,4 +59,8 @@ class Admin extends Model{
             'status' => $data['status'],
         ];
     }
+
+    public function userlist(){
+        return $this->db->row('SELECT u.id, u.fname, u.lname FROM users u');
+    }
 }
