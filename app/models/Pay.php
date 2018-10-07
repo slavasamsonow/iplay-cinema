@@ -163,7 +163,7 @@ class Pay extends Model{
                 'user' => $payment['user'],
                 'course' => $payment['course'],
             ];
-            $paramNV = $this->db->paramNandV($params);
+            $paramNandV = $this->db->paramNandV($params);
 
             $this->db->query('INSERT INTO `user_courses` ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
         }
