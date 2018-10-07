@@ -19,13 +19,6 @@
                 <?php endforeach ?>
             </select>
         </div>
-
-        <!-- <div class="checkbox">
-            <label>
-                <input type="checkbox" name="active" value="active" checked>
-                <span> Активный </span>
-            </label>
-        </div> -->
         <div class="control-group form-group">
             <button type="submit" class="btn btn-default btn-sm">Создать проект</button>
         </div>
