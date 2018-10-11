@@ -6,7 +6,7 @@
             <?=$course['name']?>
         </h2>
         <div class="date-start">
-            <?=date('d.m.Y',$course['timestart'])?>
+            Дата: <?=date('d.m.Y',$course['timestart'])?>
         </div>
         <div class="date-start">
             Цена:

@@ -6,7 +6,7 @@
             <?=$project['name']?>
         </h2>
         <div class="date-start">
-            <?=date('d.m.Y',$project['timestart'])?>
+            Дата создания: <?=date('d.m.Y',$project['timestart'])?>
         </div>
         <div class="creator">Создатель:
             <a href="/user/id<?=$project['creatorid']?>">
