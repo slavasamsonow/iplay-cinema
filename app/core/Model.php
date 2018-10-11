@@ -307,4 +307,10 @@ abstract class Model{
 
         return mktime($h, $i, $s, $m, $d, $y);
     }
+
+    public function descriptionText($string){
+        $newtext = '<p>'.$string.'.</p>';
+        str_replace('\n','</p><p>',$newtext);
+        return $newtext;
+    }
 }
