@@ -10,6 +10,10 @@
             <textarea class="form-control" name="description"></textarea>
         </div>
         <div class="control-group form-group">
+            <label>Дата и время начала (МСК):</label>
+            <input type="text" class="form-control" name="datetime" required="true" value="<?=date('d.m.Y H:i:s', time())?>">
+        </div>
+        <div class="control-group form-group">
             <label>Цена:</label>
             <input type="number" class="form-control" name="price" required="true" value="0">
         </div>

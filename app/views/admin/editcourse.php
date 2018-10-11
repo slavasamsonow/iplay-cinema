@@ -1,4 +1,4 @@
-<h1>Создать новый курс</h1>
+<h1>Редактировать курс</h1>
 <div class="row">
     <form action="/admin/editcourse/<?=$course['id']?>" method="post" class="col-md-6">
         <input type="hidden" name="courseid" value="<?=$course['id']?>">
@@ -9,6 +9,10 @@
         <div class="control-group form-group">
             <label>Описание:</label>
             <textarea class="form-control" name="description"><?=$course['description']?></textarea>
+        </div>
+        <div class="control-group form-group">
+            <label>Дата и время начала (МСК):</label>
+            <input type="text" class="form-control" name="datetime" required="true" value="<?=date('d.m.Y H:i:s', $course['timestart'])?>">
         </div>
         <div class="control-group form-group">
             <label>Цена:</label>
