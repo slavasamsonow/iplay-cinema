@@ -85,15 +85,13 @@ class AccountController extends Controller{
 
     public function indexAction(){
         if($this->model->auth == 'auth'){
-            $activeCourses = $this->model->activeCoursesList();
             $vars = [
                 'seo' => [
                     'title' => 'Личный кабинет',
                 ],
-                'activeCourses' => $activeCourses,
+                'activeCourses' => $this->model->activeCoursesList(),
             ];
 
-            // $this->view->layout = 'lk';
             $this->view->render($vars);
         }else{
             $this->view->redirect('login');
