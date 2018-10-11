@@ -213,6 +213,7 @@ class AccountController extends Controller{
         if(!$userPage = $this->model->userInfo($this->route['username'])){
             $this->view->errorCode('404');
         }
+        $userPage['about'] = $this->model->descriptionText($userPage['about']);
         $userProjects = $this->model->userProjects($userPage['id']);
         $vars = [
             'seo' => [
