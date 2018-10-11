@@ -136,14 +136,18 @@ class AccountController extends Controller{
 
     public function editinfoAction(){
         if(!empty($_POST)){
-            if(!$this->model->validate(['username'], $_POST)){
-                $this->view->message('Ошибка', $this->model->error);
-            }
-            if($_POST['username'] != $_SESSION['user']['username']){
-                if($this->model->checkExists('username', $_POST['username'])){
-                    $this->view->message('Ошибка', 'Пользователь с таким логином уже существует');
+            if($_POST['username'] != ''){
+                $_POST['username'] = mb_strtolower($_POST['username']);
+                 if(!$this->model->validate(['username'], $_POST)){
+                    $this->view->message('Ошибка', $this->model->error);
+                }
+                if($_POST['username'] != $_SESSION['user']['username']){
+                    if($this->model->checkExists('username', $_POST['username'])){
+                        $this->view->message('Ошибка', 'Пользователь с таким логином уже существует');
+                    }
                 }
             }
+
 
             foreach($_POST as $key => $postD){
                 $data[$key] = htmlentities($postD);
