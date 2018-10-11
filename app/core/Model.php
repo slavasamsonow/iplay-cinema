@@ -289,4 +289,22 @@ abstract class Model{
         }
         return $dataout;
     }
+
+    public function toUnixtime($datetime){
+        $datetimeAr = explode(' ',$datetime);
+        $date = $datetimeAr[0];
+        $time = $datetimeAr[1];
+
+        $dateAr = explode('.',$date);
+        $d = $dateAr[0];
+        $m = $dateAr[1];
+        $y = $dateAr[2];
+
+        $timeAr = explode(':',$time);
+        $h = $timeAr[0];
+        $i = $timeAr[1];
+        $s = $timeAr[2];
+
+        return mktime($h, $i, $s, $m, $d, $y);
+    }
 }
