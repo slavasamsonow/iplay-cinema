@@ -237,19 +237,20 @@ class Account extends Model{
 
     public function usersList($param = []){
         $countElem = $this->db->column('SELECT COUNT(*) FROM `users`');
-        $pagination = $this->pagination($countElem);
+        //$pagination = $this->pagination($countElem);
 
-        $params = [
+        /*$params = [
             'start' => (int) $pagination['start'],
             'limit' => (int) $pagination['limit']
-        ];
+        ];*/
 
         if(isset($_SESSION['user']['id'])){
             $params['userId'] = $_SESSION['user']['id'];
             $noId = 'AND `id` != :userId';
         }
 
-        $usersList = $this->db->row('SELECT `id`, `username`, `fname`, `lname`, `photo` FROM `users` WHERE `active` = 1 '.$noId.' LIMIT :start,:limit', $params);
+        //$usersList = $this->db->row('SELECT `id`, `username`, `fname`, `lname`, `photo` FROM `users` WHERE `active` = 1 '.$noId.' LIMIT :start,:limit', $params);
+        $usersList = $this->db->row('SELECT `id`, `username`, `fname`, `lname`, `photo` FROM `users` WHERE `active` = 1 '.$noId, $params);
         foreach($usersList as $key => $user){
             if($user['username'] == ''){
                 $usersList[$key]['username'] = 'id'.$user['id'];
