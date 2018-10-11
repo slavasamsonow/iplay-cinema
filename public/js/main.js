@@ -39,6 +39,7 @@ $(document).ready(function () {
 	});
 	// Маска для телефона
 	$("input[type=tel]").mask("+7 (999) 999-99-99");
+	$("input[name=datetime]").mask('99.99.9999 99:99:99');
 
 	$('form').submit(function (event) {
 		if ($(this).hasClass('no_ajax')) {
