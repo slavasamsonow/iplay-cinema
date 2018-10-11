@@ -11,9 +11,7 @@
         <?php else: ?>
         <div class="col-md-12">
             <?php endif ?>
-            <p>
-                <?=$userPage['about']?>
-            </p>
+            <div class="about"><?=$userPage['about']?></div>
             <div class="projects">
             <h2>Проекты:</h2>
             <?php foreach($userProjects as $userProject):?>
