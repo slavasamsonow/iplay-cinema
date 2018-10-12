@@ -1,4 +1,4 @@
-/* v.2.1.5 */
+/* v.0.5.4 */
 
 /* Шрифты */
 @font-face {
@@ -440,10 +440,27 @@ tr:hover td {
     /* color: #fff; */
     position: relative;
     padding: 10px;
+    padding-right: 30px;
     margin-top: -10px;
     cursor: pointer;
     border-radius: 5px 5px 5px 5px;
     border: 1px solid transparent;
+}
+
+.navbar .user:before{
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%) rotate(0);
+    border: 5px solid transparent;
+    border-top-color: #111;
+    border-top-width: 7px;
+    border-bottom-width: 0;
+    transition: 0.5s;
+}
+.navbar .user.active:before{
+    transform: translateY(-50%) rotate(180deg);
 }
 
 .navbar .user:hover,
