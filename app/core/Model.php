@@ -308,9 +308,12 @@ abstract class Model{
         return mktime($h, $i, $s, $m, $d, $y);
     }
 
-    public function descriptionText($string){
-        $newtext = '<p>'.$string.'.</p>';
-        str_replace('\n','</p><p>',$newtext);
-        return $newtext;
+    public function descriptionText($strings){
+        foreach($strings as $key=>$string){
+            $newstring = '<p>'.$string.'.</p>';
+            $newstring = preg_replace(array("/\r\n/", "/\r/", "/\n/"), '<p></p>', $newstring);
+            $newstrings[$key] = $newstring;
+        }
+        return $newstrings;
     }
 }
