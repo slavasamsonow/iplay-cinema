@@ -213,14 +213,21 @@ class AccountController extends Controller{
         if(!$userPage = $this->model->userInfo($this->route['username'])){
             $this->view->errorCode('404');
         }
-        $userPage['about'] = $this->model->descriptionText($userPage['about']);
-        $userProjects = $this->model->userProjects($userPage['id']);
+
+        $arraynewtext = [
+            'about' => $userPage['about'],
+        ];
+        $newtext = $this->model->descriptionText($arraynewtext);
+        foreach($newtext as $key=>$newtextstr){
+            $userPage[$key] = $newtextstr;
+        };
+
         $vars = [
             'seo' => [
                 'title' => $userPage['fname'].' '.$userPage['lname'],
             ],
             'userPage' => $userPage,
-            'userProjects' => $userProjects,
+            'userProjects' => $this->model->userProjects($userPage['id']),
         ];
         if($this->model->auth == 'guest'){
             $this->view->layout = 'default';
