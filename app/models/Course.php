@@ -5,6 +5,56 @@ namespace app\models;
 use app\core\Model;
 
 class Course extends Model{
+    public function courseInfo($courseId){
+        $params = [
+            'courseid' => $courseId,
+        ];
+        $course = $this->db->row('SELECT c.id, c.timestart, c.duration, c.payment, c.price, c.name, c.caption, c.description, c.program FROM courses c WHERE c.id = :courseid AND c.active = 1', $params);
+
+        if(isset($course[0])){
+            return $course[0];
+        }else{
+            return false;
+        }
+    }
+
+    public function courseTeachers($courseId){
+        $params = [
+            'courseid' => $courseId,
+        ];
+        $teachers = $this->db->row('SELECT u.id, u.username, u.fname, u.lname, u.photo FROM courses_teachers ct JOIN users u ON ct.teacher=u.id WHERE ct.course = :courseid', $params);
+
+        foreach($teachers as $key => $teacher){
+            if($teacher['username'] == ''){
+                $teachers[$key]['username'] = 'id'.$teacher['id'];
+            }
+        }
+
+        return $teachers;
+    }
+
+    public function courseCurators($courseId){
+        $params = [
+            'courseid' => $courseId,
+        ];
+        $curators = $this->db->row('SELECT u.id, u.username, u.fname, u.lname, u.photo FROM user_courses uc JOIN users u ON uc.curator=u.id WHERE uc.course = :courseid GROUP BY u.id', $params);
+
+        foreach($curators as $key => $curator){
+            if($curator['username'] == ''){
+                $curators[$key]['username'] = 'id'.$curator['id'];
+            }
+        }
+
+        return $curators;
+    }
+
+    public function courseProgram($courseId){
+        $params = [
+            'courseid' => $courseId,
+        ];
+        return $this->db->row('SELECT cp.name, cp.description FROM courses_programs cp WHERE cp.course = :courseid', $params);
+    }
+
     public function checkCourse($courseId, $userid = ''){
         if($userid == ''){
             $userid = $_SESSION['user']['id'];
@@ -14,7 +64,7 @@ class Course extends Model{
             'userid' => $userid,
             'courseid' => $courseId,
         ];
-        $course = $this->db->row('SELECT c.id, c.type, c.timestart, c.name, c.description, c.teacher, c.curator, u.percent FROM courses c JOIN user_courses u ON c.id=u.course WHERE u.user=:userid AND u.course = :courseid', $params);
+        $course = $this->db->row('SELECT c.id, c.type, c.timestart, c.name, c.description, u.percent FROM courses c JOIN user_courses u ON c.id=u.course WHERE u.user=:userid AND u.course = :courseid', $params);
 
         if(isset($course[0])){
             return $course[0];
