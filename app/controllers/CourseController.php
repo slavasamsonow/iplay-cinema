@@ -11,6 +11,38 @@ class CourseController extends Controller{
         $this->view->layout = 'lk';
     }
 
+    public function courseAction(){
+        if($this->model->auth == 'guest'){
+            $this->view->layout = 'default';
+        }
+        if(!$course = $this->model->courseInfo($this->route['courseid'])){
+            $this->view->redirect('account');
+        }
+
+        $arraynewtext = [
+            'description' => $course['description'],
+        ];
+        $newtext = $this->model->descriptionText($arraynewtext);
+        foreach($newtext as $key=>$newtextstr){
+            $course[$key] = $newtextstr;
+        };
+
+        $vars = [
+            'seo' => [
+                'title' => $course['name'],
+            ],
+            'course' => $course,
+            'teachers' => $this->model->courseTeachers($course['id']),
+            'curators' => $this->model->courseCurators($course['id']),
+            'program' => $this->model->courseProgram($course['id']),
+        ];
+        if($course['caption'] != ''){
+            $vars['seo']['description'] = $course['caption'];
+        }
+
+        $this->view->render($vars);
+    }
+
     public function studyAction(){
         if($this->model->auth == 'auth'){
             if(!$course = $this->model->checkCourse($this->route['courseid'])){
