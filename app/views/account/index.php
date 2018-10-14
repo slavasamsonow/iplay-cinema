@@ -6,7 +6,7 @@
 </div>
 <div class="courses">
     <?php if(count($activeCourses) > 0):?>
-    <h2><span class="big">Мои курсы</span></h2>
+    <h1><span class="big">Мои курсы</span></h1>
     <div class="row">
         <?php foreach($activeCourses as $course): ?>
         <div class="col-lg-4 col-sm-6 course">
