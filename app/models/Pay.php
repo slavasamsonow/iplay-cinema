@@ -50,7 +50,7 @@ class Pay extends Model{
             ];
             if(!empty($dataPayer)){
                 if($AmoContact = $this->amo->searchContact($dataPayer['email'])){
-                    $varsAmo['contact_id'] = $AmoContact;
+                    $varsAmo['contact_id'] = $AmoContact['id'];
                 }else{
                     $varsAmoNew = [
                         'email' => $dataPayer['email'],
