@@ -9,7 +9,7 @@ class Course extends Model{
         $params = [
             'courseid' => $courseId,
         ];
-        $course = $this->db->row('SELECT c.id, c.timestart, c.duration, c.payment, c.price, c.name, c.caption, c.description, c.program, c.projects, c.portfolio, c.image FROM courses c WHERE c.id = :courseid AND c.active = 1', $params);
+        $course = $this->db->row('SELECT c.id, c.timestart, c.duration, c.payment, c.price, c.name, c.caption, c.description, c.program, c.projects, c.portfolio, c.image, c.peoples FROM courses c WHERE c.id = :courseid AND c.active = 1', $params);
 
         if(isset($course[0])){
             return $course[0];
@@ -215,6 +215,7 @@ class Course extends Model{
         $this->amo->newLead($varsAmo);
         return true;
     }
+
     public function grantApplicationGuest($data){
         $varsAmo = [
             'name' => 'Заявка на грант',
@@ -253,5 +254,29 @@ class Course extends Model{
         $amoid = $this->amo->newLead($varsAmo);
 
         return true;
+    }
+
+    public function questionForm($data){
+        $varsAmo = [
+            'name' => 'Вопрос',
+            'nameCourse' => $data['course'],
+        ];
+
+        if(isset($_SESSION['user'])){
+            $varsAmo['contact_id'] = $_SESSION['user']['amoid'];
+        }
+        else if(isset($data['email'])){
+            if($amoContact = $this->amo->searchContact($data['email'])){
+                $varsAmo['contact_id'] = $amoContact['id'];
+            }else{
+                $notes[] = 'Email: '.$data['email'];
+                $notes[] = 'ФИО: '.$data['fio'];
+            }
+        }
+
+        $notes[] = 'Вопрос: '.$data['question'];
+
+        $lead = $this->amo->newLead($varsAmo);
+        $this->amo->addNotesLead($lead, $notes);
     }
 }
