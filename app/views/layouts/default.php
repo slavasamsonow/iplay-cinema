@@ -21,7 +21,7 @@
 
         <script src="/public/js/jquery.js"></script>
         <script src="/public/js/jquery.maskedinput.min.js"></script>
-        <script src="/public/js/main.js?v=0.5.6></script>
+        <script src="/public/js/main.js?v=0.5.6"></script>
 
         <!-- Yandex.Metrika counter -->
         <script type="text/javascript">
