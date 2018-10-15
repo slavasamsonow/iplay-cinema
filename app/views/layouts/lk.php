@@ -102,7 +102,7 @@
                             <li class="user">
                                 <?php if(!empty($user['photo'])):?>
                                 <span class="photo">
-                                    <img src="/public/img/users/thumb/<?=$user['photo']?>" alt="">
+                                    <img src="/public/img/users/thumb/<?=$user['photo']?>" alt="<?=$user['fname'].' '.$user['lname'].' | Продюсерский центр Игра'?>">
                                 </span>
                                 <?php endif ?>
                                 <span class="name">

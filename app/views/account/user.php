@@ -5,7 +5,7 @@
 <div class="row">
     <?php if(!empty($userPage['photo'])): ?>
     <div class="col-md-3">
-        <img src="/public/img/users/<?=$userPage['photo']?>" alt="" width="200">
+        <img src="/public/img/users/<?=$userPage['photo']?>" alt="<?=$userPage['fname'].' '.$userPage['lname'].' | Продюсерский центр Игра'?>" width="200">
     </div>
     <div class="col-md-9">
         <?php else: ?>

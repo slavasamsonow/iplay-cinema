@@ -31,7 +31,7 @@
             </div>
 
             <?php endif?>
-            Уже записались: <?=$course['peoples']?>
+            <!-- Уже записались: <?=$course['peoples']?> -->
             <?php if($course['price'] > 0):?>
             <div class="price">
                 <?=$course['price']?> Р
@@ -58,7 +58,7 @@
             <div class="user col-md-4">
                 <a href="/user/<?=$teacher['username']?>" target="_blank">
                     <div class="photo">
-                        <img src="/public/img/users/thumb/<?=$teacher['photo']?>" alt="">
+                        <img src="/public/img/users/thumb/<?=$teacher['photo']?>" alt="<?=$teacher['fname'].' '.$teacher['lname'].' | Продюсерский центр Игра'?>">
                     </div>
                     <div class="name">
                         <?=$teacher['fname']?> <br>
@@ -79,7 +79,7 @@
             <div class="user col-md-4">
                 <a href="/user/<?=$curator['username']?>" target="_blank">
                     <div class="photo">
-                        <img src="/public/img/users/thumb/<?=$curator['photo']?>" alt="">
+                        <img src="/public/img/users/thumb/<?=$curator['photo']?>" alt="<?=$teacher['fname'].' '.$teacher['lname'].' | Продюсерский центр Игра'?>">
                     </div>
                     <div class="name">
                         <?=$curator['fname']?> <br>
@@ -117,7 +117,7 @@
 
     <?php if(!empty($projects)):?>
     <div class="projects">
-        <h2>Проекты</h2>
+        <h2>Наши проекты</h2>
         <p>
             <?=$course['projects']?>
         </p>
@@ -125,7 +125,7 @@
             <?php foreach($projects as $project):?>
             <div class="col-md-3">
                 <div class="project">
-                    <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="">
+                    <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?=$project['name'].' | Продюсерский центр Игра'?>">
                     <div class="name">
                         <?=$project['name']?>
                     </div>
@@ -146,14 +146,14 @@
     <?php endif ?>
 
     <div class="portfolio">
-        <h2>Портфолио</h2>
+        <h2>Работы наших выпускников</h2>
         <p>
             <?=$course['portfolio']?>
         </p>
         <div class="portfoliolist row">
             <div class="col-md-3">
                 <div class="portfolioItem">
-                    <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="">
+                    <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?='| Продюсерский центр Игра'?>">
                     <div class="name">
                         Первое видео
                     </div>
@@ -170,13 +170,14 @@
         <div class="row">
             <div class="col-md-6">
                 <h4>Акция запуск: 50% скидка</h4>
-                <p>Текст акции</p>
+                <p>Специально для тех, кто подаст заявку и оплатить обучение до 17 октября действует специальное предложение: курс за полцены! Жмите на кнопку сейчас, успейте получить обучение по выгодной цене, иначе сэкономит кто–то другой.</p>
                 <p>Осталось мест: 104</p>
                 <button class="btn btn-sm">Оставить заявку</button>
             </div>
             <div class="col-md-6">
                 <h4>Грант на обучение: 100% скидка</h4>
-                <p>Текст акции</p>
+                <p>Вы талант и готовы оплатить свое обучение работой над одним из проектов продюсерского центра? Расскажите нам о себе, убедите, что именно вы достойны получить грант, и сэкономьте 100% стоимости курса! Успейте подать заявку, количество мест ограничено.
+</p>
                 <p>Осталось мест: 5</p>
                 <? if(isset($_SESSION['user'])):?>
                 <form action="<?=explode('?',$_SERVER['REQUEST_URI'])[0];?>" method="post">
