@@ -5,7 +5,7 @@
         <a href="/user/<?=$userItem['username']?>">
             <div class="photo">
                 <? if(!empty($userItem['photo'])): ?>
-                <img src="/public/img/users/thumb/<?=$userItem['photo']?>" alt="<?=$userItem['fname'].' '.$userItem['lname'].' | Продюсерский центр Игра'?>">
+                <img src="/public/img/users/thumb/<?=$userItem['photo']?>" alt="<?=$userItem['fname'].' '.$userItem['lname'].' | Продюсерский центр ИГРА'?>">
                 <? endif ?>
             </div>
             <div class="name">

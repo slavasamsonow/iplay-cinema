@@ -93,7 +93,7 @@
                     <div class="navbar-left">
                         <div class="logo">
                             <a href="/">
-                                <img src="/public/img/logo-black.png" alt="">
+                                <img src="/public/img/logo-black.png" alt="Продюсерский центр ИГРА">
                             </a>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                             <li class="user">
                                 <?php if(!empty($user['photo'])):?>
                                 <span class="photo">
-                                    <img src="/public/img/users/thumb/<?=$user['photo']?>" alt="<?=$user['fname'].' '.$user['lname'].' | Продюсерский центр Игра'?>">
+                                    <img src="/public/img/users/thumb/<?=$user['photo']?>" alt="<?=$user['fname'].' '.$user['lname'].' | Продюсерский центр ИГРА'?>">
                                 </span>
                                 <?php endif ?>
                                 <span class="name">

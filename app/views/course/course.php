@@ -58,7 +58,7 @@
             <div class="user col-md-4">
                 <a href="/user/<?=$teacher['username']?>" target="_blank">
                     <div class="photo">
-                        <img src="/public/img/users/thumb/<?=$teacher['photo']?>" alt="<?=$teacher['fname'].' '.$teacher['lname'].' | Продюсерский центр Игра'?>">
+                        <img src="/public/img/users/thumb/<?=$teacher['photo']?>" alt="<?=$teacher['fname'].' '.$teacher['lname'].' | Продюсерский центр ИГРА'?>">
                     </div>
                     <div class="name">
                         <?=$teacher['fname']?> <br>
@@ -79,7 +79,7 @@
             <div class="user col-md-4">
                 <a href="/user/<?=$curator['username']?>" target="_blank">
                     <div class="photo">
-                        <img src="/public/img/users/thumb/<?=$curator['photo']?>" alt="<?=$teacher['fname'].' '.$teacher['lname'].' | Продюсерский центр Игра'?>">
+                        <img src="/public/img/users/thumb/<?=$curator['photo']?>" alt="<?=$teacher['fname'].' '.$teacher['lname'].' | Продюсерский центр ИГРА'?>">
                     </div>
                     <div class="name">
                         <?=$curator['fname']?> <br>
@@ -125,7 +125,7 @@
             <?php foreach($projects as $project):?>
             <div class="col-md-3">
                 <div class="project">
-                    <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?=$project['name'].' | Продюсерский центр Игра'?>">
+                    <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?=$project['name'].' | Продюсерский центр ИГРА'?>">
                     <div class="name">
                         <?=$project['name']?>
                     </div>
@@ -153,7 +153,7 @@
         <div class="portfoliolist row">
             <div class="col-md-3">
                 <div class="portfolioItem">
-                    <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?='| Продюсерский центр Игра'?>">
+                    <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?='| Продюсерский центр ИГРА'?>">
                     <div class="name">
                         Первое видео
                     </div>

@@ -22,13 +22,14 @@ class View{
 
         if(!isset($seo['title'])){
             //$seo['title'] = 'Киношкола iPlay '.$geo['city'];
-            $seo['title'] = 'Киношкола iPlay';
+            $seo['title'] = 'Продюсерский центр ИГРА';
+
         }else{
             // $seo['title'] .= ' | Киношкола iPlay '.$geo['city'];
-            $seo['title'] .= ' | Киношкола iPlay';
+            $seo['title'] .= ' | Продюсерский центр ИГРА';
         }
 
-        $seo['description'] = (isset($seo['description']))?$seo['description']:'Киношкола iPlay - место, которое мотивирует и обучает создавать кино, и экспериментировать с его формами.';
+        $seo['description'] = (isset($seo['description']))?$seo['description']:'Продюсерский центр ИГРА - место, которое мотивирует, обучает создавать кино и экспериментировать с его формами.';
 
         if(isset($_SESSION['user'])){
             $user = $_SESSION['user'];
