@@ -12,6 +12,35 @@ class CourseController extends Controller{
     }
 
     public function courseAction(){
+        if(!empty($_POST)){
+            if($_POST['form'] == 'grant'){
+                if(isset($_SESSION['user'])){
+                    $this->model->grantApplicationUser($_POST);
+                }else{
+                    if(!$this->model->validate(['email', 'phone'], $_POST)){
+                        $this->view->message('Ошибка', $this->model->error);
+                    }
+
+                    if(isset($_POST['register'])){
+                        $user = $this->modelAccount->register($_POST);
+                    }
+
+                    $this->model->grantApplicationGuest($_POST);
+                }
+                $this->view->message('Ваша заявка отправлена', 'В скором времени мы свяжемся с вами');
+            }
+            if($_POST['form'] == 'question'){
+                if(isset($_SESSION['user'])){
+                    $this->model->grantApplicationUser($_POST);
+                }else{
+                    if(!$this->model->validate(['email', 'phone'], $_POST)){
+                        $this->view->message('Ошибка', $this->model->error);
+                    }
+                    $this->model->grantApplicationGuest($_POST);
+                }
+                $this->view->message('Ваша заявка отправлена', 'В скором времени мы свяжемся с вами');
+            }
+        }
         if($this->model->auth == 'guest'){
             $this->view->layout = 'default';
         }
@@ -35,6 +64,7 @@ class CourseController extends Controller{
             'teachers' => $this->model->courseTeachers($course['id']),
             'curators' => $this->model->courseCurators($course['id']),
             'program' => $this->model->courseProgram($course['id']),
+            'projects' => $this->model->courseProjects($course['id']),
         ];
         if($course['caption'] != ''){
             $vars['seo']['description'] = $course['caption'];
