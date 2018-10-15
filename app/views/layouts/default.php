@@ -78,7 +78,7 @@
                     <div class="navbar-left">
                         <div class="logo" style="display: inline-block; margin-right: 50px;">
                             <a href="/">
-                                <img src="/public/img/logo-black.png" alt="">
+                                <img src="/public/img/logo-black.png" alt="Продюсерский центр ИГРА">
                             </a>
                         </div>
                         <? if(isset($geo['city'])): ?>
