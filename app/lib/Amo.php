@@ -119,6 +119,28 @@ class Amo{
         };
     }
 
+    public function updateStatusLead($id, $status){
+        if($this->start() == true){
+            $leads['update'][0] = [
+                'id' => $id,
+                'updated_at' => time(),
+                'status_id' => $status,
+            ];
+
+
+            $link = 'api/v2/leads';
+            $Response = $this->query($link, $leads);
+            if(isset($Response['_embedded']['items']['0']['id'])){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            //echo 'Не авторизован';
+            // Писать на email об ошибке
+        };
+    }
+
     public function newContact($vars){
         if($this->start() == true){
             $contacts['add'][0] = [
@@ -184,8 +206,8 @@ class Amo{
         if($this->start() == true){
             $link = 'api/v2/contacts/?query='.$data;
             $Response = $this->query($link);
-            if(isset($Response['_embedded']['items']['0']['id'])){
-                return $Response['_embedded']['items']['0']['id'];
+            if(isset($Response['_embedded']['items']['0'])){
+                return $Response['_embedded']['items']['0'];
             }else{
                 return false;
             }
@@ -195,25 +217,25 @@ class Amo{
         };
     }
 
-    public function updateStatusLead($id, $status){
+    public function addNotesContact($amoid,$data){
         if($this->start() == true){
-            $leads['update'][0] = [
-                'id' => $id,
-                'updated_at' => time(),
-                'status_id' => $status,
-            ];
+            foreach($data as $dataItem){
+                $notes['add'][] = [
+                    'element_id' => $amoid,
+                    'element_type' => '1',
+                    'text' => $dataItem,
+                    'note_type' => '4',
+                ];
+            }
 
 
-            $link = 'api/v2/leads';
-            $Response = $this->query($link, $leads);
+            $link = 'api/v2/notes';
+            $Response = $this->query($link, $notes);
             if(isset($Response['_embedded']['items']['0']['id'])){
                 return true;
             }else{
                 return false;
             }
-        }else{
-            //echo 'Не авторизован';
-            // Писать на email об ошибке
-        };
+        }
     }
 }
