@@ -30,14 +30,7 @@ class CourseController extends Controller{
                 $this->view->message('Ваша заявка отправлена', 'В скором времени мы свяжемся с вами');
             }
             if($_POST['form'] == 'question'){
-                if(isset($_SESSION['user'])){
-                    $this->model->grantApplicationUser($_POST);
-                }else{
-                    if(!$this->model->validate(['email', 'phone'], $_POST)){
-                        $this->view->message('Ошибка', $this->model->error);
-                    }
-                    $this->model->grantApplicationGuest($_POST);
-                }
+                $this->model->questionForm($_POST);
                 $this->view->message('Ваша заявка отправлена', 'В скором времени мы свяжемся с вами');
             }
         }
