@@ -31,7 +31,7 @@
             </div>
 
             <?php endif?>
-            Уже записались: 15 человек
+            Уже записались: <?=$course['peoples']?>
             <?php if($course['price'] > 0):?>
             <div class="price">
                 <?=$course['price']?> Р
@@ -198,14 +198,18 @@
                 <form action="<?=explode('?',$_SERVER['REQUEST_URI'])[0];?>" method="post">
                     <input type="hidden" name="form" value="question">
                     <input type="hidden" name="course" value="<?=$course['name']?>">
+
+                    <? if(!isset($_SESSION['user'])):?>
                     <div class="form-group">
                         <input type="text" class="form-control" name="fio" required="required" placeholder="Имя Фамилия">
                     </div>
                     <div class="form-group">
                         <input type="email" class="form-control" name="email" required='required' placeholder="Email">
                     </div>
+                    <?php endif ?>
+
                     <div class="control-group form-group">
-                        <textarea class="form-control" name="text" rows="5"></textarea>
+                        <textarea class="form-control" name="question" rows="5"></textarea>
                     </div>
                     <input class="btn" type="submit" value="Отправить">
                 </form>
