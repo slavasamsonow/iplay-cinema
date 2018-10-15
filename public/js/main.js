@@ -96,6 +96,13 @@ $(document).ready(function () {
 		$('#overlay').show();
 	})
 
+	$(".coursePage button[data-modal='video']").click(function(){
+		var videoName = $(this).data('videoname');
+		$('.modal.video .modal-header').html(videoName);
+		var video = $(this).data('video');
+		$('.modal.video .modal-body').html(video);
+	})
+
 	// Для блока интро
 	var headerHeight = $('.navbar').css('height');
 	var footerHeight = $('footer').css('height');
