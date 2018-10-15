@@ -9,7 +9,7 @@ class Course extends Model{
         $params = [
             'courseid' => $courseId,
         ];
-        $course = $this->db->row('SELECT c.id, c.timestart, c.duration, c.payment, c.price, c.name, c.caption, c.description, c.program FROM courses c WHERE c.id = :courseid AND c.active = 1', $params);
+        $course = $this->db->row('SELECT c.id, c.timestart, c.duration, c.payment, c.price, c.name, c.caption, c.description, c.program, c.projects, c.portfolio, c.image FROM courses c WHERE c.id = :courseid AND c.active = 1', $params);
 
         if(isset($course[0])){
             return $course[0];
@@ -53,6 +53,13 @@ class Course extends Model{
             'courseid' => $courseId,
         ];
         return $this->db->row('SELECT cp.name, cp.description FROM courses_programs cp WHERE cp.course = :courseid', $params);
+    }
+
+    public function courseProjects($courseId){
+        $params = [
+            'courseid' => $courseId,
+        ];
+        return $this->db->row('SELECT p.id, p.name, p.caption FROM projects p WHERE p.course = :courseid', $params);
     }
 
     public function checkCourse($courseId, $userid = ''){
@@ -196,5 +203,55 @@ class Course extends Model{
             'status' => $status,
             'percent' => $allpercent
         ];
+    }
+
+    public function grantApplicationUser($data){
+        $varsAmo = [
+            'name' => 'Заявка на грант',
+            'nameCourse' => $data['course'],
+            'sale' => 0,
+            'contact_id' => $_SESSION['user']['amoid'],
+        ];
+        $this->amo->newLead($varsAmo);
+        return true;
+    }
+    public function grantApplicationGuest($data){
+        $varsAmo = [
+            'name' => 'Заявка на грант',
+            'nameCourse' => $data['course'],
+            'sale' => 0,
+        ];
+        if($amoContact = $this->amo->searchContact($data['email'])){
+            $varsAmo['contact_id'] = $amoContact['id'];
+            $notes = [
+                'Email: '.$data['email'],
+                'Телефон: '.$data['phone'],
+                'Город: '.$data['city'],
+            ];
+            $this->amo->addNotesContact($amoContact['id'],$notes);
+        }else{
+            $varsAmoNew = [
+                'email' => $data['email'],
+            ];
+
+            if(isset($data['fio'])){
+                $varsAmoNew['name'] = $data['fio'];
+            }else{
+                $varsAmoNew['name'] = $data['email'];
+            }
+
+            if(isset($dataPayer['city'])){
+                $varsAmoNew['city'] = $data['city'];
+            }
+
+            if(isset($dataPayer['phone'])){
+                $varsAmoNew['phone'] = $data['phone'];
+            }
+
+            $varsAmo['contact_id'] = $this->amo->newContact($varsAmoNew);
+        }
+        $amoid = $this->amo->newLead($varsAmo);
+
+        return true;
     }
 }
