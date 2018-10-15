@@ -135,14 +135,15 @@ class Amo{
                             ],
                         ],
                     ],
-                    [
-                        'id' => '450873',
-                        'values' => [
-                            [
-                                'value' => 1
-                            ]
-                        ]
-                    ]
+                    // Зарегестрирован на сайте
+                    // [
+                    //     'id' => '450873',
+                    //     'values' => [
+                    //         [
+                    //             'value' => 1
+                    //         ]
+                    //     ]
+                    // ]
                 ],
             ];
 
@@ -183,8 +184,8 @@ class Amo{
         if($this->start() == true){
             $link = 'api/v2/contacts/?query='.$data;
             $Response = $this->query($link);
-            if(isset($Response['_embedded']['items']['0'])){
-                return $Response['_embedded']['items']['0'];
+            if(isset($Response['_embedded']['items']['0']['id'])){
+                return $Response['_embedded']['items']['0']['id'];
             }else{
                 return false;
             }
