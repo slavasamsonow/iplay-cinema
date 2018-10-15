@@ -238,4 +238,26 @@ class Amo{
             }
         }
     }
+
+    public function addNotesLead($amoid,$data){
+        if($this->start() == true){
+            foreach($data as $dataItem){
+                $notes['add'][] = [
+                    'element_id' => $amoid,
+                    'element_type' => '2',
+                    'text' => $dataItem,
+                    'note_type' => '4',
+                ];
+            }
+
+
+            $link = 'api/v2/notes';
+            $Response = $this->query($link, $notes);
+            if(isset($Response['_embedded']['items']['0']['id'])){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
 }
