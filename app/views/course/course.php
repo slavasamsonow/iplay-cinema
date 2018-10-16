@@ -154,19 +154,79 @@
         <p>
             <?=$course['portfolio']?>
         </p>
-        <div class="portfoliolist row">
-            <div class="col-md-3">
-                <div class="portfolioItem">
-                    <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?='| Продюсерский центр ИГРА'?>">
-                    <div class="name">
-                        Первое видео
-                    </div>
-                    <div class="play">
-                        <button data-action="modal" data-modal="video" data-videoname="Первое видео" data-video='<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ibWUkOcDAzI?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
-                            class="btn btn-sm">Воспроизвести</button>
-                    </div>
+        <div class="portfoliolist row owl-carousel">
+            <div class="portfolioItem">
+                <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?='| Продюсерский центр ИГРА'?>">
+                <div class="name">
+                    Юрий Князев. Мугур
+                </div>
+                <div class="play">
+                    <button data-action="modal" data-modal="video" data-videoname="Юрий Князев. Мугур" data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/iHnjb8Sp4KQ?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+                        class="btn btn-sm">Воспроизвести</button>
                 </div>
             </div>
+
+            <div class="portfolioItem">
+                <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?='| Продюсерский центр ИГРА'?>">
+                <div class="name">
+                    Короткометражный фильм "Ниточка". Лена Коробейникова
+                </div>
+                <div class="play">
+                    <button data-action="modal" data-modal="video" data-videoname='Короткометражный фильм "Ниточка". Лена Коробейникова'
+                        data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/CfqE7Sf7pfQ?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+                        class="btn btn-sm">Воспроизвести</button>
+                </div>
+            </div>
+
+
+            <div class="portfolioItem">
+                <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?='| Продюсерский центр ИГРА'?>">
+                <div class="name">
+                    День рождение дизайнерского дуэта KATARINI
+                </div>
+                <div class="play">
+                    <button data-action="modal" data-modal="video" data-videoname="День рождение дизайнерского дуэта KATARINI"
+                        data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/ipoVy8EfWeA?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+                        class="btn btn-sm">Воспроизвести</button>
+                </div>
+            </div>
+
+            <div class="portfolioItem">
+                <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?='| Продюсерский центр ИГРА'?>">
+                <div class="name">
+                    Татьяна Зыкина с новым альбомом "За закрытыми окнами"
+                </div>
+                <div class="play">
+                    <button data-action="modal" data-modal="video" data-videoname='Татьяна Зыкина с новым альбомом "За закрытыми окнами"'
+                        data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/cgk-63V-WmQ?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+                        class="btn btn-sm">Воспроизвести</button>
+                </div>
+            </div>
+
+            <div class="portfolioItem">
+                <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?='| Продюсерский центр ИГРА'?>">
+                <div class="name">
+                    Новогодняя история "Чудо на Иже"
+                </div>
+                <div class="play">
+                    <button data-action="modal" data-modal="video" data-videoname="Новогодняя история " Чудо на Иже""
+                        data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/eqMOSruB__E?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+                        class="btn btn-sm">Воспроизвести</button>
+                </div>
+            </div>
+
+            <div class="portfolioItem">
+                <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?='| Продюсерский центр ИГРА'?>">
+                <div class="name">
+                    Разговор о танце в Ижевске.
+                </div>
+                <div class="play">
+                    <button data-action="modal" data-modal="video" data-videoname="Разговор о танце в Ижевске."
+                        data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/TRwd0SDrQLU?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+                        class="btn btn-sm">Воспроизвести</button>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -174,13 +234,17 @@
         <div class="row">
             <div class="col-md-6">
                 <h4>Акция запуск: 50% скидка</h4>
-                <p>Специально для тех, кто подаст заявку и оплатит обучение до 17 октября, действует специальное предложение: курс за полцены! Жмите на кнопку сейчас. Успейте получить обучение по выгодной цене, иначе сэкономит кто–то другой.</p>
+                <p>Специально для тех, кто подаст заявку и оплатит обучение до 17 октября, действует специальное
+                    предложение: курс за полцены! Жмите на кнопку сейчас. Успейте получить обучение по выгодной цене,
+                    иначе сэкономит кто–то другой.</p>
                 <p>Осталось мест: 104</p>
                 <button class="btn btn-sm">Оставить заявку</button>
             </div>
             <div class="col-md-6">
                 <h4>Грант на обучение: 100% скидка</h4>
-                <p>Вы талант и готовы оплатить свое обучение работой над одним из проектов продюсерского центра? Расскажите нам о себе, убедите, что именно вы достойны получить грант, и сэкономьте 100% стоимости курса! Успейте подать заявку, количество мест ограничено.</p>
+                <p>Вы талант и готовы оплатить свое обучение работой над одним из проектов продюсерского центра?
+                    Расскажите нам о себе, убедите, что именно вы достойны получить грант, и сэкономьте 100% стоимости
+                    курса! Успейте подать заявку, количество мест ограничено.</p>
                 <p>Осталось мест: 5</p>
                 <? if(isset($_SESSION['user'])):?>
                 <form action="<?=explode('?',$_SERVER['REQUEST_URI'])[0];?>" method="post">
