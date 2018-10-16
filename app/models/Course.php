@@ -59,7 +59,7 @@ class Course extends Model{
         $params = [
             'courseid' => $courseId,
         ];
-        return $this->db->row('SELECT p.id, p.name, p.caption FROM projects p WHERE p.course = :courseid', $params);
+        return $this->db->row('SELECT p.* FROM projects p WHERE p.course = :courseid', $params);
     }
 
     public function checkCourse($courseId, $userid = ''){
