@@ -19,7 +19,7 @@
             Цена: <?=$course['price']?>
         </div><br>
         <div class="description">
-            <?=$course['description']?>
+            <?=$course['caption']?>
         </div><br>
         <!-- <a href="/project/<?=$course['id']?>" class="btn btn-default btn-sm">Подробнее</a> -->
         <a href="/admin/editcourse/<?=$course['id']?>" class="btn btn-default btn-sm">Редактировать</a>
