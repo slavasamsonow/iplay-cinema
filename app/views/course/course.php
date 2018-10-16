@@ -125,7 +125,11 @@
             <?php foreach($projects as $project):?>
             <div class="col-md-3">
                 <div class="project">
-                    <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?=$project['name'].' | Продюсерский центр ИГРА'?>">
+                    <?php if($project['image']):?>
+                    <img src="/public/img/projects/<?=$project['image']?>" alt="<?=$project['name'].' | Продюсерский центр ИГРА'?>">
+                    <?php else: ?>
+                    <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?=$project['name'].'| Продюсерский центр ИГРА'?>">
+                    <?php endif?>
                     <div class="name">
                         <?=$project['name']?>
                     </div>
