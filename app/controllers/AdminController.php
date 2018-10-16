@@ -43,12 +43,23 @@ class AdminController extends Controller{
 
     public function addprojectAction(){
         if(!empty($_POST)){
-            if($this->modelProject->createProject($_POST)){
-                $this->view->location('projects');
+            foreach($_POST as $key => $postD){
+                $data[$key] = htmlentities($postD);
+            }
+
+            if(isset($_FILES['image']['tmp_name']) && $_FILES['image']['tmp_name'] != ''){
+                if($file = $this->model->saveFile($_FILES['image'], 'public/img/projects/', 'image')){
+                    $data['image'] = $file;
+                }
+            }
+
+            if($id = $this->modelProject->createProject($data)){
+                $this->view->location('admin/projects');
             }
         }
         $vars = [
-            'userList' => $this->model->userlist(),
+            'usersList' => $this->model->userslist(),
+            'coursesList' => $this->model->courseslist(),
         ];
         $this->view->render($vars);
     }
@@ -57,15 +68,38 @@ class AdminController extends Controller{
         if(!empty($_POST)){
             $id = $_POST['projectid'];
             unset($_POST['projectid']);
-            if($this->modelProject->updateProject($id, $_POST)){
-                $this->view->location('projects');
+
+            foreach($_POST as $key => $postD){
+                $data[$key] = htmlentities($postD);
+            }
+
+            if(isset($_FILES['image']['tmp_name']) && $_FILES['image']['tmp_name'] != ''){
+                if($file = $this->model->saveFile($_FILES['image'], 'public/img/projects/', 'image')){
+                    $data['image'] = $file;
+                    if(!empty($data['oldimage'])){
+                        $oldPhotoPath = $_SERVER['DOCUMENT_ROOT'].'/public/img/projects/'.$data['oldimage'];
+                        $oldPhotoThumbPath = $_SERVER['DOCUMENT_ROOT'].'/public/img/projects/thumb/'.$data['oldimage'];
+                        if(file_exists($oldPhotoPath)){
+                            unlink($oldPhotoPath);
+                        }
+                        if(file_exists($oldPhotoThumbPath)){
+                            unlink($oldPhotoThumbPath);
+                        }
+                    }
+                }
+            }
+            unset($data['oldimage']);
+
+            if($this->modelProject->updateProject($id, $data)){
+                $this->view->location('admin/projects');
             }
         }
         if(!$this->model->checkExists('id', $this->route['projectid'], 'projects')){
             $this->view->errorCode(404);
         }
         $vars = [
-            'userList' => $this->model->userlist(),
+            'userList' => $this->model->userslist(),
+            'coursesList' => $this->model->courseslist(),
             'project' => $this->modelProject->project($this->route['projectid']),
         ];
         $this->view->render($vars);
