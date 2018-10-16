@@ -60,7 +60,7 @@ class Admin extends Model{
         ];
     }
 
-    public function userlist(){
+    public function userslist(){
         return $this->db->row('SELECT u.id, u.fname, u.lname FROM users u');
     }
 
@@ -86,6 +86,7 @@ class Admin extends Model{
     public function coursesList(){
         return $this->db->row('SELECT * FROM courses c');
     }
+
     public function createCourse($indata){
         $params = $this->textFormatting($indata);
         $params['timestart'] = $this->toUnixtime($params['datetime']);
