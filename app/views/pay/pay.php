@@ -18,7 +18,7 @@
         <?=$course['price']?>
     </p>
     <p>
-        <?=$course['description']?>
+        <?=$course['caption']?>
     </p>
 
     <?php if(isset($_SESSION['user']['id'])): ?>
