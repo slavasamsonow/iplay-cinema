@@ -15,6 +15,15 @@ class ProjectController extends Controller{
             if(!$project = $this->model->project($this->route['projectid'])){
                 $this->view->errorCode(404);
             }
+
+            $arraynewtext = [
+                'description' => $project['description'],
+            ];
+            $newtext = $this->model->descriptionText($arraynewtext);
+            foreach($newtext as $key=>$newtextstr){
+                $project[$key] = $newtextstr;
+            };
+
             $vars = [
                 'seo' => [
                     'title' => $project['name'],
