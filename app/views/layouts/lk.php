@@ -16,12 +16,13 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon/favicon-16x16.png">
 
         <link rel="stylesheet" href="/public/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/public/css/main.css?v=0.5.6">
+        <link rel="stylesheet" href="/public/css/main.css?v=0.6.5">
         <link rel="stylesheet" href="/public/css/media.css?v=2.1.3">
 
         <script src="/public/js/jquery.js"></script>
         <script src="/public/js/jquery.maskedinput.min.js"></script>
-        <script src="/public/js/main.js?v=0.5.6"></script>
+        <script src="/public/js/owl.carousel.min.js"></script>
+        <script src="/public/js/main.js?v=0.6.5"></script>
 
         <!-- Yandex.Metrika counter -->
         <script type="text/javascript">
