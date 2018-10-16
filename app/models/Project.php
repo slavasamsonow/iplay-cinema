@@ -13,7 +13,7 @@ class Project extends Model{
         $params = [
             'id' => $projectid,
         ];
-        $project = $this->db->row('SELECT p.id, p.name, p.description, p.timestart, p.active, p.creator, u.id AS creatorid, u.fname AS creatorfname, u.lname AS creatorlname FROM projects p JOIN users u ON p.creator = u.id WHERE p.id = :id', $params);
+        $project = $this->db->row('SELECT p.*, u.id AS creatorid, u.fname AS creatorfname, u.lname AS creatorlname FROM projects p JOIN users u ON p.creator = u.id WHERE p.id = :id', $params);
         if(empty($project)){
             return false;
         }
@@ -26,7 +26,7 @@ class Project extends Model{
         $paramNandV = $this->db->paramNandV($params);
 
         $this->db->query('INSERT INTO `projects` ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
-        return true;
+        return $this->db->lastInsertId();
     }
 
     public function updateProject($id, $indata){
