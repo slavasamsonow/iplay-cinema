@@ -32,10 +32,9 @@
             <span> Публичный профиль </span>
         </label>
     </div>
-    <div class="div" class="control-group form-group">
+    <div class="control-group form-group">
         <label>Загрузить новое фото:</label>
         <input type="file" name="photo">
     </div>
-    <br>
     <button type="submit" class="btn btn-default">Сохранить данные</button>
 </form>
