@@ -1,7 +1,5 @@
-// v.0.5.6
+// v.0.6.5
 $(document).ready(function () {
-	// Закрываем все выпадающие окна
-
 	// Выпадающее меню юзера
 	$('.navbar .user').click(function () {
 		var userController = $(this);
@@ -198,5 +196,13 @@ $(document).ready(function () {
 		})
 	})
 
+	$(".owl-carousel").owlCarousel({
+		items: 4,
+		margin: 20,
+		loop: true,
+		autoplay: true,
+		autoplayTimeout: 3000,
+		autoplayHoverPause: true,
+	});
 
 });
