@@ -72,6 +72,15 @@ class PayController extends Controller{
         if(!$course['timestart'] > time() || $course['payment'] == 0){
             $this->view->redirect('account');
         }
+
+        $arraynewtext = [
+            'caption' => $course['caption'],
+        ];
+        $newtext = $this->model->descriptionText($arraynewtext);
+        foreach($newtext as $key=>$newtextstr){
+            $course[$key] = $newtextstr;
+        };
+
         $vars = [
             'seo' => [
                 'title' => 'Оплата '.$course['name']
