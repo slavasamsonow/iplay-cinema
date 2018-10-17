@@ -89,39 +89,7 @@
 
     <body>
         <div class="content">
-            <nav class="navbar">
-                <div class="container-fluid">
-                    <div class="navbar-left">
-                        <div class="logo">
-                            <a href="/">
-                                <img src="/public/img/logo-black.png" alt="Продюсерский центр ИГРА">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="navbar-right">
-                        <ul>
-                            <li class="user">
-                                <?php if(!empty($user['photo'])):?>
-                                <span class="photo">
-                                    <img src="/public/img/users/thumb/<?=$user['photo']?>" alt="<?=$user['fname'].' '.$user['lname'].' | Продюсерский центр ИГРА'?>">
-                                </span>
-                                <?php endif ?>
-                                <span class="name">
-                                    <?=$user['fname'].' '.$user['lname']?>
-                                </span>
-                                <div class="user-menu">
-                                    <a href="/user/<?=$user['username']?>">Моя страница</a>
-                                    <a href="/account" class="lk">Личный кабинет</a>
-                                    <a href="/account/editinfo">Редактировать профиль</a>
-                                    <a href="/account/editpass">Сменить пароль</a>
-                                    <a href="/account/logout">Выйти</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </nav>
+            <?php require_once('include/navbar.php')?>
 
             <div class="wrapper">
                 <div class="container-fluid">
