@@ -2,13 +2,6 @@
 @import url('default.css');
 
 /* Интро */
-.content.intro {
-    color: #fff;
-}
-
-.content.intro svg {
-    fill: #fff;
-}
 
 /* Навигация */
 .content.intro .navbar {
@@ -16,13 +9,22 @@
     top: 0;
     left: 0;
     width: 100%;
+    color: #fff;
 }
 
-.content.intro .navbar .user:before{
+.content.intro .navbar a {
+    color: #fff;
+}
+
+.content.intro .navbar svg {
+    fill: #fff;
+}
+
+.content.intro .navbar .user:before {
     border-top-color: #fff;
 }
 
-.content.intro .navbar .user:hover{
+.content.intro .navbar .user:hover {
     background-color: transparent;
     border-color: #fff;
 }
@@ -30,16 +32,17 @@
 .content.intro .navbar .user.active {
     color: #111;
 }
-.content.intro .navbar .user.active:hover{
+
+.content.intro .navbar .user.active:hover {
     background-color: #fff;
     border-color: #111;
 }
 
-.content.intro .navbar .user.active:before{
+.content.intro .navbar .user.active:before {
     border-top-color: #111;
 }
 
-.content.intro .navbar .user .user-menu a{
+.content.intro .navbar .user .user-menu a {
     color: #111;
 }
 
@@ -48,53 +51,67 @@
     height: 100vh;
     position: relative;
     z-index: 1;
+    color: #fff;
 }
 
-.intro h1 {
+.content .intro h1 {
     margin: 0;
-    margin-bottom: 7vh;
-    color: #111;
     text-transform: uppercase;
-    font-weight: bold;
-    font-size: 40px;
-    padding: 25px;
-    background-color: #ffdd00;
     display: inline-block;
+    line-height: 64px;
 }
 
-.intro a {
+.content .intro h2 {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.content .intro a {
     color: #fff;
 }
 
-.intro .btn {
-    color: #111;
+.content .intro p {
+    margin-bottom: 30px;
 }
 
-.intro .body {
+.content .intro svg {
+    fill: #fff;
+}
+
+.content .intro .btn {
+    color: #fff;
+    border-color: #fff;
+}
+
+.content .intro .topLine {
+    margin-bottom: 100px
+}
+
+.content .intro .eventAdv {
+    position: relative;
+}
+
+.content .intro .eventAdv .date {
+    position: absolute;
+    display: block;
+    right: 100%;
+    transform: rotate(-90deg);
     font-size: 34px;
+    font-weight: 300;
+}
+
+.content .intro .sections{
+    font-size: 24px;
     font-weight: bold;
-    letter-spacing: 0.1em;
-    color: #fff;
 }
-
-.intro .description .text {
-    margin-bottom: 10vh;
+.content .intro .sections>div{
+    text-align: center;
 }
-
-.intro .data-place {
-    padding-bottom: 20vh;
-    background: url('/public/img/pattern-more-triangle.svg') no-repeat 15px bottom/auto 15vh;
-}
-
-.intro .place {
-    font-size: 18px;
-    font-weight: normal;
+.content .intro .sections img{
+    width: 50px;
     margin-bottom: 20px;
 }
 
-.intro .date {
-    text-transform: uppercase;
-}
 
 .intro .background {
     position: absolute;
@@ -376,13 +393,13 @@
     vertical-align: middle;
 }
 
-/* Подвал */
+/* Подвал
 .content.intro footer {
     position: absolute;
     left: 0;
     bottom: 0;
     padding-top: 0;
-}
+} */
 
 /* OWL-slider */
 .owl-carousel {
