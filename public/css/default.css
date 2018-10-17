@@ -30,6 +30,8 @@ body {
     min-height: 100vh;
     font-family: Montserrat;
     color: #111;
+    font-size: 14px;
+    line-height: 2em;
 }
 
 body.modalopen {
@@ -42,6 +44,7 @@ h1 {
     font-size: 40px;
     font-weight: bold;
     letter-spacing: 0.1em;
+    line-height: 2em;
 }
 
 h1 .big {
