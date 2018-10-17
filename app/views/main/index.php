@@ -1,40 +1,46 @@
 <div class="intro">
     <div class="container-fluid ">
-        <div class="row title">
-            <div class="col-md-9 col-md-offset-1 ">
-                <h1>Такого еще не было!</h1>
+        <div class="row topLine">
+            <div class="col-md-4 col-md-offset-2 ">
+                <h1>Создай <br>
+                    свою <br>
+                    историю</h1>
+            </div>
+            <div class="col-md-4 col-md-offset-1 eventAdv">
+                <h2>Реклама мероприятия <span class="date">09/10</span></h2>
+                <p>
+                Значимость этих проблем настолько очевидна, что постоянный количественный рост и сфера нашей активности обеспечивает широкому кругу (специалистов) участие в формировании.
+                </p>
+                <a class="btn">Записаться</a>
             </div>
         </div>
-        <div class="row body">
-            <div class="col-md-5 col-md-offset-1 description">
-                <div class="text">
-                    На Ваших глазах <br> и с Вашим участием <br>эксперты кино и видеоиндустрии <br>создадут фильм!
-                </div>
-                <div class="bitton">
-                    <?php if(isset($_SESSION['user']['id'])):?>
-                    <a href="account" class="btn">Перейти в личный кабинет</a>
-                    <? else:?>
-                    <button class="btn" data-action="modal" data-modal="register">Узнать больше</button>
-                    <? endif ?>
-                </div>
-            </div>
-            <div class="col-md-4 col-md-offset-2 data-place">
-                <div class="place">
-                    Главный кинотеатр Москвы <br> КАРО ОКТЯБРЬ
-                </div>
-                <div class="date">
-                    9 октября / 18
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row sections">
+                    <div class="col-md-4">
+                        <img src="/public/img/content/logo-symbol-white.png" alt=""> <br>
+                        Продакшн
+                    </div>
+                    <div class="col-md-4">
+                    <img src="/public/img/content/logo-symbol-white.png" alt=""> <br>
+                        Киношкола
+                    </div>
+                    <div class="col-md-4">
+                    <img src="/public/img/content/logo-symbol-white.png" alt=""> <br>
+                        Продюсерский центр
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
     <div class="background">
-        <!-- <img src="/public/img/back.png" alt=""> -->
-        <video preload muted loop id="introVideo">
+        <div class="back" style="width: 100vw; height: 100vh; background-color: #111"></div>
+        <!-- <video preload muted loop id="introVideo">
             <source src="/public/video/intro.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
             <source src="/public/video/intro.webm" type='video/webm; codecs="vp8, vorbis"' />
-        </video>
-        <div class="btn introplay">ПЛЭЙ</div>
+        </video> -->
+        <!-- <div class="btn introplay">ПЛЭЙ</div>
         <div class="video-shape">
             <div class="left-screen"></div>
             <svg viewbox="0 0 3 9" class="left">
@@ -53,17 +59,11 @@
         <svg class="big-right-triangle" viewbox="0 0 6 4">
             <polygon points="0,4 6,0 6,4" />
         </svg>
-        <img class="more-triangle" src="/public/img/pattern-more-triangle.svg" alt="">
+        <img class="more-triangle" src="/public/img/pattern-more-triangle.svg" alt=""> -->
     </div>
 
-    <!-- <?php if(isset($_SESSION['user']['id'])):?>
-            <a href="account">Перейти в личный кабинет</a>
-        <? else:?>
-            <button data-action="modal" data-modal="register">Записаться</button>
-        <? endif ?> -->
 </div>
 
-</div>
 </div>
 
 
@@ -99,3 +99,5 @@
         </form>
     </div>
 </div>
+
+<div>
