@@ -104,7 +104,7 @@ $(document).ready(function () {
 	// Для блока интро
 	var headerHeight = $('.navbar').css('height');
 	var footerHeight = $('footer').css('height');
-	$('.content .intro').css('margin-bottom', '-' + footerHeight);
+	//$('.content .intro').css('margin-bottom', '-' + footerHeight);
 	$('.content .intro').css('padding-top', headerHeight);
 
 	// Минимальная высота сайта
