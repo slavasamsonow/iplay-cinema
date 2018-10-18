@@ -333,7 +333,7 @@
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="register" value="register" checked required>
+                    <input type="checkbox" name="register" value="register" checked>
                     <span> Я хочу зарегистрироваться на сайте, <br> чтобы получить дополнительные возможности
                     </span>
                 </label>
