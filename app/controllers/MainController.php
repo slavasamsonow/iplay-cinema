@@ -10,15 +10,14 @@ class MainController extends Controller{
 
     public function indexAction(){
         if(!empty($_POST)){
-            $this->modelAccount = $this->loadModel('account');
             if($_POST['form'] == 'register'){
                 if(!$this->model->validate(['email', 'phone'], $_POST)){
                     $this->view->message('Ошибка', $this->model->error);
                 }
-                if($this->modelAccount->checkExists('email', $_POST['email'])){
+                if($this->model->checkExists('email', $_POST['email'])){
                     $this->view->message('Войдите в личный кабинет', '<p>Вы уже записались. Войдите в личный кабинет: </p> <a href="/login" class="btn btn-default">Войти</a>');
                 }
-
+                $this->modelAccount = $this->loadModel('account');
                 $user = $this->modelAccount->register($_POST);
 
                 if(!$this->model->registerForm($_POST, $user)){
@@ -26,6 +25,10 @@ class MainController extends Controller{
                 }
 
                 $this->view->message('Вы зарегестрировались', 'На вашу почту отправлено письмо. Дальнейшие указания вы найдете в нем.');
+            }
+            if($_POST['form'] == 'question'){
+                $this->model->questionForm($_POST);
+                $this->view->message('Ваша заявка отправлена', 'В скором времени мы свяжемся с вами');
             }
         }
         $this->view->layout='intro';
