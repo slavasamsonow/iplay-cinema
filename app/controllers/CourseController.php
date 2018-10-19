@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\models\Account;
 
 class CourseController extends Controller{
 
@@ -22,7 +23,10 @@ class CourseController extends Controller{
                     }
 
                     if(isset($_POST['register'])){
-                        $user = $this->modelAccount->register($_POST);
+                        $this->modelAccount = $this->loadModel('account');
+                        if(!$this->model->checkExists('email', $_POST['email'], 'users')){
+                           $user = $this->modelAccount->register($_POST);
+                        }
                     }
 
                     $this->model->grantApplicationGuest($_POST);
