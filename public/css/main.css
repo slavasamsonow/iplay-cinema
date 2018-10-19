@@ -61,7 +61,7 @@
     margin: 0;
     text-transform: uppercase;
     display: inline-block;
-    line-height: 64px;
+    line-height: 1.6em;
 }
 
 .content .intro h2 {
@@ -128,7 +128,9 @@
     top: 0;
     left: 0;
     overflow: hidden;
-    background-color: #111;
+    background-color: #1d1f33;
+    background-image: url('/public/img/content/background-main-intro.jpg');
+    background-size: cover;
 }
 
 .content .intro .background video {
