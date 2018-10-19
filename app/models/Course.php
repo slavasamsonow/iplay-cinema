@@ -255,28 +255,4 @@ class Course extends Model{
 
         return true;
     }
-
-    public function questionForm($data){
-        $varsAmo = [
-            'name' => 'Вопрос',
-            'nameCourse' => $data['course'],
-        ];
-
-        if(isset($_SESSION['user'])){
-            $varsAmo['contact_id'] = $_SESSION['user']['amoid'];
-        }
-        else if(isset($data['email'])){
-            if($amoContact = $this->amo->searchContact($data['email'])){
-                $varsAmo['contact_id'] = $amoContact['id'];
-            }else{
-                $notes[] = 'Email: '.$data['email'];
-                $notes[] = 'ФИО: '.$data['fio'];
-            }
-        }
-
-        $notes[] = 'Вопрос: '.$data['question'];
-
-        $lead = $this->amo->newLead($varsAmo);
-        $this->amo->addNotesLead($lead, $notes);
-    }
 }
