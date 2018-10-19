@@ -45,6 +45,7 @@
     </div>
 
 </div>
+<?php if(!empty($events)):?>
 <div class="events">
     <div class="container-fluid">
         <div class="row">
@@ -54,31 +55,28 @@
         </div>
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+                <?php for($i = 0; $i < count($events); $i++):?>
+                <?php if($i % 3 == 0): ?>
                 <div class="row">
+                    <?php endif ?>
                     <div class="event col-md-3 col-md-offset-1">
-                        <h3>Урок по продюсированию <span class="date">20/10</span></h3>
-                        <p>Александр Харламов расскажет секреты профессии, научит выбирать идеи и проекты, искать
-                            ресурсы для реализации продукта. А еще вы узнаете о целеполагании и полезных привычках
-                            помогающих в работе.</p>
-                        <a href="">Записаться</a>
+                        <h3>
+                            <?=$events[$i]['name']?> <span class="date">
+                                <?=date('d/m',$events[$i]['timestart'])?></span></h3>
+                        <p>
+                            <?=$events[$i]['caption']?>
+                        </p>
+                        <a href="/course/<?=$events[$i]['id']?>">Записаться</a>
                     </div>
-                    <div class="event col-md-3 col-md-offset-1">
-                        <h3>Урок по режиссуре <span class="date">24/10</span></h3>
-                        <p>Узнайте о работе режиссера из первых уст: что такое режиссерский сценарий, как работать с
-                            формой, делать раскадровки. Заходите,перенимайте опыт режиссуры проекта для заказчика.</p>
-                        <a href="">Записаться</a>
-                    </div>
-                    <div class="event col-md-3 col-md-offset-1">
-                        <h3>Урок по сценарному мастерству <span class="date">27/10</span></h3>
-                        <p>Узнайте у мастера алгоритм написания сценария, познакомьтесь с понятиями “сторителлинг”,
-                            “логлайн” и “синопсис”. Записывайтесь, и увидите профи в работе над реальным проектом.</p>
-                        <a href="">Записаться</a>
-                    </div>
+                    <?php if($i % 3 == 2 || $i == count($events) - 1): ?>
                 </div>
+                <?php endif ?>
+                <?php endfor ?>
             </div>
         </div>
     </div>
 </div>
+<?php endif ?>
 <div class="about bl-bg">
     <div class="container-fluid">
         <div class="row">
@@ -179,12 +177,12 @@
         </div>
     </div>
 </div>
-<div class="lead-magnet bl-bg">
+<!-- <div class="lead-magnet bl-bg">
     <div class="container-fluid">
         <h2>Спешите получить<br> бесплатный вводный видео урок</h2>
         <button class="btn btn-primary">Получить</button>
     </div>
-</div>
+</div> -->
 <div class="plus">
 
     <div class="col-md-6 plus-item">
