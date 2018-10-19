@@ -7,6 +7,10 @@
             <input type="text" class="form-control" name="name" required="true" value="<?=$course['name']?>">
         </div>
         <div class="control-group form-group">
+            <label>Краткая аннотация:</label>
+            <textarea class="form-control" name="caption"><?=$course['caption']?></textarea>
+        </div>
+        <div class="control-group form-group">
             <label>Описание:</label>
             <textarea class="form-control" name="description"><?=$course['description']?></textarea>
         </div>

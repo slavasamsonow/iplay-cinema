@@ -6,12 +6,16 @@
             <input type="text" class="form-control" name="name" required="true">
         </div>
         <div class="control-group form-group">
+            <label>Краткая аннотация:</label>
+            <textarea class="form-control" name="caption"></textarea>
+        </div>
+        <div class="control-group form-group">
             <label>Описание:</label>
             <textarea class="form-control" name="description"></textarea>
         </div>
         <div class="control-group form-group">
             <label>Дата и время начала (МСК):</label>
-            <input type="text" class="form-control" name="datetime" required="true" value="<?=date('d.m.Y H:i:s', time())?>">
+            <input type="text" class="form-control" name="datetime" required="true" value="<?=date('d.m.Y', time())?> 12:00:00">
         </div>
         <div class="control-group form-group">
             <label>Цена:</label>
