@@ -1,5 +1,4 @@
-/* v.0.6.5 */
-@import url('default.css');
+/* v.0.7.0 */
 
 /* Интро */
 
@@ -46,6 +45,10 @@
     color: #111;
 }
 
+.content.intro .bl-bg {
+    background-color: #8cd;
+}
+
 /* Описание самого блока */
 .content .intro {
     height: 100vh;
@@ -82,9 +85,12 @@
     color: #fff;
     border-color: #fff;
 }
+.content .intro .btn:hover{
+    border-color:#d43;
+}
 
 .content .intro .topLine {
-    margin-bottom: 100px
+    margin-bottom: 80px
 }
 
 .content .intro .eventAdv {
@@ -100,128 +106,103 @@
     font-weight: 300;
 }
 
-.content .intro .sections{
+.content .intro .sections {
     font-size: 24px;
     font-weight: bold;
 }
-.content .intro .sections>div{
+
+.content .intro .sections>div {
     text-align: center;
 }
-.content .intro .sections img{
+
+.content .intro .sections img {
     width: 50px;
     margin-bottom: 20px;
 }
 
-
-.intro .background {
+.content .intro .background {
     position: absolute;
     z-index: -1;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
     overflow: hidden;
     background-color: #111;
 }
 
-.intro .background video {
+.content .intro .background video {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.intro .background .introplay {
+.content.intro .events {
+    padding: 20px;
+}
+
+.content.intro .events .event h3 {
+    position: relative;
+}
+
+.content.intro .events .event .date {
     position: absolute;
+    right: 100%;
+    transform: rotate(-90deg);
+    top: 20px;
+    font-size: 34px;
+    font-weight: normal;
+}
+
+.content.intro .about .video{
+    text-align: center;
+}
+
+.content.intro .courses {
+    padding: 20px;
+}
+
+.content.intro .courses h3 {
+    font-size: 1px;
     opacity: 0;
 }
 
-.intro .background .video-shape {
-    /* overflow: hidden; */
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    left: -110%;
-    transition: 3s;
-    z-index: 1;
+.content.intro .courses .image_date {
+    margin-bottom: 20px;
 }
 
-.intro .background .video-shape.end {
-    left: 0%;
+.content.intro .lead-magnet {
+    padding: 50px 0;
+    text-align: center;
 }
 
-.intro .background .video-shape .left-screen {
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    left: -100%;
-    background-color: #aaccdd;
+.content.intro .lead-magnet h2 {
+    font-size: 40px;
 }
-
-.intro .background .video-shape .left {
-    position: absolute;
-    height: 100vh;
-    fill: #aaccdd;
-    left: 0;
-    transition: 3s;
+.content.intro .plus{
+    letter-spacing: -0.2em;
 }
-
-.intro .background .video-shape.out .left {
-    left: -100%;
+.content.intro .plus .container-fluid{
+    padding: 0;
 }
-
-.intro .background .video-shape .right {
-    position: absolute;
-    height: 100vh;
-    fill: #aaccdd;
-    right: -10%;
-    transition: 3s;
+.content.intro .plus .plus-item{
+    background-color: #d43;
+    color: #fff;
+    padding: 0;
 }
-
-.intro .background .video-shape.out .right {
-    right: -100%;
+.content.intro .plus .plus-item img,
+.content.intro .plus .plus-item .text{
+    display: inline-block;
+    width: 49.9%;
+    vertical-align: middle;
 }
-
-.intro .background .video-shape .right-screen {
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    right: -110%;
-    background-color: #aaccdd;
-}
-
-.intro .background .more-triangle {
-    width: 20vw;
-    position: absolute;
-    left: 15vw;
-    top: -5vh;
-    min-width: auto;
-    min-height: auto;
-    transform: none;
-    z-index: 1;
-}
-
-.intro .background .big-left-triangle {
-    position: absolute;
-    height: 100vh;
-    left: 100%;
-    transition: left 3s;
-    transform: none;
-    fill: #d43;
-}
-
-.intro .background .big-left-triangle.left {
-    left: -100vh;
-}
-
-.intro .background .big-right-triangle {
-    position: absolute;
-    height: 30vh;
-    right: 0;
-    bottom: 0;
-    transition: left 3s;
-    transform: none;
-    fill: #d43;
+.content.intro .plus .plus-item .text{
+    padding: 50px;
+    letter-spacing: normal;
+    text-align: center;
+    font-size: 16px;
+    line-height: 2em;
 }
 
 /* Страница курса - чекбоксы */
