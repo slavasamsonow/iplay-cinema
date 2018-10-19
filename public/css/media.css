@@ -1,9 +1,27 @@
 /* v.0.7.0 */
 
-@media(min-width: 1366px){
+@media(min-width: 1367px){
+    .navbar .logo img{
+        width: 260px;
+    }
+    .navbar .city,
+    .navbar .menu_lk{
+        padding-top: 35px;
+    }
+
+
     .content .intro .topLine{
         margin-top: 10vh;
-        margin-bottom: 20vh;
+        margin-bottom: 15vh;
+    }
+    .content .intro h1{
+        font-size: 50px;
+    }
+    .content .intro h2{
+        font-size: 30px;
+    }
+    .content .intro .sections img{
+        width: 100px;
     }
     .content.intro .lead-magnet{
         padding: 100px 0;
