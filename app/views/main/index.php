@@ -36,7 +36,6 @@
 
         </div>
         <div class="background">
-            <div class="back" style="width: 100vw; height: 100vh; background-color: #111; background-image: url('/public/img/content/background-main-intro.jpg');background-size: cover;"></div>
             <!-- <video preload muted loop id="introVideo">
                 <source src="/public/video/intro.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
                 <source src="/public/video/intro.webm" type='video/webm; codecs="vp8, vorbis"' />
@@ -221,7 +220,7 @@
                 <h2><span class="big">Задать вопрос</span></h2>
                 <form action="/" method="post">
                     <input type="hidden" name="form" value="question">
-                    <input type="hidden" name="page" value="main">
+                    <input type="hidden" name="page" value="Главная">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
