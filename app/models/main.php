@@ -31,4 +31,11 @@ class Main extends Model{
 
         return true;
     }
+
+    public function events(){
+        $params = [
+            'timestart' => time(),
+        ];
+        return $this->db->row('SELECT * FROM courses c WHERE c.type = 1 AND c.timestart > :timestart AND c.active = 1 AND c.private = 0', $params);
+    }
 }
