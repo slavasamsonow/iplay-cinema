@@ -97,11 +97,21 @@ class Amo{
             if(isset($data['nameCourse'])){
                 $leads['add'][0]['custom_fields'][] = [
                     'id' => "450871",
-                        'values' => [
-                            [
-                                'value' => $data['nameCourse']
-                            ]
+                    'values' => [
+                        [
+                            'value' => $data['nameCourse']
                         ]
+                    ]
+                ];
+            }
+            if(isset($data['page'])){
+                $leads['add'][0]['custom_fields'][] = [
+                    'id' => "452021",
+                    'values' => [
+                        [
+                            'value' => $data['page']
+                        ]
+                    ]
                 ];
             }
 
