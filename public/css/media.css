@@ -1,20 +1,14 @@
-/* v.2.1.2 */
+/* v.0.7.0 */
 
-@media(max-width: 1366px){
-    .intro .title{
-        padding-top: 5vh;
+@media(min-width: 1366px){
+    .content .intro .topLine{
+        margin-top: 10vh;
+        margin-bottom: 20vh;
     }
-    .intro h1 {
-        margin-bottom: 4vh;
-        font-size: 36px;
+    .content.intro .lead-magnet{
+        padding: 100px 0;
     }
-    .intro .body {
-        font-size: 30px;
+    .content.intro .plus .plus-item .text{
+        font-size: 20px;
     }
-    .intro .description .text {
-        margin-bottom: 5vh;
-    }
-}
-
-@media(max-width: 1366px){
 }
