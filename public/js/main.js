@@ -1,4 +1,4 @@
-// v.0.6.5
+// v.0.7.0
 $(document).ready(function () {
 	// Выпадающее меню юзера
 	$('.navbar .user').click(function () {
@@ -104,7 +104,7 @@ $(document).ready(function () {
 	// Для блока интро
 	var headerHeight = $('.navbar').css('height');
 	var footerHeight = $('footer').css('height');
-	$('.content .intro').css('margin-bottom', '-' + footerHeight);
+	//$('.content .intro').css('margin-bottom', '-' + footerHeight);
 	$('.content .intro').css('padding-top', headerHeight);
 
 	// Минимальная высота сайта

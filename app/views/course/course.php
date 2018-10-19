@@ -265,7 +265,7 @@
                 <h2>Задать вопрос</h2>
                 <form action="<?=explode('?',$_SERVER['REQUEST_URI'])[0];?>" method="post">
                     <input type="hidden" name="form" value="question">
-                    <input type="hidden" name="course" value="<?=$course['name']?>">
+                    <input type="hidden" name="page" value="Курс <?=$course['name']?>">
 
                     <? if(!isset($_SESSION['user'])):?>
                     <div class="form-group">

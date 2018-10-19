@@ -1,71 +1,247 @@
 <div class="intro">
-    <div class="container-fluid ">
-        <div class="row title">
-            <div class="col-md-9 col-md-offset-1 ">
-                <h1>Такого еще не было!</h1>
+    <div class="container-fluid">
+        <div class="row topLine">
+            <div class="col-md-4 col-md-offset-2 ">
+                <h1>Создай <br>
+                    свою <br>
+                    историю</h1>
+            </div>
+            <div class="col-md-4 col-md-offset-1 eventAdv">
+                <h2>Вводный курс <span class="date">20/10</span></h2>
+                <p>
+                    Пройдите весь путь съемочного процесса от идеи до результата за месяц. Попробуйте киноспециальности
+                    на вкус и найдите свое место на съемочной площадке. Научитесь создавать любой видеопродукт: от
+                    сториз и влога до рекламного ролика и фильма.
+                </p>
+                <a href="/course/3" class="btn">Записаться</a>
             </div>
         </div>
-        <div class="row body">
-            <div class="col-md-5 col-md-offset-1 description">
-                <div class="text">
-                    На Ваших глазах <br> и с Вашим участием <br>эксперты кино и видеоиндустрии <br>создадут фильм!
-                </div>
-                <div class="bitton">
-                    <?php if(isset($_SESSION['user']['id'])):?>
-                    <a href="account" class="btn">Перейти в личный кабинет</a>
-                    <? else:?>
-                    <button class="btn" data-action="modal" data-modal="register">Узнать больше</button>
-                    <? endif ?>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row sections">
+                    <div class="col-md-4">
+                        <img src="/public/img/content/logo-symbol-white.png" alt=""> <br>
+                        Продакшн
+                    </div>
+                    <div class="col-md-4">
+                        <img src="/public/img/content/logo-symbol-white.png" alt=""> <br>
+                        Киношкола
+                    </div>
+                    <div class="col-md-4">
+                        <img src="/public/img/content/logo-symbol-white.png" alt=""> <br>
+                        Продюсерский центр
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4 col-md-offset-2 data-place">
-                <div class="place">
-                    Главный кинотеатр Москвы <br> КАРО ОКТЯБРЬ
+
+        </div>
+        <div class="background">
+            <!-- <video preload muted loop id="introVideo">
+                <source src="/public/video/intro.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+                <source src="/public/video/intro.webm" type='video/webm; codecs="vp8, vorbis"' />
+            </video> -->
+            <!-- <div class="btn introplay">ПЛЭЙ</div>-->
+        </div>
+    </div>
+
+</div>
+<?php if(!empty($events)):?>
+<div class="events">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h2><span class="big">Ближайшие мероприятия</span></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <?php for($i = 0; $i < count($events); $i++):?>
+                <?php if($i % 3 == 0): ?>
+                <div class="row">
+                    <?php endif ?>
+                    <div class="event col-md-3 col-md-offset-1">
+                        <h3>
+                            <?=$events[$i]['name']?> <span class="date">
+                                <?=date('d/m',$events[$i]['timestart'])?></span></h3>
+                        <p>
+                            <?=$events[$i]['caption']?>
+                        </p>
+                        <a href="/course/<?=$events[$i]['id']?>">Записаться</a>
+                    </div>
+                    <?php if($i % 3 == 2 || $i == count($events) - 1): ?>
                 </div>
-                <div class="date">
-                    9 октября / 18
-                </div>
+                <?php endif ?>
+                <?php endfor ?>
             </div>
         </div>
     </div>
-    <div class="background">
-        <!-- <img src="/public/img/back.png" alt=""> -->
-        <video preload muted loop id="introVideo">
-            <source src="/public/video/intro.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-            <source src="/public/video/intro.webm" type='video/webm; codecs="vp8, vorbis"' />
-        </video>
-        <div class="btn introplay">ПЛЭЙ</div>
-        <div class="video-shape">
-            <div class="left-screen"></div>
-            <svg viewbox="0 0 3 9" class="left">
-                <polygon points="0,0 3,0 3,9 0,9" />
-            </svg>
-            <svg viewbox="0 0 7 10" class="right">
-                <polygon points="0,0 7,5 0,10 7,10 7,0" />
-            </svg>
-            <div class="right-screen">
-
+</div>
+<?php endif ?>
+<div class="about bl-bg">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h2><span class="big">О киношколе</span></h2>
             </div>
         </div>
-        <svg class="big-left-triangle" viewbox="0 0 17 13">
-            <polygon points="0,8 11,0 17,0 17,13 7,13" />
-        </svg>
-        <svg class="big-right-triangle" viewbox="0 0 6 4">
-            <polygon points="0,4 6,0 6,4" />
-        </svg>
-        <img class="more-triangle" src="/public/img/pattern-more-triangle.svg" alt="">
+        <div class="row">
+            <div class="col-md-6 video">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/6QAnXB7mbcY" frameborder="0" allow="autoplay; encrypted-media"
+                    allowfullscreen></iframe>
+            </div>
+            <div class="col-md-6">
+                <h3>
+                    Не мечтайте о мире кино. Действуйте!
+                </h3>
+                <p>
+                    Игра - высшая форма исследования. <br>
+                    Альберт Эйнштейн <br>
+                    С легендарным физиком-теоретиком не поспоришь: вся наша культура имеет игровую природу. Кино как
+                    одно из проявлений культуры не исключение. Чем мы занимаемся в киношколе iPlay? Играем! А это
+                    значит: учимся создавать кино, экспериментируем с его формами, творим, самовыражаемся, исследуем
+                    мир и познаём самих себя.
+
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Ждём тех, кто: </h3>
+                <p>Мечтает связать свою профессиональную деятельность с кино.</p>
+                <p>Хочет получить навыки кино- и видеопроизводства. </p>
+                <p>Готовится к вступительным экзаменам в вуз.</p>
+                <p>Желает развиваться в своей текущей профессии.</p>
+                <p>Планирует работать вне офиса и без привязки к конкретному месту.</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Вам это знакомо? </h3>
+                <p>Не хватает знаний и умений.</p>
+                <p>Нет заинтересованной профессиональной команды.</p>
+                <p>Нет средств на воплощение задуманного.</p>
+                <p>Не устраивает текущая работа.</p>
+                <p>Не удаётся реализовать свой потенциал.</p>
+            </div>
+            <div class="col-md-4">
+                <h3>В киношколе вы: </h3>
+                <p>Освоите 1 из 10 кинопрофессий.</p>
+                <p>Создадите свой первый фильм и реализуете творческий потенциал.</p>
+                <p>Подготовитесь к вступительным экзаменам в вуз.</p>
+                <p>Заведёте полезные знакомства с представителями киноиндустрии.</p>
+                <p>Получите ценные знания от преподавателей-практиков.</p>
+            </div>
+        </div>
     </div>
+</div>
+<div class="courses bl-bg">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h2><span class="big">Курсы</span></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 course">
+                <h3>Интенсив шоу</h3>
+                <div class="image_date">
+                    <img src="/public/img/content/type_intensiv.jpg" alt="">
+                    <!-- <div class="date">09/10</div> -->
+                </div>
 
-    <!-- <?php if(isset($_SESSION['user']['id'])):?>
-            <a href="account">Перейти в личный кабинет</a>
-        <? else:?>
-            <button data-action="modal" data-modal="register">Записаться</button>
-        <? endif ?> -->
+                <p>Ежемесячное мероприятие спец–формата Игры, на котором за вечер участники под руководством
+                    практикующих мастеров киноиндустрии создают видеопродукт от выбора идеи до презентации результата
+                    заказчику. Записывайтесь, если хотите стать соавтором реального проекта и поместить эту работу в
+                    свое портфолио.</p>
+            </div>
+            <div class="col-md-4 course">
+                <h3>Вводный курс</h3>
+                <div class="image_date">
+                    <img src="/public/img/content/type_base.jpg" alt="">
+                    <!-- <div class="date">09/10</div> -->
+                </div>
+
+                <p>Секреты всех этапов создания видео, обучение на реальном проекте. За месяц вы создадите свой
+                    видеопродукт, попробовав на вкус 10 специальностей киноиндустрии. После обучения вы сможете снимать
+                    «с нуля» ролики для своих личных и профессиональных целей.</p>
+            </div>
+            <div class="col-md-4 course">
+                <h3>Основной курс</h3>
+                <div class="image_date">
+                    <img src="/public/img/content/type_main.jpg" alt="">
+                    <!-- <div class="date">09/10</div> -->
+                </div>
+
+                <p>Рекомендуется после вводного курса. Углубленное изучение 1 из 10 киноспециальностей, позволит вам
+                    освоить необходимые знания и навыки для успешного развития в выбранной профессии. Запишитесь сейчас
+                    и начните свой путь к реализации на творческом поприще.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="lead-magnet bl-bg">
+    <div class="container-fluid">
+        <h2>Спешите получить<br> бесплатный вводный видео урок</h2>
+        <button class="btn btn-primary">Получить</button>
+    </div>
+</div> -->
+<div class="plus">
+
+    <div class="col-md-6 plus-item">
+        <img src="/public/img/content/plus-1.jpg" alt="">
+        <div class="text">
+            Стоимость обучения в 20 раз ниже, чем в московских киношколах
+        </div>
+    </div>
+    <div class="col-md-6 plus-item">
+        <img src="/public/img/content/plus-2.jpg" alt="">
+        <div class="text">
+            Целостное представление о индустрии и других профессиях <br>(10 профессий в одном информационном поле)
+        </div>
+    </div>
+    <div class="col-md-6 plus-item">
+        <div class="text">
+            Опыт в индустрии <br>(за 3 года снято и реализовано большое количество проектов)
+        </div>
+        <img src="/public/img/content/plus-3.jpg" alt="">
+
+    </div>
+    <div class="col-md-6 plus-item">
+        <div class="text">
+            Кураторы <br>(15 кураторов в новом сезоне)
+        </div>
+        <img src="/public/img/content/plus-4.jpg" alt="">
+    </div>
+</div>
+<div class="question">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h2><span class="big">Задать вопрос</span></h2>
+                <form action="/" method="post">
+                    <input type="hidden" name="form" value="question">
+                    <input type="hidden" name="page" value="Главная">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="fio" required="required" placeholder="Имя Фамилия">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" required='required' placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="control-group form-group">
+                                <textarea class="form-control" name="question" rows="5"></textarea>
+                            </div>
+                            <input class="btn" type="submit" value="Отправить">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 </div>
-</div>
-
 
 <div class="modal register">
     <button type="button" class="close">&times;</button>
@@ -99,3 +275,38 @@
         </form>
     </div>
 </div>
+
+<div class="modal register">
+    <button type="button" class="close">&times;</button>
+    <div class="modal-header">
+        Ты первый узнаешь подробности!
+    </div>
+    <div class="modal-body">
+        <form action="/" method="post">
+            <input type="hidden" name="form" value="register">
+            <div class="form-group">
+                <input type="text" class="form-control" name="fio" required="required" placeholder="Имя Фамилия">
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" required='required' placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="tel" class="form-control" name="phone" required='required' placeholder="+7 (XXX) XXX-XX-XX">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="city" placeholder="Город">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="confident" value="confident" checked required>
+                    <span> Я ознакомлен и согласен <br> с <a href="/public/docs/protect_policy_of_personal_information.pdf"
+                            target="_blank">Политикой конфеденциальности</a>
+                    </span>
+                </label>
+            </div>
+            <input type="submit" class="btn" value="Записаться">
+        </form>
+    </div>
+</div>
+
+<div>

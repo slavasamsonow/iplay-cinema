@@ -16,8 +16,9 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon/favicon-16x16.png">
 
         <link rel="stylesheet" href="/public/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/public/css/main.css?v=0.6.5">
-        <link rel="stylesheet" href="/public/css/media.css?v=2.1.3">
+        <link rel="stylesheet" href="/public/css/default.css?v=0.7.0">
+        <link rel="stylesheet" href="/public/css/main.css?v=0.7.0">
+        <link rel="stylesheet" href="/public/css/media.css?v=0.7.0">
 
         <script src="/public/js/jquery.js"></script>
         <script src="/public/js/jquery.maskedinput.min.js"></script>
@@ -89,39 +90,7 @@
 
     <body>
         <div class="content">
-            <nav class="navbar">
-                <div class="container-fluid">
-                    <div class="navbar-left">
-                        <div class="logo">
-                            <a href="/">
-                                <img src="/public/img/logo-black.png" alt="Продюсерский центр ИГРА">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="navbar-right">
-                        <ul>
-                            <li class="user">
-                                <?php if(!empty($user['photo'])):?>
-                                <span class="photo">
-                                    <img src="/public/img/users/thumb/<?=$user['photo']?>" alt="<?=$user['fname'].' '.$user['lname'].' | Продюсерский центр ИГРА'?>">
-                                </span>
-                                <?php endif ?>
-                                <span class="name">
-                                    <?=$user['fname'].' '.$user['lname']?>
-                                </span>
-                                <div class="user-menu">
-                                    <a href="/user/<?=$user['username']?>">Моя страница</a>
-                                    <a href="/account" class="lk">Личный кабинет</a>
-                                    <a href="/account/editinfo">Редактировать профиль</a>
-                                    <a href="/account/editpass">Сменить пароль</a>
-                                    <a href="/account/logout">Выйти</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </nav>
+            <?php require_once('include/navbar.php')?>
 
             <div class="wrapper">
                 <div class="container-fluid">

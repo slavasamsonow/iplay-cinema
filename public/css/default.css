@@ -1,0 +1,674 @@
+/* v.0.7.0 */
+
+/* Шрифты */
+@font-face {
+    font-family: Montserrat;
+    font-weight: 300;
+    src: url('/public/fonts/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: Montserrat;
+    /* font-weight: 500; */
+    src: url('/public/fonts/Montserrat-Medium.ttf');
+}
+
+@font-face {
+    font-family: Montserrat;
+    font-weight: bold;
+    src: url('/public/fonts/Montserrat-Bold.ttf');
+}
+
+/* Главные */
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    min-height: 100vh;
+    font-family: Montserrat;
+    color: #111;
+    font-size: 14px;
+    line-height: 2em;
+}
+
+body.modalopen {
+    height: 100vh;
+    overflow: hidden;
+}
+
+h1 {
+    margin: 20px auto;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    line-height: 2em;
+}
+
+h1 .big {
+    text-transform: uppercase;
+    position: relative;
+    line-height: 1.8em;
+}
+
+h1 .big:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    width: 100%;
+    background-color: #111;
+}
+
+h2 {
+    margin: 20px auto;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+h2 .big {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 40px;
+    margin: 20px auto;
+    font-weight: bold;
+    position: relative;
+}
+
+h2 .big:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    width: 100%;
+    background-color: #111;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+svg {
+    fill: #111;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* Ссылки и кнопки */
+a {
+    color: #111;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #d43;
+    text-decoration: underline;
+}
+
+a:focus {
+    outline: none;
+    color: #111;
+}
+
+a.thisPage {
+    cursor: pointer;
+    color: #d43;
+}
+
+/* Кнопки */
+a.btn {
+    text-decoration: none;
+}
+
+.btn {
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: normal;
+    background: none;
+    color: #111;
+    border: 2px solid #111;
+    border-radius: 24px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    color: #fff;
+    background-color: #d43;
+    border-color: #d43;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:active:focus {
+    outline: none;
+    background-color: #c43;
+    border-color: #c43;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+
+.btn-sm {
+    padding: 6px 20px;
+}
+
+.btn-primary {
+    background-color: #d43;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #c43;
+}
+
+/* .btn-default {
+    background: none;
+    border: 1px solid #111;
+    box-shadow: none;
+}
+
+.btn-default:hover {
+    box-shadow: none;
+    background-color: #fff;
+    color: #111;
+}
+
+.btn-success {
+    background-color: green;
+}
+
+.btn-success:hover {
+    color: green;
+}
+
+.btn-danger {
+    background-color: #d43;
+} */
+
+/* .btn-danger:hover {
+    color: #fff;
+} */
+
+/* Формы */
+.form-control {
+    border: 2px solid #111;
+    ;
+    border-radius: 20px;
+    box-shadow: none;
+    padding: 20px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #d43;
+}
+
+.form-group {
+    position: relative;
+}
+
+input[type='checkbox']::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-image: url('/public/img/triangle-to-right-red.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 0;
+    background-color: #fff;
+    width: 20px;
+    height: 20px;
+    transition: 0.3s;
+}
+
+input[type='checkbox']:checked::before {
+    background-size: 40%;
+}
+
+.checkbox {
+    margin-bottom: 20px;
+}
+
+.checkbox input[type='checkbox'] {
+    cursor: pointer;
+    margin-right: 20px;
+    position: relative;
+}
+
+input[type='checkbox']+span {
+    display: inline-block;
+    vertical-align: top;
+}
+
+textarea {
+    border: 1px solid #fff;
+    /* background-color: transparent; */
+    color: #111;
+    text-align: left;
+    resize: vertical;
+}
+
+/* Модальные окна */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 120px 30px;
+    overflow-y: auto;
+    background: url('/public/img/triangle-right-bottom-red.svg') no-repeat right bottom/40%,
+        url('/public/img/pattern-more-triangle.svg') no-repeat -15% 110%/40%,
+        url('/public/img/triangle-to-right-red.svg') no-repeat 0% 50%/50%, #aaccdd;
+    border: none;
+    height: auto;
+    max-height: 100%;
+    right: auto;
+    bottom: auto;
+    color: #111;
+    z-index: 1000;
+}
+
+.modal-header {
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: none;
+    max-width: 440px;
+}
+
+.modal input[type='submit'] {
+    display: block;
+    margin: 0 auto;
+}
+
+.close {
+    float: none;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    opacity: 0.5;
+    text-shadow: none;
+    font-size: 50px;
+}
+
+.close:hover {
+    opacity: 1;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(17, 17, 17, 0.8);
+}
+
+/* Загрузка */
+.process-load {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    z-index: 10;
+    transition: 1s;
+    display: none;
+}
+
+.process-load.active {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.process-load .right-top {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border: 100px solid #d43;
+    overflow: visible;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    transition: 1s;
+    transform: translate(100%, -100%);
+}
+
+.process-load.active .right-top {
+    transform: none;
+}
+
+.process-load .right-top img {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    max-width: none;
+    top: -60px;
+    right: -70px;
+}
+
+/* Прогресс */
+.progress {
+    box-shadow: none;
+    border: none;
+    border-radius: 1000px;
+}
+
+.progress-bar {
+    background-color: #ffdd00;
+}
+
+.sr-only {
+    position: initial;
+    padding: 2px 5px;
+    color: #111;
+    display: inline-block;
+    width: auto;
+    min-width: 100px;
+    height: auto;
+    font-weight: 500;
+}
+
+/* Таблицы */
+table {
+    border: 2px solid #fff;
+    max-width: 100%;
+    width: 100%;
+}
+
+th,
+td {
+    border-bottom: 1px solid #fff;
+    padding: 10px 8px;
+}
+
+th {
+    border-bottom-width: 2px;
+}
+
+td {
+    transition: 0.5s;
+}
+
+tr:hover td {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Стилизация текста */
+.white-text {
+    color: #fff;
+}
+
+.white-text a {
+    color: #fff;
+}
+
+.white-text svg {
+    fill: #fff;
+}
+
+/* Пункт пользователя */
+.user a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.user a:hover .name {
+    text-decoration: underline;
+}
+
+.user .photo {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    overflow: hidden;
+    background: #111;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+
+.user .photo img {
+    max-height: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.user .name {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Заголовок с фоном */
+.headline {
+    padding: 50px 20px;
+    text-align: center;
+    color: #fff;
+    background-color: #4a115a;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.headline h1 .big {
+    text-transform: none;
+}
+
+.headline h1 .big:before {
+    background-color: #fff;
+}
+
+.headline .caption {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+/* Шапка */
+.navbar {
+    padding: 30px 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    z-index: 10;
+    position: relative;
+}
+
+.navbar .logo img {
+    width: 180px;
+}
+
+.navbar .city {
+    padding: 15px 0;
+}
+
+.navbar .city svg {
+    width: 21px;
+    margin-right: 12px;
+    vertical-align: top;
+}
+
+.navbar .menu_lk {
+    text-align: right;
+    padding: 15px 0;
+}
+
+.navbar .menu {
+    display: inline-block;
+    vertical-align: top;
+    list-style: none;
+    margin: 0;
+}
+
+.navbar .menu li {
+    display: inline-block;
+}
+
+.navbar .user {
+    display: inline-block;
+    position: relative;
+    padding: 10px;
+    padding-right: 30px;
+    margin-top: -25px;
+    margin-left: 20px;
+    cursor: pointer;
+    border-radius: 5px 5px 5px 5px;
+    border: 2px solid transparent;
+    text-align: left;
+}
+
+.navbar .user:before {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%) rotate(0);
+    border: 5px solid transparent;
+    border-top-color: #111;
+    border-top-width: 7px;
+    border-bottom-width: 0;
+    transition: 0.5s;
+}
+
+.navbar .user.active:before {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.navbar .user:hover,
+.navbar .user.active {
+    /* background-color: rgba(255, 255, 255, 0.2); */
+    /* background-color: #6ae; */
+    border-color: #111;
+    background-color: #fff;
+}
+
+.navbar .user.active {
+    border-radius: 5px 5px 0 0;
+}
+
+.navbar .user .user-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: calc(100% + 4px);
+    border: 2px solid #111;
+    margin: 0 -2px;
+    background-color: #fff;
+    font-size: 14px;
+    border-radius: 0 0 5px 5px;
+    overflow: hidden;
+}
+
+.navbar .user .user-menu a {
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+}
+
+.navbar .user .user-menu a:hover {
+    background-color: #eee;
+    color: #111;
+    font-weight: bold;
+}
+
+/* Левое меню */
+.left-menu a {
+    text-decoration: none;
+}
+
+.left-menu a.thisPage {
+    text-decoration: none;
+    position: relative;
+}
+
+/* .left-menu a.thisPage:before{
+    content: '';
+    display: block;
+    position: absolute;
+    right: 100%;
+    width: 0;
+    height: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 7px solid transparent;
+    border-left-width: 10px;
+    border-left-color: #111;
+} */
+.left-menu a.thisPage:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    top: 100%;
+    background-color: #111;
+}
+
+.left-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.left-menu ul li {
+    margin-bottom: 5px;
+}
+
+.left-menu ul li.parent {
+    cursor: pointer;
+}
+
+.left-menu li ul {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: normal;
+    display: none;
+}
+
+.left-menu li.open ul {
+    display: block;
+}
+
+/* Основная часть */
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+.container-fluid {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+/* Подвал */
+footer {
+    width: 100%;
+    padding: 30px 0;
+    z-index: 10;
+    position: relative;
+}
