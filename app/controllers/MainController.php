@@ -32,6 +32,9 @@ class MainController extends Controller{
             }
         }
         $this->view->layout='intro';
-        $this->view->render();
+        $vars = [
+            'events' => $this->model->events(),
+        ];
+        $this->view->render($vars);
     }
 }
