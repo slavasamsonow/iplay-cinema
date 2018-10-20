@@ -76,7 +76,7 @@ class Admin extends Model{
         if(empty($course)){
             return false;
         }
-        return $course[0];
+        return $this->processTextOut($course[0]);
     }
 
     public function coursesTypeList(){
