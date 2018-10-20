@@ -43,9 +43,7 @@ class AdminController extends Controller{
 
     public function addprojectAction(){
         if(!empty($_POST)){
-            foreach($_POST as $key => $postD){
-                $data[$key] = htmlentities($postD);
-            }
+            $data = $_POST;
 
             if(isset($_FILES['image']['tmp_name']) && $_FILES['image']['tmp_name'] != ''){
                 if($file = $this->model->saveFile($_FILES['image'], 'public/img/projects/', 'image')){
@@ -69,9 +67,7 @@ class AdminController extends Controller{
             $id = $_POST['projectid'];
             unset($_POST['projectid']);
 
-            foreach($_POST as $key => $postD){
-                $data[$key] = htmlentities($postD);
-            }
+            $data = $_POST;
 
             if(isset($_FILES['image']['tmp_name']) && $_FILES['image']['tmp_name'] != ''){
                 if($file = $this->model->saveFile($_FILES['image'], 'public/img/projects/', 'image')){
@@ -100,7 +96,7 @@ class AdminController extends Controller{
         $vars = [
             'userList' => $this->model->userslist(),
             'coursesList' => $this->model->courseslist(),
-            'project' => $this->modelProject->project($this->route['projectid']),
+            'project' => $this->modelProject->projectEditInfo($this->route['projectid']),
         ];
         $this->view->render($vars);
     }
@@ -117,7 +113,8 @@ class AdminController extends Controller{
 
     public function addcourseAction(){
         if(!empty($_POST)){
-            if($courseid = $this->model->createCourse($_POST)){
+            $data = $_POST;
+            if($courseid = $this->model->createCourse($data)){
                 $this->view->location('admin/courses');
             }
         }
@@ -131,7 +128,12 @@ class AdminController extends Controller{
         if(!empty($_POST)){
             $id = $_POST['courseid'];
             unset($_POST['courseid']);
-            if($this->model->updateCourse($id, $_POST)){
+
+            $data = $_POST;
+
+            // $this->view->message("+", json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ));
+
+            if($this->model->updateCourse($id, $data)){
                 $this->view->location('admin/courses');
             }
         }
@@ -140,7 +142,7 @@ class AdminController extends Controller{
         }
         $vars = [
             'coursesTypes' => $this->model->coursesTypeList(),
-            'course' => $this->model->courseinfo($this->route['courseid']),
+            'course' => $this->model->courseEditInfo($this->route['courseid']),
         ];
         $this->view->render($vars);
     }
