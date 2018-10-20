@@ -6,10 +6,10 @@ use app\core\Model;
 
 class Project extends Model{
     public function projectsList(){
-        return $this->db->row('SELECT p.id, p.name, p.description, p.timestart, u.id AS creatorid,u.fname AS creatorfname, u.lname AS creatorlname FROM projects p JOIN users u ON p.creator = u.id WHERE p.active = 1');
+        return $this->db->row('SELECT p.*, u.id AS creatorid,u.fname AS creatorfname, u.lname AS creatorlname FROM projects p JOIN users u ON p.creator = u.id WHERE p.active = 1');
     }
 
-    public function project($projectid){
+    public function projectInfo($projectid){
         $params = [
             'id' => $projectid,
         ];
@@ -18,6 +18,10 @@ class Project extends Model{
             return false;
         }
         return $project[0];
+    }
+
+    public function projectEditInfo($projectid){
+        return $this->processTextOut($this->projectInfo($projectid));
     }
 
     public function createProject($indata){
