@@ -1,4 +1,4 @@
-/* v.0.7.0 */
+/* v.0.7.2 */
 
 /* Интро */
 
@@ -157,12 +157,8 @@
     font-weight: normal;
 }
 
-.content.intro .about .video{
-    text-align: center;
-}
-
 .content.intro .courses {
-    padding: 20px;
+    padding: 20px 0;
 }
 
 .content.intro .courses h3 {
