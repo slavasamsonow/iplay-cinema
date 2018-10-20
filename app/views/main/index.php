@@ -85,17 +85,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 video">
+            <div class="col-md-4 video">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/6QAnXB7mbcY" frameborder="0" allow="autoplay; encrypted-media"
                     allowfullscreen></iframe>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <h3>
                     Не мечтайте о мире кино. Действуйте!
                 </h3>
                 <p>
-                    Игра - высшая форма исследования. <br>
-                    Альберт Эйнштейн <br>
+                    <q>Игра - высшая форма исследования.</q> <br>
+                    <cite>Альберт Эйнштейн</cite>
+                </p>
+                <p>
                     С легендарным физиком-теоретиком не поспоришь: вся наша культура имеет игровую природу. Кино как
                     одно из проявлений культуры не исключение. Чем мы занимаемся в киношколе iPlay? Играем! А это
                     значит: учимся создавать кино, экспериментируем с его формами, творим, самовыражаемся, исследуем
