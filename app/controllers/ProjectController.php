@@ -12,7 +12,7 @@ class ProjectController extends Controller{
 
     public function projectAction(){
         if($this->model->auth == 'auth'){
-            if(!$project = $this->model->project($this->route['projectid'])){
+            if(!$project = $this->model->projectInfo($this->route['projectid'])){
                 $this->view->errorCode(404);
             }
 
