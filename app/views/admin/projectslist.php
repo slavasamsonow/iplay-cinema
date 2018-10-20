@@ -14,7 +14,7 @@
             </a>
         </div>
         <div class="description">
-            <?=$project['description']?>
+            <?=$project['caption']?>
         </div>
         <a href="/project/<?=$project['id']?>" class="btn btn-default btn-sm">Подробнее</a>
         <a href="/admin/editproject/<?=$project['id']?>" class="btn btn-default btn-sm">Редактировать</a>
