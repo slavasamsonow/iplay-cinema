@@ -21,7 +21,7 @@ class Project extends Model{
     }
 
     public function createProject($indata){
-        $params = $this->textFormatting($indata);
+        $params = $this->processTextIn($indata);
         $params['timestart'] = time();
         $paramNandV = $this->db->paramNandV($params);
 
@@ -30,7 +30,7 @@ class Project extends Model{
     }
 
     public function updateProject($id, $indata){
-        $params = $this->textFormatting($indata);
+        $params = $this->processTextIn($indata);
         $paramNV = $this->db->paramNV($params);
         $params['id'] = $id;
 
