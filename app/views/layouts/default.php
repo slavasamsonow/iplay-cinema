@@ -16,7 +16,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon/favicon-16x16.png">
 
         <link rel="stylesheet" href="/public/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/public/css/default.css?v=0.7.0">
+        <link rel="stylesheet" href="/public/css/default.css?v=0.7.5">
         <link rel="stylesheet" href="/public/css/main.css?v=0.7.0">
         <link rel="stylesheet" href="/public/css/media.css?v=0.7.0">
 
