@@ -5,6 +5,9 @@
     <?php if($course['type'] == 1): ?>
         Ждем вас <?=date('d.m.Y', $course['timestart'])?> в <?=date('H:i', $course['timestart'])?> (МСК)
     <?php else: ?>
+    <?php if($course['id'] == 3): ?>
+       <p>По всем вопросам вы можете обратиться к <a href="https://vk.com/id114084145" target='_blank'>Карине Кушнаренко Вконтакте</a></p>
+    <?php endif ?>
     <div class="progress">
         <div class="progress-bar" style="width: <?=$course['percent']?>%">
             <span class="sr-only">Прогресс: <span class="percent">
