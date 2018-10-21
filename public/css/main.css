@@ -345,7 +345,7 @@
     font-weight: bold;
 }
 
-.coursePage .project {
+.project {
     background-color: #fff;
     height: 180px;
     position: relative;
@@ -353,7 +353,7 @@
     border-radius: 10px;
 }
 
-.coursePage .project>.name {
+.project>.name {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -363,7 +363,7 @@
     transition: 0.5s;
 }
 
-.coursePage .project .overlay {
+.project .overlay {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -375,16 +375,16 @@
     opacity: 0;
 }
 
-.coursePage .project:hover .overlay {
+.project:hover .overlay {
     opacity: 1;
 }
 
-.coursePage .project .overlay .name {
+.project .overlay .name {
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.coursePage .project .overlay .description {
+.project .overlay .description {
     margin-bottom: 10px;
 }
 
