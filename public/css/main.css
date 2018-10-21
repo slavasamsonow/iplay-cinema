@@ -219,17 +219,34 @@
 
 .tasks .name {
     border-bottom: 2px solid #111;
-    padding: 5px 10px;
+    padding: 5px 10px 5px 30px;
     cursor: pointer;
+    position: relative;
+}
+.tasks .name:before {
+    content: '';
+    display: block;
+    position: absolute;
+    border: 5px solid transparent;
+    border-top-color: #111;
+    border-top-width: 7px;
+    border-bottom-width: 0;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%) rotate(0);
+    transition: 0.5s;
+}
+.tasks .day.open .name:before {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.tasks .day.today .name {
+    background-color: #fd0;
 }
 
 .tasks .tasks-list {
     display: none;
     padding: 5px 10px;
-}
-
-.tasks .day.today .tasks-list {
-    display: block;
 }
 
 .tasks .task button {
