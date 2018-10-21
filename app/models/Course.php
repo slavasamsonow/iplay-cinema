@@ -152,6 +152,19 @@ class Course extends Model{
         return $taskDate;
     }
 
+    public function getUsersCourse($courseId){
+        $params = [
+            'course' => $courseId,
+        ];
+        $usersList = $this->db->row('SELECT * FROM user_courses uc JOIN users u ON uc.user = u.id WHERE uc.course = :course',$params);
+        foreach($usersList as $key => $user){
+            if($user['username'] == ''){
+                $usersList[$key]['username'] = 'id'.$user['id'];
+            }
+        }
+        return $usersList;
+    }
+
     public function changeTask($taskId, $userid = ''){
         if($userid == ''){
             $userid = $_SESSION['user']['id'];

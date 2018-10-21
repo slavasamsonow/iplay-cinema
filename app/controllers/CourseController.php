@@ -75,10 +75,10 @@ class CourseController extends Controller{
             if(!$course = $this->model->checkCourse($this->route['courseid'])){
                 $this->view->redirect('account');
             }
-            $tasks = $this->model->getTasksCourse($course['id']);
             $vars = [
                 'course' => $course,
-                'tasks' => $tasks,
+                'tasks' => $this->model->getTasksCourse($course['id']),
+                'users' => $this->model->getUsersCourse($course['id']),
             ];
             $this->view->render($vars);
         }else{

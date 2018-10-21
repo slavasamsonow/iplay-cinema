@@ -70,5 +70,22 @@
         </div>
         <?php endforeach ?>
     </div>
+    <h2>Участники</h2>
+    <div class="userList row">
+        <? foreach($users as $userItem):?>
+        <div class="user col-md-4">
+            <a href="/user/<?=$userItem['username']?>">
+                <div class="photo">
+                    <? if(!empty($userItem['photo'])): ?>
+                    <img src="/public/img/users/thumb/<?=$userItem['photo']?>" alt="<?=$userItem['fname'].' '.$userItem['lname'].' | Продюсерский центр ИГРА'?>">
+                    <? endif ?>
+                </div>
+                <div class="name">
+                    <?=$userItem['fname'].' '.$userItem['lname']?>
+                </div>
+            </a>
+        </div>
+        <? endforeach ?>
+    </div>
     <?php endif?>
 </div>
