@@ -210,10 +210,10 @@
 }
 
 /* Страница курса - чекбоксы */
-.tasks.course {}
 
 .tasks .day {
     border: 2px solid #111;
+    border-radius: 5px;
     margin-bottom: 10px;
 }
 
@@ -433,10 +433,15 @@
     display: inline-block;
     padding: 10px;
     transition: 0.2s;
+    border-radius: 5px;
 }
 
 .userList .user a:hover {
-    background-color: #6ae;
+    background-color: #D6D6D6;
+    color: #111;
+}
+.userList .user a:hover .name{
+    text-decoration: none;
 }
 
 .userList .user .photo,
