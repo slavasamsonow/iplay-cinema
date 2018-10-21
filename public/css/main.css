@@ -85,8 +85,9 @@
     color: #fff;
     border-color: #fff;
 }
-.content .intro .btn:hover{
-    border-color:#d43;
+
+.content .intro .btn:hover {
+    border-color: #d43;
 }
 
 .content .intro .topLine {
@@ -178,24 +179,29 @@
 .content.intro .lead-magnet h2 {
     font-size: 40px;
 }
-.content.intro .plus{
+
+.content.intro .plus {
     letter-spacing: -0.2em;
 }
-.content.intro .plus .container-fluid{
+
+.content.intro .plus .container-fluid {
     padding: 0;
 }
-.content.intro .plus .plus-item{
+
+.content.intro .plus .plus-item {
     background-color: #d43;
     color: #fff;
     padding: 0;
 }
+
 .content.intro .plus .plus-item img,
-.content.intro .plus .plus-item .text{
+.content.intro .plus .plus-item .text {
     display: inline-block;
     width: 49.9%;
     vertical-align: middle;
 }
-.content.intro .plus .plus-item .text{
+
+.content.intro .plus .plus-item .text {
     padding: 50px;
     letter-spacing: normal;
     text-align: center;
@@ -204,58 +210,89 @@
 }
 
 /* Страница курса - чекбоксы */
-.tasks.course {
-    list-style: none;
-    padding: 0;
+.tasks.course {}
+
+.tasks .day {
+    border: 2px solid #111;
+    margin-bottom: 10px;
 }
 
-.tasks.course .task:before {
-    content: '';
+.tasks .name {
+    border-bottom: 2px solid #111;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.tasks .tasks-list {
+    display: none;
+    padding: 5px 10px;
+}
+
+.tasks .day.today .tasks-list {
+    display: block;
+}
+
+.tasks .task button {
     display: inline-block;
     width: 20px;
     height: 20px;
     border: 2px solid #777;
+    background: none;
     cursor: pointer;
     transition: 0.2s;
+    vertical-align: top;
+    margin-top: 3px;
+    outline: none;
 }
 
-.tasks.course .task.active:before {
+.tasks .task.active button {
     border-color: #111;
 }
 
-.tasks.course .task p{
-    display: none;
+.tasks .task[data-status="verify"] button {
+    border-color: #fd0;
+    background-color: #fd0;
 }
 
-.tasks.course .task[data-status="verify"]:before {
-    border-color: #ffdd00;
-}
 
-.tasks.course .task[data-status="done"]:before {
+.tasks .task[data-status="done"] button {
     border-color: green;
     Background-color: green;
 }
 
-.tasks.course .task[data-status="done"] p {
-    display: block;
+.tasks .task[data-status="nverify"] button {
+    border-color: #d43;
+    background-color: #d43;
+}
+
+.tasks .task.error button {
+    border-color: #d43;
+    background-color: #d43;
+}
+
+.tasks .task.process button {
+    border: 2px solid #777;
+    background-color: #777;
+}
+
+.tasks .task .task-info {
+    display: inline-block;
+}
+
+.tasks .task-description{
+    color: #777;
+}
+
+.tasks .task[data-status="done"] .task-comment {
     color: green;
 }
 
-.tasks.course .task[data-status="nverify"]:before {
-    border-color: #d43;
-}
-.tasks.course .task[data-status="nverify"] p {
-    display: block;
+.tasks .task[data-status="nverify"] .task-comment {
     color: #d43;
 }
 
-.tasks.course .task.error:before {
-    border-color: #d43;
-}
-
-.tasks.course .task.process:before {
-    border: 2px solid #777;
-    background-color: #777;
+.tasks .task .task-error{
+    color: #d43;
 }
 
 /* Элемент курсов */

@@ -94,15 +94,15 @@ class Course extends Model{
         ];
         $tasks = $this->db->row('SELECT task FROM user_tasks WHERE user = :user',$params);
 
-        $taskId = [];
+        $tasksId = [];
         foreach($tasks as $task){
-            $taskId[] = $task['task'];
+            $tasksId[] = $task['task'];
         }
 
         $params = [];
         $i=0;
         foreach($tasksCourse as $taskC){
-            if(!in_array($taskC['id'], $taskId)){
+            if(!in_array($taskC['id'], $tasksId)){
                 $params['task'.$i] = $taskC['id'];
                 $params['user'.$i] = $_SESSION['user']['id'];
                 if($i == 0){
@@ -121,8 +121,17 @@ class Course extends Model{
             'user' => $userId,
             'course' => $courseId
         ];
-        $tasks = $this->db->row('SELECT t.*, t.id AS taskid, ut.id, ut.status, ut.description FROM courses_tasks t LEFT JOIN user_tasks ut ON ut.task=t.id WHERE ut.user = :user AND t.course = :course',$params);
-        return $tasks;
+        $tasks = $this->db->row('SELECT ct.*, ct.id AS taskid, ut.* FROM courses_tasks ct LEFT JOIN user_tasks ut ON ut.task=ct.id WHERE ut.user = :user AND ct.course = :course ORDER BY `timestart` ASC',$params);
+
+        $taskDate = [];
+        foreach($tasks as $task){
+            if($task['timestart'] == 0){
+                $taskDate['Общие'][] = $task;
+            }else if($task['timestart'] < time()){
+                $taskDate[date('d.m.Y', $task['timestart'])][] = $task;
+            }
+        }
+        return $taskDate;
     }
 
     public function changeTask($taskId, $userid = ''){
@@ -134,7 +143,7 @@ class Course extends Model{
             'task' => $taskId,
             'user' => $userid,
         ];
-        $task = $this->db->row('SELECT t.id AS taskid, ut.id, t.course, t.verify, t.active, t.percent, ut.status FROM courses_tasks t JOIN user_tasks ut ON ut.task=t.id WHERE ut.id = :task AND ut.user=:user',$params);
+        $task = $this->db->row('SELECT ct.*, ct.id AS taskid, ut.* FROM user_tasks ut JOIN courses_tasks ct ON ut.task = ct.id WHERE ut.task = :task AND ut.user = :user',$params);
 
         if(empty($task)){
             return [
@@ -151,6 +160,7 @@ class Course extends Model{
 
         $params = [
             'id' => $task['id'],
+            'comment' => $task['comment'],
         ];
         if($task['verify'] == 1){
             if($task['status'] == 'done'){
@@ -168,6 +178,7 @@ class Course extends Model{
                 }
             }else{
                 $params['status'] = 'verify';
+                $params['comment'] = 'Запрос на проверку домашнего задания отправлен';
             }
         }else{
             if($task['status'] == 'done'){
@@ -177,8 +188,9 @@ class Course extends Model{
             }
         }
 
-        $this->db->query('UPDATE `user_tasks` SET `status` = :status WHERE id = :id', $params);
+        $this->db->query('UPDATE user_tasks ut SET ut.status = :status, ut.comment = :comment WHERE id = :id', $params);
         $status = $params['status'];
+        $comment = $params['comment'];
 
         $params = [
             'user' => $userid,
@@ -191,6 +203,8 @@ class Course extends Model{
         foreach($allTask as $task){
             $allpercent += $task['percent'];
         }
+        if($allpercent < 0) $allpercent = 0;
+        if($allpercent > 100) $allpercent = 100;
 
         $params = [
             'percent' => $allpercent,
@@ -201,7 +215,8 @@ class Course extends Model{
 
         return [
             'status' => $status,
-            'percent' => $allpercent
+            'percent' => $allpercent,
+            'comment' => $comment,
         ];
     }
 
