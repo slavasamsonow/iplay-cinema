@@ -19,10 +19,10 @@
                 <?=$task['user_fname'].' '.$task['user_lname']?>
             </td>
             <td>
-                <?=$task['title']?>
+                <?=$task['name']?>
             </td>
             <td>
-                <textarea data-task="<?=$task['id']?>"><?=$task['description']?></textarea>
+                <textarea data-task="<?=$task['id']?>"></textarea>
             </td>
             <td>
                 <button class="btn btn-success btn-sm" data-action="confimTask" data-status="done" data-id="<?=$task['id']?>">Подтвердить</button>
