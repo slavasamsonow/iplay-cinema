@@ -144,9 +144,9 @@ $(document).ready(function () {
 	// Взаимодействие с заданием курса
 	$('.tasks .task button').click(function () {
 		var elem = $(this);
-		var parent = elem.parent();
-		var comment = elem.next('.task-info').children('.task-comment');
-		var errorText = elem.next('.task-info').children('.task-error');
+		var parent = elem.closest('.task');
+		var comment = parent.find('.task-comment');
+		var errorText = parent.find('.task-error');
 		if (parent.hasClass('process')) {
 			return;
 		}
@@ -158,6 +158,7 @@ $(document).ready(function () {
 			type: 'post',
 			data: 'task=' + taskId,
 			success: function (result) {
+
 				json = jQuery.parseJSON(result);
 				if (json.data.status) {
 					parent.attr('data-status', json.data.status);
@@ -170,6 +171,8 @@ $(document).ready(function () {
 					comment.text(json.data.comment);
 				}
 				if (json.data.error) {
+
+					console.log(json.data);
 					parent.addClass('error');
 					setTimeout(function () {
 						parent.removeClass('error')
