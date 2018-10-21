@@ -49,9 +49,9 @@
                 if($task['active'] == 1) $taskClassList .= 'active';
                 ?>
                 <div class="task <?=$taskClassList?>" data-status="<?=$task['status']?>">
-                    <button data-id="<?=$task['taskid']?>"></button>
                     <div class="task-info">
                         <h4 class="task-name">
+                            <button data-id="<?=$task['taskid']?>"></button>
                             <?=$task['name']?>
                         </h4>
                         <p class="task-description">
@@ -88,7 +88,7 @@
                         <?=$project['name']?>
                     </div>
                     <div class="description">
-                        <?=$project['caption']?>
+                        <!-- <?=$project['caption']?> -->
                     </div>
                     <a href="/project/<?=$project['id']?>" target="_blank">Подробнее</a>
                 </div>
