@@ -121,9 +121,11 @@ class Course extends Model{
             'user' => $userId,
             'course' => $courseId
         ];
-        $tasks = $this->db->row('SELECT ct.*, ct.id AS taskid, ut.* FROM courses_tasks ct LEFT JOIN user_tasks ut ON ut.task=ct.id WHERE ut.user = :user AND ct.course = :course ORDER BY `timestart` ASC',$params);
+        $tasks = $this->db->row('SELECT ct.*, ct.id AS taskid, ut.* FROM courses_tasks ct LEFT JOIN user_tasks ut ON ut.task=ct.id WHERE ut.user = :user AND ct.course = :course ORDER BY `timestart` DESC', $params);
 
-        $taskDate = [];
+        $taskDate = [
+            'Общие' => [],
+        ];
         foreach($tasks as $task){
             if($task['timestart'] == 0){
                 $taskDate['Общие'][] = $task;
