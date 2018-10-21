@@ -1,4 +1,4 @@
-/* v.0.7.2 */
+/* v.0.7.3 */
 
 /* Интро */
 
@@ -220,7 +220,11 @@
 }
 
 .tasks.course .task.active:before {
-    border-color: #fff;
+    border-color: #111;
+}
+
+.tasks.course .task p{
+    display: none;
 }
 
 .tasks.course .task[data-status="verify"]:before {
@@ -230,6 +234,19 @@
 .tasks.course .task[data-status="done"]:before {
     border-color: green;
     Background-color: green;
+}
+
+.tasks.course .task[data-status="done"] p {
+    display: block;
+    color: green;
+}
+
+.tasks.course .task[data-status="nverify"]:before {
+    border-color: #d43;
+}
+.tasks.course .task[data-status="nverify"] p {
+    display: block;
+    color: #d43;
 }
 
 .tasks.course .task.error:before {

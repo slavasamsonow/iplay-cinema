@@ -1,4 +1,4 @@
-// v.0.7.0
+// v.0.7.3
 $(document).ready(function () {
 	// Выпадающее меню юзера
 	$('.navbar .user').click(function () {
@@ -145,6 +145,7 @@ $(document).ready(function () {
 		var taskId = Number(elem.attr('data-id'));
 
 		elem.addClass('process');
+		elem.children('p').hide();
 		$.ajax({
 			url: '/study/checkTask',
 			type: 'post',

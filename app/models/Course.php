@@ -121,7 +121,7 @@ class Course extends Model{
             'user' => $userId,
             'course' => $courseId
         ];
-        $tasks = $this->db->row('SELECT t.id AS taskid, u.id, t.timestart, t.title, t.active, t.percent, u.status FROM courses_tasks t LEFT JOIN user_tasks u ON u.task=t.id WHERE u.user = :user AND t.course = :course',$params);
+        $tasks = $this->db->row('SELECT t.*, t.id AS taskid, ut.id, ut.status, ut.description FROM courses_tasks t LEFT JOIN user_tasks ut ON ut.task=t.id WHERE ut.user = :user AND t.course = :course',$params);
         return $tasks;
     }
 
@@ -134,7 +134,7 @@ class Course extends Model{
             'task' => $taskId,
             'user' => $userid,
         ];
-        $task = $this->db->row('SELECT t.id AS taskid, u.id, t.course, t.verify, t.active, t.percent, u.status FROM courses_tasks t JOIN user_tasks u ON u.task=t.id WHERE u.id = :task AND u.user=:user',$params);
+        $task = $this->db->row('SELECT t.id AS taskid, ut.id, t.course, t.verify, t.active, t.percent, ut.status FROM courses_tasks t JOIN user_tasks ut ON ut.task=t.id WHERE ut.id = :task AND ut.user=:user',$params);
 
         if(empty($task)){
             return [
