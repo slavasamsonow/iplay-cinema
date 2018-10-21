@@ -26,7 +26,7 @@
             </td>
             <td>
                 <button class="btn btn-success btn-sm" data-action="confimTask" data-status="done" data-id="<?=$task['id']?>">Подтвердить</button>
-                <button class="btn btn-danger btn-sm" data-action="confimTask" data-status="ndone" data-id="<?=$task['id']?>">Не подтверждать</button>
+                <button class="btn btn-danger btn-sm" data-action="confimTask" data-status="nverify" data-id="<?=$task['id']?>">Не подтверждать</button>
             </td>
         </tr>
         <? endforeach?>
