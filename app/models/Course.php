@@ -133,6 +133,9 @@ class Course extends Model{
                 $taskDate[date('d.m.Y', $task['timestart'])][] = $task;
             }
         }
+        if(empty($taskDate['Общие'])){
+            unset($taskDate['Общие']);
+        }
         return $taskDate;
     }
 
