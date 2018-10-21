@@ -9,7 +9,7 @@ class Admin extends Model{
         $params = [
             'status' => 'verify',
         ];
-        $tasks = $this->db->row('SELECT ut.id, ut.comment, ct.name, c.name AS `course_name`, u.fname AS `user_fname`, u.lname AS `user_lname`
+        $tasks = $this->db->row('SELECT ut.id, ct.name, c.name AS `course_name`, u.fname AS `user_fname`, u.lname AS `user_lname`
         FROM user_tasks ut
         JOIN courses_tasks ct ON ut.task = ct.id
         JOIN courses c ON ct.course = c.id
@@ -22,7 +22,7 @@ class Admin extends Model{
     public function saveStatusTask($data){
         $params = [
             'status' => $data['status'],
-            'description' => $data['description'],
+            'comment' => $data['comment'],
         ];
         $paramNV = $this->db->paramNV($params);
 

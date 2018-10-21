@@ -190,13 +190,13 @@ $(document).ready(function () {
 		}
 		var status = elem.attr('data-status');
 		var taskid = elem.attr('data-id');
-		var description = $('textarea[data-task=' + taskid + ']').val();
+		var comment = $('textarea[data-task=' + taskid + ']').val();
 
 		$('button[data-task=' + taskid + ']').addClass('process');
 		$.ajax({
 			url: '/admin/confirmtasks',
 			type: 'post',
-			data: 'id=' + taskid + '&status=' + status + '&description=' + description,
+			data: {id: taskid, status: status, comment: comment},
 			success: function (result) {
 				json = jQuery.parseJSON(result);
 				console.log(json);
