@@ -233,6 +233,7 @@ input[type='checkbox']::before {
     background-position: center;
     background-size: 0;
     background-color: #fff;
+    border: 2px solid #111;
     width: 20px;
     height: 20px;
     transition: 0.3s;
@@ -258,11 +259,11 @@ input[type='checkbox']+span {
 }
 
 textarea {
-    border: 1px solid #fff;
+    border: 2px solid #111;
     /* background-color: transparent; */
     color: #111;
     text-align: left;
-    resize: vertical;
+    resize: none;
 }
 
 /* Модальные окна */
