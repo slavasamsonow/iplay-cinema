@@ -145,6 +145,7 @@ $(document).ready(function () {
 		var taskId = Number(elem.attr('data-id'));
 
 		elem.addClass('process');
+		elem.children('p').hide();
 		$.ajax({
 			url: '/study/checkTask',
 			type: 'post',
