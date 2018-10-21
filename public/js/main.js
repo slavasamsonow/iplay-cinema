@@ -138,7 +138,9 @@ $(document).ready(function () {
 
 	$('.tasks .day .name').click(function(){
 		$(this).next('.tasks-list').slideToggle();
+		$(this).parent().toggleClass('open');
 	})
+	$('.tasks .day.today').children('.tasks-list').slideDown();
 	// Взаимодействие с заданием курса
 	$('.tasks .task button').click(function () {
 		var elem = $(this);
