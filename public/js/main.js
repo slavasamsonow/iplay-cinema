@@ -136,16 +136,23 @@ $(document).ready(function () {
 	}
 
 
+	$('.tasks .day .name').click(function(){
+		$(this).next('.tasks-list').slideToggle();
+		$(this).parent().toggleClass('open');
+	})
+	$('.tasks .day.today').children('.tasks-list').slideDown();
 	// Взаимодействие с заданием курса
-	$('.tasks.course .task.active').click(function () {
+	$('.tasks .task button').click(function () {
 		var elem = $(this);
-		if (elem.hasClass('process')) {
+		var parent = elem.parent();
+		var comment = elem.next('.task-info').children('.task-comment');
+		var errorText = elem.next('.task-info').children('.task-error');
+		if (parent.hasClass('process')) {
 			return;
 		}
 		var taskId = Number(elem.attr('data-id'));
 
-		elem.addClass('process');
-		elem.children('p').hide();
+		parent.addClass('process');
 		$.ajax({
 			url: '/study/checkTask',
 			type: 'post',
@@ -153,21 +160,25 @@ $(document).ready(function () {
 			success: function (result) {
 				json = jQuery.parseJSON(result);
 				if (json.data.status) {
-					elem.attr('data-status', json.data.status);
+					parent.attr('data-status', json.data.status);
 				}
 				if (json.data.percent >= 0) {
 					$('.progress-bar').css('width', json.data.percent + '%');
 					$('.progress-bar .sr-only .percent').html(json.data.percent);
 				}
-				if (json.data.error) {
-					elem.addClass('error');
-					setTimeout(function () {
-						elem.removeClass('error')
-					}, 1000);
-					$('span.error').remove();
-					openModal('message', 'Ошибка', json.data.error)
+				if (json.data.comment) {
+					comment.text(json.data.comment);
 				}
-				elem.removeClass('process');
+				if (json.data.error) {
+					parent.addClass('error');
+					setTimeout(function () {
+						parent.removeClass('error')
+					}, 1000);
+					errorText.text(json.data.error);
+				}else{
+					errorText.text('');
+				}
+				parent.removeClass('process');
 			}
 		})
 	})
