@@ -79,6 +79,7 @@ class CourseController extends Controller{
                 'course' => $course,
                 'tasks' => $this->model->getTasksCourse($course['id']),
                 'users' => $this->model->getUsersCourse($course['id']),
+                'projects' => $this->model->getProjectsCourse($course['id']),
             ];
             $this->view->render($vars);
         }else{

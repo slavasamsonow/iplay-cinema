@@ -165,6 +165,14 @@ class Course extends Model{
         return $usersList;
     }
 
+    public function getProjectsCourse($courseId){
+        $params = [
+            'course' => $courseId,
+        ];
+        $projectsList = $this->db->row('SELECT * FROM projects p WHERE p.course = :course',$params);
+        return $projectsList;
+    }
+
     public function changeTask($taskId, $userid = ''){
         if($userid == ''){
             $userid = $_SESSION['user']['id'];
