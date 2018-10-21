@@ -138,12 +138,11 @@ class Course extends Model{
                 $taskDate[$index]['count'] ++;
             }
 
+            if(!isset($taskDate[$index]['done'])){
+                $taskDate[$index]['done'] = 0;
+            }
             if($task['status'] == 'done'){
-                if(!isset($taskDate[$index]['done'])){
-                    $taskDate[$index]['done'] = 1;
-                }else{
-                    $taskDate[$index]['done'] ++;
-                }
+                $taskDate[$index]['done'] ++;
             }
         }
         if(empty($taskDate['Общие'])){
