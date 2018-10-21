@@ -19,6 +19,7 @@
                 <?php if($task['timestart'] <= time()):?>
                 <li class="task <? if($task['active'] == 1)echo 'active';?>" data-status="<?=$task['status']?>" data-id="<?=$task['id']?>">
                     <?=$task['title']?>
+                    <p><?=$task['description']?></p>
                 </li>
                 <?php endif ?>
                 <?php endforeach ?>
