@@ -7,15 +7,10 @@
     <?=date('d.m.Y', $course['timestart'])?> в
     <?=date('H:i', $course['timestart'])?> (МСК)
     <?php else: ?>
-<<<<<<< HEAD
-    <?php if($course['id'] == 3): ?>
-       <p>По всем вопросам вы можете обратиться к <a href="https://vk.com/id114084145" target='_blank'>Карине Кушнаренко Вконтакте</a></p>
-=======
 
     <?php if($course['id'] == 3): ?>
     <p>Домашние задания отправляйте <a href="https://vk.com/id114084145" target='_blank'>Карине Кушнаренко
             Вконтакте</a>, а после ставьте галочки</p>
->>>>>>> study-1
     <?php endif ?>
     <div class="progress">
         <div class="progress-bar" style="width: <?=$course['percent']?>%">
