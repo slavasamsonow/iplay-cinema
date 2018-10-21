@@ -1,4 +1,4 @@
-// v.0.7.0
+// v.0.7.3
 $(document).ready(function () {
 	// Выпадающее меню юзера
 	$('.navbar .user').click(function () {
