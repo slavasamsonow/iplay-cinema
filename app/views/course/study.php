@@ -23,23 +23,27 @@
     </div>
     <h2>Задания</h2>
     <div class="tasks course">
-        <?php foreach($tasks as $dayName => $dayTasks):?>
+        <?php foreach($tasks as $dayName => $day):?>
         <?php
         $dayClassList = '';
         $dayCaption = '';
         if($dayName == date('d.m.Y', time())){
             $dayClassList .= 'today open';
-            $dayCaption = '(сегодня)';
         }
 
         ?>
         <div class="day <?=$dayClassList?>">
             <div class="name">
-                <?=$dayName ?>
-                <?=$dayCaption?>
+                <b>
+                    <?=$dayName ?>
+                </b>
+                <span>Выполнено:
+                    <?=$day['done']?>/
+                    <?=$day['count']?>
+                </span>
             </div>
             <div class="tasks-list">
-                <?php foreach($dayTasks as $task):?>
+                <?php foreach($day['taskslist'] as $task):?>
                 <?php
                 $taskClassList = '';
                 if($task['active'] == 1) $taskClassList .= 'active';

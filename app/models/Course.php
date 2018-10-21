@@ -127,10 +127,23 @@ class Course extends Model{
             'Общие' => [],
         ];
         foreach($tasks as $task){
-            if($task['timestart'] == 0){
-                $taskDate['Общие'][] = $task;
-            }else if($task['timestart'] < time()){
-                $taskDate[date('d.m.Y', $task['timestart'])][] = $task;
+            $index = date('d.m.Y', $task['timestart']);
+            if($task['timestart'] == 0) $index = 'Общие';
+
+            $taskDate[$index]['taskslist'][] = $task;
+
+            if(!isset($taskDate[$index]['count'])){
+                $taskDate[$index]['count'] = 1;
+            }else{
+                $taskDate[$index]['count'] ++;
+            }
+
+            if($task['status'] == 'done'){
+                if(!isset($taskDate[$index]['done'])){
+                    $taskDate[$index]['done'] = 1;
+                }else{
+                    $taskDate[$index]['done'] ++;
+                }
             }
         }
         if(empty($taskDate['Общие'])){
