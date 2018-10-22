@@ -146,4 +146,33 @@ class AdminController extends Controller{
         ];
         $this->view->render($vars);
     }
+
+    public function usercoursesAction(){
+        if(!empty($_POST)){
+            if(isset($_POST['action'])){
+                $data = [];
+                switch($_POST['action']){
+                    case 'delete':
+                        $data = $this->model->deleteUserCourse($_POST);
+                        break;
+                    case 'add':
+                        $data = $this->model->addUserCourse($_POST);
+                        break;
+                }
+                $this->view->data($data);
+            }else{
+                exit();
+            }
+        }
+        $vars = [
+            'seo' => [
+                'title' => 'Список студентов по курсам',
+            ],
+            'userCoursesList' => $this->model->userCoursesList(),
+            'usersList' => $this->model->userslist(),
+            'coursesList' => $this->model->coursesList()
+        ];
+        // debug($vars);
+        $this->view->render($vars);
+    }
 }
