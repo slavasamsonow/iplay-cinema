@@ -10,20 +10,20 @@ $(document).ready(function () {
 				userController.removeClass('active');
 				$('.navbar .user .user-menu').slideUp();
 			}, 500)
-			userController.mouseenter(function(){
+			userController.mouseenter(function () {
 				clearTimeout(closeUsercontroller);
 			})
 		})
 	})
 
 	// Левое меню
-	$('.left-menu .parent span').click(function(){
+	$('.left-menu .parent span').click(function () {
 		$(this).parent().children('ul').slideToggle();
 	})
 
 	var thisPage = document.location.pathname;
-	$('a[href="'+thisPage+'"]').addClass('thisPage');
-	$('a[href="'+thisPage+'"]').removeAttr('href');
+	$('a[href="' + thisPage + '"]').addClass('thisPage');
+	$('a[href="' + thisPage + '"]').removeAttr('href');
 	$('.left-menu .thisPage').parents('ul').slideDown();
 
 	// Обработка форм
@@ -94,7 +94,7 @@ $(document).ready(function () {
 		$('#overlay').show();
 	})
 
-	$(".coursePage button[data-modal='video']").click(function(){
+	$(".coursePage button[data-modal='video']").click(function () {
 		var videoName = $(this).data('videoname');
 		$('.modal.video .modal-header').html(videoName);
 		var video = $(this).data('video');
@@ -136,7 +136,7 @@ $(document).ready(function () {
 	}
 
 
-	$('.tasks .day .name').click(function(){
+	$('.tasks .day .name').click(function () {
 		$(this).next('.tasks-list').slideToggle();
 		$(this).parent().toggleClass('open');
 	})
@@ -171,14 +171,12 @@ $(document).ready(function () {
 					comment.text(json.data.comment);
 				}
 				if (json.data.error) {
-
-					console.log(json.data);
 					parent.addClass('error');
 					setTimeout(function () {
 						parent.removeClass('error')
 					}, 1000);
 					errorText.text(json.data.error);
-				}else{
+				} else {
 					errorText.text('');
 				}
 				parent.removeClass('process');
@@ -199,16 +197,77 @@ $(document).ready(function () {
 		$.ajax({
 			url: '/admin/confirmtasks',
 			type: 'post',
-			data: {id: taskid, status: status, comment: comment},
+			data: {
+				id: taskid,
+				status: status,
+				comment: comment
+			},
 			success: function (result) {
 				json = jQuery.parseJSON(result);
-				console.log(json);
 				if (json.data.status) {
 					$('tr[data-task=' + json.data.id + ']').remove();
 				}
 				elem.removeClass('process');
 			}
 		})
+	})
+
+	$('button[data-type="usercourses"]').click(function () {
+		var elem = $(this);
+		if (elem.hasClass('process')) {
+			return;
+		}
+		var action = elem.attr('data-action');
+		switch (action) {
+			case 'delete':
+				var user = elem.attr('data-user');
+				var course = elem.attr('data-course');
+				break;
+			case 'add':
+				var form = elem.closest('form');
+				var user = form.find('select[name="user"]').val();
+				var course = form.find('select[name="course"]').val();
+				break;
+		}
+		elem.addClass('process');
+		$.ajax({
+			url: '/admin/usercourses',
+			type: 'post',
+			data: {
+				action: action,
+				user: user,
+				course: course
+			},
+			success: function (result) {
+				json = jQuery.parseJSON(result);
+				console.log(json);
+				if (json.data.status) {
+					switch (json.data.status) {
+						case 'delete':
+							elem.closest('tr').fadeOut();
+							break;
+						case 'add':
+							var userInTable = '<tr><td>' + json.data.user.coursename + '</td><td>' + json.data.user.fullName + '</td><td>0</td><td><button class="btn btn-sm" data-type="usercourses" data-action="delete" data-user="' + json.data.user.userid + '" data-course="' + json.data.user.courseid + '">Удалить</button></td><tr>';
+							$('table tr:nth-child(1)').after(userInTable)
+							break
+					}
+				}
+				if (json.data.error) {
+					openModal('message', 'Ошибка', json.data.error);
+				}
+				elem.removeClass('process');
+				$('.newusercourses').fadeOut();
+				$('button[data-action=".newusercourses"]').fadeIn();
+			}
+		})
+	})
+
+	$('button[data-type="show"]').click(function () {
+		var elem = $(this);
+		var show = elem.attr('data-action');
+		elem.fadeOut();
+		$(show).fadeIn();
+
 	})
 
 	$(".owl-carousel").owlCarousel({
