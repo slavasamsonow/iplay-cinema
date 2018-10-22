@@ -107,4 +107,92 @@ class Admin extends Model{
         $this->db->query('UPDATE `courses` SET '.$paramNV.' WHERE `id` = :id', $params);
         return true;
     }
+
+    public function userCoursesList($param = []){
+        if(isset($param['users'])){
+            $usl['users'] = 'uc.user IN('.$param['users'].')';
+        }
+        if(isset($param['courses'])){
+            $usl['courses'] = 'uc.course IN('.$param['courses'].')';
+        }
+
+        $uslText = '';
+        if(!empty($usl)){
+            foreach($usl as $uslItem){
+                if($uslText == ''){
+                    $uslText = ' WHERE '.$uslItem;
+                }
+                $uslText .= 'AND '.$uslItem;
+            }
+        }
+        $query = 'SELECT
+        u.id AS userid, u.fname, u.lname,
+        c.id AS courseid, c.name AS coursename, c.type,
+        uc.percent
+        FROM user_courses uc
+        JOIN users u ON uc.user = u.id
+        JOIN courses c ON uc.course = c.id'.
+        $uslText
+        .'
+        ORDER BY uc.course ASC, u.fname ASC, u.lname ASC';
+        $userCoursesList = $this->db->row($query);
+        foreach($userCoursesList as $key=>$userCourses){
+            if($userCourses['type'] == 0){
+                unset($userCoursesList[$key]);
+            }
+            $userCoursesList[$key]['fullName'] = $userCourses['fname'].' '.$userCourses['lname'];
+        }
+        return $userCoursesList;
+    }
+
+    public function deleteUserCourse($data){
+        if(!isset($data['user']) || !isset($data['course'])){
+            return ['error' => 'Нет входных данных'];
+        }
+
+        $params = [
+            'user' => $data['user'],
+            'course' => $data['course']
+        ];
+        $id = $this->db->column('SELECT uc.id FROM user_courses uc WHERE uc.user = :user AND uc.course = :course', $params);
+        if(!$id){
+            return ['error' => 'У этого пользователя нет этого курса'];
+        }
+
+        $params = [
+            'id' => $id,
+        ];
+        $this->db->query('DELETE FROM user_courses WHERE id = :id', $params);
+        return [
+            'status' => 'delete',
+        ];
+    }
+
+    public function addUserCourse($data){
+        if(!isset($data['user']) || !isset($data['course'])){
+            return ['error' => 'Нет входных данных'];
+        }
+
+        $params = [
+            'user' => $data['user'],
+            'course' => $data['course']
+        ];
+        $id = $this->db->column('SELECT uc.id FROM user_courses uc WHERE uc.user = :user AND uc.course = :course', $params);
+        if($id){
+            return ['error' => 'У этого пользователя уже есть этот курс'];
+        }
+
+        $paramNandV = $this->db->paramNandV($params);
+        $this->db->query('INSERT INTO user_courses ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
+
+        $params = [
+            'users' => $data['user'],
+            'courses' => $data['course']
+        ];
+        $userCourse = $this->userCoursesList($params)[0];
+        return [
+            'status' => 'add',
+            'user' => $userCourse
+        ];
+    }
 }
