@@ -95,7 +95,6 @@ return [
         'controller' => 'admin',
         'action' => 'editproject',
     ],
-
     'admin/courses' => [
         'controller' => 'admin',
         'action' => 'courseslist',
@@ -107,6 +106,10 @@ return [
     'admin/editcourse/{courseid:\d+}' => [
         'controller' => 'admin',
         'action' => 'editcourse',
+    ],
+    'admin/usercourses' => [
+        'controller' => 'admin',
+        'action' => 'usercourses',
     ],
 
 ];
