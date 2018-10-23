@@ -69,6 +69,13 @@ class Admin extends Model{
     }
 
     public function courseEditInfo($courseid){
+        if(!$course = $this->courseInfo($courseid)){
+            return false;
+        }
+        return $this->processTextOut($course);
+    }
+
+    public function courseInfo($courseid){
         $params = [
             'id' => $courseid,
         ];
@@ -76,7 +83,7 @@ class Admin extends Model{
         if(empty($course)){
             return false;
         }
-        return $this->processTextOut($course[0]);
+        return $course[0];
     }
 
     public function coursesTypeList(){
@@ -107,6 +114,73 @@ class Admin extends Model{
 
         $this->db->query('UPDATE `courses` SET '.$paramNV.' WHERE `id` = :id', $params);
         return true;
+    }
+
+    public function courseTasks($courseid){
+        $params = [
+            'id' => $courseid,
+        ];
+        return $this->db->row('SELECT * FROM courses_tasks ct WHERE ct.course = :id ORDER BY ct.timestart ASC', $params);
+    }
+
+    public function taskEditInfo($taskid){
+        if(!$task = $this->taskInfo($taskid)){
+            return false;
+        }
+        return $this->processTextOut($task);
+    }
+
+    public function taskInfo($taskid){
+        $params = [
+            'id' => $taskid,
+        ];
+        $task = $this->db->row('SELECT * FROM courses_tasks ct WHERE ct.id = :id', $params);
+        if(empty($task)){
+            return false;
+        }
+        return $task[0];
+    }
+
+    public function updateTask($id, $indata){
+        $params = $this->processTextIn($indata);
+
+        if(isset($params['datatimenull'])){
+            $params['timestart'] = 0;
+        }else{
+            $params['timestart'] = $this->toUnixtime($params['datetime']);
+        }
+        unset($params['datetime']);
+        unset($params['datetimenull']);
+
+        $paramNV = $this->db->paramNV($params);
+        $params['id'] = $id;
+
+        $this->db->query('UPDATE `courses_tasks` SET '.$paramNV.' WHERE `id` = :id', $params);
+        return true;
+    }
+
+    public function addTask($indata){
+        $params = $this->processTextIn($indata);
+
+        if(isset($params['datatimenull'])){
+            $params['timestart'] = 0;
+        }else{
+            $params['timestart'] = $this->toUnixtime($params['datetime']);
+        }
+        unset($params['datetime']);
+        unset($params['datetimenull']);
+
+        $paramNandV = $this->db->paramNandV($params);
+
+        $this->db->query('INSERT INTO `courses_tasks` ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
+        return $this->db->lastInsertId();
+    }
+
+    public function deleteTask($taskid){
+        $params = [
+            'id' => $taskid,
+        ];
+        $this->db->query('DELETE FROM courses_tasks WHERE id = :id', $params);
     }
 
     public function userCoursesList($param = []){

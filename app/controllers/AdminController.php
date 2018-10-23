@@ -129,6 +129,8 @@ class AdminController extends Controller{
             $id = $_POST['courseid'];
             unset($_POST['courseid']);
 
+            // Проверка на существование
+
             $data = $_POST;
 
             // $this->view->message("+", json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ));
@@ -137,12 +139,12 @@ class AdminController extends Controller{
                 $this->view->location('admin/courses');
             }
         }
-        if(!$this->model->checkExists('id', $this->route['courseid'], 'courses')){
+        if(!$course = $this->view->courseEditInfo($this->route['courseid'])){
             $this->view->errorCode(404);
         }
         $vars = [
             'coursesTypes' => $this->model->coursesTypeList(),
-            'course' => $this->model->courseEditInfo($this->route['courseid']),
+            'course' => $course,
         ];
         $this->view->render($vars);
     }
@@ -173,6 +175,66 @@ class AdminController extends Controller{
             'coursesList' => $this->model->coursesList()
         ];
         // debug($vars);
+        $this->view->render($vars);
+    }
+
+    public function taskslistAction(){
+        if(!empty($_POST)){
+            // if($_POST['action'] == 'delete'){
+            //     $this->model->deleteTask($_POST['id']);
+            //     $this->view->location('admin/taskslist/'.$_POST['course']);
+            // }
+        }
+        if(!$course = $this->model->courseInfo($this->route['courseid'])){
+            $this->view->errorCode(404);
+        }
+        $vars = [
+            'seo' => [
+                'title' => 'Редактирование заданий курса'
+            ],
+            'course' => $course,
+            'courseTasks' => $this->model->courseTasks($this->route['courseid']),
+        ];
+        $this->view->render($vars);
+    }
+
+    public function edittaskAction(){
+        if(!empty($_POST)){
+            $id = $_POST['taskid'];
+            unset($_POST['taskid']);
+
+            // Проверка на существование
+
+            $data = $_POST;
+
+            // $this->view->message("+", json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ));
+
+            if($this->model->updateTask($id, $data)){
+                $this->view->location('admin/taskslist/'.$data['course']);
+            }
+        }
+        if(!$task = $this->model->taskEditInfo($this->route['taskid'])){
+            $this->view->errorCode(404);
+        }
+        $vars = [
+            'task' => $task,
+        ];
+        $this->view->render($vars);
+    }
+
+    public function addtaskAction(){
+        if(!empty($_POST)){
+            $data = $_POST;
+
+            // $this->view->message("+", json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ));
+
+            if($this->model->addTask($data)){
+                $this->view->location('admin/taskslist/'.$data['course']);
+            }
+        }
+        $vars = [
+            'course' => $this->model->courseInfo($this->route['courseid']),
+        ];
         $this->view->render($vars);
     }
 }
