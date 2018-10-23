@@ -17,9 +17,9 @@
         <div class="control-group form-group">
             <label>Пользователь:</label>
             <select class="form-control" name="user">
-                <?php foreach($usersList as $user):?>
-                <option value="<?=$user['id']?>">
-                    <?=$user['fname'].' '.$user['lname']?>
+                <?php foreach($usersList as $userItem):?>
+                <option value="<?=$userItem['id']?>">
+                    <?=$userItem['fname'].' '.$userItem['lname']?>
                 </option>
                 <?php endforeach ?>
             </select>
