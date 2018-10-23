@@ -84,7 +84,8 @@ class Admin extends Model{
     }
 
     public function coursesList(){
-        return $this->db->row('SELECT * FROM courses c');
+        $courses = $this->db->row('SELECT * FROM courses c ORDER BY c.timestart ASC');
+        return $courses;
     }
 
     public function createCourse($indata){
