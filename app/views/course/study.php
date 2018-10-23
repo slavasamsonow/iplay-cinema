@@ -9,7 +9,7 @@
     <?php else: ?>
 
     <?php if($course['id'] == 3): ?>
-    <p>Домашние задания отправляйте <a href="https://vk.com/id114084145" target='_blank'>Карине Кушнаренко
+    <p>Домашние задания отправляйте <a href="https://vk.com/rayproduction" target='_blank'>Ольге Мерзляковой
             Вконтакте</a>, а после ставьте галочки</p>
     <?php endif ?>
     <div class="progress">
