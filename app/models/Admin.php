@@ -139,8 +139,9 @@ class Admin extends Model{
         foreach($userCoursesList as $key=>$userCourses){
             if($userCourses['type'] == 0){
                 unset($userCoursesList[$key]);
+            }else{
+                $userCoursesList[$key]['fullName'] = $userCourses['fname'].' '.$userCourses['lname'];
             }
-            $userCoursesList[$key]['fullName'] = $userCourses['fname'].' '.$userCourses['lname'];
         }
         return $userCoursesList;
     }
