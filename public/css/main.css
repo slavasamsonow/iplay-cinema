@@ -347,7 +347,7 @@
 
 .project {
     background-color: #fff;
-    height: 180px;
+    /* height: 180px; */
     position: relative;
     overflow: hidden;
     border-radius: 10px;
