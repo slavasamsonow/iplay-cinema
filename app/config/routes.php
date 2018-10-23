@@ -107,6 +107,18 @@ return [
         'controller' => 'admin',
         'action' => 'editcourse',
     ],
+    'admin/taskslist/{courseid:\d+}' => [
+        'controller' => 'admin',
+        'action' => 'taskslist',
+    ],
+    'admin/addtask/{courseid:\d+}' => [
+        'controller' => 'admin',
+        'action' => 'addtask',
+    ],
+    'admin/edittask/{taskid:\d+}' => [
+        'controller' => 'admin',
+        'action' => 'edittask',
+    ],
     'admin/usercourses' => [
         'controller' => 'admin',
         'action' => 'usercourses',
