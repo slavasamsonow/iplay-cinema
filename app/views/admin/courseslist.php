@@ -29,6 +29,7 @@
             </div><br>
             <!-- <a href="/project/<?=$courses[$i]['id']?>" class="btn btn-default btn-sm">Подробнее</a> -->
             <a href="/admin/editcourse/<?=$courses[$i]['id']?>" class="btn btn-default btn-sm">Редактировать</a>
+            <a href="/admin/taskslist/<?=$courses[$i]['id']?>" class="btn btn-sm">Задания</a>
         </div>
         <?php if($i % 3 == 2):?>
     </div>
