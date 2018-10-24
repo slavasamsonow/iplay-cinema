@@ -133,5 +133,17 @@ return [
             'controller' => 'admin',
             'action' => 'usercourses',
         ],
+        'admin/newslist' => [
+            'controller' => 'admin',
+            'action' => 'newslist',
+        ],
+        'admin/addnews' => [
+            'controller' => 'admin',
+            'action' => 'addnews',
+        ],
+        'admin/editnews/{newsid:\d+}' => [
+            'controller' => 'admin',
+            'action' => 'editnews',
+        ],
 
 ];
