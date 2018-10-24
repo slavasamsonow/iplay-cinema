@@ -118,11 +118,15 @@
                                                 <li><a href="/admin/usercourses">Ученики в курсах</a></li>
                                             </ul>
                                         </li>
+                                        <li class="parent"><span>Новости</span>
+                                            <ul>
+                                                <li><a href="/admin/newslist">Список всех новостей</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <?php endif ?>
                             </ul>
-                            <br>
                         </div>
                         <div class="col-md-8 col-sm-6">
                             <?=$content?>
