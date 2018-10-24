@@ -313,6 +313,9 @@ class Admin extends Model{
         $params = $this->processTextIn($indata);
         $params['timestart'] = $this->toUnixtime($params['datetime']);
         unset($params['datetime']);
+        if(!isset($params['active'])){
+            $params['active'] = 0;
+        }
         $paramNV = $this->db->paramNV($params);
         $params['id'] = $id;
 
