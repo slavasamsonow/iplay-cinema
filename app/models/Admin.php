@@ -271,4 +271,52 @@ class Admin extends Model{
             'user' => $userCourse
         ];
     }
+
+    public function newsList(){
+        $news = $this->db->row('SELECT n.*, u.fname, u.lname, u.id AS authorId FROM news n JOIN users u ON n.author = u.id ORDER BY n.timestart DESC');
+        foreach($news as $key => $newsitem){
+            $news[$key]['author'] = $newsitem['fname'].' '.$newsitem['lname'];
+            unset($newsitem['fname'],$newsitem['lname']);
+        }
+        return $news;
+    }
+
+    public function createNews($indata){
+        $params = $this->processTextIn($indata);
+        $params['timestart'] = $this->toUnixtime($params['datetime']);
+        unset($params['datetime']);
+        $paramNandV = $this->db->paramNandV($params);
+
+        $this->db->query('INSERT INTO news ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
+        return $this->db->lastInsertId();
+    }
+
+    public function newsEditInfo($newsid){
+        if(!$news = $this->newsInfo($newsid)){
+            return false;
+        }
+        return $this->processTextOut($news);
+    }
+
+    public function newsInfo($newsid){
+        $params = [
+            'id' => $newsid,
+        ];
+        $news = $this->db->row('SELECT * FROM news n WHERE n.id = :id', $params);
+        if(empty($news)){
+            return false;
+        }
+        return $news[0];
+    }
+
+    public function updateNews($id, $indata){
+        $params = $this->processTextIn($indata);
+        $params['timestart'] = $this->toUnixtime($params['datetime']);
+        unset($params['datetime']);
+        $paramNV = $this->db->paramNV($params);
+        $params['id'] = $id;
+
+        $this->db->query('UPDATE news SET '.$paramNV.' WHERE `id` = :id', $params);
+        return true;
+    }
 }

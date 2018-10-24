@@ -25,6 +25,9 @@
             </div>
             <div class="col-md-6 menu_lk">
                 <ul class="menu">
+                    <li>
+                        <a href="/news">Новости</a>
+                    </li>
                 </ul>
                 <? if(isset($user)): ?>
                 <div class="user">
