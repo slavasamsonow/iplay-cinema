@@ -237,4 +237,52 @@ class AdminController extends Controller{
         ];
         $this->view->render($vars);
     }
+
+    public function newslistAction(){
+        $vars = [
+            'seo' => [
+                'title' => 'Список новостей',
+            ],
+            'news' => $this->model->newsList(),
+        ];
+        $this->view->render($vars);
+    }
+
+    // public function addnewsAction(){
+    //     if(!empty($_POST)){
+    //         $data = $_POST;
+    //         if($courseid = $this->model->createCourse($data)){
+    //             $this->view->location('admin/courses');
+    //         }
+    //     }
+    //     $vars = [
+    //         'coursesTypes' => $this->model->coursesTypeList(),
+    //     ];
+    //     $this->view->render($vars);
+    // }
+
+    // public function editnewsAction(){
+    //     if(!empty($_POST)){
+    //         $id = $_POST['courseid'];
+    //         unset($_POST['courseid']);
+
+    //         // Проверка на существование
+
+    //         $data = $_POST;
+
+    //         // $this->view->message("+", json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ));
+
+    //         if($this->model->updateCourse($id, $data)){
+    //             $this->view->location('admin/courses');
+    //         }
+    //     }
+    //     if(!$course = $this->view->courseEditInfo($this->route['courseid'])){
+    //         $this->view->errorCode(404);
+    //     }
+    //     $vars = [
+    //         'coursesTypes' => $this->model->coursesTypeList(),
+    //         'course' => $course,
+    //     ];
+    //     $this->view->render($vars);
+    // }
 }
