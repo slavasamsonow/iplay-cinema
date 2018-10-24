@@ -19,6 +19,7 @@ class NewsController extends Controller{
         ];
         $this->view->render($vars);
     }
+
     public function newsinfoAction(){
         if(!$news = $this->model->newsInfo($this->route['newsid'])){
             $this->view->errorCode(404);
