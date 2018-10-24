@@ -139,7 +139,7 @@ class AdminController extends Controller{
                 $this->view->location('admin/courses');
             }
         }
-        if(!$course = $this->view->courseEditInfo($this->route['courseid'])){
+        if(!$course = $this->model->courseEditInfo($this->route['courseid'])){
             $this->view->errorCode(404);
         }
         $vars = [
@@ -248,41 +248,48 @@ class AdminController extends Controller{
         $this->view->render($vars);
     }
 
-    // public function addnewsAction(){
-    //     if(!empty($_POST)){
-    //         $data = $_POST;
-    //         if($courseid = $this->model->createCourse($data)){
-    //             $this->view->location('admin/courses');
-    //         }
-    //     }
-    //     $vars = [
-    //         'coursesTypes' => $this->model->coursesTypeList(),
-    //     ];
-    //     $this->view->render($vars);
-    // }
+    public function addnewsAction(){
+        if(!empty($_POST)){
+            $data = $_POST;
 
-    // public function editnewsAction(){
-    //     if(!empty($_POST)){
-    //         $id = $_POST['courseid'];
-    //         unset($_POST['courseid']);
+            if(isset($_FILES['image']['tmp_name']) && $_FILES['image']['tmp_name'] != ''){
+                if($file = $this->model->saveFile($_FILES['image'], 'public/img/news/', 'image')){
+                    $data['image'] = $file;
+                }
+            }
 
-    //         // Проверка на существование
+            if($id = $this->model->createNews($data)){
+                $this->view->location('admin/newslist');
+            }
+        }
+        $vars = [
+            'usersList' => $this->model->userslist(),
+        ];
+        $this->view->render($vars);
+    }
 
-    //         $data = $_POST;
+    public function editnewsAction(){
+        if(!empty($_POST)){
+            $id = $_POST['newsid'];
+            unset($_POST['newsid']);
 
-    //         // $this->view->message("+", json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ));
+            // Проверка на существование
 
-    //         if($this->model->updateCourse($id, $data)){
-    //             $this->view->location('admin/courses');
-    //         }
-    //     }
-    //     if(!$course = $this->view->courseEditInfo($this->route['courseid'])){
-    //         $this->view->errorCode(404);
-    //     }
-    //     $vars = [
-    //         'coursesTypes' => $this->model->coursesTypeList(),
-    //         'course' => $course,
-    //     ];
-    //     $this->view->render($vars);
-    // }
+            $data = $_POST;
+
+            // $this->view->message("+", json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ));
+
+            if($this->model->updateNews($id, $data)){
+                $this->view->location('admin/newslist');
+            }
+        }
+        if(!$news = $this->model->newsEditInfo($this->route['newsid'])){
+            $this->view->errorCode(404);
+        }
+        $vars = [
+            'usersList' => $this->model->userslist(),
+            'news' => $news,
+        ];
+        $this->view->render($vars);
+    }
 }
