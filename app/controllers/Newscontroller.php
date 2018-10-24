@@ -5,6 +5,14 @@ namespace app\controllers;
 use app\core\Controller;
 
 class NewsController extends Controller{
+
+    public function __construct($route){
+        parent::__construct($route);
+        if($this->model->auth == 'auth'){
+            $this->view->layout = 'lk';
+        }
+    }
+
     public function newslistAction(){
         $vars = [
             'newslist' => $this->model->newsList(),
