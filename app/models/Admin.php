@@ -281,24 +281,42 @@ class Admin extends Model{
         return $news;
     }
 
-    // public function createCourse($indata){
-    //     $params = $this->processTextIn($indata);
-    //     $params['timestart'] = $this->toUnixtime($params['datetime']);
-    //     unset($params['datetime']);
-    //     $paramNandV = $this->db->paramNandV($params);
+    public function createNews($indata){
+        $params = $this->processTextIn($indata);
+        $params['timestart'] = $this->toUnixtime($params['datetime']);
+        unset($params['datetime']);
+        $paramNandV = $this->db->paramNandV($params);
 
-    //     $this->db->query('INSERT INTO `courses` ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
-    //     return $this->db->lastInsertId();
-    // }
+        $this->db->query('INSERT INTO news ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
+        return $this->db->lastInsertId();
+    }
 
-    // public function updateCourse($id, $indata){
-    //     $params = $this->processTextIn($indata);
-    //     $params['timestart'] = $this->toUnixtime($params['datetime']);
-    //     unset($params['datetime']);
-    //     $paramNV = $this->db->paramNV($params);
-    //     $params['id'] = $id;
+    public function newsEditInfo($newsid){
+        if(!$news = $this->newsInfo($newsid)){
+            return false;
+        }
+        return $this->processTextOut($news);
+    }
 
-    //     $this->db->query('UPDATE `courses` SET '.$paramNV.' WHERE `id` = :id', $params);
-    //     return true;
-    // }
+    public function newsInfo($newsid){
+        $params = [
+            'id' => $newsid,
+        ];
+        $news = $this->db->row('SELECT * FROM news n WHERE n.id = :id', $params);
+        if(empty($news)){
+            return false;
+        }
+        return $news[0];
+    }
+
+    public function updateNews($id, $indata){
+        $params = $this->processTextIn($indata);
+        $params['timestart'] = $this->toUnixtime($params['datetime']);
+        unset($params['datetime']);
+        $paramNV = $this->db->paramNV($params);
+        $params['id'] = $id;
+
+        $this->db->query('UPDATE news SET '.$paramNV.' WHERE `id` = :id', $params);
+        return true;
+    }
 }
