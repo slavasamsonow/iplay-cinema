@@ -319,17 +319,14 @@ abstract class Model{
 
     public function processTextIn($strings){
         foreach($strings as $key=>$string){
-            // $newstring = preg_replace('/\[b\]/', "Жирная строка ", $string);
             $newstring = trim($string);
             $newstring = strip_tags($newstring);
             $newstring = htmlspecialchars($newstring);
-            if(in_array($key, ['description', 'caption'])){
+            if(in_array($key, ['description', 'caption', 'content'])){
                 $newstring = '<p>'.$newstring.'</p>';
                 $newstring = preg_replace("/(\r\n){3,}/", "\r\n\r\n", $newstring);
                 $newstring = preg_replace('/\r\n/','</p><p>', $newstring);
                 $newstring = preg_replace(array('/\[b\]/', '/\[\/b\]/'), array("<b>", "</b>"), $newstring);
-                // $newstring = preg_replace(array('/\[b\]/', '/\[\/b\]/'), array("<b>","</b>"), $newstring);
-                // $newstring = preg_replace('[b]', "<b>", $newstring);
             }else{
                 $newstring = preg_replace(array("/\r\n/"), '<br>', $newstring);
             }
