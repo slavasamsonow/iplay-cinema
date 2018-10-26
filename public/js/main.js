@@ -21,9 +21,9 @@ $(document).ready(function () {
 		$(this).parent().children('ul').slideToggle();
 	})
 
-	var thisPage = document.location.pathname;
+	var thisPage = document.location.pathname + document.location.search;
 	$('a[href="' + thisPage + '"]').addClass('thisPage');
-	$('a[href="' + thisPage + '"]').removeAttr('href');
+	// $('a[href="' + thisPage + '"]').removeAttr('href');
 	$('.left-menu .thisPage').parents('ul').slideDown();
 
 	// Обработка форм
