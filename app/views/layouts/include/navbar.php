@@ -48,7 +48,9 @@
                     </div>
                 </div>
                 <?php else: ?>
-                <a href="/login">Вход</a> / <a href="/register">Регистрация</a>
+                <div class="login">
+                    <a href="/login">Вход</a> / <a href="/register">Регистрация</a>
+                </div>
                 <?php endif ?>
             </div>
         </div>
