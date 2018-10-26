@@ -5,6 +5,28 @@ namespace app\models;
 use app\core\Model;
 
 class Course extends Model{
+    public function coursesList($param){
+        $params = [];
+        $usl = '';
+        if(isset($param['coursesType'])){
+            switch($param['coursesType']){
+                case 'event':
+                    $params['type'] = 1;
+                    break;
+                case 'basic':
+                    $params['type'] = 2;
+                    break;
+                case 'main':
+                    $params['type'] = 3;
+                    break;
+            }
+            $usl .= 'AND c.type = :type';
+        }
+
+        $coursesList = $this->db->row('SELECT * FROM courses c WHERE c.active = 1 AND c.type != 0 '.$usl.' ORDER BY c.timestart ASC', $params);
+        return $coursesList;
+    }
+
     public function courseInfo($courseId){
         $params = [
             'courseid' => $courseId,

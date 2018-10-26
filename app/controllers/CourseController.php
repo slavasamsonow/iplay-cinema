@@ -12,6 +12,26 @@ class CourseController extends Controller{
         $this->view->layout = 'lk';
     }
 
+    public function coursesAction(){
+        if($this->model->auth == 'guest'){
+            $this->view->layout = 'default';
+        }
+
+        $paramsCourses = [];
+        if(isset($_GET['type'])){
+            $paramsCourses['coursesType'] = $_GET['type'];
+        }
+
+        $vars = [
+            'seo' => [
+                'Список курсов и мероприятий',
+            ],
+            'coursesList' => $this->model->coursesList($paramsCourses),
+        ];
+
+        $this->view->render($vars);
+    }
+
     public function courseAction(){
         if(!empty($_POST)){
             if($_POST['form'] == 'grant'){
