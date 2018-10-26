@@ -5,6 +5,46 @@ namespace app\models;
 use app\core\Model;
 
 class Course extends Model{
+    public function coursesList($param){
+        $params = [];
+
+        $usl['c']['active'] = 1;
+        if(isset($param['coursesType'])){
+            switch($param['coursesType']){
+                case 'event':
+                    $usl['c']['type'] = 1;
+                    break;
+                case 'basic':
+                    $usl['c']['type'] = 2;
+                    break;
+                case 'main':
+                    $usl['c']['type'] = 3;
+                    break;
+            }
+        }
+
+        $uslString = '';
+        if(!empty($usl)){
+            foreach($usl as $table => $tableItem){
+                foreach($tableItem as $key => $uslItem){
+                    if($uslString == ''){
+                        $uslString = ' WHERE ';
+                    }else{
+                        $uslString .= ' AND ';
+                    }
+                    $params['usl'.$key] = $uslItem;
+                    $uslString .= $table.'.'.$key .' = :usl'.$key;
+                }
+
+            }
+        }
+
+        // debug($uslString);
+
+        $coursesList = $this->db->row('SELECT * FROM courses c'.$uslString, $params);
+        return $coursesList;
+    }
+
     public function courseInfo($courseId){
         $params = [
             'courseid' => $courseId,
