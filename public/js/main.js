@@ -21,8 +21,10 @@ $(document).ready(function () {
 		$(this).parent().children('ul').slideToggle();
 	})
 
-	var thisPage = document.location.pathname + document.location.search;
-	$('a[href="' + thisPage + '"]').addClass('thisPage');
+	var thisPageFull = document.location.pathname + document.location.search;
+	$('a[href="' + thisPageFull + '"]').addClass('thisPage');
+	var thisPage = document.location.pathname;
+	$('.left-menu a[href="' + thisPage + '"]').addClass('thisPage');
 	// $('a[href="' + thisPage + '"]').removeAttr('href');
 	$('.left-menu .thisPage').parents('ul').slideDown();
 
