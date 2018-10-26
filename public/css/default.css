@@ -533,6 +533,11 @@ tr:hover td {
     display: inline-block;
 }
 
+.navbar .login{
+    display: inline-block;
+    margin-left: 20px;
+}
+
 .navbar .user {
     display: inline-block;
     position: relative;
