@@ -6,7 +6,9 @@ use app\core\Model;
 
 class Course extends Model{
     public function coursesList($param){
-        $params = [];
+        $params = [
+            'timestart' => time(),
+        ];
         $usl = '';
         if(isset($param['coursesType'])){
             switch($param['coursesType']){
@@ -23,7 +25,7 @@ class Course extends Model{
             $usl .= 'AND c.type = :type';
         }
 
-        $coursesList = $this->db->row('SELECT * FROM courses c WHERE c.active = 1 AND c.type != 0 '.$usl.' ORDER BY c.timestart ASC', $params);
+        $coursesList = $this->db->row('SELECT * FROM courses c WHERE c.active = 1 AND c.type != 0 AND c.timestart > :timestart '.$usl.' ORDER BY c.timestart ASC', $params);
         return $coursesList;
     }
 
