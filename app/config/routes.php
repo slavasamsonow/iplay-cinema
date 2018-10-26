@@ -45,6 +45,10 @@ return [
         ],
 
     // courseController
+        'courses' => [
+            'controller' => 'course',
+            'action' => 'courses',
+        ],
         'course/{courseid:\d+}' => [
             'controller' => 'course',
             'action' => 'course',
