@@ -1,4 +1,12 @@
 // v.0.8.0
+function videoHeight(){
+	$('.video iframe').each(function(){
+		var widthVideo = $(this).width();
+		var heightVideo = widthVideo / 16 * 9;
+		$(this).css('height', heightVideo);
+	});
+}
+
 $(document).ready(function () {
 	// Выпадающее меню юзера
 	$('.navbar .user').click(function () {
@@ -280,4 +288,9 @@ $(document).ready(function () {
 		autoplayHoverPause: true,
 	});
 
+	videoHeight();
+});
+
+$(window).resize(function(){
+	videoHeight();
 });
