@@ -66,7 +66,7 @@
                         <p>
                             <?=$events[$i]['caption']?>
                         </p>
-                        <a href="/course/<?=$events[$i]['id']?>">Записаться</a>
+                        <a class="btn" href="/course/<?=$events[$i]['id']?>">Записаться</a>
                     </div>
                     <?php if($i % 3 == 2 || $i == count($events) - 1): ?>
                 </div>
@@ -86,7 +86,7 @@
         </div>
         <div class="row">
             <div class="col-md-4 video">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/6QAnXB7mbcY" frameborder="0" allow="autoplay; encrypted-media"
+                <iframe src="https://www.youtube.com/embed/6QAnXB7mbcY" frameborder="0" allow="autoplay; encrypted-media"
                     allowfullscreen></iframe>
             </div>
             <div class="col-md-8">
