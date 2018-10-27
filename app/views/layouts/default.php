@@ -11,11 +11,8 @@
 
         <meta name="description" content="<?=$seo['description']?>">
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/public/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon/favicon-16x16.png">
-
-        <?php require_once('include/css_js.php')?>
+<?php require_once('include/favicon.php')?>
+<?php require_once('include/css_js.php')?>
 
         <!-- Yandex.Metrika counter -->
         <script type="text/javascript">
