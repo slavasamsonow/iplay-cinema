@@ -171,6 +171,10 @@
     margin-bottom: 20px;
 }
 
+.content.intro .about .video iframe{
+    width: 100%;
+}
+
 .content.intro .lead-magnet {
     padding: 50px 0;
     text-align: center;
