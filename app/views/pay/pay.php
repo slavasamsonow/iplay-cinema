@@ -2,35 +2,28 @@
     <h1>Оплата</h1>
 
     <h2>
-        <?php
-        if($course['type'] == 'Вводный курс'){
-            echo $course['name'];
-        }
-        else{
-            echo $course['type'] .': '. $course['name'];
-        }
-        ?>
+        Билет на
+        <?=$course['name']?>
     </h2>
     <p>
-        <?php echo ($course['type'] == 'Мероприятие') ? 'Дата: ' : 'Дата старта: ';?>
-        <?=date('d.m.Y',$course['timestart'])?> <br>
-        Сумма:
-        <?=$course['price']?>
+        <?php if($course['type'] == 'event'):?>
+        Дата и время:
+        <?=date('d.m.Y H:i',$course['timestart'])?>
+        <?php else: ?>
+        Дата старта:
+        <?=date('d.m.Y',$course['timestart'])?>
+        <?php endif ?>
     </p>
     <p>
         <?=$course['caption']?>
     </p>
 
-    <?php if(isset($_SESSION['user']['id'])): ?>
-    <form action="/pay/<?=$course['id']?>" method="post">
-        <input type="hidden" name='paymentid' value="<?=$pay['paymentid']?>">
-        <input type="hidden" name='amoid' value="<?=$pay['amoid']?>">
-        <input type="hidden" name='yandexConfirmation' value="<?=$pay['yandexConfirmation']?>">
-        <input type="submit" class="btn btn-default" value='Оплатить'>
-    </form>
-    <?php else: ?>
     <div class="row">
-        <form action="/pay/<?=$course['id']?>" method="post" class="col-md-3">
+        <form action="/pay/<?=$course['id']?>" method="post" class="col-md-6">
+            <input type="hidden" name="action" value="pay">
+            <input type="hidden" name="course" value="<?=$course['id']?>">
+
+            <?php if(!isset($_SESSION['user']['id'])): ?>
             <div class="control-group form-group">
                 <label>ФИО:</label>
                 <input type="text" class="form-control" name="fio" required="true">
@@ -47,18 +40,25 @@
                 <label>Город:</label>
                 <input type="text" class="form-control" name="city">
             </div>
+            <?php endif ?>
+
             <div class="control-group form-group">
                 <label>Промо-код:</label>
-                <input type="text" class="form-control" name="promocode">
+                <div class="input-group">
+                    <?php $promocode=(isset($_GET['promocode']))?$_GET['promocode']:''?>
+                    <input type="text" class="form-control" name="promocode" value="<?=$promocode?>">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-type="payPromocode">Применить</button>
+                    </span>
+                </div>
             </div>
-            <input type="submit" class="btn btn-default" value='Оплатить'>
+
+            <div class="control-group form-group">
+                <label>Сумма:</label>
+                <input type="text" class="form-control" name="price" value="<?=$course['newPrice']?>" data-price="<?=$course['price']?>" readonly>
+            </div>
+            <input type="submit" class="btn" value='Оплатить'>
         </form>
     </div>
 
-    <!--
-    Для оплаты требуется войти в личный кабинет, если вы уже зарегистрированы, либо зарегистрироваться <br><br>
-    <a href="/login?request_url=pay/<?=$course['id']?>" class="btn" style="margin-right: 20px;">Войти</a>
-    <a href="/register?request_url=pay/<?=$course['id']?>" class="btn">Зарегистрироваться</a>
-    -->
-    <?php endif ?>
 </div>

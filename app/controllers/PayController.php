@@ -8,78 +8,67 @@ class PayController extends Controller{
 
     public function payAction(){
         if(!empty($_POST)){
-            if($this->model->auth == 'auth'){
-                $paymentData = $_POST;
-            }else{
-                $course = $this->model->courseInfo($this->route['courseid']);
-
-                if(isset($_POST['promocode'])){
-                    $promocode = $_POST['promocode'];
-                    if($promocode == 'friendschool' && $course['id'] == 1){
-                        $course['price'] = 299;
+            switch($_POST['action']){
+                case 'promocode':
+                    if(!isset($_POST['promocode']) || !isset($_POST['course'])){
+                        $data = ['error' => 'Нет входных данных'];
+                        $this->view->data($data);
                     }
-                    if($promocode == 'onlyforcinema' && $course['id'] == 1){
-                        $course['price'] = 0;
+                    if(!$sale = $this->model->checkPromocode($_POST['course'], $_POST['promocode'])){
+                        $data = ['error' => 'Недействительный промокод'];
+                        $this->view->data($data);
                     }
-                }
+                    $data = ['sale' => $sale];
+                    $this->view->data($data);
+                    break;
+                case 'pay':
+                    unset($_POST['action']);
+                    unset($_POST['price']);
+                    $course = $this->model->courseInfo($_POST['course']);
+                    unset($_POST['course']);
 
-                if($course['price'] == 0){
-                    $varsAmo = [
-                        'sale' => $course['price'],
-                        'nameCourse' => $course['name'].' Оплачено',
-                    ];
-                    if($AmoContact = $this->model->amo->searchContact($_POST['email'])){
-                        $varsAmo['contact_id'] = $AmoContact;
-                    }else{
-                        $varsAmoNew = [
-                            'email' => $_POST['email'],
-                        ];
-
-                        if(isset($_POST['fio'])){
-                            $varsAmoNew['name'] = $_POST['fio'];
-                        }else{
-                            $varsAmoNew['name'] = $_POST['email'];
-                        }
-
-                        if(isset($_POST['city'])){
-                            $varsAmoNew['city'] = $_POST['city'];
-                        }
-
-                        if(isset($_POST['phone'])){
-                            $varsAmoNew['phone'] = $_POST['phone'];
-                        }
-
-                        $varsAmo['contact_id'] = $this->model->amo->newContact($varsAmoNew);
+                    $price = $course['price'];
+                    if(isset($_POST['promocode'])){
+                        $price = $this->model->pricePromocode($course, $_POST['promocode']);
                     }
-                    $amoid = $this->model->amo->newLead($varsAmo);
-                    $this->model->amo->updateStatusLead($amoid, 142);
+                    unset($_POST['promocode']);
 
-                    $this->view->message('Заявка отправлена', 'Ожидайте, скоро мы с вами свяжемся');
-                }
 
-                $paymentData = $this->model->createPayment($course, $_POST);
+                    $paymentData = $this->model->createPayment($course, $price, $_POST);
+                    if(isset($paymentData['error'])){
+                        $this->view->message('Ошибка',$paymentData['error']);
+                    }
+                    if(isset($paymentData['yandexConfirmation'])){
+                         $this->view->locationOut($paymentData['yandexConfirmation']);
+                    }
+                    if($paymentData == 'freePayment'){
+                        $this->view->message('Ваша заявка принята','В скором времени мы с вами свяжемся');
+                    }
+                    break;
+                default:
+                    $this->view->message('Ошибка', 'Не определено действие');
+                    break;
             }
-            $this->model->uploadPayment($paymentData);
-            $this->view->locationOut($paymentData['yandexConfirmation']);
         }
 
-        if(!$id = $this->model->checkExists('id', $this->route['courseid'], 'courses')){
-            $this->view->redirect('account');
-        }
-        if(!$course = $this->model->courseInfo($id)){
-            $this->view->redirect('account');
+        if(!$course = $this->model->courseInfo($this->route['courseid'])){
+            $this->view->redirect('courses');
         }
         if(!$course['timestart'] > time() || $course['payment'] == 0){
-            $this->view->redirect('account');
+            $this->view->redirect('courses');
         }
 
-        $arraynewtext = [
-            'caption' => $course['caption'],
-        ];
-        $newtext = $this->model->descriptionText($arraynewtext);
-        foreach($newtext as $key=>$newtextstr){
-            $course[$key] = $newtextstr;
-        };
+        $course['newPrice'] = $course['price'];
+        if(isset($_GET['promocode']) && $_GET['promocode'] != ''){
+            $course['newPrice'] = $this->model->pricePromocode($course, $_GET['promocode']);
+        }
+
+        if($this->model->auth == 'auth'){
+            if($this->model->checkUserCourse($course['id'])){
+                $this->view->redirect('study/'.$course['id']);
+            }
+            $this->model->openPayPage($course['id']);
+        }
 
         $vars = [
             'seo' => [
@@ -87,16 +76,6 @@ class PayController extends Controller{
             ],
             'course' => $course
         ];
-
-        if($this->model->auth == 'auth'){
-            if($payment = $this->model->checkPayment($this->route['courseid'])){
-                if($payment[0]['status'] == 'succeeded'){
-                    $this->view->redirect('account');
-                    exit();
-                }
-            }
-            $vars['pay'] = $paymentData = $this->model->createPayment($course);
-        }
 
         $this->view->layout = 'pay';
         $this->view->render($vars);

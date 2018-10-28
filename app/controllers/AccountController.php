@@ -102,6 +102,14 @@ class AccountController extends Controller{
         setcookie('i','',time(),'/');
         setcookie('p','',time(),'/');
         unset($_SESSION['user']);
+
+        if(isset($_SERVER['HTTP_REFERER'])){
+            if(strpos($_SERVER['HTTP_REFERER'], $_SERVER['SERVER_NAME'])){
+                $urlInnerPos = strpos($_SERVER['HTTP_REFERER'], $_SERVER['HTTP_HOST'].'/');
+                $urlInner = substr($_SERVER['HTTP_REFERER'], $urlInnerPos + iconv_strlen($_SERVER['HTTP_HOST']) + 1);
+                $this->view->redirect($urlInner);
+            }
+        }
         $this->view->redirect('login');
     }
 

@@ -49,7 +49,7 @@
                 </div>
                 <?php else: ?>
                 <div class="login">
-                    <a href="/login">Вход</a> / <a href="/register">Регистрация</a>
+                    <a href="/login?request_url=<?=substr($_SERVER['REQUEST_URI'],1)?>">Вход</a> / <a href="/register">Регистрация</a>
                 </div>
                 <?php endif ?>
             </div>

@@ -75,15 +75,14 @@ class Amo{
     public function newLead($data){
         if($this->start() == true){
             $leads['add'][0] = [
-                  'created_at'=>time(),
-                  'status_id' => '11316085',
-                  'tags' => 'Сайт',
+                'name' => 'Заявка с сайта',
+                'created_at'=>time(),
+                'status_id' => '11316085',
+                'tags' => 'Сайт',
             ];
 
             if(isset($data['name'])){
                 $leads['add'][0]['name'] = $data['name'];
-            }else{
-                $leads['add'][0]['name'] = 'Заявка с сайта';
             }
 
             if(isset($data['sale'])){
@@ -92,6 +91,10 @@ class Amo{
 
             if(isset($data['contact_id'])){
                 $leads['add'][0]['contacts_id'] = $data['contact_id'];
+            }
+
+            if(isset($data['status_id'])){
+                $leads['add'][0]['status_id'] = $data['status_id'];
             }
 
             if(isset($data['nameCourse'])){
@@ -104,6 +107,7 @@ class Amo{
                     ]
                 ];
             }
+
             if(isset($data['page'])){
                 $leads['add'][0]['custom_fields'][] = [
                     'id' => "452021",
