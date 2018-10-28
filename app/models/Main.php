@@ -36,6 +36,6 @@ class Main extends Model{
         $params = [
             'timestart' => time(),
         ];
-        return $this->db->row('SELECT * FROM courses c WHERE c.type = 1 AND c.timestart > :timestart AND c.active = 1 AND c.private = 0', $params);
+        return $this->db->row('SELECT * FROM courses c WHERE c.type = 1 AND c.timestart > :timestart AND c.active = 1 AND c.private = 0 ORDER BY c.timestart DESC', $params);
     }
 }
