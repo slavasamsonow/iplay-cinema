@@ -6,9 +6,9 @@
 <link rel="shortcut icon" href="/public/favicon/favicon.ico?v=1">
 <meta name="apple-mobile-web-app-title" content="Продюсерский центр ИГРА">
 <meta name="application-name" content="Продюсерский центр ИГРА">
-<meta name="msapplication-TileColor" content="#dd4433">
-<meta name="msapplication-TileImage" content="/public/favicon/mstile-144x144.png?v=1">
-<meta name="msapplication-config" content="/public/favicon/browserconfig.xml?v=1">
+<meta name="msapplication-TileColor" content="#280d42">
+<meta name="msapplication-TileImage" content="/public/favicon/mstile-144x144.png?v=2">
+<meta name="msapplication-config" content="/public/favicon/browserconfig.xml?v=2">
 <meta name="theme-color" content="#280d42">
 
 <!-- Яндекс.табло -->
