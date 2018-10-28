@@ -1,6 +1,6 @@
 // v.0.11.2
-function videoHeight(){
-	$('.video iframe').each(function(){
+function videoHeight() {
+	$('.video iframe').each(function () {
 		var widthVideo = $(this).width();
 		var heightVideo = widthVideo / 16 * 9;
 		$(this).css('height', heightVideo);
@@ -269,7 +269,7 @@ $(document).ready(function () {
 		$(show).fadeIn();
 	})
 
-	$('button[data-type="payPromocode"]').click(function(){
+	$('button[data-type="payPromocode"]').click(function () {
 		var elem = $(this);
 		if (elem.hasClass('process')) {
 			return;
@@ -294,10 +294,10 @@ $(document).ready(function () {
 				if (json.data.sale) {
 					var sale = json.data.sale;
 					var newprice;
-					if(sale.indexOf('%') > 0){
+					if (sale.indexOf('%') > 0) {
 						var saleSum = price / 100 * parseFloat(sale);
 						newprice = Math.floor(price - saleSum);
-					}else{
+					} else {
 						newprice = price - sale;
 					}
 					$('input[name="price"]').val(newprice);
@@ -322,6 +322,6 @@ $(document).ready(function () {
 	videoHeight();
 });
 
-$(window).resize(function(){
+$(window).resize(function () {
 	videoHeight();
 });
