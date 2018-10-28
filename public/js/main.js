@@ -36,16 +36,7 @@ $(document).ready(function () {
 	// $('a[href="' + thisPage + '"]').removeAttr('href');
 	$('.left-menu .thisPage').parents('ul').slideDown();
 
-	// Обработка форм
-	$('input').focusin(function () {
-		$(this).parent().addClass('active');
-	});
-	$('input').focusout(function () {
-		if ($(this).val().length <= 0) {
-			$(this).parent().removeClass('active');
-		}
-	});
-	// Маска для телефона
+	// Маски ввода
 	$("input[type=tel]").mask("+7 (999) 999-99-99");
 	$("input[name=datetime]").mask('99.99.9999 99:99:99');
 
@@ -250,7 +241,6 @@ $(document).ready(function () {
 			},
 			success: function (result) {
 				json = jQuery.parseJSON(result);
-				console.log(json);
 				if (json.data.status) {
 					switch (json.data.status) {
 						case 'delete':
@@ -277,7 +267,48 @@ $(document).ready(function () {
 		var show = elem.attr('data-action');
 		elem.fadeOut();
 		$(show).fadeIn();
+	})
 
+	$('button[data-type="payPromocode"]').click(function(){
+		var elem = $(this);
+		if (elem.hasClass('process')) {
+			return;
+		}
+		elem.addClass('process');
+
+		var promocode = $('input[name="promocode"]').val();
+		var course = $('input[name="course"]').val();
+		var price = $('input[name="price"]').attr('data-price');
+
+		$.ajax({
+			url: '/pay/' + course,
+			type: 'post',
+			data: {
+				action: 'promocode',
+				promocode: promocode,
+				course: course
+			},
+			success: function (result) {
+				json = jQuery.parseJSON(result);
+				console.log(json);
+				if (json.data.sale) {
+					var sale = json.data.sale;
+					var newprice;
+					if(sale.indexOf('%') > 0){
+						var saleSum = price / 100 * parseFloat(sale);
+						newprice = Math.floor(price - saleSum);
+					}else{
+						newprice = price - sale;
+					}
+					$('input[name="price"]').val(newprice);
+				}
+				if (json.data.error) {
+					openModal('message', 'Ошибка', json.data.error);
+					$('input[name="price"]').val($('input[name="price"]').attr('data-price'));
+				}
+				elem.removeClass('process');
+			}
+		})
 	})
 
 	$(".owl-carousel").owlCarousel({
