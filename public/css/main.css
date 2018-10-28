@@ -171,7 +171,7 @@
     margin-bottom: 20px;
 }
 
-.content.intro .about .video iframe{
+.content.intro .about .video iframe {
     width: 100%;
 }
 
@@ -444,7 +444,8 @@
     background-color: #D6D6D6;
     color: #111;
 }
-.userList .user a:hover .name{
+
+.userList .user a:hover .name {
     text-decoration: none;
 }
 
