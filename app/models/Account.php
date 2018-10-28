@@ -271,7 +271,7 @@ class Account extends Model{
             ];
             $usl = 'WHERE username = :username';
         }
-        $userData = $this->db->row('SELECT `id`, `fname`, `lname`, `about`, `video`, `photo` FROM `users` '.$usl, $params);
+        $userData = $this->db->row('SELECT u.* FROM users u '.$usl, $params);
         if(empty($userData)){
             return false;
         }
