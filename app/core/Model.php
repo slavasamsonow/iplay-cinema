@@ -322,7 +322,7 @@ abstract class Model{
             $newstring = trim($string);
             $newstring = strip_tags($newstring);
             $newstring = htmlspecialchars($newstring);
-            if(in_array($key, ['description', 'caption', 'content'])){
+            if(in_array($key, ['description', 'caption', 'content', 'about'])){
                 $newstring = '<p>'.$newstring.'</p>';
                 $newstring = preg_replace("/(\r\n){3,}/", "\r\n\r\n", $newstring);
                 $newstring = preg_replace('/\r\n/','</p><p>', $newstring);
