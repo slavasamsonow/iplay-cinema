@@ -193,9 +193,9 @@ class Account extends Model{
     }
 
     // Смена данных
-    public function saveUserData($id, $data){
-        foreach($data as $key=>$val){
-            $params[$key] = $val;
+    public function saveUserData($id, $indata){
+        $params = $this->processTextIn($indata);
+        foreach($params as $key=>$val){
             if($key == 'password'){
                 $_SESSION['user']['password'] = $val;
                 if(isset($_COOKIE['p'])){
