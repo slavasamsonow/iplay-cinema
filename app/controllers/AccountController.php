@@ -222,14 +222,6 @@ class AccountController extends Controller{
             $this->view->errorCode('404');
         }
 
-        $arraynewtext = [
-            'about' => $userPage['about'],
-        ];
-        $newtext = $this->model->descriptionText($arraynewtext);
-        foreach($newtext as $key=>$newtextstr){
-            $userPage[$key] = $newtextstr;
-        };
-
         $vars = [
             'seo' => [
                 'title' => $userPage['fname'].' '.$userPage['lname'],
