@@ -339,7 +339,7 @@ abstract class Model{
         foreach($strings as $key=>$string){
             $newstring = $string;
             $newstring = preg_replace(array('/\<b\>/','/\<\/b\>/'), array('[b]','[/b]'), $newstring);
-            $newstring = preg_replace(array('/\<br\>/', '/\<p\>\<\/p\>/'), "\r\n", $newstring);
+            $newstring = preg_replace(array('/\<br\>/', '/\<\/p\>\<p\>/'), "\r\n", $newstring);
             $newstring = preg_replace(array('/\<p\>/', '/\<\/p\>/'), "", $newstring);
             $newstrings[$key] = $newstring;
         }
