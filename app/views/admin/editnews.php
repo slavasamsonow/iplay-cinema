@@ -26,7 +26,7 @@
             <label>Автор:</label>
             <select class="form-control" name="author">
                 <?php foreach($usersList as $userListItem):?>
-                <option value="<?=$userListItem['id']?>" <?php if($news['author'] == $userListItem['id']) echo 'checked';?>>
+                <option value="<?=$userListItem['id']?>" <?php if($news['author'] == $userListItem['id']) echo 'selected';?>>
                     <?=$userListItem['fname'].' '.$userListItem['lname']?>
                 </option>
                 <?php endforeach ?>
