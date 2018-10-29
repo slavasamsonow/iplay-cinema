@@ -1,5 +1,5 @@
 <h1><span class="big">Промокоды</span></h1>
-<!-- <a href="/admin/addnews" class="btn">Создать новый промокод</a> -->
+<a href="/admin/addpromocode" class="btn">Создать новый промокод</a>
 <?php if(!empty($promocodes)): ?>
 <div class="promocodelist">
     <?php for($i = 0; $i < count($promocodes); $i++): ?>
@@ -26,7 +26,7 @@
                 <?php if($promocodes[$i]['timestart'] == 0):?>
                 Не указана
                 <?php else: ?>
-                <?=date('d.m.Y',$promocodes[$i]['timestart'])?>
+                <?=date('d.m.Y H:i',$promocodes[$i]['timestart'])?>
                 <?php endif ?>
             </div>
             <div class="date-end">
@@ -34,7 +34,8 @@
                 <?php if($promocodes[$i]['timeend'] == 0):?>
                 Не указана
                 <?php else: ?>
-                <?=date('d.m.Y',$promocodes[$i]['timeend'])?>
+                <?=date('d.m.Y H:i
+                ',$promocodes[$i]['timeend'])?>
                 <?php endif ?>
             </div>
             <div class="param">
@@ -49,5 +50,7 @@
     <?php endfor?>
 </div>
 <?php else: ?>
-На данный момент нет новостей
+<div>
+На данный момент нет промокодов
+</div>
 <?php endif?>
