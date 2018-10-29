@@ -292,4 +292,59 @@ class AdminController extends Controller{
         ];
         $this->view->render($vars);
     }
+
+    public function promocodelistAction(){
+        $vars = [
+            'seo' => [
+                'title' => 'Список промокодов',
+            ],
+            'promocodes' => $this->model->promocodeList(),
+        ];
+        $this->view->render($vars);
+    }
+
+    // public function addnewsAction(){
+    //     if(!empty($_POST)){
+    //         $data = $_POST;
+
+    //         if(isset($_FILES['image']['tmp_name']) && $_FILES['image']['tmp_name'] != ''){
+    //             if($file = $this->model->saveFile($_FILES['image'], 'public/img/news/', 'image')){
+    //                 $data['image'] = $file;
+    //             }
+    //         }
+
+    //         if($id = $this->model->createNews($data)){
+    //             $this->view->location('admin/newslist');
+    //         }
+    //     }
+    //     $vars = [
+    //         'usersList' => $this->model->userslist(),
+    //     ];
+    //     $this->view->render($vars);
+    // }
+
+    // public function editnewsAction(){
+    //     if(!empty($_POST)){
+    //         $id = $_POST['newsid'];
+    //         unset($_POST['newsid']);
+
+    //         // Проверка на существование
+
+    //         $data = $_POST;
+
+    //         // $this->view->message("+", json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ));
+
+    //         if($this->model->updateNews($id, $data)){
+    //             $this->view->location('admin/newslist');
+    //         }
+    //     }
+    //     if(!$news = $this->model->newsEditInfo($this->route['newsid'])){
+    //         $this->view->errorCode(404);
+    //     }
+    //     $vars = [
+    //         'usersList' => $this->model->userslist(),
+    //         'news' => $news,
+    //     ];
+    //     $this->view->render($vars);
+    // }
 }
