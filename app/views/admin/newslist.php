@@ -1,5 +1,5 @@
 <h1><span class="big">Новости</span></h1>
-<a href="/admin/addnews" class="btn">Создать новую новость</a>
+<a href="/admin/addnews" class="btn">Создать новость</a>
 <?php if(!empty($news)): ?>
 <div class="newslist">
     <?php for($i = 0; $i < count($news); $i++): ?>
