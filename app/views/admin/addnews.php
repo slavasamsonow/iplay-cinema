@@ -1,4 +1,4 @@
-<h1>Создать новую новость</h1>
+<h1>Создать новость</h1>
 <form action="/admin/addnews" method="post" class="row">
     <div class="col-md-6">
         <div class="control-group form-group">
