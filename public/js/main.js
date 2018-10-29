@@ -39,6 +39,8 @@ $(document).ready(function () {
 	// Маски ввода
 	$("input[type=tel]").mask("+7 (999) 999-99-99");
 	$("input[name=datetime]").mask('99.99.9999 99:99:99');
+	$("input[name=timestart]").mask('99.99.9999 99:99:99');
+	$("input[name=timeend]").mask('99.99.9999 99:99:99');
 
 	$('form').submit(function (event) {
 		if ($(this).hasClass('no_ajax')) {
