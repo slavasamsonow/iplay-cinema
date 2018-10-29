@@ -149,5 +149,17 @@ return [
             'controller' => 'admin',
             'action' => 'editnews',
         ],
+        'admin/promocodelist' => [
+            'controller' => 'admin',
+            'action' => 'promocodelist',
+        ],
+        'admin/addpromocode' => [
+            'controller' => 'admin',
+            'action' => 'addpromocode',
+        ],
+        'admin/editpromocode/{promocodeid:\d+}' => [
+            'controller' => 'admin',
+            'action' => 'editpromocode',
+        ],
 
 ];
