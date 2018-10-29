@@ -322,4 +322,55 @@ class Admin extends Model{
         $this->db->query('UPDATE news SET '.$paramNV.' WHERE `id` = :id', $params);
         return true;
     }
+
+    public function promocodeList(){
+        $promocode = $this->db->row('SELECT pp.*, c.name AS `courseName` FROM payments_promocode pp LEFT JOIN courses c ON pp.course = c.id ORDER BY pp.timestart DESC');
+        // foreach($news as $key => $newsitem){
+        //     $news[$key]['author'] = $newsitem['fname'].' '.$newsitem['lname'];
+        //     unset($newsitem['fname'],$newsitem['lname']);
+        // }
+        return $promocode;
+    }
+
+    // public function createNews($indata){
+    //     $params = $this->processTextIn($indata);
+    //     $params['timestart'] = $this->toUnixtime($params['datetime']);
+    //     unset($params['datetime']);
+    //     $paramNandV = $this->db->paramNandV($params);
+
+    //     $this->db->query('INSERT INTO news ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
+    //     return $this->db->lastInsertId();
+    // }
+
+    // public function newsEditInfo($newsid){
+    //     if(!$news = $this->newsInfo($newsid)){
+    //         return false;
+    //     }
+    //     return $this->processTextOut($news);
+    // }
+
+    // public function newsInfo($newsid){
+    //     $params = [
+    //         'id' => $newsid,
+    //     ];
+    //     $news = $this->db->row('SELECT * FROM news n WHERE n.id = :id', $params);
+    //     if(empty($news)){
+    //         return false;
+    //     }
+    //     return $news[0];
+    // }
+
+    // public function updateNews($id, $indata){
+    //     $params = $this->processTextIn($indata);
+    //     $params['timestart'] = $this->toUnixtime($params['datetime']);
+    //     unset($params['datetime']);
+    //     if(!isset($params['active'])){
+    //         $params['active'] = 0;
+    //     }
+    //     $paramNV = $this->db->paramNV($params);
+    //     $params['id'] = $id;
+
+    //     $this->db->query('UPDATE news SET '.$paramNV.' WHERE `id` = :id', $params);
+    //     return true;
+    // }
 }
