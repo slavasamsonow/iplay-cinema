@@ -1,4 +1,5 @@
 <div class="coursePage">
+<<<<<<< HEAD
     <div class="headline">
         <div class="row">
             <div class="col-md-8">
@@ -10,6 +11,44 @@
                 <div class="caption">
                     <?=$course['caption']?>
                 </div>
+=======
+    <div class="headline" style="background-image: linear-gradient(to left, rgba(34, 0, 68, 0.8), rgba(34, 0, 68, 0.8)),url('/public/img/courses/<?=$course['image']?>');">
+        <h1>
+            <span class="big">
+                <?=$course['name']?>
+            </span>
+        </h1>
+        <div class="caption">
+            <?=$course['caption']?>
+        </div>
+        <div class="date">
+            <?=date('d/m', $course['timestart'])?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="timestart">
+                Дата старта:
+                <?=date('d', $course['timestart'])?>
+                <?
+                $months = array( 1 => 'января' , 'февраля' , 'марта' , 'апреля' , 'мая' , 'июня' , 'июля' , 'августа' , 'сентября' , 'октября' , 'ноября' , 'декабря' );
+                echo $months[date('n', $course['timestart'])];
+                ?>
+            </div>
+
+            <?php if($course['duration'] != ''):?>
+            <div class="duration">
+                Продолжительность:
+                <?=$course['duration']?>
+            </div>
+
+            <?php endif?>
+            <!-- Уже записались: <?=$course['peoples']?> -->
+            <?php if($course['price'] > 0):?>
+            <div class="price">
+                <!-- <?=$course['price']?> Р -->
+>>>>>>> master
             </div>
             <div class="col-md-4">
                 <div class="date">
