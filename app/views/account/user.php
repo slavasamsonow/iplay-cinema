@@ -8,27 +8,24 @@
         <img src="/public/img/users/<?=$userPage['photo']?>" alt="<?=$userPage['fname'].' '.$userPage['lname'].' | Продюсерский центр ИГРА'?>"
             width="200">
     </div>
-    <div class="col-md-9">
+    <?php endif ?>
+    <div class="<?=($userPage['photo'])?'col-md-9':'col-md-12'?>">
+        <?php if(!$userPage['public'] && !isset($_SESSION['user'])):?>
+        Пользователь ограничил доступ к информации
         <?php else: ?>
-        <div class="col-md-12">
-            <?php endif ?>
-            <?php if(!$userPage['public'] && !isset($_SESSION['user'])):?>
-            Пользователь ограничил доступ к информации
-            <?php else: ?>
-            <div class="about">
-                <?=$userPage['about']?>
-            </div>
-            <div class="projects">
-                <h2>Проекты:</h2>
-                <?php foreach($userProjects as $userProject):?>
-                <div class="project">
-                    <a href="/project/<?=$userProject['id']?>">
-                        <?=$userProject['name']?></a>
-                </div>
-
-                <?php endforeach ?>
-            </div>
-            <? endif ?>
-
+        <div class="about">
+            <?=$userPage['about']?>
         </div>
+        <div class="projects">
+            <h2>Проекты:</h2>
+            <?php foreach($userProjects as $userProject):?>
+            <div class="project">
+                <a href="/project/<?=$userProject['id']?>">
+                    <?=$userProject['name']?></a>
+            </div>
+
+            <?php endforeach ?>
+        </div>
+        <?php endif ?>
     </div>
+</div>
