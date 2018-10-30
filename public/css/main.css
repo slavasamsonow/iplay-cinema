@@ -1,6 +1,9 @@
 /* v.0.12.8 */
 
 /* Интро */
+.content.intro{
+    padding-left: 0;
+}
 
 /* Навигация */
 .content.intro .navbar {
