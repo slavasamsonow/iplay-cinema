@@ -77,7 +77,7 @@
     </div>
 </div>
 <?php endif ?>
-<div class="about bl-bg">
+<div class="about bg-blue">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
