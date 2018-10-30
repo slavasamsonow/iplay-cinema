@@ -1,7 +1,7 @@
 /* v.0.12.8 */
 
 /* Интро */
-.content.intro{
+.content.intro {
     padding-left: 0;
 }
 
@@ -325,16 +325,16 @@
 }
 
 /* Страница курса */
-.coursePage .headline .date{
+.coursePage .headline .date {
     margin-bottom: 20px;
 }
 
-.coursePage .description{
+.coursePage .description {
     position: relative;
     overflow: hidden;
 }
 
-.coursePage .description .background-triangles{
+.coursePage .description .background-triangles {
     position: absolute;
     z-index: 0;
     bottom: 0;
@@ -342,16 +342,16 @@
     width: 400px;
 }
 
-.coursePage .program h2{
+.coursePage .program h2 {
     padding-bottom: 30px;
 }
 
-.coursePage .program ul{
+.coursePage .program ul {
     list-style: none;
     padding: 0;
 }
 
-.coursePage .program ul li{
+.coursePage .program ul li {
     margin-bottom: 20px;
 }
 
@@ -361,7 +361,7 @@
     margin-top: 10px;
 }
 
-.coursePage .projects{
+.coursePage .projects {
     margin: 0 -90px;
     padding: 0 90px 50px;
 }
@@ -370,9 +370,30 @@
     margin-bottom: 30px;
 }
 
+.coursePage .sale {
+    position: relative;
+    margin: 0 -90px;
+    padding: 50px 90px;
+}
+
+.coursePage .sale .ostatok {
+    font-size: 20px;
+    font-weight: 300;
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+
 .coursePage .sale button {
     display: block;
     margin: auto;
+}
+
+.coursePage .sale .background-triangles{
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    width: 400px;
 }
 
 .userList .user a {
