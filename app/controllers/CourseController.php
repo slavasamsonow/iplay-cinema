@@ -55,8 +55,8 @@ class CourseController extends Controller{
             }
             if($_POST['form'] == 'registercourse'){
                 if(isset($_SESSION['user'])){
-                    $this->model->registerСourseUser($_POST);
-                    $this->view->location();
+                    $this->model->registerCourseUser($_POST);
+                    $this->view->location('pay/'.$_POST['courseid']);
                 }else{
                     if(!$this->model->validate(['email', 'phone'], $_POST)){
                         $this->view->message('Ошибка', $this->model->error);
