@@ -11,7 +11,6 @@ class AdminController extends Controller{
 
     public function __construct($route){
         parent::__construct($route);
-        $this->view->layout = 'lk';
         if(!$this->model->role == 'admin'){
             $this->view->errorCode('403');
         }

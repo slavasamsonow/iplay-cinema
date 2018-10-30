@@ -22,6 +22,7 @@
 
     <body>
         <div class="content">
+            <?php require_once('include/left-menu.php')?>
             <?php require_once('include/navbar.php')?>
 
             <div class="wrapper">

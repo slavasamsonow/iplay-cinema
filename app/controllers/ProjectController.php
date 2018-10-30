@@ -7,9 +7,6 @@ use app\core\Controller;
 class ProjectController extends Controller{
     public function __construct($route){
         parent::__construct($route);
-        if($this->model->auth == 'auth'){
-            $this->view->layout = 'lk';
-        }
     }
 
     public function projectAction(){
