@@ -177,7 +177,8 @@
             </div>
 
             <div class="portfolioItem">
-                <img src="/public/img/portfolio/nitochka.png" alt="<?='Короткометражный фильм "Ниточка". Лена Коробейникова | Продюсерский центр ИГРА'?>">
+                <img src="/public/img/portfolio/nitochka.png" alt="<?='Короткометражный фильм " Ниточка". Лена
+                    Коробейникова | Продюсерский центр ИГРА'?>">
                 <div class="name">
                     Короткометражный фильм "Ниточка". Лена Коробейникова
                 </div>
@@ -202,7 +203,8 @@
             </div>
 
             <div class="portfolioItem">
-                <img src="/public/img/portfolio/Tatyana-zikina.png" alt="<?='Татьяна Зыкина с новым альбомом "За закрытыми окнами" | Продюсерский центр ИГРА'?>">
+                <img src="/public/img/portfolio/Tatyana-zikina.png" alt="<?='Татьяна Зыкина с новым альбомом " За
+                    закрытыми окнами" | Продюсерский центр ИГРА'?>">
                 <div class="name">
                     Татьяна Зыкина с новым альбомом "За закрытыми окнами"
                 </div>
@@ -214,7 +216,8 @@
             </div>
 
             <div class="portfolioItem">
-                <img src="/public/img/portfolio/chidu-na-izhe.png" alt="<?='Новогодняя история "Чудо на Иже" | Продюсерский центр ИГРА'?>">
+                <img src="/public/img/portfolio/chidu-na-izhe.png" alt="<?='Новогодняя история " Чудо на Иже" |
+                    Продюсерский центр ИГРА'?>">
                 <div class="name">
                     Новогодняя история "Чудо на Иже"
                 </div>
@@ -240,6 +243,7 @@
         </div>
     </div>
 
+    <?php if($course['id'] != 4)?>
     <div class="sale">
         <div class="row">
             <!-- <div class="col-md-6">
@@ -268,6 +272,7 @@
             </div>
         </div>
     </div>
+    <?php endif ?>
 
     <div class="question">
         <div class="row">
