@@ -34,7 +34,7 @@ class CourseController extends Controller{
 
     public function courseAction(){
         if(!empty($_POST)){
-            if($_POST['form'] == 'grant'){
+            if($_POST['form'] == 'registergrant'){
                 if(isset($_SESSION['user'])){
                     $this->model->grantApplicationUser($_POST);
                 }else{
@@ -50,6 +50,27 @@ class CourseController extends Controller{
                     }
 
                     $this->model->grantApplicationGuest($_POST);
+                }
+                $this->view->message('Ваша заявка отправлена', 'В скором времени мы свяжемся с вами');
+            }
+            if($_POST['form'] == 'registercourse'){
+                if(isset($_SESSION['user'])){
+                    $this->model->registerСourseUser($_POST);
+                    $this->view->location();
+                }else{
+                    if(!$this->model->validate(['email', 'phone'], $_POST)){
+                        $this->view->message('Ошибка', $this->model->error);
+                    }
+
+                    if(isset($_POST['register'])){
+                        $this->modelAccount = $this->loadModel('account');
+                        if(!$this->model->checkExists('email', $_POST['email'], 'users')){
+                           $user = $this->modelAccount->register($_POST);
+                        }
+                    }
+
+                    $this->model->registerСourseGuest($_POST);
+                    $this->view->location('pay/'.$_POST['courseid'].'?email='.$_POST['email'].'&fio='.$_POST['fio'].'&phone='.$_POST['phone'].'&city='.$_POST['city']);
                 }
                 $this->view->message('Ваша заявка отправлена', 'В скором времени мы свяжемся с вами');
             }
