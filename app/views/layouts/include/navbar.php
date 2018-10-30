@@ -1,7 +1,7 @@
 <nav class="navbar">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2 col-md-offset-1 logo">
+            <div class="col-md-2 logo">
                 <a href="/">
                     <?php if(!isset($logoColor))$logoColor='black';?>
                     <img src="/public/img/content/logo-<?=$logoColor?>.png" alt="Продюсерский центр ИГРА">
@@ -23,7 +23,7 @@
                 </div>
                 <? endif ?>
             </div>
-            <div class="col-md-6 menu_lk">
+            <div class="col-md-8 menu_lk">
                 <ul class="menu">
                     <li>
                         <a href="/news">Новости</a>
