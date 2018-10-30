@@ -691,6 +691,10 @@ footer {
     background-color: #204;
 }
 
+.bg-red{
+    background-color: #d43;
+}
+
 /* Стилизация текста */
 .white-text {
     color: #fff;
