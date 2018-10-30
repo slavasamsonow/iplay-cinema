@@ -26,6 +26,7 @@
                 </div>
             </div>
             <a href="/study/<?=$course['id']?>" class="btn btn-default btn-sm">Открыть</a>
+            <a href="/course/<?=$course['id']?>" class="btn btn-default btn-sm">Подробнее</a>
             <?php endif ?>
         </div>
         <? endforeach ?>
