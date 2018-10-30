@@ -1,64 +1,49 @@
 <div class="coursePage">
-    <div class="headline" style="background-image: linear-gradient(to left, rgba(34, 0, 68, 0.8), rgba(34, 0, 68, 0.8)),url('/public/img/courses/<?=$course['image']?>');">
-        <h1>
-            <span class="big">
-                <?=$course['name']?>
-            </span>
-        </h1>
-        <div class="caption">
-            <?=$course['caption']?>
-        </div>
-        <div class="date">
-            <?=date('d/m', $course['timestart'])?>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <div class="timestart">
-                Дата старта:
-                <?=date('d', $course['timestart'])?>
-                <?
-                $months = array( 1 => 'января' , 'февраля' , 'марта' , 'апреля' , 'мая' , 'июня' , 'июля' , 'августа' , 'сентября' , 'октября' , 'ноября' , 'декабря' );
-                echo $months[date('n', $course['timestart'])];
-                ?>
+    <div class="headline">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>
+                    <span class="big">
+                        <?=$course['name']?>
+                    </span>
+                </h1>
+                <div class="caption">
+                    <?=$course['caption']?>
+                </div>
             </div>
-
-            <?php if($course['duration'] != ''):?>
-            <div class="duration">
-                Продолжительность:
-                <?=$course['duration']?>
-            </div>
-
-            <?php endif?>
-            <!-- Уже записались: <?=$course['peoples']?> -->
-            <?php if($course['price'] > 0):?>
-            <div class="price">
-                <?=$course['price']?> Р
-            </div>
-            <?php endif?>
-            <?php if($course['payment'] == 1):?>
-            <div class="zapis">
-                <? if(isset($_SESSION['user'])):?>
-                <form action="<?=explode('?',$_SERVER['REQUEST_URI'])[0];?>" method="post">
-                    <input type="hidden" name="form" value="registercourse">
-                    <input type="hidden" name="courseid" value="<?=$course['id']?>">
-                    <input type="hidden" name="course" value="<?=$course['name']?>">
-                    <input type="submit" class="btn btn-sm" value="Записаться">
-                </form>
-                <?php else: ?>
-                <button class="btn btn-sm" data-action="modal" data-modal="registercourse">Записаться</button>
-                <?php endif ?>
-                <!-- <a href="/pay/<?=$course['id']?>" class="btn btn-sm">Записаться</a> -->
-            </div>
-            <?php endif?>
-        </div>
-        <div class="col-md-8">
-            <div class="description">
-                <?=$course['description']?>
+            <div class="col-md-4">
+                <div class="date">
+                    Дата старта: <br>
+                    <?=date('d', $course['timestart'])?>
+                    <?
+                    $months = array( 1 => 'января' , 'февраля' , 'марта' , 'апреля' , 'мая' , 'июня' , 'июля' , 'августа' , 'сентября' , 'октября' , 'ноября' , 'декабря' );
+                    echo $months[date('n', $course['timestart'])];
+                    ?>
+                </div>
+                <?php if($course['payment'] == 1):?>
+                <div class="zapis">
+                    <?php if(isset($_SESSION['user'])): ?>
+                    <form action="<?=explode('?',$_SERVER['REQUEST_URI'])[0];?>" method="post">
+                        <input type="hidden" name="form" value="registercourse">
+                        <input type="hidden" name="courseid" value="<?=$course['id']?>">
+                        <input type="hidden" name="course" value="<?=$course['name']?>">
+                        <input type="submit" class="btn btn-white" value="Записаться">
+                    </form>
+                    <?php else: ?>
+                    <button class="btn btn-white" data-action="modal" data-modal="registercourse">Записаться</button>
+                    <?php endif ?>
+                </div>
+                <?php endif?>
             </div>
         </div>
     </div>
+    <div class="description">
+        <?=$course['description']?>
+        <div class="background-triangles">
+            <img src="/public/img/content/pattern-more-triangle-blue.svg" alt="">
+        </div>
+    </div>
+
 
     <?php if(!empty($teachers)):?>
     <div class="teachers">
@@ -104,10 +89,12 @@
 
     <?php if(!empty($program )):?>
     <div class="program">
-        <h2>Программа</h2>
+        <h2>Программа:</h2>
+        <?php if($course['program']): ?>
         <p>
             <?=$course['program']?>
         </p>
+        <?php endif ?>
         <div class="programlist">
             <ul>
                 <?php foreach($program as $programItem):?>
@@ -126,33 +113,32 @@
     <?php endif ?>
 
     <?php if(!empty($projects)):?>
-    <div class="projects">
+    <div class="projects bg-purple white-text">
         <h2>Наши проекты</h2>
         <p>
             <?=$course['projects']?>
         </p>
-        <div class="projectslist row">
+        <div class="projectslist owl-carousel">
             <?php foreach($projects as $project):?>
-            <div class="col-md-3">
-                <div class="project">
-                    <?php if($project['image']):?>
-                    <img src="/public/img/projects/<?=$project['image']?>" alt="<?=$project['name'].' | Продюсерский центр ИГРА'?>">
-                    <?php else: ?>
-                    <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?=$project['name'].'| Продюсерский центр ИГРА'?>">
-                    <?php endif?>
+            <div class="project">
+                <?php if($project['image']):?>
+                <img src="/public/img/projects/<?=$project['image']?>" alt="<?=$project['name'].' | Продюсерский центр ИГРА'?>">
+                <?php else: ?>
+                <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?=$project['name'].'| Продюсерский центр ИГРА'?>">
+                <?php endif?>
+                <div class="name">
+                    <a href="/project/<?=$project['id']?>" target="_blank">
+                        <?=$project['name']?></a>
+                </div>
+                <!-- <div class="overlay">
                     <div class="name">
                         <?=$project['name']?>
                     </div>
-                    <div class="overlay">
-                        <div class="name">
-                            <?=$project['name']?>
-                        </div>
-                        <div class="description">
-                            <?=$project['caption']?>
-                        </div>
-                        <a href="/project/<?=$project['id']?>" target="_blank">Подробнее</a>
+                    <div class="description">
+                        <?=$project['caption']?>
                     </div>
-                </div>
+                    <a href="/project/<?=$project['id']?>" target="_blank">Подробнее</a>
+                </div> -->
             </div>
             <?php endforeach ?>
         </div>
@@ -166,77 +152,93 @@
         </p>
         <div class="portfoliolist row owl-carousel">
             <div class="portfolioItem">
-                <img src="/public/img/portfolio/mugur.png" alt="<?='Юрий Князев. Мугур | Продюсерский центр ИГРА'?>">
+                <div class="image">
+                    <img src="/public/img/portfolio/mugur.png" alt="<?='Юрий Князев. Мугур | Продюсерский центр ИГРА'?>">
+                    <div class="play">
+                        <button data-action="modal" data-modal="video" data-videoname="Юрий Князев. Мугур" data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/iHnjb8Sp4KQ?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+                            class="btn btn-sm">Воспроизвести</button>
+                    </div>
+                </div>
+
                 <div class="name">
                     Юрий Князев. Мугур
                 </div>
-                <div class="play">
-                    <button data-action="modal" data-modal="video" data-videoname="Юрий Князев. Мугур" data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/iHnjb8Sp4KQ?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
-                        class="btn btn-sm">Воспроизвести</button>
-                </div>
+
             </div>
 
             <div class="portfolioItem">
-                <img src="/public/img/portfolio/nitochka.png" alt="<?='Короткометражный фильм " Ниточка". Лена
-                    Коробейникова | Продюсерский центр ИГРА'?>">
+                <div class="image">
+                    <img src="/public/img/portfolio/nitochka.png" alt="<?='Короткометражный фильм " Ниточка". Лена
+                        Коробейникова | Продюсерский центр ИГРА'?>">
+                    <div class="play">
+                        <button data-action="modal" data-modal="video" data-videoname='Короткометражный фильм "Ниточка". Лена Коробейникова'
+                            data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/CfqE7Sf7pfQ?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+                            class="btn btn-sm">Воспроизвести</button>
+                    </div>
+                </div>
+
                 <div class="name">
                     Короткометражный фильм "Ниточка". Лена Коробейникова
                 </div>
-                <div class="play">
-                    <button data-action="modal" data-modal="video" data-videoname='Короткометражный фильм "Ниточка". Лена Коробейникова'
-                        data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/CfqE7Sf7pfQ?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
-                        class="btn btn-sm">Воспроизвести</button>
-                </div>
+
             </div>
 
 
             <div class="portfolioItem">
-                <img src="/public/img/portfolio/katarini.png" alt="<?='День рождение дизайнерского дуэта KATARINI | Продюсерский центр ИГРА'?>">
+                <div class="image">
+                    <img src="/public/img/portfolio/katarini.png" alt="<?='День рождение дизайнерского дуэта KATARINI | Продюсерский центр ИГРА'?>">
+                    <div class="play">
+                        <button data-action="modal" data-modal="video" data-videoname="День рождение дизайнерского дуэта KATARINI"
+                            data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/ipoVy8EfWeA?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+                            class="btn btn-sm">Воспроизвести</button>
+                    </div>
+                </div>
                 <div class="name">
                     День рождение дизайнерского дуэта KATARINI
                 </div>
-                <div class="play">
-                    <button data-action="modal" data-modal="video" data-videoname="День рождение дизайнерского дуэта KATARINI"
-                        data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/ipoVy8EfWeA?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
-                        class="btn btn-sm">Воспроизвести</button>
-                </div>
             </div>
 
             <div class="portfolioItem">
-                <img src="/public/img/portfolio/Tatyana-zikina.png" alt="<?='Татьяна Зыкина с новым альбомом " За
-                    закрытыми окнами" | Продюсерский центр ИГРА'?>">
+                <div class="image">
+                    <img src="/public/img/portfolio/Tatyana-zikina.png" alt="<?='Татьяна Зыкина с новым альбомом " За
+                        закрытыми окнами" | Продюсерский центр ИГРА'?>">
+                    <div class="play">
+                        <button data-action="modal" data-modal="video" data-videoname='Татьяна Зыкина с новым альбомом "За закрытыми окнами"'
+                            data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/cgk-63V-WmQ?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+                            class="btn btn-sm">Воспроизвести</button>
+                    </div>
+                </div>
                 <div class="name">
                     Татьяна Зыкина с новым альбомом "За закрытыми окнами"
                 </div>
-                <div class="play">
-                    <button data-action="modal" data-modal="video" data-videoname='Татьяна Зыкина с новым альбомом "За закрытыми окнами"'
-                        data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/cgk-63V-WmQ?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
-                        class="btn btn-sm">Воспроизвести</button>
-                </div>
             </div>
 
             <div class="portfolioItem">
-                <img src="/public/img/portfolio/chidu-na-izhe.png" alt="<?='Новогодняя история " Чудо на Иже" |
-                    Продюсерский центр ИГРА'?>">
+                <div class="image">
+                    <img src="/public/img/portfolio/chidu-na-izhe.png" alt="<?='Новогодняя история " Чудо на Иже" |
+                        Продюсерский центр ИГРА'?>">
+                    <div class="play">
+                        <button data-action="modal" data-modal="video" data-videoname="Новогодняя история " Чудо на
+                            Иже"" data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/eqMOSruB__E?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+                            class="btn btn-sm">Воспроизвести</button>
+                    </div>
+                </div>
                 <div class="name">
                     Новогодняя история "Чудо на Иже"
                 </div>
-                <div class="play">
-                    <button data-action="modal" data-modal="video" data-videoname="Новогодняя история " Чудо на Иже""
-                        data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/eqMOSruB__E?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
-                        class="btn btn-sm">Воспроизвести</button>
-                </div>
             </div>
 
             <div class="portfolioItem">
-                <img src="/public/img/portfolio/razgovor-o-tancah.png" alt="<?='Разговор о танце в Ижевске. | Продюсерский центр ИГРА'?>">
+                <div class="image">
+                    <img src="/public/img/portfolio/razgovor-o-tancah.png" alt="<?='Разговор о танце в Ижевске. | Продюсерский центр ИГРА'?>">
+                    <div class="play">
+                        <button data-action="modal" data-modal="video" data-videoname="Разговор о танце в Ижевске."
+                            data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/TRwd0SDrQLU?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+                            class="btn btn-sm">Воспроизвести</button>
+                    </div>
+                </div>
                 <div class="name">
                     Разговор о танце в Ижевске.
-                </div>
-                <div class="play">
-                    <button data-action="modal" data-modal="video" data-videoname="Разговор о танце в Ижевске."
-                        data-video='<iframe width="560" height="315" src="https://www.youtube.com/embed/TRwd0SDrQLU?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
-                        class="btn btn-sm">Воспроизвести</button>
                 </div>
             </div>
 
