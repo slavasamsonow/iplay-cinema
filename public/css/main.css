@@ -398,7 +398,7 @@
 
 .coursePage .portfolioItem {
     background-color: #fff;
-    height: 180px;
+    /* height: 180px; */
     position: relative;
     overflow: hidden;
     border-radius: 10px;
@@ -425,6 +425,14 @@
 
 .coursePage .portfolioItem:hover .play {
     opacity: 1;
+}
+
+.coursePage .portfolioItem .play button {
+    background-color: #fff;
+}
+
+.coursePage .portfolioItem .play button:hover {
+    color: #d43;
 }
 
 .coursePage .sale button {
