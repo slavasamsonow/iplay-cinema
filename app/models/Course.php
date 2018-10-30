@@ -33,7 +33,7 @@ class Course extends Model{
         $params = [
             'courseid' => $courseId,
         ];
-        $course = $this->db->row('SELECT c.id, c.timestart, c.duration, c.payment, c.price, c.name, c.caption, c.description, c.program, c.projects, c.portfolio, c.image, c.peoples FROM courses c WHERE c.id = :courseid AND c.active = 1', $params);
+        $course = $this->db->row('SELECT c.* FROM courses c WHERE c.id = :courseid AND c.active = 1', $params);
 
         if(isset($course[0])){
             return $course[0];
@@ -95,7 +95,7 @@ class Course extends Model{
             'userid' => $userid,
             'courseid' => $courseId,
         ];
-        $course = $this->db->row('SELECT c.id, c.type, c.timestart, c.name, c.description, u.percent FROM courses c JOIN user_courses u ON c.id=u.course WHERE u.user=:userid AND u.course = :courseid', $params);
+        $course = $this->db->row('SELECT c.*, u.percent FROM courses c JOIN user_courses u ON c.id=u.course WHERE u.user=:userid AND u.course = :courseid', $params);
 
         if(isset($course[0])){
             return $course[0];
