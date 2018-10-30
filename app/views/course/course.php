@@ -34,7 +34,7 @@
             <!-- Уже записались: <?=$course['peoples']?> -->
             <?php if($course['price'] > 0):?>
             <div class="price">
-                <?=$course['price']?> Р
+                <!-- <?=$course['price']?> Р -->
             </div>
             <?php endif?>
             <?php if($course['payment'] == 1):?>
