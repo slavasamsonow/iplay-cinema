@@ -1,7 +1,7 @@
 <div class="intro">
     <div class="container-fluid">
         <div class="row topLine">
-            <div class="col-md-4 col-md-offset-2 ">
+            <div class="col-md-4 col-md-offset-2">
                 <h1>Создай <br>
                     свою <br>
                     историю</h1>
@@ -53,27 +53,27 @@
                 <h2><span class="big">Ближайшие мероприятия</span></h2>
             </div>
         </div>
+        <!-- <div class="row">
+            <div class="col-md-10 col-md-offset-1"> -->
+        <?php for($i = 0; $i < count($events); $i++):?>
+        <?php if($i % 3 == 0): ?>
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <?php for($i = 0; $i < count($events); $i++):?>
-                <?php if($i % 3 == 0): ?>
-                <div class="row">
-                    <?php endif ?>
-                    <div class="event col-md-3 col-md-offset-1">
-                        <h3>
-                            <?=$events[$i]['name']?> <span class="date">
-                                <?=date('d/m',$events[$i]['timestart'])?></span></h3>
-                        <p>
-                            <?=$events[$i]['caption']?>
-                        </p>
-                        <a class="btn" href="/course/<?=$events[$i]['id']?>">Записаться</a>
-                    </div>
-                    <?php if($i % 3 == 2 || $i == count($events) - 1): ?>
-                </div>
-                <?php endif ?>
-                <?php endfor ?>
+            <?php endif ?>
+            <div class="event col-md-3 col-md-offset-1">
+                <h3>
+                    <?=$events[$i]['name']?> <span class="date">
+                        <?=date('d/m',$events[$i]['timestart'])?></span></h3>
+                <p>
+                    <?=$events[$i]['caption']?>
+                </p>
+                <a class="btn" href="/course/<?=$events[$i]['id']?>">Записаться</a>
             </div>
+            <?php if($i % 3 == 2 || $i == count($events) - 1): ?>
         </div>
+        <?php endif ?>
+        <?php endfor ?>
+        <!-- </div>
+        </div> -->
     </div>
 </div>
 <?php endif ?>
@@ -85,11 +85,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 video">
+            <div class="col-md-8 video">
                 <iframe src="https://www.youtube.com/embed/6QAnXB7mbcY" frameborder="0" allow="autoplay; encrypted-media"
                     allowfullscreen></iframe>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <h3>
                     Не мечтайте о мире кино. Действуйте!
                 </h3>
@@ -134,7 +134,7 @@
         </div>
     </div>
 </div>
-<div class="courses bl-bg">
+<div class="courses">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -153,6 +153,7 @@
                     практикующих мастеров киноиндустрии создают видеопродукт от выбора идеи до презентации результата
                     заказчику. Записывайтесь, если хотите стать соавтором реального проекта и поместить эту работу в
                     свое портфолио.</p>
+                <a href="/courses?type=event" class="btn">Все мероприятия</a>
             </div>
             <div class="col-md-4 course">
                 <h3>Вводный курс</h3>
@@ -164,6 +165,7 @@
                 <p>Секреты всех этапов создания видео, обучение на реальном проекте. За месяц вы создадите свой
                     видеопродукт, попробовав на вкус 10 специальностей киноиндустрии. После обучения вы сможете снимать
                     «с нуля» ролики для своих личных и профессиональных целей.</p>
+                <a href="/courses?type=basic" class="btn">Все мероприятия</a>
             </div>
             <div class="col-md-4 course">
                 <h3>Основной курс</h3>
@@ -175,6 +177,7 @@
                 <p>Рекомендуется после вводного курса. Углубленное изучение 1 из 10 киноспециальностей, позволит вам
                     освоить необходимые знания и навыки для успешного развития в выбранной профессии. Запишитесь сейчас
                     и начните свой путь к реализации на творческом поприще.</p>
+                <a href="/courses?type=main" class="btn">Все мероприятия</a>
             </div>
         </div>
     </div>
