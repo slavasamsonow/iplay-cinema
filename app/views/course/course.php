@@ -246,7 +246,7 @@
     </div>
 
     <?php if($course['id'] != 4):?>
-    <div class="sale">
+    <div class="sale bg-red">
         <div class="row">
             <!-- <div class="col-md-6">
                 <h4>Акция запуск: 50% скидка</h4>
@@ -261,7 +261,7 @@
                 <p>Вы талант и готовы оплатить свое обучение работой над одним из проектов продюсерского центра?
                     Расскажите нам о себе, убедите, что именно вы достойны получить грант, и сэкономьте 100% стоимости
                     курса! Успейте подать заявку, количество мест ограничено.</p>
-                <p>Осталось мест: 5</p>
+                <div class="ostatok">Осталось мест: 5</div>
                 <? if(isset($_SESSION['user'])):?>
                 <form action="<?=explode('?',$_SERVER['REQUEST_URI'])[0];?>" method="post">
                     <input type="hidden" name="form" value="registergrant">
@@ -273,12 +273,15 @@
                 <?php endif ?>
             </div>
         </div>
+        <div class="background-triangles">
+            <img src="/public/img/content/pattern-more-triangle-white.svg" alt="">
+        </div>
     </div>
     <?php endif ?>
 
     <div class="question">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-6">
                 <h2>Задать вопрос</h2>
                 <form action="<?=explode('?',$_SERVER['REQUEST_URI'])[0];?>" method="post">
                     <input type="hidden" name="form" value="question">
@@ -302,7 +305,6 @@
         </div>
 
     </div>
-</div>
 </div>
 
 </div>
@@ -399,3 +401,6 @@
         </form>
     </div>
 </div>
+
+<div>
+    <div>
