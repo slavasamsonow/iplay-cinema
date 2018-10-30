@@ -70,6 +70,8 @@
         </div>
         <?php endforeach ?>
     </div>
+
+    <?php if(!empty($projects)):?>
     <h2>Проекты</h2>
     <div class="projectslist row">
         <?php foreach($projects as $project):?>
@@ -96,6 +98,9 @@
         </div>
         <?php endforeach ?>
     </div>
+    <?php endif?>
+
+    <?php if($course['private'] != 1):?>
     <h2>Участники</h2>
     <div class="userList row">
         <? foreach($users as $userItem):?>
@@ -113,5 +118,6 @@
         </div>
         <? endforeach ?>
     </div>
+    <?php endif ?>
     <?php endif?>
 </div>
