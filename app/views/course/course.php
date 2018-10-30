@@ -166,7 +166,7 @@
         </p>
         <div class="portfoliolist row owl-carousel">
             <div class="portfolioItem">
-                <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?='| Продюсерский центр ИГРА'?>">
+                <img src="/public/img/portfolio/mugur.png" alt="<?='Юрий Князев. Мугур | Продюсерский центр ИГРА'?>">
                 <div class="name">
                     Юрий Князев. Мугур
                 </div>
@@ -177,7 +177,7 @@
             </div>
 
             <div class="portfolioItem">
-                <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?='| Продюсерский центр ИГРА'?>">
+                <img src="/public/img/portfolio/nitochka.png" alt="<?='Короткометражный фильм "Ниточка". Лена Коробейникова | Продюсерский центр ИГРА'?>">
                 <div class="name">
                     Короткометражный фильм "Ниточка". Лена Коробейникова
                 </div>
@@ -190,7 +190,7 @@
 
 
             <div class="portfolioItem">
-                <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?='| Продюсерский центр ИГРА'?>">
+                <img src="/public/img/portfolio/katarini.png" alt="<?='День рождение дизайнерского дуэта KATARINI | Продюсерский центр ИГРА'?>">
                 <div class="name">
                     День рождение дизайнерского дуэта KATARINI
                 </div>
@@ -202,7 +202,7 @@
             </div>
 
             <div class="portfolioItem">
-                <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?='| Продюсерский центр ИГРА'?>">
+                <img src="/public/img/portfolio/Tatyana-zikina.png" alt="<?='Татьяна Зыкина с новым альбомом "За закрытыми окнами" | Продюсерский центр ИГРА'?>">
                 <div class="name">
                     Татьяна Зыкина с новым альбомом "За закрытыми окнами"
                 </div>
@@ -214,7 +214,7 @@
             </div>
 
             <div class="portfolioItem">
-                <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?='| Продюсерский центр ИГРА'?>">
+                <img src="/public/img/portfolio/chidu-na-izhe.png" alt="<?='Новогодняя история "Чудо на Иже" | Продюсерский центр ИГРА'?>">
                 <div class="name">
                     Новогодняя история "Чудо на Иже"
                 </div>
@@ -226,7 +226,7 @@
             </div>
 
             <div class="portfolioItem">
-                <img src="/public/img/courses/photo-1539209826553-6d9178ca9089.jpeg" alt="<?='| Продюсерский центр ИГРА'?>">
+                <img src="/public/img/portfolio/razgovor-o-tancah.png" alt="<?='Разговор о танце в Ижевске. | Продюсерский центр ИГРА'?>">
                 <div class="name">
                     Разговор о танце в Ижевске.
                 </div>
