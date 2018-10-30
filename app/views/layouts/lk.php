@@ -16,7 +16,7 @@
 
         <?php require_once('include/yandexmetrika.php')?>
         <?php require_once('include/googleanalitics.php')?>
-        <?php require_once('include/pexelvk.php')?>
+        <?php require_once('include/pixelvk.php')?>
 
     </head>
 
