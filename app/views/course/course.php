@@ -39,7 +39,16 @@
             <?php endif?>
             <?php if($course['payment'] == 1):?>
             <div class="zapis">
+                <? if(isset($_SESSION['user'])):?>
+                <form action="<?=explode('?',$_SERVER['REQUEST_URI'])[0];?>" method="post">
+                    <input type="hidden" name="form" value="registercourse">
+                    <input type="hidden" name="courseid" value="<?=$course['id']?>">
+                    <input type="hidden" name="course" value="<?=$course['name']?>">
+                    <input type="submit" class="btn btn-sm" value="Записаться">
+                </form>
+                <?php else: ?>
                 <button class="btn btn-sm" data-action="modal" data-modal="registercourse">Записаться</button>
+                <?php endif ?>
                 <!-- <a href="/pay/<?=$course['id']?>" class="btn btn-sm">Записаться</a> -->
             </div>
             <?php endif?>
@@ -249,7 +258,7 @@
                 <p>Осталось мест: 5</p>
                 <? if(isset($_SESSION['user'])):?>
                 <form action="<?=explode('?',$_SERVER['REQUEST_URI'])[0];?>" method="post">
-                    <input type="hidden" name="form" value="grant">
+                    <input type="hidden" name="form" value="registergrant">
                     <input type="hidden" name="course" value="<?=$course['name']?>">
                     <input type="submit" class="btn btn-sm" value="Оставить заявку">
                 </form>
