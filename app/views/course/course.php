@@ -243,7 +243,7 @@
         </div>
     </div>
 
-    <?php if($course['id'] != 4)?>
+    <?php if($course['id'] != 4):?>
     <div class="sale">
         <div class="row">
             <!-- <div class="col-md-6">
