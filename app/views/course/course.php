@@ -39,7 +39,8 @@
             <?php endif?>
             <?php if($course['payment'] == 1):?>
             <div class="zapis">
-                <a href="/pay/<?=$course['id']?>" class="btn btn-sm">Записаться</a>
+                <button class="btn btn-sm" data-action="modal" data-modal="registercourse">Записаться</button>
+                <!-- <a href="/pay/<?=$course['id']?>" class="btn btn-sm">Записаться</a> -->
             </div>
             <?php endif?>
         </div>
@@ -290,8 +291,6 @@
 
 </div>
 </div>
-</div>
-</div>
 
 <div class="modal video">
     <button type="button" class="close">&times;</button>
@@ -302,6 +301,48 @@
     </div>
 </div>
 
+<div class="modal registercourse">
+    <button type="button" class="close">&times;</button>
+    <div class="modal-header">
+        Заявка на курс
+    </div>
+    <div class="modal-body">
+        <form action="<?=explode('?',$_SERVER['REQUEST_URI'])[0];?>" method="post">
+            <input type="hidden" name="form" value="registercourse">
+            <input type="hidden" name="course" value="<?=$course['name']?>">
+            <input type="hidden" name="courseid" value="<?=$course['id']?>">
+            <div class="form-group">
+                <input type="text" class="form-control" name="fio" required="required" placeholder="Имя Фамилия">
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" required='required' placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="tel" class="form-control" name="phone" required='required' placeholder="+7 (XXX) XXX-XX-XX">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="city" placeholder="Город">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="confident" value="confident" checked required>
+                    <span> Я ознакомлен и согласен <br> с <a href="/public/docs/protect_policy_of_personal_information.pdf"
+                            target="_blank">Политикой конфеденциальности</a>
+                    </span>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="register" value="register" checked>
+                    <span> Я хочу зарегистрироваться на сайте, <br> чтобы получить дополнительные возможности
+                    </span>
+                </label>
+            </div>
+            <input type="submit" class="btn" value="Отправить заявку">
+        </form>
+    </div>
+</div>
+
 <div class="modal registergrant">
     <button type="button" class="close">&times;</button>
     <div class="modal-header">
@@ -309,7 +350,7 @@
     </div>
     <div class="modal-body">
         <form action="<?=explode('?',$_SERVER['REQUEST_URI'])[0];?>" method="post">
-            <input type="hidden" name="form" value="grant">
+            <input type="hidden" name="form" value="registergrant">
             <input type="hidden" name="course" value="<?=$course['name']?>">
             <div class="form-group">
                 <input type="text" class="form-control" name="fio" required="required" placeholder="Имя Фамилия">
