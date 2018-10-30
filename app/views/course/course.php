@@ -1,5 +1,5 @@
 <div class="coursePage">
-    <div class="headline" style="background-image: linear-gradient(to left, rgba(68, 17, 85, 0.8), rgba(68, 17, 85, 0.8)),url('/public/img/courses/<?=$course['image']?>');">
+    <div class="headline" style="background-image: linear-gradient(to left, rgba(34, 0, 68, 0.8), rgba(34, 0, 68, 0.8)),url('/public/img/courses/<?=$course['image']?>');">
         <h1>
             <span class="big">
                 <?=$course['name']?>
