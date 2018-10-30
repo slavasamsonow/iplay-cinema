@@ -26,7 +26,7 @@
             <label>тип:</label>
             <select class="form-control" name="type">
                 <?php foreach($coursesTypes as $coursesType):?>
-                <option value="<?=$coursesType['id']?>" <?php if($course['type'] == $coursesType['id']) echo 'checked';?>>
+                <option value="<?=$coursesType['id']?>" <?php if($course['type'] == $coursesType['id']) echo 'selected';?>>
                     <?=$coursesType['name']?>
                 </option>
                 <?php endforeach ?>
