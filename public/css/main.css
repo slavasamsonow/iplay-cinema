@@ -1,4 +1,4 @@
-/* v.0.13.0 */
+/* v.0.13.2 */
 
 /* Интро */
 .content.intro {
@@ -336,7 +336,7 @@
 
 .coursePage .description .background-triangles {
     position: absolute;
-    z-index: 0;
+    z-index: -1;
     bottom: 0;
     right: 0;
     width: 400px;
