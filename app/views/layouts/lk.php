@@ -79,15 +79,13 @@
 
     <body>
         <div class="content">
+            <?php require_once('include/left-menu.php')?>
             <?php require_once('include/navbar.php')?>
 
             <div class="wrapper">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-2 col-sm-3 left-menu">
-                            <?php require_once('include/left-menu.php')?>
-                        </div>
-                        <div class="col-md-8 col-sm-6">
+                        <div class="col-md-10">
                             <?=$content?>
                         </div>
                     </div>
