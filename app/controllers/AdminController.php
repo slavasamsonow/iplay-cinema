@@ -19,6 +19,15 @@ class AdminController extends Controller{
         $this->modelProject = $this->loadModel('project');;
     }
 
+    public function indexAction(){
+        $vars = [
+            'seo' => [
+                'title' => 'Админ-панель'
+            ]
+        ];
+        $this->view->render();
+    }
+
     public function confirmTasksAction(){
         if(!empty($_POST)){
             $data = $this->model->saveStatusTask($_POST);
