@@ -9,14 +9,9 @@ class CourseController extends Controller{
 
     public function __construct($route){
         parent::__construct($route);
-        $this->view->layout = 'lk';
     }
 
     public function coursesAction(){
-        if($this->model->auth == 'guest'){
-            $this->view->layout = 'default';
-        }
-
         $paramsCourses = [];
         if(isset($_GET['type'])){
             $paramsCourses['coursesType'] = $_GET['type'];
@@ -78,9 +73,6 @@ class CourseController extends Controller{
                 $this->model->questionForm($_POST);
                 $this->view->message('Ваша заявка отправлена', 'В скором времени мы свяжемся с вами');
             }
-        }
-        if($this->model->auth == 'guest'){
-            $this->view->layout = 'default';
         }
         if(!$course = $this->model->courseInfo($this->route['courseid'])){
             $this->view->redirect('account');

@@ -1,6 +1,9 @@
 /* v.0.12.8 */
 
 /* Интро */
+.content.intro {
+    padding-left: 0;
+}
 
 /* Навигация */
 .content.intro .navbar {
@@ -43,10 +46,6 @@
 
 .content.intro .navbar .user .user-menu a {
     color: #111;
-}
-
-.content.intro .bl-bg {
-    background-color: #cee;
 }
 
 /* Описание самого блока */
@@ -326,118 +325,75 @@
 }
 
 /* Страница курса */
-.coursePage .date {
-    display: inline-block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    padding: 5px 15px;
-    background-color: #cee;
-    font-size: 34px;
-    font-weight: 300;
-    color: #111;
-    letter-spacing: 0.1em;
-    transform: rotate(-90deg);
+.coursePage .headline .date {
+    margin-bottom: 20px;
 }
 
-.coursePage .price {
-    color: #d43;
-    font-size: 30px;
+.coursePage .description {
+    position: relative;
+    overflow: hidden;
+}
+
+.coursePage .description .background-triangles {
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+}
+
+.coursePage .program h2 {
+    padding-bottom: 30px;
+}
+
+.coursePage .program ul {
+    list-style: none;
+    padding: 0;
+}
+
+.coursePage .program ul li {
+    margin-bottom: 20px;
 }
 
 .coursePage .program .name {
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: 300;
+    margin-top: 10px;
 }
 
-.project {
-    background-color: #fff;
-    /* height: 180px; */
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-}
-
-.project>.name {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px 15px;
-    background: rgba(255, 255, 255, 0.7);
-    transition: 0.5s;
-}
-
-.project .overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding: 25px;
-    background: rgba(255, 255, 255, 1);
-    transition: 0.5s;
-    opacity: 0;
-}
-
-.project:hover .overlay {
-    opacity: 1;
-}
-
-.project .overlay .name {
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.project .overlay .description {
-    margin-bottom: 10px;
+.coursePage .projects {
+    margin: 0 -90px;
+    padding: 0 90px 50px;
 }
 
 .coursePage .portfolio {
     margin-bottom: 30px;
 }
 
-.coursePage .portfolioItem {
-    background-color: #fff;
-    /* height: 180px; */
+.coursePage .sale {
     position: relative;
-    overflow: hidden;
-    border-radius: 10px;
+    margin: 0 -90px;
+    padding: 50px 90px;
 }
 
-.coursePage .portfolioItem>.name {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px 15px;
-    background: rgba(255, 255, 255, 0.7);
-    transition: 0.5s;
-}
-
-.coursePage .portfolioItem .play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transition: 0.5s;
-    opacity: 0;
-    transform: translate(-50%, -50%);
-}
-
-.coursePage .portfolioItem:hover .play {
-    opacity: 1;
-}
-
-.coursePage .portfolioItem .play button {
-    background-color: #fff;
-}
-
-.coursePage .portfolioItem .play button:hover {
-    color: #d43;
+.coursePage .sale .ostatok {
+    font-size: 20px;
+    font-weight: 300;
+    margin-left: 50px;
+    margin-bottom: 20px;
 }
 
 .coursePage .sale button {
     display: block;
     margin: auto;
+}
+
+.coursePage .sale .background-triangles{
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    width: 400px;
 }
 
 .userList .user a {

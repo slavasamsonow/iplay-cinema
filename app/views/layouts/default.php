@@ -11,59 +11,18 @@
 
         <meta name="description" content="<?=$seo['description']?>">
 
-<?php require_once('include/favicon.php')?>
-<?php require_once('include/css_js.php')?>
+        <?php require_once('include/favicon.php')?>
+        <?php require_once('include/css_js.php')?>
 
-        <!-- Yandex.Metrika counter -->
-        <script type="text/javascript">
-            (function (d, w, c) {
-                (w[c] = w[c] || []).push(function () {
-                    try {
-                        w.yaCounter50277793 = new Ya.Metrika2({
-                            id: 50277793,
-                            clickmap: true,
-                            trackLinks: true,
-                            accurateTrackBounce: true,
-                            webvisor: true
-                        });
-                    } catch (e) {}
-                });
-
-                var n = d.getElementsByTagName("script")[0],
-                    s = d.createElement("script"),
-                    f = function () {
-                        n.parentNode.insertBefore(s, n);
-                    };
-                s.type = "text/javascript";
-                s.async = true;
-                s.src = "https://mc.yandex.ru/metrika/tag.js";
-
-                if (w.opera == "[object Opera]") {
-                    d.addEventListener("DOMContentLoaded", f, false);
-                } else {
-                    f();
-                }
-            })(document, window, "yandex_metrika_callbacks2");
-        </script>
-        <noscript>
-            <div><img src="https://mc.yandex.ru/watch/50277793" style="position:absolute; left:-9999px;" alt="" /></div>
-        </noscript>
-        <!-- /Yandex.Metrika counter -->
-
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125492467-1"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'UA-125492467-1');
-        </script>
+        <?php require_once('include/yandexmetrika.php')?>
+        <?php require_once('include/googleanalitics.php')?>
+        <?php require_once('include/pixelvk.php')?>
 
     </head>
 
     <body>
         <div class="content">
+            <?php require_once('include/left-menu.php')?>
             <?php require_once('include/navbar.php')?>
 
             <div class="wrapper">
@@ -78,14 +37,14 @@
                         конфеденциальности</a>
                 </div>
             </footer>
-        </div>
 
-        <div class="modal message">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <div class="modal-header"></div>
-            <div class="modal-body"></div>
+            <div class="modal message">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-header"></div>
+                <div class="modal-body"></div>
+            </div>
+            <div id="overlay"></div>
         </div>
-        <div id="overlay"></div>
 
         <div class="process-load">
             <div class="right-top">

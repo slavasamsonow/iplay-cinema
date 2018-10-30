@@ -6,11 +6,6 @@ use app\core\Controller;
 
 class AccountController extends Controller{
 
-    public function __construct($route){
-        parent::__construct($route);
-        $this->view->layout = 'lk';
-    }
-
     public function registerAction(){
         if(!empty($_POST)){
             if(!$this->model->validate(['email','password'], $_POST)){
@@ -26,8 +21,6 @@ class AccountController extends Controller{
             $this->view->message('OK', 'регистрируем!');
         }
         if($this->model->auth == 'guest'){
-            //$this->view->redirect('account');
-            $this->view->layout = "default";
             $this->view->render('Регистрация');
         }else{
             $this->view->redirect('account');
@@ -76,7 +69,6 @@ class AccountController extends Controller{
                     'title' => 'Вход в личный кабинет',
                 ]
             ];
-            $this->view->layout = "default";
             $this->view->render($vars);
         }else{
             $this->view->redirect('account');
@@ -229,9 +221,6 @@ class AccountController extends Controller{
             'userPage' => $userPage,
             'userProjects' => $this->model->userProjects($userPage['id']),
         ];
-        if($this->model->auth == 'guest'){
-            $this->view->layout = 'default';
-        }
         $this->view->render($vars);
     }
 

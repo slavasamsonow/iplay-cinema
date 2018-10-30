@@ -11,12 +11,20 @@ class AdminController extends Controller{
 
     public function __construct($route){
         parent::__construct($route);
-        $this->view->layout = 'lk';
         if(!$this->model->role == 'admin'){
             $this->view->errorCode('403');
         }
 
         $this->modelProject = $this->loadModel('project');;
+    }
+
+    public function indexAction(){
+        $vars = [
+            'seo' => [
+                'title' => 'Админ-панель'
+            ]
+        ];
+        $this->view->render();
     }
 
     public function confirmTasksAction(){

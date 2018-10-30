@@ -40,8 +40,8 @@
                         <?=$user['fname'].' '.$user['lname']?>
                     </span>
                     <div class="user-menu">
-                        <a href="/user/<?=$user['username']?>">Моя страница</a>
                         <a href="/account" class="lk">Личный кабинет</a>
+                        <a href="/user/<?=$user['username']?>">Моя страница</a>
                         <a href="/account/editinfo">Редактировать профиль</a>
                         <a href="/account/editpass">Сменить пароль</a>
                         <a href="/account/logout">Выйти</a>

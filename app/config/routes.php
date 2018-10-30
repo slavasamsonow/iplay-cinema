@@ -93,6 +93,10 @@ return [
         ],
 
     // adminController
+        'admin' => [
+            'controller' => 'admin',
+            'action' => 'index',
+        ],
         'admin/confirmtasks' => [
             'controller' => 'admin',
             'action' => 'confirmTasks',
