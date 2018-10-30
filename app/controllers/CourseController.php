@@ -78,14 +78,6 @@ class CourseController extends Controller{
             $this->view->redirect('account');
         }
 
-        $arraynewtext = [
-            'description' => $course['description'],
-        ];
-        $newtext = $this->model->descriptionText($arraynewtext);
-        foreach($newtext as $key=>$newtextstr){
-            $course[$key] = $newtextstr;
-        };
-
         $vars = [
             'seo' => [
                 'title' => $course['name'],
