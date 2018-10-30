@@ -333,4 +333,55 @@ class Course extends Model{
 
         return true;
     }
+
+    public function registerCourseUser($data){
+        $varsAmo = [
+            'name' => 'Заявка на курс',
+            'nameCourse' => $data['course'],
+            'sale' => 0,
+            'contact_id' => $_SESSION['user']['amoid'],
+        ];
+        $this->amo->newLead($varsAmo);
+        return true;
+    }
+
+    public function registerСourseGuest($data){
+        $varsAmo = [
+            'name' => 'Заявка на курс',
+            'nameCourse' => $data['course'],
+            'sale' => 0,
+        ];
+        if($amoContact = $this->amo->searchContact($data['email'])){
+            $varsAmo['contact_id'] = $amoContact['id'];
+            $notes = [
+                'Email: '.$data['email'],
+                'Телефон: '.$data['phone'],
+                'Город: '.$data['city'],
+            ];
+            $this->amo->addNotesContact($amoContact['id'],$notes);
+        }else{
+            $varsAmoNew = [
+                'email' => $data['email'],
+            ];
+
+            if(isset($data['fio'])){
+                $varsAmoNew['name'] = $data['fio'];
+            }else{
+                $varsAmoNew['name'] = $data['email'];
+            }
+
+            if(isset($dataPayer['city'])){
+                $varsAmoNew['city'] = $data['city'];
+            }
+
+            if(isset($dataPayer['phone'])){
+                $varsAmoNew['phone'] = $data['phone'];
+            }
+
+            $varsAmo['contact_id'] = $this->amo->newContact($varsAmoNew);
+        }
+        $amoid = $this->amo->newLead($varsAmo);
+
+        return true;
+    }
 }
