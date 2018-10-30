@@ -37,14 +37,14 @@
                         конфеденциальности</a>
                 </div>
             </footer>
-        </div>
 
-        <div class="modal message">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <div class="modal-header"></div>
-            <div class="modal-body"></div>
+            <div class="modal message">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-header"></div>
+                <div class="modal-body"></div>
+            </div>
+            <div id="overlay"></div>
         </div>
-        <div id="overlay"></div>
 
         <div class="process-load">
             <div class="right-top">
