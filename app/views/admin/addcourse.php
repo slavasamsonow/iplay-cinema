@@ -15,7 +15,11 @@
         </div>
         <div class="control-group form-group">
             <label>Дата и время начала (МСК):</label>
-            <input type="text" class="form-control" name="datetime" required="true" value="<?=date('d.m.Y', time())?> 12:00:00">
+            <input type="text" class="form-control" name="timestart" required="true" value="<?=date('d.m.Y', time())?> 12:00:00">
+        </div>
+        <div class="control-group form-group">
+            <label>Дата и время окончания (МСК):</label>
+            <input type="text" class="form-control" name="timeend" required="true" value="<?=date('d.m.Y', time())?> 12:00:00">
         </div>
         <div class="control-group form-group">
             <label>Цена:</label>
