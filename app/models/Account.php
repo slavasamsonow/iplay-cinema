@@ -212,7 +212,7 @@ class Account extends Model{
     }
 
     // Список курсов
-    public function getActiveCoursesList(){
+    public function activeCoursesList(){
         $params = [
             'userid' => $_SESSION['user']['id'],
         ];
