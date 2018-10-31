@@ -303,10 +303,12 @@ $(document).ready(function () {
 						newprice = price - sale;
 					}
 					$('input[name="price"]').val(newprice);
+					$('input[name="promocode"]').attr('readonly', '');
 				}
 				if (json.data.error) {
 					openModal('message', 'Ошибка', json.data.error);
 					$('input[name="price"]').val($('input[name="price"]').attr('data-price'));
+					$('input[name="promocode"]').val('');
 				}
 				elem.removeClass('process');
 			}
