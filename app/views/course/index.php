@@ -10,7 +10,7 @@
                             <?=$course['name']?>
                         </h3>
                         <div class="small-desk">
-                            <?=$course['description']?>
+                            <?=$course['caption']?>
                         </div>
                         <?php if($course['type'] == 1): ?>
                             <div class="date"><h4><?=date('d.m.Y', $course['timestart'])?>
