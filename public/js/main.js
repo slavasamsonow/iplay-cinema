@@ -1,4 +1,4 @@
-// v.0.13.7
+// v.0.13.9
 function videoHeight() {
 	$('.video iframe').each(function () {
 		var widthVideo = $(this).width();
@@ -145,7 +145,7 @@ $(document).ready(function () {
 	})
 	$('.tasks .day.today').children('.tasks-list').slideDown();
 	// Взаимодействие с заданием курса
-	$('.tasks .task button').click(function () {
+	$('.tasks .task.active button').click(function () {
 		var elem = $(this);
 		var parent = elem.closest('.task');
 		var comment = parent.find('.task-comment');
