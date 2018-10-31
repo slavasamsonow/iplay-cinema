@@ -11,8 +11,12 @@
                 <?=$courses[$i]['name']?>
             </h2>
             <div class="date-start">
-                Дата:
-                <?=date('d.m.Y',$courses[$i]['timestart'])?>
+                Начало:
+                <?=date('d.m.Y H:i',$courses[$i]['timestart'])?>
+            </div>
+            <div class="date-start">
+                Окончание:
+                <?=date('d.m.Y H:i',$courses[$i]['timeend'])?>
             </div>
             <div class="param">
                 Активный:
