@@ -5,26 +5,21 @@ namespace app\models;
 use app\core\Model;
 
 class Course extends Model{
-    
+
     public function getStudyCoursesList(){
         $params = [
             'userId' => $_SESSION['user']['id'],
         ];
         $allCourses = $this->db->row('SELECT c.*, uc.percent FROM courses c JOIN user_courses uc ON c.id = uc.course WHERE uc.user = :userId ORDER BY c.timestart ASC', $params);
-        $courses = [
-            'active' => [],
-            'coming' => [],
-            'past' => []
-        ];
         foreach($allCourses as $course){
             if($course['timestart'] < time() && ($course['timeend'] > time() || !$course['timeend'])){
-                $courses['active'][] = $course;
+                $courses['Активные'][] = $course;
             }
             if($course['timestart'] > time()){
-                $courses['coming'][] = $course;
+                $courses['Предстоящие'][] = $course;
             }
-            if($course['timeend'] < time()){
-                $course['past'][] = $course;
+            if($course['timeend'] < time() && $course['timeend']){
+                $courses['Прошедшие'][] = $course;
             }
         }
         return $courses;
