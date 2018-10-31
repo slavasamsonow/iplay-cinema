@@ -13,9 +13,15 @@
         <?php if(!$userPage['public'] && !isset($_SESSION['user'])):?>
         Пользователь ограничил доступ к информации
         <?php else: ?>
+        <?php if($userPage['city']): ?>
+        <div class="city">
+            Город: <?=$userPage['city']?>
+        </div>
+        <?php endif ?>
         <div class="about">
             <?=$userPage['about']?>
         </div>
+        <?php if(!empty($userProjects)):?>
         <div class="projects">
             <h2>Проекты:</h2>
             <?php foreach($userProjects as $userProject):?>
@@ -26,6 +32,7 @@
 
             <?php endforeach ?>
         </div>
+        <?php endif ?>
         <?php endif ?>
     </div>
 </div>
