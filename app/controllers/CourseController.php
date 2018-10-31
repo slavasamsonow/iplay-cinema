@@ -11,6 +11,21 @@ class CourseController extends Controller{
         parent::__construct($route);
     }
 
+    public function indexAction(){
+        if($this->model->auth == 'auth'){
+            $vars = [
+                'seo' => [
+                    'title' => 'Обучение',
+                ],
+                'courses' => $this->model->getStudyCoursesList(),
+            ];
+
+            $this->view->render($vars);
+        }else{
+            $this->view->redirect('login');
+        }
+    }
+
     public function coursesAction(){
         $paramsCourses = [];
         if(isset($_GET['type'])){
@@ -40,7 +55,7 @@ class CourseController extends Controller{
                     if(isset($_POST['register'])){
                         $this->modelAccount = $this->loadModel('account');
                         if(!$this->model->checkExists('email', $_POST['email'], 'users')){
-                           $user = $this->modelAccount->register($_POST);
+                            $user = $this->modelAccount->register($_POST);
                         }
                     }
 
@@ -60,7 +75,7 @@ class CourseController extends Controller{
                     if(isset($_POST['register'])){
                         $this->modelAccount = $this->loadModel('account');
                         if(!$this->model->checkExists('email', $_POST['email'], 'users')){
-                           $user = $this->modelAccount->register($_POST);
+                            $user = $this->modelAccount->register($_POST);
                         }
                     }
 
@@ -114,7 +129,7 @@ class CourseController extends Controller{
 
     public function checkTaskAction(){
         if(!empty($_POST)){
-            $task = (int) $_POST['task'];
+            $task = (int)$_POST['task'];
             $data = $this->model->changeTask($task);
             $this->view->data($data);
         }else{

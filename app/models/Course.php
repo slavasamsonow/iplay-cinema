@@ -5,6 +5,14 @@ namespace app\models;
 use app\core\Model;
 
 class Course extends Model{
+
+    public function getStudyCoursesList(){
+        $params = [
+            'userid' => $_SESSION['user']['id'],
+        ];
+        return $this->db->row('SELECT c.id, c.timestart, c.type, c.name, c.description, uc.percent FROM courses c JOIN user_courses uc ON c.id = uc.course WHERE uc.user = :userid ORDER BY c.timestart ASC', $params);
+    }
+
     public function coursesList($param){
         $params = [
             'timestart' => time(),

@@ -75,21 +75,6 @@ class AccountController extends Controller{
         }
     }
 
-    public function indexAction(){
-        if($this->model->auth == 'auth'){
-            $vars = [
-                'seo' => [
-                    'title' => 'Личный кабинет',
-                ],
-                'activeCourses' => $this->model->activeCoursesList(),
-            ];
-
-            $this->view->render($vars);
-        }else{
-            $this->view->redirect('login');
-        }
-    }
-
     public function logoutAction(){
         setcookie('i','',time(),'/');
         setcookie('p','',time(),'/');
