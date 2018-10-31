@@ -199,7 +199,7 @@ class Account extends Model{
             if($key == 'password'){
                 $_SESSION['user']['password'] = $val;
                 if(isset($_COOKIE['p'])){
-                    setcookie('p',$data[$key], time()+3600+24+30, '/');
+                    setcookie('p',$indata[$key], time()+3600+24+30, '/');
                 }
             }
         }
@@ -212,7 +212,7 @@ class Account extends Model{
     }
 
     // Список курсов
-    public function activeCoursesList(){
+    public function getActiveCoursesList(){
         $params = [
             'userid' => $_SESSION['user']['id'],
         ];
