@@ -12,6 +12,9 @@ class NewsController extends Controller{
 
     public function newslistAction(){
         $vars = [
+            'seo' => [
+                'title' => 'Новости',
+            ],
             'newslist' => $this->model->newsList(),
         ];
         $this->view->render($vars);
@@ -22,6 +25,9 @@ class NewsController extends Controller{
             $this->view->errorCode(404);
         }
         $vars = [
+            'seo' => [
+                'title' => $news['title'],
+            ],
             'news' => $news,
         ];
         $this->view->render($vars);

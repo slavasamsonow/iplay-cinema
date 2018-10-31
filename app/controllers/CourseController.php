@@ -19,7 +19,7 @@ class CourseController extends Controller{
 
         $vars = [
             'seo' => [
-                'Список курсов и мероприятий',
+                'title' => 'Список курсов и мероприятий',
             ],
             'coursesList' => $this->model->coursesList($paramsCourses),
         ];
