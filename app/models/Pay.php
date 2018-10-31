@@ -59,7 +59,7 @@ class Pay extends Model{
             $saleSum = $course['price'] / 100 * $sale;
             $newPrice = floor($course['price'] - $saleSum);
         }else{
-            $newPrice -= $sale;
+            $newPrice = $course['price'] - $sale;
         }
 
         return $newPrice;
