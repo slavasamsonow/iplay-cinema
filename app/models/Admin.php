@@ -331,9 +331,7 @@ class Admin extends Model{
     public function createPromocode($indata){
         $params = $this->processTextIn($indata);
         $params['timestart'] = $this->toUnixtime($params['timestart']);
-        if($params['timeend'] != 0){
-            $params['timeend'] = $this->toUnixtime($params['timeend']);
-        }
+        $params['timeend'] = $this->toUnixtime($params['timeend']);
         $paramNandV = $this->db->paramNandV($params);
         $this->db->query('INSERT INTO payments_promocode ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
         return $this->db->lastInsertId();
@@ -353,11 +351,12 @@ class Admin extends Model{
     public function updatePromocode($id, $indata){
         $params = $this->processTextIn($indata);
         $params['timestart'] = $this->toUnixtime($params['timestart']);
-        if($params['timeend'] != 0){
-            $params['timeend'] = $this->toUnixtime($params['timeend']);
-        }
+        $params['timeend'] = $this->toUnixtime($params['timeend']);
         if(!isset($params['active'])){
             $params['active'] = 0;
+        }
+        if(!isset($params['noEnd'])){
+            $params['noEnd'] = 0;
         }
         $paramNV = $this->db->paramNV($params);
         $params['id'] = $id;
