@@ -40,9 +40,10 @@ class Pay extends Model{
         $params = [
             'course' => $courseid,
             'code' => $promocode,
-            'all' => 'all'
+            'all' => 'all',
+            'nowtime' => time(),
         ];
-        $sale = $this->db->row('SELECT pp.* FROM payments_promocode pp WHERE pp.course IN (:all, :course) AND pp.code = :code', $params);
+        $sale = $this->db->row('SELECT pp.* FROM payments_promocode pp WHERE pp.course IN (:all, :course) AND pp.code = :code AND pp.timestart < :nowtime AND (pp.timeend > :nowtime OR pp.noEnd = 1)', $params);
         if(empty($sale)){
             return false;
         }else{
