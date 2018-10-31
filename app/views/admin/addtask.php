@@ -17,6 +17,10 @@
         <label>Дата и время: </label>
         <input type="text" class="form-control" name="datetime" value="">
     </div>
+    <div class="control-group form-group">
+        <label>Процент прохождения курса: </label>
+        <input type="text" class="form-control" name="percent" value="">
+    </div>
     <div class="checkbox">
         <label>
             <input type="checkbox" name="datetimenull" value="0">

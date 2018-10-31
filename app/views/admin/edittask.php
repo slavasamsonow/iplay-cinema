@@ -14,6 +14,10 @@
         <label>Дата и время: </label>
         <input type="text" class="form-control" name="datetime" value="<?=date('d.m.Y H:i:s',$task['timestart'])?>">
     </div>
+    <div class="control-group form-group">
+        <label>Процент прохождения курса: </label>
+        <input type="text" class="form-control" name="percent" value="<?=$task['percent']?>">
+    </div>
     <div class="checkbox">
         <label>
             <input type="checkbox" name="datetimenull" value="0" <?php if($task['timestart']==0)echo 'checked' ?>>
@@ -33,6 +37,6 @@
         </label>
     </div>
     <div class="control-group form-group">
-        <button type="submit" class="btn btn-default btn-sm">Редактировать проект</button>
+        <button type="submit" class="btn btn-default btn-sm">Редактировать задание</button>
     </div>
 </form>
