@@ -1,4 +1,4 @@
-<h1>Все курсы и мероприятия</h1>
+<h1><span class="big">Все курсы</span></h1>
 <div class="coursesType">
     <a href="/courses">Все</a>
     <a href="/courses?type=event">Мероприятия</a>

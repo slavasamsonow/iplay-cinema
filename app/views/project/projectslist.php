@@ -1,3 +1,4 @@
+<h1><span class="big">Проекты</span></h1>
 <?php if(!empty($projects)): ?>
 <div class="projects row">
     <?php foreach($projects as $project):?>
