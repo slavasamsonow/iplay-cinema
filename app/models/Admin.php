@@ -97,8 +97,8 @@ class Admin extends Model{
 
     public function createCourse($indata){
         $params = $this->processTextIn($indata);
-        $params['timestart'] = $this->toUnixtime($params['datetime']);
-        unset($params['datetime']);
+        $params['timestart'] = $this->toUnixtime($params['timestart']);
+        $params['timeend'] = $this->toUnixtime($params['timeend']);
         $paramNandV = $this->db->paramNandV($params);
 
         $this->db->query('INSERT INTO `courses` ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
@@ -107,8 +107,8 @@ class Admin extends Model{
 
     public function updateCourse($id, $indata){
         $params = $this->processTextIn($indata);
-        $params['timestart'] = $this->toUnixtime($params['datetime']);
-        unset($params['datetime']);
+        $params['timestart'] = $this->toUnixtime($params['timestart']);
+        $params['timeend'] = $this->toUnixtime($params['timeend']);
         $paramNV = $this->db->paramNV($params);
         $params['id'] = $id;
 
