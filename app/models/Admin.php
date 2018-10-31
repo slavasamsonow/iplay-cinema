@@ -147,10 +147,15 @@ class Admin extends Model{
         if(isset($params['datatimenull'])){
             $params['timestart'] = 0;
         }else{
-            $params['timestart'] = $this->toUnixtime($params['datetime']);
+            $params['timestart'] = $this->toUnixtime($params['timestart']);
         }
-        unset($params['datetime']);
         unset($params['datetimenull']);
+        if(!isset($params['verify'])){
+            $params['verify'] = 0;
+        }
+        if(!isset($params['active'])){
+            $params['active'] = 0;
+        }
 
         $paramNV = $this->db->paramNV($params);
         $params['id'] = $id;

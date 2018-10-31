@@ -12,7 +12,7 @@
     </div>
     <div class="control-group form-group">
         <label>Дата и время: </label>
-        <input type="text" class="form-control" name="datetime" value="<?=date('d.m.Y H:i:s',$task['timestart'])?>">
+        <input type="text" class="form-control" name="timestart" value="<?=date('d.m.Y H:i:s',$task['timestart'])?>">
     </div>
     <div class="control-group form-group">
         <label>Процент прохождения курса: </label>
@@ -26,7 +26,7 @@
     </div>
     <div class="checkbox">
         <label>
-            <input type="checkbox" name="active" value="1" <?php if($task['verify']==1)echo 'checked' ?>>
+            <input type="checkbox" name="verify" value="1" <?php if($task['verify']==1)echo 'checked' ?>>
             <span> Нужно подтверждение </span>
         </label>
     </div>
