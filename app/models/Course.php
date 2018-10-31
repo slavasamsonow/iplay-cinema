@@ -5,6 +5,26 @@ namespace app\models;
 use app\core\Model;
 
 class Course extends Model{
+
+    public function getStudyCoursesList(){
+        $params = [
+            'userId' => $_SESSION['user']['id'],
+        ];
+        $allCourses = $this->db->row('SELECT c.*, uc.percent FROM courses c JOIN user_courses uc ON c.id = uc.course WHERE uc.user = :userId ORDER BY c.timestart ASC', $params);
+        foreach($allCourses as $course){
+            if($course['timestart'] < time() && ($course['timeend'] > time() || !$course['timeend'])){
+                $courses['Активные'][] = $course;
+            }
+            if($course['timestart'] > time()){
+                $courses['Предстоящие'][] = $course;
+            }
+            if($course['timeend'] < time() && $course['timeend']){
+                $courses['Прошедшие'][] = $course;
+            }
+        }
+        return $courses;
+    }
+
     public function coursesList($param){
         $params = [
             'timestart' => time(),
@@ -112,11 +132,11 @@ class Course extends Model{
         $params = [
             'course' => $courseId,
         ];
-        $tasksCourse = $this->db->row('SELECT * FROM courses_tasks WHERE course = :course',$params);
+        $tasksCourse = $this->db->row('SELECT * FROM courses_tasks WHERE course = :course', $params);
         $params = [
             'user' => $userId,
         ];
-        $tasks = $this->db->row('SELECT task FROM user_tasks WHERE user = :user',$params);
+        $tasks = $this->db->row('SELECT task FROM user_tasks WHERE user = :user', $params);
 
         $tasksId = [];
         foreach($tasks as $task){
@@ -124,7 +144,7 @@ class Course extends Model{
         }
 
         $params = [];
-        $i=0;
+        $i = 0;
         foreach($tasksCourse as $taskC){
             if(!in_array($taskC['id'], $tasksId)){
                 $params['task'.$i] = $taskC['id'];
@@ -138,9 +158,9 @@ class Course extends Model{
             }
         }
 
-       if(isset($values)){
+        if(isset($values)){
             $this->db->query('INSERT INTO user_tasks (task, user) VALUES '.$values, $params);
-       }
+        }
         $params = [
             'user' => $userId,
             'course' => $courseId,
@@ -160,14 +180,14 @@ class Course extends Model{
             if(!isset($taskDate[$index]['count'])){
                 $taskDate[$index]['count'] = 1;
             }else{
-                $taskDate[$index]['count'] ++;
+                $taskDate[$index]['count']++;
             }
 
             if(!isset($taskDate[$index]['done'])){
                 $taskDate[$index]['done'] = 0;
             }
             if($task['status'] == 'done'){
-                $taskDate[$index]['done'] ++;
+                $taskDate[$index]['done']++;
             }
         }
         if(empty($taskDate['Общие'])){
@@ -180,7 +200,7 @@ class Course extends Model{
         $params = [
             'course' => $courseId,
         ];
-        $usersList = $this->db->row('SELECT * FROM user_courses uc JOIN users u ON uc.user = u.id WHERE uc.course = :course',$params);
+        $usersList = $this->db->row('SELECT * FROM user_courses uc JOIN users u ON uc.user = u.id WHERE uc.course = :course', $params);
         foreach($usersList as $key => $user){
             if($user['username'] == ''){
                 $usersList[$key]['username'] = 'id'.$user['id'];
@@ -193,7 +213,7 @@ class Course extends Model{
         $params = [
             'course' => $courseId,
         ];
-        $projectsList = $this->db->row('SELECT * FROM projects p WHERE p.course = :course',$params);
+        $projectsList = $this->db->row('SELECT * FROM projects p WHERE p.course = :course', $params);
         return $projectsList;
     }
 
@@ -206,7 +226,7 @@ class Course extends Model{
             'task' => $taskId,
             'user' => $userid,
         ];
-        $task = $this->db->row('SELECT ct.*, ct.id AS taskid, ut.* FROM user_tasks ut JOIN courses_tasks ct ON ut.task = ct.id WHERE ut.task = :task AND ut.user = :user',$params);
+        $task = $this->db->row('SELECT ct.*, ct.id AS taskid, ut.* FROM user_tasks ut JOIN courses_tasks ct ON ut.task = ct.id WHERE ut.task = :task AND ut.user = :user', $params);
 
         if(empty($task)){
             return [
@@ -307,7 +327,7 @@ class Course extends Model{
                 'Телефон: '.$data['phone'],
                 'Город: '.$data['city'],
             ];
-            $this->amo->addNotesContact($amoContact['id'],$notes);
+            $this->amo->addNotesContact($amoContact['id'], $notes);
         }else{
             $varsAmoNew = [
                 'email' => $data['email'],
@@ -358,7 +378,7 @@ class Course extends Model{
                 'Телефон: '.$data['phone'],
                 'Город: '.$data['city'],
             ];
-            $this->amo->addNotesContact($amoContact['id'],$notes);
+            $this->amo->addNotesContact($amoContact['id'], $notes);
         }else{
             $varsAmoNew = [
                 'email' => $data['email'],

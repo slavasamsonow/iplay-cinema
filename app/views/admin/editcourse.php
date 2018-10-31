@@ -16,7 +16,11 @@
         </div>
         <div class="control-group form-group">
             <label>Дата и время начала (МСК):</label>
-            <input type="text" class="form-control" name="datetime" required="true" value="<?=date('d.m.Y H:i:s', $course['timestart'])?>">
+            <input type="text" class="form-control" name="timestart" required="true" value="<?=date('d.m.Y H:i:s', $course['timestart'])?>">
+        </div>
+        <div class="control-group form-group">
+            <label>Дата и время окончания (МСК):</label>
+            <input type="text" class="form-control" name="timeend" required="true" value="<?=date('d.m.Y H:i:s', $course['timeend'])?>">
         </div>
         <div class="control-group form-group">
             <label>Цена:</label>
