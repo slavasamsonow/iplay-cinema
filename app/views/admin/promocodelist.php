@@ -11,7 +11,8 @@
                 <?=$promocodes[$i]['code']?>
             </h2>
             <div class="sale">
-            Скидка: <?=$promocodes[$i]['sale']?>
+                Скидка:
+                <?=$promocodes[$i]['sale']?>
             </div>
             <div class="course">
                 Курс:
@@ -31,11 +32,10 @@
             </div>
             <div class="date-end">
                 Дата конца:
-                <?php if($promocodes[$i]['timeend'] == 0):?>
-                Не указана
+                <?php if($promocodes[$i]['noEnd'] == 1):?>
+                Без конца
                 <?php else: ?>
-                <?=date('d.m.Y H:i
-                ',$promocodes[$i]['timeend'])?>
+                <?=date('d.m.Y H:i',$promocodes[$i]['timeend'])?>
                 <?php endif ?>
             </div>
             <div class="param">
@@ -51,6 +51,6 @@
 </div>
 <?php else: ?>
 <div>
-На данный момент нет промокодов
+    На данный момент нет промокодов
 </div>
 <?php endif?>

@@ -19,7 +19,7 @@
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="timeend" value="0">
+                <input type="checkbox" name="noEnd" value="1">
                 <span> Без конца </span>
             </label>
         </div>

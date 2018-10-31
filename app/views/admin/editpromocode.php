@@ -16,15 +16,11 @@
         </div>
         <div class="control-group form-group">
             <label>Дата и время конца</label>
-            <?php if($promocode['timeend'] == 0):?>
-            <input type="text" class="form-control" name="timeend" required="true" value="<?=date('d.m.Y H:i:', time())?>00">
-            <?php else: ?>
             <input type="text" class="form-control" name="timeend" required="true" value="<?=date('d.m.Y H:i:m', $promocode['timeend'])?>">
-            <?php endif ?>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="timeend" value="0" <? if($promocode['timeend']==0){echo 'checked' ;}?>>
+                <input type="checkbox" name="noEnd" value="1" <? if($promocode['noEnd']==1){echo 'checked' ;}?>>
                 <span> Без конца </span>
             </label>
         </div>
