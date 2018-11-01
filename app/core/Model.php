@@ -9,7 +9,7 @@ use app\lib\SxGeo;
 use app\lib\phpmailer\PHPMailer;
 use app\lib\phpmailer\Exception;
 use app\lib\phpmailer\SMTP;
-use app\lib\mailChimp;
+use app\lib\MailChimp;
 
 use Imagick;
 
