@@ -11,6 +11,11 @@ class Course extends Model{
             'userId' => $_SESSION['user']['id'],
         ];
         $allCourses = $this->db->row('SELECT c.*, uc.percent FROM courses c JOIN user_courses uc ON c.id = uc.course WHERE uc.user = :userId ORDER BY c.timestart ASC', $params);
+        $courses = [
+            'Активные' => [],
+            'Предстоящие' => [],
+            'Прошедшие' => []
+        ];
         foreach($allCourses as $course){
             if($course['timestart'] < time() && ($course['timeend'] > time() || !$course['timeend'])){
                 $courses['Активные'][] = $course;
