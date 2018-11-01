@@ -13,26 +13,21 @@ class MailChimp{
         $this->lists = $config['lists'];
     }
 
-    protected function query($data){
+    protected function query($data, $list){
         $re = '/[\d]+$/';
         preg_match_all($re, $this->apiKey, $matches, PREG_SET_ORDER, 0);
         $link_num = (isset($matches[0][0])) ? $matches[0][0] : '';
 
-        $url = 'https://us'.$link_num.'.api.mailchimp.com/3.0/lists/'.$data['list'].'/members';
+        $url = 'https://us'.$link_num.'.api.mailchimp.com/3.0/lists/'.$list.'/members';
 
         $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $link);
+        curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_USERPWD, 'user:'.$this->apiKey);
         curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_TIMEOUT, 10);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
-        $dataSend = [
-            'email_address' => $data['email'],
-            'merge_fields' => ['FNAME' => $data['name']],
-            'status' => 'subscribed',
-        ];
-        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($dataSend));
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
         $result = curl_exec($curl);
         $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
@@ -44,16 +39,34 @@ class MailChimp{
         }
     }
 
+    protected function processData($data){
+        foreach($data as $type => $dataItem){
+            switch($type){
+                case 'email';
+                    $newData['email_address'] = $dataItem;
+                    break;
+                case 'fName':
+                    $newData['merge_fields']['FNAME'] = $dataItem;
+                    break;
+                case 'lName':
+                    $newData['merge_fields']['LNAME'] = $dataItem;
+                    break;
+                case 'phone':
+                    $newData['merge_fields']['PHONE'] = $dataItem;
+                    break;
+            }
+
+            $newData['status'] = 'subscribed';
+        }
+        return $newData;
+    }
+
     public function subscribe_student($data){
-        $name = $data['name'];
-        $email = $data['email'];
         $list = $this->lists['students'];
-        $dataSend = [
-            'name' => $name,
-            'email' => $email,
-            'list' => $list
-        ];
-        if($this->query($dataSend)){
+
+        $dataSend = $this->processData($data);
+
+        if($this->query($dataSend, $list)){
             return true;
         }else{
             return false;
