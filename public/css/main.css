@@ -80,15 +80,6 @@
     fill: #fff;
 }
 
-.content .intro .btn {
-    color: #fff;
-    border-color: #fff;
-}
-
-.content .intro .btn:hover {
-    border-color: #d43;
-}
-
 .content .intro .topLine {
     margin-bottom: 80px
 }
