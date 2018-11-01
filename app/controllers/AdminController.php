@@ -141,6 +141,12 @@ class AdminController extends Controller{
 
             $data = $_POST;
 
+            if(isset($_FILES['image']['tmp_name']) && $_FILES['image']['tmp_name'] != ''){
+                if($file = $this->model->saveFile($_FILES['image'], 'public/img/courses/', 'image')){
+                    $data['image'] = $file;
+                }
+            }
+
             // $this->view->message("+", json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ));
 
             if($this->model->updateCourse($id, $data)){

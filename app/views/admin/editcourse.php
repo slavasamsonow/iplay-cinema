@@ -36,6 +36,10 @@
                 <?php endforeach ?>
             </select>
         </div>
+        <div class="control-group form-group">
+            <label>Фото:</label>
+            <input type="file" name="image">
+        </div>
         <div class="checkbox">
             <label>
                 <input type="checkbox" name="active" value="1" <?php if($course['active'] == 1) echo 'checked';?>>
