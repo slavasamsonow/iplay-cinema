@@ -9,6 +9,7 @@ use app\lib\SxGeo;
 use app\lib\phpmailer\PHPMailer;
 use app\lib\phpmailer\Exception;
 use app\lib\phpmailer\SMTP;
+use app\lib\mailChimp;
 
 use Imagick;
 
@@ -16,6 +17,7 @@ abstract class Model{
 
     public $db;
     public $amo;
+    public $mailChimp;
     public $auth;
     public $role;
     public $geo;
@@ -24,6 +26,7 @@ abstract class Model{
     public function __construct(){
         $this->db = new Db;
         $this->amo = new Amo;
+        $this->mailChimp = new mailChimp();
         $this->yandexMoney = new YandexMoney;
         $this->auth = $this->checkAuth();
         $this->geo = $this->SxGeoCity();
