@@ -6,6 +6,14 @@ use app\core\Controller;
 
 class AccountController extends Controller{
 
+    public function indexAction(){
+        if($this->model->auth == 'auth'){
+            $this->view->redirect('study');
+        }else{
+            $this->view->redirect('login');
+        }
+    }
+
     public function registerAction(){
         if(!empty($_POST)){
             if(!$this->model->validate(['email','password'], $_POST)){
