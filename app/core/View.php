@@ -62,13 +62,11 @@ class View{
         ob_start();
         require 'app/views/errors/'.$code.'.php';
         $content = ob_get_clean();
-        if(!isset($_SESSION['user'])){
-           require 'app/views/layouts/default.php';
-        }else{
+        if(isset($_SESSION['user'])){
             $user = $_SESSION['user'];
             $user['username'] = (isset($user['username']))?$user['username']:'id'.$user['id'];
-            require 'app/views/layouts/lk.php';
         }
+        require 'app/views/layouts/default.php';
 
         exit();
     }
