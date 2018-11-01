@@ -80,7 +80,19 @@ class CourseController extends Controller{
                     }
 
                     $this->model->registerСourseGuest($_POST);
-                    $this->view->location('pay/'.$_POST['courseid'].'?email='.$_POST['email'].'&fio='.$_POST['fio'].'&phone='.$_POST['phone'].'&city='.$_POST['city']);
+                    if(isset($_POST['email'])){
+                        $_SESSION['guest']['email'] = $_POST['email'];
+                    }
+                    if(isset($_POST['fio'])){
+                        $_SESSION['guest']['fio'] = $_POST['fio'];
+                    }
+                    if(isset($_POST['phone'])){
+                        $_SESSION['guest']['phone'] = $_POST['phone'];
+                    }
+                    if(isset($_POST['city'])){
+                        $_SESSION['guest']['city'] = $_POST['city'];
+                    }
+                    $this->view->location('pay/'.$_POST['courseid']);
                 }
                 $this->view->message('Ваша заявка отправлена', 'В скором времени мы свяжемся с вами');
             }

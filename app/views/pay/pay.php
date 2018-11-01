@@ -26,19 +26,19 @@
             <?php if(!isset($_SESSION['user']['id'])): ?>
             <div class="control-group form-group">
                 <label>ФИО:</label>
-                <input type="text" class="form-control" name="fio" required="true" value="<?php if(isset($_GET['fio'])){echo $_GET['fio'];}?>">
+                <input type="text" class="form-control" name="fio" required="true" value="<?php if(isset($_SESSION['guest']['fio'])){echo $_SESSION['guest']['fio'];}?>">
             </div>
             <div class="control-group form-group">
                 <label>E-mail:</label>
-                <input type="email" class="form-control" name="email" required="true" value="<?php if(isset($_GET['email'])){echo $_GET['email'];}?>">
+                <input type="email" class="form-control" name="email" required="true" value="<?php if(isset($_SESSION['guest']['email'])){echo $_SESSION['guest']['email'];}?>">
             </div>
             <div class="control-group form-group">
                 <label>Телефон:</label>
-                <input type="phone" class="form-control" name="phone" required="true" value="<?php if(isset($_GET['phone'])){echo $_GET['phone'];}?>">
+                <input type="phone" class="form-control" name="phone" required="true" value="<?php if(isset($_SESSION['guest']['phone'])){echo $_SESSION['guest']['phone'];}?>">
             </div>
             <div class="control-group form-group">
                 <label>Город:</label>
-                <input type="text" class="form-control" name="city" value="<?php if(isset($_GET['city'])){echo $_GET['city'];}?>">
+                <input type="text" class="form-control" name="city" value="<?php if(isset($_SESSION['guest']['city'])){echo $_SESSION['guest']['city'];}?>">
             </div>
             <?php endif ?>
 
