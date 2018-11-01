@@ -27,10 +27,10 @@
                         <input type="hidden" name="form" value="registercourse">
                         <input type="hidden" name="courseid" value="<?=$course['id']?>">
                         <input type="hidden" name="course" value="<?=$course['name']?>">
-                        <input type="submit" class="btn btn-white" value="Записаться">
+                        <input type="submit" class="btn btn-primary" value="Записаться">
                     </form>
                     <?php else: ?>
-                    <button class="btn btn-white" data-action="modal" data-modal="registercourse">Записаться</button>
+                    <button class="btn btn-primary" data-action="modal" data-modal="registercourse">Записаться</button>
                     <?php endif ?>
                 </div>
                 <?php endif?>
