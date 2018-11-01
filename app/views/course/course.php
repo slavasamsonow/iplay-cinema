@@ -1,5 +1,5 @@
 <div class="coursePage">
-    <div class="headline">
+    <div class="headline" style="<?php if($course['image']){echo 'background-image: url(/public/img/courses/'.$course['image'].')';}?>">
         <div class="row">
             <div class="col-md-8">
                 <h1>
