@@ -64,10 +64,10 @@ abstract class Model{
         $mail->msgHTML($body);
         //$mail->AltBody = 'Сообщение от киношколы iPlay. Рекомендуется просмотр с содержимым';
 
-        if (!$mail->send()) {
+        if(!$mail->send()){
             //echo "Mailer Error: " . $mail->ErrorInfo;
             return false;
-        } else {
+        }else{
             return true;
         }
     }
@@ -78,14 +78,12 @@ abstract class Model{
                 'id' => $_SESSION['user']['id'],
             ];
             $password = $_SESSION['user']['password'];
-        }
-        elseif(isset($_COOKIE['i']) && isset($_COOKIE['p'])){
+        }else if(isset($_COOKIE['i']) && isset($_COOKIE['p'])){
             $params = [
                 'id' => $_COOKIE['i'],
             ];
             $password = $_COOKIE['p'];
-        }
-        else{
+        }else{
             return 'guest';
         }
 
@@ -93,16 +91,16 @@ abstract class Model{
 
         if(empty($data[0])){
             if(isset($_SESSION['user'])) unset($_SESSION['user']);
-            setcookie('i','',time());
-            setcookie('p','',time());
+            setcookie('i', '', time());
+            setcookie('p', '', time());
             return 'guest';
         }
         $data = $data[0];
 
         if($data['password'] != $password){
             if(isset($_SESSION['user'])) unset($_SESSION['user']);
-            setcookie('i','',time());
-            setcookie('p','',time());
+            setcookie('i', '', time());
+            setcookie('p', '', time());
             return 'guest';
         }
 
@@ -131,7 +129,7 @@ abstract class Model{
                 'message' => 'Телефон введен неверно'
             ]
         ];
-        foreach ($input as $val) {
+        foreach($input as $val){
             if(!isset($data[$val]) || !preg_match($rules[$val]['pattern'], $data[$val])){
                 $this->error = $rules[$val]['message'];
                 return false;
@@ -155,7 +153,7 @@ abstract class Model{
         return true;
     }
 
-    public function checkExists($name, $val, $table='users'){
+    public function checkExists($name, $val, $table = 'users'){
         $params = [
             $name => $val,
         ];
@@ -163,7 +161,7 @@ abstract class Model{
     }
 
     public function createToken($len = 30){
-        return substr(str_shuffle(str_repeat('1234567890qwertyuiopasdfghjklzxcvbnm', 20)),0,$len);
+        return substr(str_shuffle(str_repeat('1234567890qwertyuiopasdfghjklzxcvbnm', 20)), 0, $len);
     }
 
     protected function SxGeoCity(){
@@ -181,7 +179,7 @@ abstract class Model{
     }
 
     public function pagination($countElem, $params = []){
-        $onPage = (isset($params['onpage']))?$params['onpage']:10;
+        $onPage = (isset($params['onpage'])) ? $params['onpage'] : 10;
 
         $currentPage = (isset($_GET['page'])) ? intval($_GET['page']) : 1;
 
@@ -206,7 +204,7 @@ abstract class Model{
         if(isset($url['1'])){
             $params = explode('&', $url['1']);
             foreach($params as $key => $param){
-                $paramval = explode('=',$param);
+                $paramval = explode('=', $param);
                 if($paramval[0] == 'page'){
                     unset($params[$key]);
                 }
@@ -214,7 +212,6 @@ abstract class Model{
         }
 
         //Дописать ссылки на страницы
-
 
 
         $params['page'] = 'page='. 3;
@@ -228,7 +225,7 @@ abstract class Model{
         return $out;
     }
 
-    public function saveFile($file, $path, $fileType = ''){
+    public function saveFile($file, $path, $fileType, $thumb = []){
         $newFilename = time().$this->createToken(15);
         $uploadDir = $_SERVER['DOCUMENT_ROOT'].'/'.$path;
 
@@ -257,27 +254,18 @@ abstract class Model{
             return false;
         }
 
-        $uploadFile = $uploadDir . $newFilename;
-//        if($fileType = 'image'){
-//            $uploadFileThumb = $uploadDir.'thumb/'.$newFilename;
-//            $sizeImage = getimagesize($file['tmp_name']);
-//            $image = new Imagick($file['tmp_name']);
-//            if($sizeImage[0] > 2000){
-//                $image->thumbnailImage(2000, 0);
-//            }else if($sizeImage[1] > 2000){
-//                $image->thumbnailImage(0, 2000);
-//            }
-//            $image->setImageCompressionQuality(80);
-//            $image->writeImage($uploadFile);
-//            $image->cropThumbnailImage(100, 100);
-//            $image->writeImage($uploadFileThumb);
-//        }
-//        else{
-            if (!move_uploaded_file($file['tmp_name'], $uploadFile)) {
-                $this->error = 'Не удалось осуществить сохранение файла';
-                return false;
-            }
-//        }
+        $uploadFile = $uploadDir.$newFilename;
+        if($path == 'public/img/users/'){
+            $uploadFileThumb = $uploadDir.'thumb/'.$newFilename;
+            $image = new Imagick($file['tmp_name']);
+            $image->setImageCompressionQuality(80);
+            $image->cropThumbnailImage(100, 100);
+            $image->writeImage($uploadFileThumb);
+        }
+        if(!move_uploaded_file($file['tmp_name'], $uploadFile)){
+            $this->error = 'Не удалось осуществить сохранение файла';
+            return false;
+        }
 
         return $newFilename;
     }
@@ -285,22 +273,22 @@ abstract class Model{
     public function textformatting($data){
         foreach($data as $key => $val){
             $datanew = trim($val);
-            $dataout[$key]  = htmlspecialchars($datanew);
+            $dataout[$key] = htmlspecialchars($datanew);
         }
         return $dataout;
     }
 
     public function toUnixtime($datetime){
-        $datetimeAr = explode(' ',$datetime);
+        $datetimeAr = explode(' ', $datetime);
         $date = $datetimeAr[0];
         $time = $datetimeAr[1];
 
-        $dateAr = explode('.',$date);
+        $dateAr = explode('.', $date);
         $d = $dateAr[0];
         $m = $dateAr[1];
         $y = $dateAr[2];
 
-        $timeAr = explode(':',$time);
+        $timeAr = explode(':', $time);
         $h = $timeAr[0];
         $i = $timeAr[1];
         $s = $timeAr[2];
@@ -309,7 +297,7 @@ abstract class Model{
     }
 
     public function descriptionText($strings){
-        foreach($strings as $key=>$string){
+        foreach($strings as $key => $string){
             $newstring = '<p>'.$string.'.</p>';
             $newstring = preg_replace(array("/\r\n/", "/\r/", "/\n/"), '<p></p>', $newstring);
             $newstrings[$key] = $newstring;
@@ -318,14 +306,14 @@ abstract class Model{
     }
 
     public function processTextIn($strings){
-        foreach($strings as $key=>$string){
+        foreach($strings as $key => $string){
             $newstring = trim($string);
             $newstring = strip_tags($newstring);
             $newstring = htmlspecialchars($newstring);
             if(in_array($key, ['description', 'caption', 'content', 'about'])){
                 $newstring = '<p>'.$newstring.'</p>';
                 $newstring = preg_replace("/(\r\n){3,}/", "\r\n\r\n", $newstring);
-                $newstring = preg_replace('/\r\n/','</p><p>', $newstring);
+                $newstring = preg_replace('/\r\n/', '</p><p>', $newstring);
                 $newstring = preg_replace(array('/\[b\]/', '/\[\/b\]/'), array("<b>", "</b>"), $newstring);
             }else{
                 $newstring = preg_replace(array("/\r\n/"), '<br>', $newstring);
@@ -336,9 +324,9 @@ abstract class Model{
     }
 
     public function processTextOut($strings){
-        foreach($strings as $key=>$string){
+        foreach($strings as $key => $string){
             $newstring = $string;
-            $newstring = preg_replace(array('/\<b\>/','/\<\/b\>/'), array('[b]','[/b]'), $newstring);
+            $newstring = preg_replace(array('/\<b\>/', '/\<\/b\>/'), array('[b]', '[/b]'), $newstring);
             $newstring = preg_replace(array('/\<br\>/', '/\<\/p\>\<p\>/'), "\r\n", $newstring);
             $newstring = preg_replace(array('/\<p\>/', '/\<\/p\>/'), "", $newstring);
             $newstrings[$key] = $newstring;
@@ -356,8 +344,7 @@ abstract class Model{
 
         if(isset($_SESSION['user'])){
             $varsAmo['contact_id'] = $_SESSION['user']['amoid'];
-        }
-        else if(isset($data['email'])){
+        }else if(isset($data['email'])){
             if($amoContact = $this->amo->searchContact($data['email'])){
                 $varsAmo['contact_id'] = $amoContact['id'];
             }else{
