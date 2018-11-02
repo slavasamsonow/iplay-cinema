@@ -37,4 +37,9 @@ class MainController extends Controller{
         ];
         $this->view->render($vars);
     }
+
+    public function lendingAction(){
+        $this->view->layout = 'lending';
+        $this->view->render();
+    }
 }
