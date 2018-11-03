@@ -162,6 +162,9 @@ a.btn {
 
 .btn:focus {
     outline: none;
+    background-color: #fff;
+    border-color: #fff;
+    color: #111;
 }
 
 .btn:active:focus {
@@ -174,6 +177,11 @@ a.btn {
 .btn-white{
     border-color: #fff;
     color: #fff;
+}
+
+.btn-default{
+    background-color: #fff;
+    border-color: #fff;
 }
 
 .btn.process,
