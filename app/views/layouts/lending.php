@@ -21,18 +21,11 @@
 </head>
 
 <body>
-<div class="content">
+<div class="content lending-content">
 
     <div class="wrapper">
         <?=$content?>
     </div>
-
-    <footer>
-        <div class="container-fluid">
-            <a href="/public/docs/protect_policy_of_personal_information.pdf" target="_blank">Политика
-                конфеденциальности</a>
-        </div>
-    </footer>
     <div id="overlay"></div>
     <div class="modal message">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
