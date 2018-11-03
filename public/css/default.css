@@ -692,7 +692,7 @@ tr:hover td {
 }
 
 /* Основная часть */
-.content {
+.wrapper {
     position: relative;
     z-index: 1;
     padding-left: 100px;
@@ -701,6 +701,7 @@ tr:hover td {
 .container-fluid {
     padding-left: 90px;
     padding-right: 90px;
+    padding-bottom: 50px;
 }
 
 /* Подвал */
