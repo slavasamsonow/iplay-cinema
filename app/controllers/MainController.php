@@ -40,6 +40,11 @@ class MainController extends Controller{
 
     public function lendingAction(){
         $this->view->layout = 'lending';
-        $this->view->render();
+        $vars = [
+            'seo' => [
+                'title' => 'Интенсив-шоу №2',
+            ]
+        ];
+        $this->view->render($vars);
     }
 }
