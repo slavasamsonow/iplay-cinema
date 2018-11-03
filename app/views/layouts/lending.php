@@ -21,9 +21,9 @@
 </head>
 
 <body>
-<div class="content lending-content">
+<div class="wrapper lending-wrapper">
 
-    <div class="wrapper">
+    <div class="content">
         <?=$content?>
     </div>
     <div id="overlay"></div>

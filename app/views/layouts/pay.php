@@ -21,10 +21,10 @@
     </head>
 
     <body>
-        <div class="content">
+        <div class="wrapper">
             <?php require_once('include/navbar.php')?>
 
-            <div class="wrapper">
+            <div class="content">
                 <?=$content?>
             </div>
 
