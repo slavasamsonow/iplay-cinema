@@ -1,12 +1,12 @@
 /* v.0.13.16 */
 
 /* Интро */
-.content.intro{
+.intro-wrapper{
     padding-left: 0;
 }
 
 /* Навигация */
-.content.intro .navbar{
+.intro-wrapper .navbar{
     position: absolute;
     top: 0;
     left: 0;
@@ -14,37 +14,37 @@
     color: #fff;
 }
 
-.content.intro .navbar a{
+.intro-wrapper .navbar a{
     color: #fff;
 }
 
-.content.intro .navbar svg{
+.intro-wrapper .navbar svg{
     fill: #fff;
 }
 
-.content.intro .navbar .user:before{
+.intro-wrapper .navbar .user:before{
     border-top-color: #fff;
 }
 
-.content.intro .navbar .user:hover{
+.intro-wrapper .navbar .user:hover{
     background-color: transparent;
     border-color: #fff;
 }
 
-.content.intro .navbar .user.active{
+.intro-wrapper .navbar .user.active{
     color: #111;
 }
 
-.content.intro .navbar .user.active:hover{
+.intro-wrapper .navbar .user.active:hover{
     background-color: #fff;
     border-color: #111;
 }
 
-.content.intro .navbar .user.active:before{
+.intro-wrapper .navbar .user.active:before{
     border-top-color: #111;
 }
 
-.content.intro .navbar .user .user-menu a{
+.intro-wrapper .navbar .user .user-menu a{
     color: #111;
 }
 
@@ -131,15 +131,15 @@
     transform: translate(-50%, -50%);
 }
 
-.content.intro .events{
+.intro-wrapper .events{
     padding: 50px 0;
 }
 
-.content.intro .events .event h3{
+.intro-wrapper .events .event h3{
     position: relative;
 }
 
-.content.intro .events .event .date{
+.intro-wrapper .events .event .date{
     position: absolute;
     right: 100%;
     transform: rotate(-90deg);
@@ -148,54 +148,54 @@
     font-weight: normal;
 }
 
-.content.intro .courses{
+.intro-wrapper .courses{
     padding: 20px 0;
 }
 
-.content.intro .courses h3{
+.intro-wrapper .courses h3{
     font-size: 1px;
     opacity: 0;
 }
 
-.content.intro .courses .image_date{
+.intro-wrapper .courses .image_date{
     margin-bottom: 20px;
 }
 
-.content.intro .about .video iframe{
+.intro-wrapper .about .video iframe{
     width: 100%;
 }
 
-.content.intro .lead-magnet{
+.intro-wrapper .lead-magnet{
     padding: 50px 0;
     text-align: center;
 }
 
-.content.intro .lead-magnet h2{
+.intro-wrapper .lead-magnet h2{
     font-size: 40px;
 }
 
-.content.intro .plus{
+.intro-wrapper .plus{
     letter-spacing: -0.2em;
 }
 
-.content.intro .plus .container-fluid{
+.intro-wrapper .plus .container-fluid{
     padding: 0;
 }
 
-.content.intro .plus .plus-item{
+.intro-wrapper .plus .plus-item{
     background-color: #d43;
     color: #fff;
     padding: 0;
 }
 
-.content.intro .plus .plus-item img,
-.content.intro .plus .plus-item .text{
+.intro-wrapper .plus .plus-item img,
+.intro-wrapper .plus .plus-item .text{
     display: inline-block;
     width: 49.9%;
     vertical-align: middle;
 }
 
-.content.intro .plus .plus-item .text{
+.intro-wrapper .plus .plus-item .text{
     padding: 50px;
     letter-spacing: normal;
     text-align: center;
@@ -204,21 +204,96 @@
 }
 
 /* Лендинг */
-.lending-content{
+.lending-wrapper{
     padding-left: 0;
 }
 
-.lending-content h2{
+.lending-wrapper h2{
     text-align: center;
 }
 
-.lending-content .lending{
+.lending-wrapper .lending-intro{
     height: 100vh;
     position: relative;
     z-index: 1;
+    overflow: hidden;
 }
 
-.lending-content .lending .background{
+.lending-wrapper .lending-intro .lending-intro-content{
+    padding-top: 35vh;
+    text-align: center;
+}
+
+.lending-wrapper .lending-intro h1{
+    font-size: 54px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+.lending-wrapper .lending-intro h1::before,
+.lending-wrapper .lending-intro h1::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 90px;
+    height: 80px;
+    background: url("/public/img/content/lamp.png") no-repeat center bottom/contain;
+}
+
+.lending-wrapper .lending-intro h1::before{
+    left: -15px;
+    transform: translateY(-50%) rotate(90deg);
+}
+
+.lending-wrapper .lending-intro h1::after{
+    right: -15px;
+    transform: translateY(-50%) rotate(-90deg);
+}
+
+.lending-wrapper .lending-intro .description-text{
+    display: inline-block;
+    font-size: 24px;
+    letter-spacing: 0.08em;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.lending-wrapper .lending-intro .description-text::before,
+.lending-wrapper .lending-intro .description-text::after{
+    content: '';
+    width: 200px;
+    height: 150px;
+    position: absolute;
+    top: 50%;
+    background: url("/public/img/content/pattern-more-triangle-white.png") no-repeat center/contain;
+}
+
+.lending-wrapper .lending-intro .description-text::before{
+    left: 0;
+    transform: translate(-100%, -50%);
+}
+
+.lending-wrapper .lending-intro .description-text::after{
+    top: 50%;
+    transform: translate(100%, -50%) rotate(180deg);
+}
+
+.lending-wrapper .lending-intro .description-text hr{
+    border: 0;
+    margin: 0;
+    height: 20px;
+    background: url("/public/img/content/hr.png") no-repeat center/contain;
+}
+
+.lending-wrapper .lending-intro .local-date{
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.lending-wrapper .lending-intro .background{
     position: absolute;
     z-index: -1;
     width: 100%;
@@ -229,139 +304,61 @@
     background-size: cover;
 }
 
-.lending-content .container-fluid{
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 50px;
-}
-
-.lending-content .lending .container-fluid{
-    padding-top: 35vh;
-    text-align: center;
-}
-
-.lending-content .lending h1{
-    font-size: 54px;
-    text-transform: uppercase;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 0;
-}
-
-.lending-content .lending h1::before,
-.lending-content .lending h1::after{
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 90px;
-    height: 80px;
-    background: url("/public/img/content/lamp.png") no-repeat center bottom/contain;
-}
-
-.lending-content .lending h1::before{
-    left: -15px;
-    transform: translateY(-50%) rotate(90deg);
-}
-
-.lending-content .lending h1::after{
-    right: -15px;
-    transform: translateY(-50%) rotate(-90deg);
-}
-
-.lending-content .lending .description{
-    font-size: 24px;
-    letter-spacing: 0.08em;
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.lending-content .lending .description::before,
-.lending-content .lending .description::after{
-    content: '';
-    width: 200px;
-    height: 150px;
-    position: absolute;
-    top: 50%;
-    background: url("/public/img/content/pattern-more-triangle-white.png") no-repeat center/contain;
-}
-
-.lending-content .lending .description::before{
-    left: 0;
-    transform: translate(-100%, -50%);
-}
-
-.lending-content .lending .description::after{
-    top: 50%;
-    transform: translate(100%, -50%) rotate(180deg);
-}
-
-.lending-content .lending .description hr{
-    border: 0;
-    margin: 0;
-    height: 20px;
-    background: url("/public/img/content/hr.png") no-repeat center/contain;
-}
-
-.lending-content .lending .local-date{
-    font-size: 18px;
-    margin-bottom: 20px;
-    font-weight: 300;
-}
-
-.lending-content .who{
+.lending-wrapper .who{
     background: url("/public/img/content/top-right-filmstrip.png") no-repeat top right;
     border-bottom: 5px solid #280d42;
 }
 
-.lending-content .who .list{
+.lending-wrapper .who .list{
     position: relative;
+    margin: 0 -90px;
+    padding: 0 90px;
 }
 
-.lending-content .who .list::before{
+.lending-wrapper .who .list::before{
     content: '';
     height: 100%;
     position: absolute;
-    left: -15px;
+    left: 0px;
     top: 0;
     width: 15px;
     background-color: #d43;
 }
 
-.lending-content .invest{
+.lending-wrapper .invest{
     text-align: center;
     background: url("/public/img/content/background-invest.png") no-repeat right/contain, #cce2ed;
 }
 
-.lending-content .invest h2{
+.lending-wrapper .invest h2{
     padding-bottom: 30px;
 }
 
-.lending-content .invest .row{
+.lending-wrapper .invest .invest-content{
+    margin: 0 -90px;
+    padding: 25px 90px;
     background-color: rgba(255, 255, 255, 0.6);
     font-size: 20px;
-    padding-top: 25px;
-    padding-bottom: 25px;
 }
 
-.lending-content .plan .row{
+.lending-wrapper .plan .plan-list{
     text-align: center;
     font-size: 16px;
 }
 
-.lending-content .plan .item{
+.lending-wrapper .plan .item{
     display: inline-block;
     width: 30%;
     margin-right: 3%;
-    /*text-align: left;*/
     margin-bottom: 20px;
     vertical-align: top;
 }
 
-.lending-content .plan .item img{
+.lending-wrapper .plan .item img{
     margin-bottom: 10px;
 }
 
-.lending-content .request-block .text{
+.lending-wrapper .request-block .text{
     padding: 25px;
     text-align: center;
     font-size: 26px;
@@ -369,7 +366,7 @@
     background: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent, rgba(0, 0, 0, 0.5)), #d43;
 }
 
-.lending-content .request-block .button{
+.lending-wrapper .request-block .button{
     padding: 10px;
     text-align: center;
     font-size: 26px;
@@ -377,12 +374,12 @@
     background: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent, rgba(0, 0, 0, 0.5)), #cce2ed;
 }
 
-.lending-content .request-block .button button{
+.lending-wrapper .request-block .button button{
     position: relative;
 }
 
-.lending-content .request-block .button button::before,
-.lending-content .request-block .button button::after{
+.lending-wrapper .request-block .button button::before,
+.lending-wrapper .request-block .button button::after{
     content: '';
     position: absolute;
     top: 50%;
@@ -391,25 +388,24 @@
     background: url("/public/img/content/3-triangles.png") no-repeat center/contain;
 }
 
-.lending-content .request-block .button button::before{
+.lending-wrapper .request-block .button button::before{
     left: 0;
     transform: translate(-120%, -50%);
 }
 
-.lending-content .request-block .button button::after{
+.lending-wrapper .request-block .button button::after{
     right: 0;
     transform: translate(120%, -50%) rotate(180deg);
 }
 
-.lending-content .speakers{
+.lending-wrapper .speakers{
     background: url('/public/img/content/pattern-more-triangle-white.png') no-repeat 0 105%, linear-gradient(36deg, rgba(208, 0, 0, 0.2), rgba(54, 19, 88, 0.2)), #280d42;
-    padding-bottom: 50px;
     position: relative;
     overflow: hidden;
 }
 
-.lending-content .speakers:before,
-.lending-content .speakers::after{
+.lending-wrapper .speakers:before,
+.lending-wrapper .speakers::after{
     content: '';
     position: absolute;
     top: 80px;
@@ -418,45 +414,46 @@
     background: url("/public/img/content/lamp.png") no-repeat center bottom/contain;
 }
 
-.lending-content .speakers::before{
+.lending-wrapper .speakers::before{
     left: -15px;
     transform: translateY(-50%) rotate(90deg);
 }
 
-.lending-content .speakers::after{
+.lending-wrapper .speakers::after{
     right: -15px;
     transform: translateY(-50%) rotate(-90deg);
 }
 
-.lending-content .speakers .item{
+.lending-wrapper .speakers .item{
     text-align: center;
+    margin-bottom: 20px;
 }
 
-.lending-content .speakers .item .image{
+.lending-wrapper .speakers .item .image{
     margin-bottom: 10px;
 }
 
-.lending-content .speakers .item .image span{
+.lending-wrapper .speakers .item .image span{
     display: inline-block;
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 0 25px #ffd200;
 }
 
-.lending-content .speakers .item .image span img{
+.lending-wrapper .speakers .item .image span img{
     margin-bottom: 0;
 }
 
-.lending-content .speakers .item .name{
+.lending-wrapper .speakers .item .name{
     font-weight: bold;
     font-size: 20px;
 }
 
-.lending-content .speakers .item .name span{
+.lending-wrapper .speakers .item .name span{
     position: relative;
 }
 
-.lending-content .speakers .item .name span::before{
+.lending-wrapper .speakers .item .name span::before{
     content: '';
     position: absolute;
     left: 0;
@@ -467,96 +464,94 @@
     transform: translate(-30px, -50%);
 }
 
-.lending-content .speakers .item .description{
+.lending-wrapper .speakers .item .description{
     font-weight: 300;
     font-size: 20px;
     margin-bottom: 20px;
 }
 
-.lending-content .speakers .item .about{
+.lending-wrapper .speakers .item .about{
     font-size: 12px;
 }
 
-.lending-content .project{
-    padding-bottom: 50px;
-}
-
-.lending-content .price{
+.lending-wrapper .price{
     background: linear-gradient(36deg, rgba(208, 0, 0, 0.2), rgba(54, 19, 88, 0.2)), url('/public/img/content/background-prices.png') no-repeat left center/contain, #280d42;
-    padding-bottom: 50px;
     position: relative;
     overflow: hidden;
 }
 
-.lending-content .price h2{
+.lending-wrapper .price h2{
     padding-bottom: 30px;
 }
 
-.lending-content .price .prices{
+.lending-wrapper .price .prices{
+    margin: 0 -90px 20px;
+    padding: 0 90px;
     position: relative;
-    margin-bottom: 20px;
 }
 
-.lending-content .price .prices::before,
-.lending-content .price .prices::after{
+.lending-wrapper .price .prices::before,
+.lending-wrapper .price .prices::after{
     content: '';
     position: absolute;
     top: 0;
     width: 15px;
     height: 100%;
-    background-color: rgba(255,255,255,0.25);
+    background-color: rgba(255, 255, 255, 0.25);
 }
 
-.lending-content .price .prices::before{
+.lending-wrapper .price .prices::before{
     left: 0;
 }
 
-.lending-content .price .prices::after{
+.lending-wrapper .price .prices::after{
     right: 0;
 }
 
-.lending-content .price .prices .item{
-    background-color: rgba(0,0,0,0.25);
+.lending-wrapper .price .prices .item{
+    background-color: rgba(0, 0, 0, 0.25);
     font-size: 26px;
     padding: 20px 0;
     text-align: center;
 }
 
-.lending-content .price .prices .name{
+.lending-wrapper .price .prices .name{
     margin-bottom: 10px;
     font-weight: 300;
 }
 
-.lending-content .price .prices .value{
+.lending-wrapper .price .prices .value{
     font-weight: bold;
 }
 
-.lending-content .price .request{
+.lending-wrapper .price .request{
     font-size: 26px;
     text-align: center;
 }
 
-.lending-content .price .request .button{
+.lending-wrapper .price .request .button{
     padding: 20px;
 }
 
-.lending-content .cooperation{
-    background: url("/public/img/content/background-cooperation.jpg") no-repeat  center/cover;
-    padding-bottom: 50px;
+.lending-wrapper .cooperation{
+    background: url("/public/img/content/background-cooperation.jpg") no-repeat center/cover;
 }
-.lending-content .cooperation .button{
+
+.lending-wrapper .cooperation .button{
     margin-top: 20px;
     text-align: center;
 }
-.lending-content .contact{
+
+.lending-wrapper .contact{
     padding-top: 50px;
     background: linear-gradient(36deg, rgba(208, 0, 0, 0.2), rgba(54, 19, 88, 0.2)), #280d42;
 }
-.lending-content .contact .logo{
+
+.lending-wrapper .contact .logo{
     width: 200px;
 }
 
-    /* Страница курса - чекбоксы */
+/* Страница курса - чекбоксы */
 
 .tasks .day{
     border: 2px solid #111;
@@ -761,7 +756,7 @@
 }
 
 /* Подвал
-.content.intro footer {
+.intro-wrapper footer {
     position: absolute;
     left: 0;
     bottom: 0;
