@@ -181,7 +181,6 @@ a.btn {
 
 .btn-default{
     background-color: #fff;
-    border-color: #fff;
 }
 
 .btn.process,
@@ -319,6 +318,7 @@ textarea {
     color: #111;
     text-align: left;
     resize: none;
+    width: 100%;
 }
 
 .input-group-btn:last-child>.btn {
