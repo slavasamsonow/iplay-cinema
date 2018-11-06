@@ -217,10 +217,25 @@
     position: relative;
     z-index: 1;
     overflow: hidden;
+    background: url("/public/img/content/elements/004-film.png") no-repeat left 45px top 30px,
+    url("/public/img/content/elements/050-video.png") no-repeat right 45px top 30px,
+    url("/public/img/content/elements/010-film.png") no-repeat left 45px bottom 35px,
+    url("/public/img/content/elements/001-video-camera.png") no-repeat left 150px bottom 35px,
+    url("/public/img/content/elements/030-microphone.png") no-repeat right 45px bottom 35px,
+    url("/public/img/content/elements/003-camera.png") no-repeat right 150px bottom 35px,
+    url("/public/img/lending/background-intensiv.png") no-repeat center 10vh/cover;
+}
+
+.lending-wrapper .lending-intro .top{
+    padding: 20px 0;
+}
+
+.lending-wrapper .lending-intro .logo img{
+    width: 200px;
 }
 
 .lending-wrapper .lending-intro .lending-intro-content{
-    padding-top: 35vh;
+    padding-top: 10vh;
     text-align: center;
 }
 
@@ -272,12 +287,12 @@
 
 .lending-wrapper .lending-intro .description-text::before{
     left: 0;
-    transform: translate(-100%, -50%);
+    transform: translate(-150%, -50%);
 }
 
 .lending-wrapper .lending-intro .description-text::after{
-    top: 50%;
-    transform: translate(100%, -50%) rotate(180deg);
+    right: 0;
+    transform: translate(150%, -50%) rotate(180deg);
 }
 
 .lending-wrapper .lending-intro .description-text hr{
@@ -537,6 +552,14 @@
     background: url("/public/img/content/background-cooperation.jpg") no-repeat center/cover;
 }
 
+.lending-wrapper .cooperation .item{
+    margin-bottom: 20px;
+}
+
+.lending-wrapper .cooperation .name{
+    font-weight: bold;
+}
+
 .lending-wrapper .cooperation .button{
     margin-top: 20px;
     text-align: center;
@@ -548,7 +571,12 @@
 }
 
 .lending-wrapper .contact .logo{
+    float: left;
     width: 200px;
+}
+
+.lending-wrapper .contact .contact-info{
+    float: right;
 }
 
 /* Страница курса - чекбоксы */
