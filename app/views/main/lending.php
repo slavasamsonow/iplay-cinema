@@ -23,12 +23,13 @@
             19 ноября, 19:00
         </div>
         <div class="zapis">
-            <button class="btn btn-default">Записаться</button>
+            <button class="btn btn-primary" data-action="modal" data-modal="registercourse">Записаться</button>
+            <!--            <button class="btn btn-default">Записаться</button>-->
         </div>
     </div>
-<!--    <div class="background">-->
-<!--        <img src="/public/img/lending/background-intensiv.png" alt="" style="position: relative; top: 10vh;">-->
-<!--    </div>-->
+    <!--    <div class="background">-->
+    <!--        <img src="/public/img/lending/background-intensiv.png" alt="" style="position: relative; top: 10vh;">-->
+    <!--    </div>-->
 </div>
 
 <div class="who">
@@ -112,7 +113,8 @@
         Оставь заявку — сделай свой шаг к кинокарьере
     </div>
     <div class="button">
-        <button class="btn btn-primary">Записаться</button>
+        <button class="btn btn-primary" data-action="modal" data-modal="registercourse">Записаться</button>
+<!--        <button class="btn btn-primary">Записаться</button>-->
     </div>
 </div>
 
@@ -292,7 +294,8 @@
         <div class="request">
             Успей записаться по выгодной цене
             <div class="button">
-                <button class="btn btn-default">Записаться</button>
+                <button class="btn btn-primary" data-action="modal" data-modal="registercourse">Записаться</button>
+<!--                <button class="btn btn-default">Записаться</button>-->
             </div>
         </div>
     </div>
@@ -347,7 +350,8 @@
             </div>
         </div>
         <div class="button">
-            <button class="btn btn-primary">Оставить заявку</button>
+            <button class="btn btn-primary" data-action="modal" data-modal="registercooperation">Оставить заявку</button>
+<!--            <button class="btn btn-primary">Оставить заявку</button>-->
         </div>
     </div>
 
@@ -368,3 +372,90 @@
         </div>
     </div>
 </div>
+
+</div>
+
+<div class="modal registercourse">
+    <button type="button" class="close">&times;</button>
+    <div class="modal-header">
+        Заявка на участие
+    </div>
+    <div class="modal-body">
+        <form action="<?=explode('?', $_SERVER['REQUEST_URI'])[0];?>" method="post">
+            <input type="hidden" name="form" value="registercourse">
+            <input type="hidden" name="courseid" value="4">
+            <input type="hidden" name="course" value="Интенсив-Шоу №2">
+            <div class="form-group">
+                <input type="text" class="form-control" name="fio" required="required" placeholder="Имя Фамилия">
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" required='required' placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="tel" class="form-control" name="phone" required='required'
+                       placeholder="+7 (XXX) XXX-XX-XX">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="city" placeholder="Город">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="confident" value="confident" checked required>
+                    <span> Я ознакомлен и согласен <br> с <a
+                                href="/public/docs/protect_policy_of_personal_information.pdf"
+                                target="_blank">Политикой конфеденциальности</a>
+                    </span>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="register" value="register" checked>
+                    <span> Я хочу зарегистрироваться на сайте, <br> чтобы получить дополнительные возможности
+                    </span>
+                </label>
+            </div>
+            <input type="submit" class="btn" value="Отправить заявку">
+        </form>
+    </div>
+</div>
+
+<div class="modal registercooperation">
+    <button type="button" class="close">&times;</button>
+    <div class="modal-header">
+        Заявка на сотрудничество
+    </div>
+    <div class="modal-body">
+        <form action="<?=explode('?', $_SERVER['REQUEST_URI'])[0];?>" method="post">
+            <input type="hidden" name="form" value="registercooperation">
+            <input type="hidden" name="course" value="Интенсив-Шоу №2">
+            <div class="form-group">
+                <input type="text" class="form-control" name="fio" required="required" placeholder="Имя Фамилия">
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" required='required' placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="tel" class="form-control" name="phone" required='required'
+                       placeholder="+7 (XXX) XXX-XX-XX">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="city" placeholder="Город">
+            </div>
+            <div class="form-group">
+                <textarea name="content" rows="5"></textarea>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="confident" value="confident" checked required>
+                    <span> Я ознакомлен и согласен <br> с <a
+                                href="/public/docs/protect_policy_of_personal_information.pdf"
+                                target="_blank">Политикой конфеденциальности</a>
+                    </span>
+                </label>
+            </div>
+            <input type="submit" class="btn" value="Отправить заявку">
+        </form>
+    </div>
+</div>
+
+<div>
