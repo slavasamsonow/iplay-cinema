@@ -83,26 +83,44 @@
     <h2>План мероприятия</h2>
     <div class="container-fluid">
         <div class="plan-list">
-            <div class="item"><img src="/public/img/lending/plan/intensiv-1.png" alt="">
-                <div>1. Знакомство</div>
-            </div>
+<!--            <div class="item"><img src="/public/img/lending/plan/intensiv-1.png" alt="">-->
+<!--                <div>1. Знакомство</div>-->
+<!--            </div>-->
+<!--            <div class="item"><img src="/public/img/lending/plan/intensiv-2.png" alt="">-->
+<!--                <div>2. Выступление экспертов</div>-->
+<!--            </div>-->
+<!--            <div class="item"><img src="/public/img/lending/plan/intensiv-3.png" alt="">-->
+<!--                <div>3. Выбор идеи и <br>разработка сценария</div>-->
+<!--            </div>-->
+<!--            <div class="item"><img src="/public/img/lending/plan/intensiv-4.png" alt="">-->
+<!--                <div>4. Кастинг актеров</div>-->
+<!--            </div>-->
+<!--            <div class="item"><img src="/public/img/lending/plan/intensiv-5.png" alt="">-->
+<!--                <div>5. Съемка</div>-->
+<!--            </div>-->
+<!--            <div class="item"><img src="/public/img/lending/plan/intensiv-6.png" alt="">-->
+<!--                <div>6. Монтаж</div>-->
+<!--            </div>-->
+<!--            <div class="item"><img src="/public/img/lending/plan/intensiv-7.png" alt="">-->
+<!--                <div><b>7. Показ</b></div>-->
+<!--            </div>-->
             <div class="item"><img src="/public/img/lending/plan/intensiv-2.png" alt="">
-                <div>2. Выступление экспертов</div>
+                <div>1. Знакомство с экспертами</div>
             </div>
             <div class="item"><img src="/public/img/lending/plan/intensiv-3.png" alt="">
-                <div>3. Выбор идеи и <br>разработка сценария</div>
+                <div>2. Выбор идеи и <br>разработка сценария</div>
             </div>
             <div class="item"><img src="/public/img/lending/plan/intensiv-4.png" alt="">
-                <div>4. Кастинг актеров</div>
+                <div>3. Кастинг актеров</div>
             </div>
             <div class="item"><img src="/public/img/lending/plan/intensiv-5.png" alt="">
-                <div>5. Съемка</div>
+                <div>4. Съемка</div>
             </div>
             <div class="item"><img src="/public/img/lending/plan/intensiv-6.png" alt="">
-                <div>6. Монтаж</div>
+                <div>5. Монтаж</div>
             </div>
             <div class="item"><img src="/public/img/lending/plan/intensiv-7.png" alt="">
-                <div><b>7. Показ</b></div>
+                <div><b>6. Показ</b></div>
             </div>
         </div>
     </div>
@@ -114,7 +132,7 @@
     </div>
     <div class="button">
         <button class="btn btn-primary" data-action="modal" data-modal="registercourse">Записаться</button>
-<!--        <button class="btn btn-primary">Записаться</button>-->
+        <!--        <button class="btn btn-primary">Записаться</button>-->
     </div>
 </div>
 
@@ -208,9 +226,8 @@
                     оператор
                 </div>
                 <div class="about">
-                    Основатель продакшн "Пассажиры", клипмейкер,
-                    оператор постановщик. Снимал клипы
-                    для АК-47, Смоки МО, Триагрутрика.
+                    Основатель продакшн "Пассажиры", клипмейкер, оператор постановщик. <br> Снимал клипы для АК-47,
+                    Смоки МО, Триагрутрика.
                 </div>
             </div>
             <div class="col-md-4 item">
@@ -228,8 +245,7 @@
                     Монтажер
                 </div>
                 <div class="about">
-                    Опыт монтажа полнометражных фильмов
-                    и видеоклипов. Монтирует ролики в Like Центре.
+                    Опыт монтажа полнометражных фильмов и видеоклипов. <br> Монтирует ролики в Like Центре.
                 </div>
             </div>
             <div class="col-md-4 item">
@@ -295,7 +311,7 @@
             Успей записаться по выгодной цене
             <div class="button">
                 <button class="btn btn-primary" data-action="modal" data-modal="registercourse">Записаться</button>
-<!--                <button class="btn btn-default">Записаться</button>-->
+                <!--                <button class="btn btn-default">Записаться</button>-->
             </div>
         </div>
     </div>
@@ -350,8 +366,9 @@
             </div>
         </div>
         <div class="button">
-            <button class="btn btn-primary" data-action="modal" data-modal="registercooperation">Оставить заявку</button>
-<!--            <button class="btn btn-primary">Оставить заявку</button>-->
+            <button class="btn btn-primary" data-action="modal" data-modal="registercooperation">Оставить заявку
+            </button>
+            <!--            <button class="btn btn-primary">Оставить заявку</button>-->
         </div>
     </div>
 
