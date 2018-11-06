@@ -1,4 +1,13 @@
 <div class="lending-intro white-text">
+    <div class="top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-1 logo">
+                    <img src="/public/img/content/logo-black.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="lending-intro-content">
         <h1>Интенсив-шоу 2</h1>
 
@@ -17,9 +26,9 @@
             <button class="btn btn-default">Записаться</button>
         </div>
     </div>
-    <div class="background">
-        <img src="/public/img/lending/background-intensiv.png" alt="" style="position: relative; top: 10vh;">
-    </div>
+<!--    <div class="background">-->
+<!--        <img src="/public/img/lending/background-intensiv.png" alt="" style="position: relative; top: 10vh;">-->
+<!--    </div>-->
 </div>
 
 <div class="who">
@@ -294,7 +303,7 @@
     <h2>Сотрудничество</h2>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 item">
                 <div class="name">
                     Ищем партнеров в других городах
                 </div>
@@ -306,7 +315,7 @@
 
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 item">
                 <div class="name">
                     Мы открыты к сотрудничеству
                 </div>
@@ -318,9 +327,7 @@
                     и договоримся об обоюдовыгодных условиях взаимодействия.
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 item">
                 <div class="name">
                     У вас есть опыт, которым вы хотите поделиться?
                 </div>
@@ -329,7 +336,7 @@
                     Интенсив-шоу и преподавателей школы.
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 item">
                 <div class="name">
                     Ищем волонтеров
                 </div>
@@ -346,10 +353,18 @@
 
 </div>
 
-<div class="contact">
+<div class="contact white-text">
     <div class="container-fluid">
         <div class="logo">
             <img src="/public/img/content/logo-white.png" alt="">
+        </div>
+        <div class="contact-info">
+            <div class="email">
+                <a href="mailto: videolab.play@gmail.com">videolab.play@gmail.com</a>
+            </div>
+            <div class="phone">
+                <a href="tel:8(952)2271003">8(952)2271003</a>
+            </div>
         </div>
     </div>
 </div>
