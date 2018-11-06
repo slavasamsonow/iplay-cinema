@@ -138,6 +138,15 @@ $(document).ready(function () {
 		}
 	}
 
+	if($('.lending-intro-content').length){
+	    var headerHeight = $('.lending-intro .top').outerHeight();
+	    var baseHeight = $('.lending-intro-content').outerHeight();
+        var windowHeight = $(window).height();
+        var newPaddingBottom = Math.floor((windowHeight - headerHeight - baseHeight) /2);
+        console.log(headerHeight);
+	    $('.lending-intro .top').css('margin-bottom', newPaddingBottom);
+    }
+
 
 	$('.tasks .day .name').click(function () {
 		$(this).next('.tasks-list').slideToggle();
@@ -328,4 +337,12 @@ $(document).ready(function () {
 
 $(window).resize(function () {
 	videoHeight();
+    if($('.lending-intro-content').length){
+        var headerHeight = $('.lending-intro .top').outerHeight();
+        var baseHeight = $('.lending-intro-content').outerHeight();
+        var windowHeight = $(window).height();
+        var newPaddingBottom = Math.floor((windowHeight - headerHeight - baseHeight) /2);
+        console.log(headerHeight);
+        $('.lending-intro .top').css('margin-bottom', newPaddingBottom);
+    }
 });
