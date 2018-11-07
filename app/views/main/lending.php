@@ -19,8 +19,8 @@
             </div>
         </div>
         <div class="local-date">
-            Москва, Кинотеатр Каро, online - трансляция <br>
-            19 ноября, 19:00
+<!--            Москва, Кинотеатр Каро, online - трансляция <br>-->
+            21 ноября, 19:00
         </div>
         <div class="zapis">
             <button class="btn btn-primary" data-action="modal" data-modal="registercourse">Записаться</button>
@@ -83,27 +83,27 @@
     <h2>План мероприятия</h2>
     <div class="container-fluid">
         <div class="plan-list">
-<!--            <div class="item"><img src="/public/img/lending/plan/intensiv-1.png" alt="">-->
-<!--                <div>1. Знакомство</div>-->
-<!--            </div>-->
-<!--            <div class="item"><img src="/public/img/lending/plan/intensiv-2.png" alt="">-->
-<!--                <div>2. Выступление экспертов</div>-->
-<!--            </div>-->
-<!--            <div class="item"><img src="/public/img/lending/plan/intensiv-3.png" alt="">-->
-<!--                <div>3. Выбор идеи и <br>разработка сценария</div>-->
-<!--            </div>-->
-<!--            <div class="item"><img src="/public/img/lending/plan/intensiv-4.png" alt="">-->
-<!--                <div>4. Кастинг актеров</div>-->
-<!--            </div>-->
-<!--            <div class="item"><img src="/public/img/lending/plan/intensiv-5.png" alt="">-->
-<!--                <div>5. Съемка</div>-->
-<!--            </div>-->
-<!--            <div class="item"><img src="/public/img/lending/plan/intensiv-6.png" alt="">-->
-<!--                <div>6. Монтаж</div>-->
-<!--            </div>-->
-<!--            <div class="item"><img src="/public/img/lending/plan/intensiv-7.png" alt="">-->
-<!--                <div><b>7. Показ</b></div>-->
-<!--            </div>-->
+            <!--            <div class="item"><img src="/public/img/lending/plan/intensiv-1.png" alt="">-->
+            <!--                <div>1. Знакомство</div>-->
+            <!--            </div>-->
+            <!--            <div class="item"><img src="/public/img/lending/plan/intensiv-2.png" alt="">-->
+            <!--                <div>2. Выступление экспертов</div>-->
+            <!--            </div>-->
+            <!--            <div class="item"><img src="/public/img/lending/plan/intensiv-3.png" alt="">-->
+            <!--                <div>3. Выбор идеи и <br>разработка сценария</div>-->
+            <!--            </div>-->
+            <!--            <div class="item"><img src="/public/img/lending/plan/intensiv-4.png" alt="">-->
+            <!--                <div>4. Кастинг актеров</div>-->
+            <!--            </div>-->
+            <!--            <div class="item"><img src="/public/img/lending/plan/intensiv-5.png" alt="">-->
+            <!--                <div>5. Съемка</div>-->
+            <!--            </div>-->
+            <!--            <div class="item"><img src="/public/img/lending/plan/intensiv-6.png" alt="">-->
+            <!--                <div>6. Монтаж</div>-->
+            <!--            </div>-->
+            <!--            <div class="item"><img src="/public/img/lending/plan/intensiv-7.png" alt="">-->
+            <!--                <div><b>7. Показ</b></div>-->
+            <!--            </div>-->
             <div class="item"><img src="/public/img/lending/plan/intensiv-2.png" alt="">
                 <div>1. Знакомство с экспертами</div>
             </div>
@@ -165,22 +165,27 @@
             <div class="col-md-4 item">
                 <div class="image">
                         <span>
-                            <img src="/public/img/lending/speakers/gluhov.png" alt="">
+                            <img src="/public/img/lending/speakers/hachaturyanc.png" alt="">
                         </span>
                 </div>
                 <div class="name">
                         <span>
-                            Дмитрий Глухов
+                            Виталий Хачатурянц
                         </span>
                 </div>
                 <div class="description">
-                    ведущий
+                    режиссер, оператор,
+                    постановщик
                 </div>
                 <div class="about">
-                    Участвовал в проекте Владимира Познера <br>
-                    «Школа живых городов. <br>
-                    Вел эфиры Радио Адам 104.5, STUD.Fm радио УдГУ. <br>
-                    Направлял творческий процесс Интенсив-шоу №1.
+                    Снимал проекты для федеральных
+                    телеканалов: 1 Канал: “Где ты брат” (фильм
+                    о Бодрове-младшем), “Ледниковый период”;
+                    Культура “Атланты в поисках истины”;
+                    НТВ «Тайный шоу-бизнес», “Моя исповедь”;
+                    MTV special “Реалити”; ТВЦ «Прощание»,
+                    “Без обмана” и др.
+                    Режиссёр в компании “Up!Media”
                 </div>
             </div>
             <div class="col-md-4 item">
@@ -203,8 +208,7 @@
                     «А зомби здесь тихие». Сценарист, продюсер
                     и режиссер «Русские девушки не сдаются»
                     и «Который год лежу я здесь на рубеже».
-                    Финалист шоу «Минута славы» «Человек
-                    без костей». Автор курса по актерскому
+                    Финалист шоу «Минута славы». Автор курса по актерскому
                     мастерству "Импровизация — основа жизни".
                     Тренер голоса, произношения, эстрадного вокала.
                 </div>
@@ -245,33 +249,28 @@
                     Монтажер
                 </div>
                 <div class="about">
-                    Опыт монтажа полнометражных фильмов и видеоклипов. <br> Монтирует ролики в Like Центре.
+                    Опыт монтажа полнометражных фильмов и видеоклипов. <br>Монтажер проектов самого крупного бизнес-сообщества Like Центр
                 </div>
             </div>
             <div class="col-md-4 item">
                 <div class="image">
                         <span>
-                            <img src="/public/img/lending/speakers/hachaturyanc.png" alt="">
+                            <img src="/public/img/lending/speakers/gluhov.png" alt="">
                         </span>
                 </div>
                 <div class="name">
                         <span>
-                            Виталий Хачатурянц
+                            Дмитрий Глухов
                         </span>
                 </div>
                 <div class="description">
-                    режисер, оператр
-                    постановщик
+                    ведущий
                 </div>
                 <div class="about">
-                    Снимал проекты для федеральных
-                    телеканалов: 1 Канал: “Где ты брат” (фильм
-                    о Бодрове-младшем), “Ледниковый период”;
-                    Культура “Атланты в поисках истины”;
-                    НТВ «Тайный шоу-бизнес», “Моя исповедь”;
-                    MTV special “Реалити”; ТВЦ «Прощание»,
-                    “Без обмана” и др.
-                    Режиссёр в компании “Up!Media”
+                    Участвовал в проекте Владимира Познера <br>
+                    «Школа живых городов. <br>
+                    DJ Радио Адам 104.5 <br>
+                    Направлял творческий процесс Интенсив-шоу №1.
                 </div>
             </div>
         </div>
