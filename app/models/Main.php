@@ -39,7 +39,6 @@ class Main extends Model{
         return $this->db->row('SELECT * FROM courses c WHERE c.type = 1 AND c.timestart > :timestart AND c.active = 1 AND c.private = 0 ORDER BY c.timestart ASC', $params);
     }
 
-<<<<<<< HEAD
     public function resultTestToEmail($test, $result, $data){
         $email = $data['email'];
         $name = $email;
