@@ -5,6 +5,10 @@ return [
         'controller' => 'main',
         'action' => 'index',
     ],
+    'lending/{pagename:\w+}'  => [
+        'controller' => 'main',
+        'action' => 'lending',
+    ],
 
     // accountController
     'login' => [

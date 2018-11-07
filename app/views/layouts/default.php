@@ -21,11 +21,11 @@
     </head>
 
     <body>
-        <div class="content">
+        <div class="wrapper">
             <?php require_once('include/left-menu.php')?>
             <?php require_once('include/navbar.php')?>
 
-            <div class="wrapper">
+            <div class="content">
                 <div class="container-fluid">
                     <?=$content?>
                 </div>
