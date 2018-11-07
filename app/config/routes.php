@@ -5,6 +5,10 @@ return [
         'controller' => 'main',
         'action' => 'index',
     ],
+    'tests/{testname:\w+}' => [
+        'controller' => 'main',
+        'action' => 'tests',
+    ],
 
     // accountController
     'login' => [
