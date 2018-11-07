@@ -8,6 +8,7 @@ return [
     'tests/{testname:\w+}' => [
         'controller' => 'main',
         'action' => 'tests',
+    ],
     'lending/{pagename:\w+}'  => [
         'controller' => 'main',
         'action' => 'lending',
