@@ -1,4 +1,3 @@
 user-agent: *
 Disallow: /pay
 Disallow: /timely
-Disallow: *request_url=
