@@ -1,4 +1,4 @@
-/* v.0.14.0 */
+/* v.0.15.2 */
 
 /* Интро */
 .intro-wrapper{
@@ -64,7 +64,7 @@
 }
 
 .content .intro h2{
-    margin-bottom: 40px;
+    padding-bottom: 40px;
     position: relative;
 }
 
