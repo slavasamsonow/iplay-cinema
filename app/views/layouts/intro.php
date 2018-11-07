@@ -21,13 +21,13 @@
     </head>
 
     <body>
-        <div class="content intro">
+        <div class="wrapper intro-wrapper">
             <?php
             $logoColor = 'white';
             require_once('include/navbar.php')
             ?>
 
-            <div class="wrapper">
+            <div class="content">
                 <?=$content?>
             </div>
 

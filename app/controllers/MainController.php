@@ -173,4 +173,56 @@ class MainController extends Controller{
         ];
         $this->view->render($vars);
     }
+    
+    public function lendingAction(){
+        if(!empty($_POST)){
+            if($_POST['form'] == 'registercourse'){
+                if(!$this->model->validate(['email', 'phone'], $_POST)){
+                    $this->view->message('Ошибка', $this->model->error);
+                }
+
+                if(isset($_POST['register'])){
+                    $this->modelAccount = $this->loadModel('account');
+                    if(!$this->model->checkExists('email', $_POST['email'], 'users')){
+                        $user = $this->modelAccount->register($_POST);
+                    }
+                }
+
+                $this->model->registerСourseGuest($_POST);
+                if(isset($_POST['email'])){
+                    $_SESSION['guest']['email'] = $_POST['email'];
+                }
+                if(isset($_POST['fio'])){
+                    $_SESSION['guest']['fio'] = $_POST['fio'];
+                }
+                if(isset($_POST['phone'])){
+                    $_SESSION['guest']['phone'] = $_POST['phone'];
+                }
+                if(isset($_POST['city'])){
+                    $_SESSION['guest']['city'] = $_POST['city'];
+                }
+                //$this->view->location('pay/'.$_POST['courseid']);
+                $messageBody = "В скором времени мы свяжемся с вами. <br> А пока вы можете оплатить участие по ссылке: <a href='pay/".$_POST['courseid']."' class='btn'>Оплатить</a>";
+                $this->view->message('Ваша заявка отправлена', $messageBody);
+            }
+            if($_POST['form'] == 'registercooperation'){
+                if(!$this->model->validate(['email', 'phone'], $_POST)){
+                    $this->view->message('Ошибка', $this->model->error);
+                }
+
+                $this->model->registerCooperation($_POST);
+                $this->view->message('Ваша заявка отправлена', 'В скором времени мы свяжемся с вами');
+            }
+        }
+        if($this->route['pagename'] != 'intensiv'){
+            $this->view->errorCode('404');
+        }
+        $this->view->layout = 'lending';
+        $vars = [
+            'seo' => [
+                'title' => 'Интенсив-шоу №2',
+            ]
+        ];
+        $this->view->render($vars);
+    }
 }
