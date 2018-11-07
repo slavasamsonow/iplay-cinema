@@ -169,6 +169,9 @@ class MainController extends Controller{
             $this->view->errorCode(404);
         }
         $vars = [
+            'seo' => [
+                'title' => 'Тест '.$tests[$this->route['testname']]['name'],
+            ],
             'test' => $tests[$this->route['testname']],
         ];
         $this->view->render($vars);
