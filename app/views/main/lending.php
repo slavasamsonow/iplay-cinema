@@ -20,7 +20,7 @@
         </div>
         <div class="local-date">
 <!--            Москва, Кинотеатр Каро, online - трансляция <br>-->
-            21 ноября, 19:00
+            18 ноября, 19:00
         </div>
         <div class="zapis">
             <button class="btn btn-primary" data-action="modal" data-modal="registercourse">Записаться</button>
