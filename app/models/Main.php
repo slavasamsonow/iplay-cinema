@@ -39,6 +39,24 @@ class Main extends Model{
         return $this->db->row('SELECT * FROM courses c WHERE c.type = 1 AND c.timestart > :timestart AND c.active = 1 AND c.private = 0 ORDER BY c.timestart ASC', $params);
     }
 
+    public function resultTestToEmail($test, $result, $data){
+        $email = $data['email'];
+        $name = $email;
+        $subject = "Результаты теста ".$test['name'];
+
+
+        $body = "<h1>Результаты теста ".$test['name']."</h1> ";
+        $body .= "<p>";
+        $body .= $result;
+        $body .= "</p>";
+
+        if($this->phpmailer($email, $name, $subject, $body) != true){
+            $this->error = 'Ошибка отправки сообщения';
+            return false;
+        }
+        return true;
+    }
+    
     public function registerCourseUser($data){
         $varsAmo = [
             'name' => 'Заявка на курс',
@@ -130,7 +148,6 @@ class Main extends Model{
             $this->amo->addNotesContact($varsAmo['contact_id'], $notes);
         }
         $amoid = $this->amo->newLead($varsAmo);
-
         return true;
     }
 }
