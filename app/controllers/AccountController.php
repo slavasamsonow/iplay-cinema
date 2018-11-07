@@ -66,12 +66,8 @@ class AccountController extends Controller{
                 $remember = '';
             }
             $this->model->login($_POST['username'], $remember);
-            if(isset($_SERVER['HTTP_REFERER'])){
-                if(strpos($_SERVER['HTTP_REFERER'], $_SERVER['SERVER_NAME'])){
-                    $urlInnerPos = strpos($_SERVER['HTTP_REFERER'], $_SERVER['HTTP_HOST'].'/');
-                    $urlInner = substr($_SERVER['HTTP_REFERER'], $urlInnerPos + iconv_strlen($_SERVER['HTTP_HOST']) + 1);
-                    $this->view->location($urlInner);
-                }
+            if($_POST['request_url']){
+                $this->view->location($_POST['request_url']);
             }
             $this->view->location('account');
         }
