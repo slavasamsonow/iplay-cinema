@@ -47,7 +47,6 @@ abstract class Model{
         $mail->SMTPDebug = 0;
 
         $mail->Host = $config['host'];
-        $mail->Port = $config['port'];
         $mail->Username = $config['username'];
         $mail->Password = $config['password'];
 
