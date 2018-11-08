@@ -43,6 +43,17 @@
                 <div class="modal-header"></div>
                 <div class="modal-body"></div>
             </div>
+
+            <div class="modal leadMagnet">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                    <p><b>Хочешь узнать, кто ты на съемочной площадке? Самовлюбленный актер, идейный сценарист или злой режиссер?</b></p>
+                    <a href="/tests/yourprofession" class="btn btn-default">Кликай сюда</a>
+                </div>
+            </div>
+
             <div id="overlay"></div>
         </div>
 
