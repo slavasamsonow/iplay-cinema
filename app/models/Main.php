@@ -44,11 +44,19 @@ class Main extends Model{
         $name = $email;
         $subject = "Результаты теста ".$test['name'];
 
+        ob_start();
+        ?>
+        <h1 style="font-family: Arial, sans-serif;font-size: 18px;">Результаты теста "<?=$test['name']?>"</h1>
+        <p style="line-height: 1.5em;"> <?=$result?> </p>
+        <p style="text-align: center;">
+            <a href='https://iplay-cinema.ru/lending/intensiv?utm_medium=email&utm_source=email_site&utm_campaign=lead_magnet_profession&utm_content=other'
+               style='display: inline-block; padding: 12px 20px; border-radius: 20px; background-color: #d43; color: #fff; font-family: Arial, arial, sans-serif; font-weight: bold;text-decoration: none;'>Интенсив-шоу</a>
+            <a href='https://iplay-cinema.ru/course/16?utm_medium=email&utm_source=email_site&utm_campaign=lead_magnet_profession&utm_content=other'
+               style='display: inline-block; padding: 12px 20px; border-radius: 20px; background-color: #d43; color: #fff; font-family: Arial, arial, sans-serif; font-weight: bold;text-decoration: none;'>Курсы</a>
+        </p>
+        <?
+        $body = ob_get_clean();
 
-        $body = "<h1>Результаты теста ".$test['name']."</h1> ";
-        $body .= "<p>";
-        $body .= $result;
-        $body .= "</p>";
 
         if($this->phpmailer($email, $name, $subject, $body) != true){
             $this->error = 'Ошибка отправки сообщения';
@@ -56,7 +64,7 @@ class Main extends Model{
         }
         return true;
     }
-    
+
     public function registerCourseUser($data){
         $varsAmo = [
             'name' => 'Заявка на курс',
