@@ -20,11 +20,11 @@ class Account extends Model{
         }
         $_SESSION['user'] = $data;
         if($remember == 'remember'){
-            setcookie('i', $data['id'], time()+3600*24*30, '/');
-            setcookie('p', $data['password'], time()+3600*24*30, '/');
+            setcookie('i', $data['id'], time() + 3600 * 24 * 30, '/');
+            setcookie('p', $data['password'], time() + 3600 * 24 * 30, '/');
         }else{
-            setcookie('i','',time(),'/');
-            setcookie('p','',time(),'/');
+            setcookie('i', '', time(), '/');
+            setcookie('p', '', time(), '/');
         }
         return true;
     }
@@ -110,17 +110,26 @@ class Account extends Model{
         $email = $data['email'];
         $name = $email;
         $subject = 'Подтвердите свой email';
-        $body = '<h1>Подтвердите свой email для входа в портал</h1>';
-        $body .= '
-        <p>Вы зарегистрировались на портале киношколы iPlay. <br>Для продолжения работы нужно подтвердить email по ссылке ниже: </p>
-        <p><a href="'.$_SERVER['SERVER_NAME'].'/confirmation?id='.$id.'&token='.$token.'">Активировать аккаунт</a></p>
-        <p>
-        Ваши данные для входа: <br>
-            <b>Логин:</b> <br> '.$login.' <br>
-            <b>Пароль:</b> <br> '.$password.' <br>
+        ob_start();
+        ?>
+        <h1 style="font-family: Arial, sans-serif;font-size: 18px;">Подтвердите свой email для входа в портал</h1>
+        <p style="line-height: 1.5em;">
+            Вы зарегистрировались на портале киношколы iPlay. <br>Для продолжения работы нужно подтвердить email по
+            ссылке ниже:
+        </p>
+        <p style="line-height: 1.5em;">
+            <a href="<?=$_SERVER['SERVER_NAME']?>/confirmation?id=<?=$id?>&token=<?=$token?>"
+               style="display: inline-block; padding: 12px 20px; border-radius: 20px; background-color: #d43; color: #fff; font-family: Arial, arial, sans-serif; font-weight: bold;text-decoration: none;">Активировать
+                аккаунт</a>
+        </p>
+        <p style="line-height: 1.5em;">
+            Ваши данные для входа: <br>
+            <b>Логин:</b> <br> <?=$login?> <br>
+            <b>Пароль:</b> <br> <?=$password?> <br>
             <small>Вы можете сменить пароль в личном кабинете на сайте.</small>
         </p>
-        ';
+        <?
+        $body = ob_get_clean();
 
         if($this->phpmailer($email, $name, $subject, $body) != true){
             $this->error = 'Ошибка отправки';
@@ -161,11 +170,16 @@ class Account extends Model{
 
         $email = $user['email'];
         $name = $email;
-        $subject = 'Добро пожаловать в киношколу!';
-        $body = '<h1>Киношкола iPlay открывает свои двери</h1>';
-        $body .= '
-        <p>Ваш email подтвержден.</p>
-        ';
+        $subject = 'Добро пожаловать в команду!';
+        ob_start();
+        ?>
+        <h1 style="font-family: Arial, sans-serif;font-size: 18px;">Добро пожаловать в команду!</h1>
+        <p style="line-height: 1.5em;">
+            Ваш email подтвержден.
+        </p>
+        <?
+        $body = ob_get_clean();
+
         if($this->phpmailer($email, $name, $subject, $body) != true){
             $this->error = 'Ошибка отправки';
             return false;
@@ -195,11 +209,11 @@ class Account extends Model{
     // Смена данных
     public function saveUserData($id, $indata){
         $params = $this->processTextIn($indata);
-        foreach($params as $key=>$val){
+        foreach($params as $key => $val){
             if($key == 'password'){
                 $_SESSION['user']['password'] = $val;
                 if(isset($_COOKIE['p'])){
-                    setcookie('p',$indata[$key], time()+3600+24+30, '/');
+                    setcookie('p', $indata[$key], time() + 3600 + 24 + 30, '/');
                 }
             }
         }
@@ -224,7 +238,7 @@ class Account extends Model{
             'course' => $course,
             'user' => $user,
         ];
-        $course = $this->db->column('SELECT id FROM `user_courses` WHERE `course` = :course AND `user` = :user',$params);
+        $course = $this->db->column('SELECT id FROM `user_courses` WHERE `course` = :course AND `user` = :user', $params);
 
         if(!empty($course)){
             $this->error = 'У этого пользователя уже есть такой курс';
