@@ -36,21 +36,24 @@ abstract class Model{
         if(empty($toEmail)){
             return false;
         }
+        $config = require 'app/config/mail.php';
+
         $mail = new PHPMailer();
         $mail->CharSet = 'UTF-8';
 
         //Server settings
-        //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
-        //$mail->isSMTP();                                      // Set mailer to use SMTP
-        //$mail->Host = 'smtp.yandex.ru';  // Specify main and backup SMTP servers
-        //$mail->SMTPAuth = true;                               // Enable SMTP authentication
-        //$mail->Username = 'iplay.videolab@yandex.ru';                 // SMTP username
-        //$mail->Password = 'Videolab1';                           // SMTP password
-        //$mail->SMTPSecure = 'SSL';                            // Enable TLS encryption, `ssl` also accepted
-        //$mail->Port = 465;                                    // TCP port to connect to
+        $mail->isSMTP();
+        $mail->SMTPAuth = true;
+        $mail->SMTPDebug = 0;
+
+        $mail->Host = $config['host'];
+        $mail->Port = $config['port'];
+        $mail->Username = $config['username'];
+        $mail->Password = $config['password'];
 
         //Данные
-        $mail->setFrom('admin@iplay-cinema.ru', 'Киношкола iPlay');
+        $mail->setFrom($config['username'], $config['name']);
+
         //$mail->addReplyTo('admin@iplay-cinema.ru', 'Киношкола iPlay');
         if(isset($toName)){
             $mail->addAddress($toEmail, $toName);
