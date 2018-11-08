@@ -32,7 +32,7 @@ abstract class Model{
         $this->geo = $this->SxGeoCity();
     }
 
-    public function phpmailer($toEmail, $toName = '', $subject, $body){
+    public function phpmailer($toEmail, $toName = '', $subject, $content){
         if(empty($toEmail)){
             return false;
         }
@@ -51,10 +51,8 @@ abstract class Model{
         $mail->Username = $config['username'];
         $mail->Password = $config['password'];
 
-        //Данные
         $mail->setFrom($config['username'], $config['name']);
 
-        //$mail->addReplyTo('admin@iplay-cinema.ru', 'Киношкола iPlay');
         if(isset($toName)){
             $mail->addAddress($toEmail, $toName);
         }else{
@@ -67,6 +65,10 @@ abstract class Model{
 
         //Контент
         $mail->Subject = $subject;
+        ob_start();
+        require 'app/views/layouts/mail.php';
+        $body = ob_get_clean();
+
         $mail->msgHTML($body);
         //$mail->AltBody = 'Сообщение от киношколы iPlay. Рекомендуется просмотр с содержимым';
 
