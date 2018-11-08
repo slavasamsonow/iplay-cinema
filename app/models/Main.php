@@ -11,12 +11,16 @@ class Main extends Model{
         $subject = 'Заявка с сайта';
 
 
-        $body = "<h1>Заявка с сайта</h1> ";
-        $body .= "<p>";
-        $body .= "ФИО: ".$data['fio']." <br>";
-        $body .= "email: ".$data['email']." <br>";
-        $body .= "Телефон: ".$data['phone'];
-        $body .= "</p>";
+        ob_start();
+        ?>
+        <h1 style="font-family: Arial, sans-serif;font-size: 18px;">Заявка с сайта</h1>
+        <p style="line-height: 1.5em;">
+            ФИО: <?=$data['fio']?> <br>
+            email: <?=$data['email']?> <br>
+            Телефон: <?=$data['phone']?> <br>
+        </p>
+        <?
+        $body = ob_get_clean();
 
         if($this->phpmailer($email, $name, $subject, $body) != true){
             $this->error = 'Ошибка отправки сообщения';
@@ -48,11 +52,12 @@ class Main extends Model{
         ?>
         <h1 style="font-family: Arial, sans-serif;font-size: 18px;">Результаты теста "<?=$test['name']?>"</h1>
         <p style="line-height: 1.5em;"> <?=$result?> </p>
+        <p style="text-align: center; font-weight: bold; font-family: Arial, sans-serif;">Узнать подробнее</p>
         <p style="text-align: center;">
             <a href='https://iplay-cinema.ru/lending/intensiv?utm_medium=email&utm_source=email_site&utm_campaign=lead_magnet_profession&utm_content=other'
-               style='display: inline-block; padding: 12px 20px; border-radius: 20px; background-color: #d43; color: #fff; font-family: Arial, arial, sans-serif; font-weight: bold;text-decoration: none;'>Интенсив-шоу</a>
+               style='display: inline-block; padding: 12px 20px; margin-right: 20px; border-radius: 20px; background-color: #d43; color: #fff; font-family: Arial, sans-serif; font-weight: bold;text-decoration: none;'>Интенсив-шоу</a>
             <a href='https://iplay-cinema.ru/course/16?utm_medium=email&utm_source=email_site&utm_campaign=lead_magnet_profession&utm_content=other'
-               style='display: inline-block; padding: 12px 20px; border-radius: 20px; background-color: #d43; color: #fff; font-family: Arial, arial, sans-serif; font-weight: bold;text-decoration: none;'>Курсы</a>
+               style='display: inline-block; padding: 12px 20px; border-radius: 20px; background-color: #d43; color: #fff; font-family: Arial, sans-serif; font-weight: bold;text-decoration: none;'>Базовый курс</a>
         </p>
         <?
         $body = ob_get_clean();
