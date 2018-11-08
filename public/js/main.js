@@ -1,4 +1,4 @@
-// v.0.15.5
+// v.0.15.6
 function videoHeight() {
     $('.video iframe').each(function () {
         var widthVideo = $(this).width();
@@ -117,7 +117,7 @@ $(document).ready(function () {
 
     // Минимальная высота сайта
     if (!$('.content.intro').length) {
-        $('.wrapper').css('min-height', 'calc(100vh - ' + headerHeight + ' - ' + footerHeight + ')');
+        $('.content').css('min-height', 'calc(100vh - ' + headerHeight + ' - ' + footerHeight + ')');
         $('footer').removeClass('load');
     }
 
