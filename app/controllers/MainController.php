@@ -204,7 +204,7 @@ class MainController extends Controller{
                     $_SESSION['guest']['city'] = $_POST['city'];
                 }
                 //$this->view->location('pay/'.$_POST['courseid']);
-                $messageBody = "В скором времени мы свяжемся с вами. <br> А пока вы можете оплатить участие по ссылке: <a href='pay/".$_POST['courseid']."' class='btn'>Оплатить</a>";
+                $messageBody = "В скором времени мы свяжемся с вами. <br> А пока вы можете оплатить участие по ссылке: <a href='/pay/".$_POST['courseid']."' class='btn'>Оплатить</a>";
                 $this->view->message('Ваша заявка отправлена', $messageBody);
             }
             if($_POST['form'] == 'registercooperation'){
