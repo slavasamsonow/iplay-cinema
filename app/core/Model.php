@@ -32,6 +32,15 @@ abstract class Model{
         $this->geo = $this->SxGeoCity();
     }
 
+    /**
+     * @param $toEmail
+     * @param string $toName
+     * @param $subject
+     * @param $content
+     *
+     * @return bool
+     * @throws Exception
+     */
     public function phpmailer($toEmail, $toName = '', $subject, $content){
         if(empty($toEmail)){
             return false;
@@ -79,6 +88,9 @@ abstract class Model{
         }
     }
 
+    /**
+     * @return string
+     */
     protected function checkAuth(){
         if(isset($_SESSION['user']['id']) && isset($_SESSION['user']['password'])){
             $params = [
@@ -117,6 +129,12 @@ abstract class Model{
 
     }
 
+    /**
+     * @param $input
+     * @param $data
+     *
+     * @return bool
+     */
     public function validate($input, $data){
         $rules = [
             'email' => [
@@ -160,6 +178,13 @@ abstract class Model{
         return true;
     }
 
+    /**
+     * @param $name
+     * @param $val
+     * @param string $table
+     *
+     * @return mixed
+     */
     public function checkExists($name, $val, $table = 'users'){
         $params = [
             $name => $val,
@@ -167,10 +192,18 @@ abstract class Model{
         return $this->db->column('SELECT `id` FROM '.$table.' WHERE '.$name.' = :'.$name, $params);
     }
 
+    /**
+     * @param int $len
+     *
+     * @return bool|string
+     */
     public function createToken($len = 30){
         return substr(str_shuffle(str_repeat('1234567890qwertyuiopasdfghjklzxcvbnm', 20)), 0, $len);
     }
 
+    /**
+     * @return array|bool
+     */
     protected function SxGeoCity(){
         if(isset($_SESSION['geo'])){
             return $_SESSION['geo'];
@@ -185,6 +218,7 @@ abstract class Model{
         }
     }
 
+    // todo Функция генерации пагинации
     public function pagination($countElem, $params = []){
         $onPage = (isset($params['onpage'])) ? $params['onpage'] : 10;
 
@@ -232,6 +266,15 @@ abstract class Model{
         return $out;
     }
 
+    /**
+     * @param $file
+     * @param $path
+     * @param $fileType
+     * @param array $thumb
+     *
+     * @return bool|string
+     * @throws \ImagickException
+     */
     public function saveFile($file, $path, $fileType, $thumb = []){
         $newFilename = time().$this->createToken(15);
         $uploadDir = $_SERVER['DOCUMENT_ROOT'].'/'.$path;
@@ -261,6 +304,7 @@ abstract class Model{
             return false;
         }
 
+        // todo Создание превьюшек
         $uploadFile = $uploadDir.$newFilename;
         if($path == 'public/img/users/'){
             $uploadFileThumb = $uploadDir.'thumb/'.$newFilename;
@@ -277,6 +321,7 @@ abstract class Model{
         return $newFilename;
     }
 
+    // todo Удалить
     public function textformatting($data){
         foreach($data as $key => $val){
             $datanew = trim($val);
@@ -285,7 +330,12 @@ abstract class Model{
         return $dataout;
     }
 
-    public function toUnixtime($datetime){
+    /**
+     * @param $datetime
+     *
+     * @return false|int
+     */
+    public function toUnixTime($datetime){
         $datetimeAr = explode(' ', $datetime);
         $date = $datetimeAr[0];
         $time = $datetimeAr[1];
@@ -303,6 +353,7 @@ abstract class Model{
         return mktime($h, $i, $s, $m, $d, $y);
     }
 
+    // todo Удалить
     public function descriptionText($strings){
         foreach($strings as $key => $string){
             $newstring = '<p>'.$string.'.</p>';
@@ -312,6 +363,11 @@ abstract class Model{
         return $newstrings;
     }
 
+    /**
+     * @param $strings
+     *
+     * @return mixed
+     */
     public function processTextIn($strings){
         foreach($strings as $key => $string){
             $newstring = trim($string);
@@ -330,6 +386,11 @@ abstract class Model{
         return $newstrings;
     }
 
+    /**
+     * @param $strings
+     *
+     * @return mixed
+     */
     public function processTextOut($strings){
         foreach($strings as $key => $string){
             $newstring = $string;
@@ -341,6 +402,9 @@ abstract class Model{
         return $newstrings;
     }
 
+    /**
+     * @param $data
+     */
     public function questionForm($data){
         $varsAmo = [
             'name' => 'Вопрос',
