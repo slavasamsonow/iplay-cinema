@@ -15,7 +15,7 @@ class Admin extends Model{
         JOIN courses c ON ct.course = c.id
         JOIN users u ON ut.user = u.id
         WHERE `status` = :status'
-        , $params);
+            , $params);
         return $tasks;
     }
 
@@ -212,11 +212,11 @@ class Admin extends Model{
         FROM user_courses uc
         JOIN users u ON uc.user = u.id
         JOIN courses c ON uc.course = c.id'.
-        $uslText
-        .'
+            $uslText
+            .'
         ORDER BY uc.course ASC, u.fname ASC, u.lname ASC';
         $userCoursesList = $this->db->row($query);
-        foreach($userCoursesList as $key=>$userCourses){
+        foreach($userCoursesList as $key => $userCourses){
             if($userCourses['type'] == 0){
                 unset($userCoursesList[$key]);
             }else{
@@ -281,7 +281,7 @@ class Admin extends Model{
         $news = $this->db->row('SELECT n.*, u.fname, u.lname, u.id AS authorId FROM news n JOIN users u ON n.author = u.id ORDER BY n.timestart DESC');
         foreach($news as $key => $newsitem){
             $news[$key]['author'] = $newsitem['fname'].' '.$newsitem['lname'];
-            unset($newsitem['fname'],$newsitem['lname']);
+            unset($newsitem['fname'], $newsitem['lname']);
         }
         return $news;
     }

@@ -1,4 +1,5 @@
 <?php
+
 namespace app\core;
 
 class View{
@@ -12,7 +13,7 @@ class View{
         $this->path = $route['controller'].'/'.$route['action'];
     }
 
-    public function render($vars=[]){
+    public function render($vars = []){
         if(is_array($vars)){
             extract($vars);
         }
@@ -29,11 +30,11 @@ class View{
             $seo['title'] .= ' | Продюсерский центр ИГРА';
         }
 
-        $seo['description'] = (isset($seo['description']))?$seo['description']:'Продюсерский центр ИГРА - место, которое мотивирует, обучает создавать кино и экспериментировать с его формами.';
+        $seo['description'] = (isset($seo['description'])) ? $seo['description'] : 'Продюсерский центр ИГРА - место, которое мотивирует, обучает создавать кино и экспериментировать с его формами.';
 
         if(isset($_SESSION['user'])){
             $user = $_SESSION['user'];
-            $user['username'] = (($user['username']) != '')?$user['username']:'id'.$user['id'];
+            $user['username'] = (($user['username']) != '') ? $user['username'] : 'id'.$user['id'];
         }
 
         if(file_exists('app/views/'.$this->path.'.php')){
@@ -46,10 +47,10 @@ class View{
         }
     }
 
-    public function redirect($url) {
-		header('location: /'.$url);
-		exit;
-	}
+    public function redirect($url){
+        header('location: /'.$url);
+        exit;
+    }
 
     public static function errorCode($code){
         if($code == 403 || $code == 404){
@@ -64,26 +65,26 @@ class View{
         $content = ob_get_clean();
         if(isset($_SESSION['user'])){
             $user = $_SESSION['user'];
-            $user['username'] = (isset($user['username']))?$user['username']:'id'.$user['id'];
+            $user['username'] = (isset($user['username'])) ? $user['username'] : 'id'.$user['id'];
         }
         require 'app/views/layouts/default.php';
 
         exit();
     }
 
-    public function message($modalheader, $modalbody) {
-		exit(json_encode(['modal' => 'modalmessage','modalheader' => $modalheader, 'modalbody' => $modalbody]));
-	}
-
-	public function location($url) {
-		exit(json_encode(['url' => $url]));
+    public function message($modalheader, $modalbody){
+        exit(json_encode(['modal' => 'modalmessage', 'modalheader' => $modalheader, 'modalbody' => $modalbody]));
     }
 
-    public function locationOut($url) {
-		exit(json_encode(['urlo' => $url]));
+    public function location($url){
+        exit(json_encode(['url' => $url]));
     }
 
-    public function data($data) {
-		exit(json_encode(['data' => $data]));
-	}
+    public function locationOut($url){
+        exit(json_encode(['urlo' => $url]));
+    }
+
+    public function data($data){
+        exit(json_encode(['data' => $data]));
+    }
 }

@@ -18,7 +18,7 @@ class ProjectController extends Controller{
             'description' => $project['description'],
         ];
         $newtext = $this->model->descriptionText($arraynewtext);
-        foreach($newtext as $key=>$newtextstr){
+        foreach($newtext as $key => $newtextstr){
             $project[$key] = $newtextstr;
         };
 

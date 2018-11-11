@@ -36,13 +36,13 @@ class PayController extends Controller{
 
                     $paymentData = $this->model->createPayment($course, $price, $_POST);
                     if(isset($paymentData['error'])){
-                        $this->view->message('Ошибка',$paymentData['error']);
+                        $this->view->message('Ошибка', $paymentData['error']);
                     }
                     if(isset($paymentData['yandexConfirmation'])){
-                         $this->view->locationOut($paymentData['yandexConfirmation']);
+                        $this->view->locationOut($paymentData['yandexConfirmation']);
                     }
                     if($paymentData == 'freePayment'){
-                        $this->view->message('Ваша заявка принята','В скором времени мы с вами свяжемся');
+                        $this->view->message('Ваша заявка принята', 'В скором времени мы с вами свяжемся');
                     }
                     break;
                 default:

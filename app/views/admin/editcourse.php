@@ -16,11 +16,13 @@
         </div>
         <div class="control-group form-group">
             <label>Дата и время начала (МСК):</label>
-            <input type="text" class="form-control" name="timestart" required="true" value="<?=date('d.m.Y H:i:s', $course['timestart'])?>">
+            <input type="text" class="form-control" name="timestart" required="true"
+                   value="<?=date('d.m.Y H:i:s', $course['timestart'])?>">
         </div>
         <div class="control-group form-group">
             <label>Дата и время окончания (МСК):</label>
-            <input type="text" class="form-control" name="timeend" required="true" value="<?=date('d.m.Y H:i:s', $course['timeend'])?>">
+            <input type="text" class="form-control" name="timeend" required="true"
+                   value="<?=date('d.m.Y H:i:s', $course['timeend'])?>">
         </div>
         <div class="control-group form-group">
             <label>Цена:</label>
@@ -29,10 +31,10 @@
         <div class="control-group form-group">
             <label>тип:</label>
             <select class="form-control" name="type">
-                <?php foreach($coursesTypes as $coursesType):?>
-                <option value="<?=$coursesType['id']?>" <?php if($course['type'] == $coursesType['id']) echo 'selected';?>>
-                    <?=$coursesType['name']?>
-                </option>
+                <?php foreach($coursesTypes as $coursesType): ?>
+                    <option value="<?=$coursesType['id']?>" <?php if($course['type'] == $coursesType['id']) echo 'selected'; ?>>
+                        <?=$coursesType['name']?>
+                    </option>
                 <?php endforeach ?>
             </select>
         </div>
@@ -42,19 +44,19 @@
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="active" value="1" <?php if($course['active'] == 1) echo 'checked';?>>
+                <input type="checkbox" name="active" value="1" <?php if($course['active'] == 1) echo 'checked'; ?>>
                 <span> Активный </span>
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="private" value="1" <?php if($course['private'] == 1) echo 'checked';?>>
+                <input type="checkbox" name="private" value="1" <?php if($course['private'] == 1) echo 'checked'; ?>>
                 <span> Приватный </span>
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="payment" value="1" <?php if($course['payment'] == 1) echo 'checked';?>>
+                <input type="checkbox" name="payment" value="1" <?php if($course['payment'] == 1) echo 'checked'; ?>>
                 <span> Разрешен к оплате </span>
             </label>
         </div>

@@ -12,4 +12,5 @@
 <meta name="theme-color" content="#280d42">
 
 <!-- Яндекс.табло -->
-<meta name="yandex-tableau-widget" content="logo=https://iplay-cinema.ru/public/favicon/yandex-logo.png, color=#280d42" />
+<meta name="yandex-tableau-widget"
+      content="logo=https://iplay-cinema.ru/public/favicon/yandex-logo.png, color=#280d42"/>

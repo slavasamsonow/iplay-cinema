@@ -2,7 +2,8 @@
     <h1>Регистрация</h1>
     <div class="col-md-3">
         <form action="/register" method="post">
-            <input type="hidden" name="request_url" value="<?php if(isset($_GET['request_url'])) echo $_GET['request_url']?>">
+            <input type="hidden" name="request_url"
+                   value="<?php if(isset($_GET['request_url'])) echo $_GET['request_url'] ?>">
             <div class="row">
                 <div class="control-group form-group col-md-6">
                     <label>Имя:</label>
@@ -29,8 +30,9 @@
             <div class="checkbox">
                 <label>
                     <input type="checkbox" name="confident" value="confident" checked required>
-                    <span> Я ознакомлен и согласен <br> с <a href="/public/docs/protect_policy_of_personal_information.pdf"
-                            target="_blank">Политикой конфеденциальности</a>
+                    <span> Я ознакомлен и согласен <br> с <a
+                                href="/public/docs/protect_policy_of_personal_information.pdf"
+                                target="_blank">Политикой конфеденциальности</a>
                     </span>
                 </label>
             </div>

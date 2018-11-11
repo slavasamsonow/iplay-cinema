@@ -46,37 +46,37 @@
     </div>
 
 </div>
-<?php if(!empty($events)):?>
-<div class="events">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h2><span class="big">Ближайшие мероприятия</span></h2>
+<?php if(!empty($events)): ?>
+    <div class="events">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2><span class="big">Ближайшие мероприятия</span></h2>
+                </div>
             </div>
+            <!-- <div class="row">
+                <div class="col-md-10 col-md-offset-1"> -->
+            <?php for($i = 0; $i < count($events); $i++): ?>
+                <?php if($i % 3 == 0): ?>
+                    <div class="row">
+                <?php endif ?>
+                <div class="event col-md-3 col-md-offset-1">
+                    <h3>
+                        <?=$events[$i]['name']?> <span class="date">
+                        <?=date('d/m', $events[$i]['timestart'])?></span></h3>
+                    <p>
+                        <?=$events[$i]['caption']?>
+                    </p>
+                    <a class="btn" href="/course/<?=$events[$i]['id']?>">Записаться</a>
+                </div>
+                <?php if($i % 3 == 2 || $i == count($events) - 1): ?>
+                    </div>
+                <?php endif ?>
+            <?php endfor ?>
+            <!-- </div>
+            </div> -->
         </div>
-        <!-- <div class="row">
-            <div class="col-md-10 col-md-offset-1"> -->
-        <?php for($i = 0; $i < count($events); $i++):?>
-        <?php if($i % 3 == 0): ?>
-        <div class="row">
-            <?php endif ?>
-            <div class="event col-md-3 col-md-offset-1">
-                <h3>
-                    <?=$events[$i]['name']?> <span class="date">
-                        <?=date('d/m',$events[$i]['timestart'])?></span></h3>
-                <p>
-                    <?=$events[$i]['caption']?>
-                </p>
-                <a class="btn" href="/course/<?=$events[$i]['id']?>">Записаться</a>
-            </div>
-            <?php if($i % 3 == 2 || $i == count($events) - 1): ?>
-        </div>
-        <?php endif ?>
-        <?php endfor ?>
-        <!-- </div>
-        </div> -->
     </div>
-</div>
 <?php endif ?>
 <div class="about bg-blue">
     <div class="container-fluid">
@@ -87,8 +87,9 @@
         </div>
         <div class="row">
             <div class="col-md-8 video">
-                <iframe src="https://www.youtube.com/embed/6QAnXB7mbcY" frameborder="0" allow="autoplay; encrypted-media"
-                    allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/6QAnXB7mbcY" frameborder="0"
+                        allow="autoplay; encrypted-media"
+                        allowfullscreen></iframe>
             </div>
             <div class="col-md-4">
                 <h3>
@@ -228,10 +229,12 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="fio" required="required" placeholder="Имя Фамилия">
+                                <input type="text" class="form-control" name="fio" required="required"
+                                       placeholder="Имя Фамилия">
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" name="email" required='required' placeholder="Email">
+                                <input type="email" class="form-control" name="email" required='required'
+                                       placeholder="Email">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -264,7 +267,8 @@
                 <input type="email" class="form-control" name="email" required='required' placeholder="Email">
             </div>
             <div class="form-group">
-                <input type="tel" class="form-control" name="phone" required='required' placeholder="+7 (XXX) XXX-XX-XX">
+                <input type="tel" class="form-control" name="phone" required='required'
+                       placeholder="+7 (XXX) XXX-XX-XX">
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" name="city" placeholder="Город">
@@ -272,8 +276,9 @@
             <div class="checkbox">
                 <label>
                     <input type="checkbox" name="confident" value="confident" checked required>
-                    <span> Я ознакомлен и согласен <br> с <a href="/public/docs/protect_policy_of_personal_information.pdf"
-                            target="_blank">Политикой конфеденциальности</a>
+                    <span> Я ознакомлен и согласен <br> с <a
+                                href="/public/docs/protect_policy_of_personal_information.pdf"
+                                target="_blank">Политикой конфеденциальности</a>
                     </span>
                 </label>
             </div>
@@ -297,7 +302,8 @@
                 <input type="email" class="form-control" name="email" required='required' placeholder="Email">
             </div>
             <div class="form-group">
-                <input type="tel" class="form-control" name="phone" required='required' placeholder="+7 (XXX) XXX-XX-XX">
+                <input type="tel" class="form-control" name="phone" required='required'
+                       placeholder="+7 (XXX) XXX-XX-XX">
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" name="city" placeholder="Город">
@@ -305,8 +311,9 @@
             <div class="checkbox">
                 <label>
                     <input type="checkbox" name="confident" value="confident" checked required>
-                    <span> Я ознакомлен и согласен <br> с <a href="/public/docs/protect_policy_of_personal_information.pdf"
-                            target="_blank">Политикой конфеденциальности</a>
+                    <span> Я ознакомлен и согласен <br> с <a
+                                href="/public/docs/protect_policy_of_personal_information.pdf"
+                                target="_blank">Политикой конфеденциальности</a>
                     </span>
                 </label>
             </div>

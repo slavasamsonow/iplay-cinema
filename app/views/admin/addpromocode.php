@@ -11,11 +11,13 @@
         </div>
         <div class="control-group form-group">
             <label>Дата и время начала</label>
-            <input type="text" class="form-control" name="timestart" required="true" value="<?=date('d.m.Y H:i:', time())?>00">
+            <input type="text" class="form-control" name="timestart" required="true"
+                   value="<?=date('d.m.Y H:i:', time())?>00">
         </div>
         <div class="control-group form-group">
             <label>Дата и время конца</label>
-            <input type="text" class="form-control" name="timeend" required="true" value="<?=date('d.m.Y H:i:', time())?>00">
+            <input type="text" class="form-control" name="timeend" required="true"
+                   value="<?=date('d.m.Y H:i:', time())?>00">
         </div>
         <div class="checkbox">
             <label>
@@ -27,10 +29,10 @@
             <label>Курс:</label>
             <select class="form-control" name="course">
                 <option value="all">Все</option>
-                <?php foreach($coursesList as $coursesListItem):?>
-                <option value="<?=$coursesListItem['id']?>">
-                    <?=$coursesListItem['name']?>
-                </option>
+                <?php foreach($coursesList as $coursesListItem): ?>
+                    <option value="<?=$coursesListItem['id']?>">
+                        <?=$coursesListItem['name']?>
+                    </option>
                 <?php endforeach ?>
             </select>
         </div>

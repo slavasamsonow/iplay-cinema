@@ -5,22 +5,22 @@
         <div class="control-group form-group">
             <label>Курс:</label>
             <select class="form-control" name="course">
-                <?php foreach($coursesList as $coursesListItem):?>
-                <?php if($coursesListItem['type'] != 0):?>
-                <option value="<?=$coursesListItem['id']?>">
-                    <?=$coursesListItem['name']?>
-                </option>
-                <?php endif?>
+                <?php foreach($coursesList as $coursesListItem): ?>
+                    <?php if($coursesListItem['type'] != 0): ?>
+                        <option value="<?=$coursesListItem['id']?>">
+                            <?=$coursesListItem['name']?>
+                        </option>
+                    <?php endif ?>
                 <?php endforeach ?>
             </select>
         </div>
         <div class="control-group form-group">
             <label>Пользователь:</label>
             <select class="form-control" name="user">
-                <?php foreach($usersList as $userItem):?>
-                <option value="<?=$userItem['id']?>">
-                    <?=$userItem['fname'].' '.$userItem['lname']?>
-                </option>
+                <?php foreach($usersList as $userItem): ?>
+                    <option value="<?=$userItem['id']?>">
+                        <?=$userItem['fname'].' '.$userItem['lname']?>
+                    </option>
                 <?php endforeach ?>
             </select>
         </div>
@@ -35,19 +35,23 @@
         <th>Процент прохождения</th>
         <th>Удалить</th>
     </tr>
-    <?php foreach($userCoursesList as $userCourses):?>
-    <tr>
-        <td>
-            <?=$userCourses['coursename']?>
-        </td>
-        <td>
-            <?=$userCourses['fname'].' '.$userCourses['lname']?>
-        </td>
-        <td>
-            <?=$userCourses['percent']?>
-        </td>
-        <td><button class="btn btn-sm" data-type="usercourses" data-action="delete" data-user="<?=$userCourses['userid']?>"
-                data-course="<?=$userCourses['courseid']?>">Удалить</button></td>
-    </tr>
+    <?php foreach($userCoursesList as $userCourses): ?>
+        <tr>
+            <td>
+                <?=$userCourses['coursename']?>
+            </td>
+            <td>
+                <?=$userCourses['fname'].' '.$userCourses['lname']?>
+            </td>
+            <td>
+                <?=$userCourses['percent']?>
+            </td>
+            <td>
+                <button class="btn btn-sm" data-type="usercourses" data-action="delete"
+                        data-user="<?=$userCourses['userid']?>"
+                        data-course="<?=$userCourses['courseid']?>">Удалить
+                </button>
+            </td>
+        </tr>
     <?php endforeach ?>
 </table>

@@ -25,10 +25,10 @@
         <div class="control-group form-group">
             <label>Автор:</label>
             <select class="form-control" name="creator">
-                <?php foreach($usersList as $userListItem):?>
-                <option value="<?=$userListItem['id']?>">
-                    <?=$userListItem['fname'].' '.$userListItem['lname']?>
-                </option>
+                <?php foreach($usersList as $userListItem): ?>
+                    <option value="<?=$userListItem['id']?>">
+                        <?=$userListItem['fname'].' '.$userListItem['lname']?>
+                    </option>
                 <?php endforeach ?>
             </select>
         </div>
@@ -37,10 +37,10 @@
             <label>Курс:</label>
             <select class="form-control" name="course">
                 <option value="0">Без привязки</option>
-                <?php foreach($coursesList as $coursesListItem):?>
-                <option value="<?=$coursesListItem['id']?>">
-                    <?=$coursesListItem['name']?>
-                </option>
+                <?php foreach($coursesList as $coursesListItem): ?>
+                    <option value="<?=$coursesListItem['id']?>">
+                        <?=$coursesListItem['name']?>
+                    </option>
                 <?php endforeach ?>
             </select>
         </div>

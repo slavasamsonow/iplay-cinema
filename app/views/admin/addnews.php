@@ -7,7 +7,8 @@
         </div>
         <div class="control-group form-group">
             <label>Дата и время</label>
-            <input type="text" class="form-control" name="datetime" required="true" value="<?=date('d.m.Y H:i:m', time())?>">
+            <input type="text" class="form-control" name="datetime" required="true"
+                   value="<?=date('d.m.Y H:i:m', time())?>">
         </div>
         <div class="control-group form-group">
             <label>Краткая аннотация:</label>
@@ -21,11 +22,11 @@
         <div class="control-group form-group">
             <label>Автор:</label>
             <select class="form-control" name="author">
-                <?php foreach($usersList as $userListItem):?>
-                <option value="<?=$userListItem['id']?>" <?php if($_SESSION['user']['id']==$userListItem['id']) echo
-                    'checked' ;?>>
-                    <?=$userListItem['fname'].' '.$userListItem['lname']?>
-                </option>
+                <?php foreach($usersList as $userListItem): ?>
+                    <option value="<?=$userListItem['id']?>" <?php if($_SESSION['user']['id'] == $userListItem['id']) echo
+                    'checked'; ?>>
+                        <?=$userListItem['fname'].' '.$userListItem['lname']?>
+                    </option>
                 <?php endforeach ?>
             </select>
         </div>

@@ -20,7 +20,7 @@ class News extends Model{
         }
         $news = $news[0];
         $news['author'] = $news['fname'].' '.$news['lname'];
-        unset($news['fname'],$news['lname']);
+        unset($news['fname'], $news['lname']);
         return $news;
     }
 }

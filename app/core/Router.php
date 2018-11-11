@@ -4,14 +4,14 @@ namespace app\core;
 
 use app\core\View;
 
-class Router {
+class Router{
 
     public $routes = [];
     public $params = [];
 
     public function __construct(){
         $arr = require 'app/config/routes.php';
-        foreach ($arr as $key => $val){
+        foreach($arr as $key => $val){
             $this->add($key, $val);
         }
     }
@@ -24,13 +24,13 @@ class Router {
 
     public function match(){
         $url = trim($_SERVER['REQUEST_URI'], '/');
-        $url = explode('?',$url)[0];
-        foreach ($this->routes as $route => $params){
+        $url = explode('?', $url)[0];
+        foreach($this->routes as $route => $params){
             if(preg_match($route, $url, $matches)){
-                foreach ($matches as $key => $match) {
-                    if (is_string($key)) {
-                        if (is_numeric($match)) {
-                            $match = (int) $match;
+                foreach($matches as $key => $match){
+                    if(is_string($key)){
+                        if(is_numeric($match)){
+                            $match = (int)$match;
                         }
                         $params[$key] = $match;
                     }

@@ -16,53 +16,52 @@ class Amo{
         $this->userhash = $config['hash'];
     }
 
-    protected function query($link, $data=[]){
+    protected function query($link, $data = []){
         $link = $this->path.$link;
 
-        $curl=curl_init();
-        curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
-        curl_setopt($curl,CURLOPT_USERAGENT,'amoCRM-API-client/1.0');
-        curl_setopt($curl,CURLOPT_URL,$link);
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_USERAGENT, 'amoCRM-API-client/1.0');
+        curl_setopt($curl, CURLOPT_URL, $link);
         if(count($data) > 0){
-            curl_setopt($curl,CURLOPT_CUSTOMREQUEST,'POST');
-            curl_setopt($curl,CURLOPT_POSTFIELDS,json_encode($data));
-            curl_setopt($curl,CURLOPT_HTTPHEADER,array('Content-Type: application/json'));
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
+            curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
         }
-        curl_setopt($curl,CURLOPT_HEADER,false);
-        curl_setopt($curl,CURLOPT_COOKIEFILE,dirname(__FILE__).'/cookieAmo.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
-        curl_setopt($curl,CURLOPT_COOKIEJAR,dirname(__FILE__).'/cookieAmo.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
-        curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
-        curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
-        $out=curl_exec($curl);
-        $code=curl_getinfo($curl,CURLINFO_HTTP_CODE);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_COOKIEFILE, dirname(__FILE__).'/cookieAmo.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+        curl_setopt($curl, CURLOPT_COOKIEJAR, dirname(__FILE__).'/cookieAmo.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        $out = curl_exec($curl);
+        $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
 
-        $code=(int)$code;
-        $errors=array(
-            301=>'Moved permanently',
-            400=>'Bad request',
-            401=>'Unauthorized',
-            403=>'Forbidden',
-            404=>'Not found',
-            500=>'Internal server error',
-            502=>'Bad gateway',
-            503=>'Service unavailable'
+        $code = (int)$code;
+        $errors = array(
+            301 => 'Moved permanently',
+            400 => 'Bad request',
+            401 => 'Unauthorized',
+            403 => 'Forbidden',
+            404 => 'Not found',
+            500 => 'Internal server error',
+            502 => 'Bad gateway',
+            503 => 'Service unavailable'
         );
         try{
             #Если код ответа не равен 200 или 204 - возвращаем сообщение об ошибке
-            if($code!=200 && $code!=204){
+            if($code != 200 && $code != 204){
                 //echo print_r(($errors[$code]) ? $errors[$code] : 'Undescribed error ',$code);
             }
-        }
-        catch(Exception $E){
+        }catch(Exception $E){
             //die('Ошибка: '.$E->getMessage().PHP_EOL.'Код ошибки: '.$E->getCode());
         }
-        $Response=json_decode($out,true);
+        $Response = json_decode($out, true);
         return $Response;
     }
 
     public function start(){
-        $user=array(
+        $user = array(
             'USER_LOGIN' => $this->userlogin,
             'USER_HASH' => $this->userhash,
         );
@@ -76,7 +75,7 @@ class Amo{
         if($this->start() == true){
             $leads['add'][0] = [
                 'name' => 'Заявка с сайта',
-                'created_at'=>time(),
+                'created_at' => time(),
                 'status_id' => '11316085',
                 'tags' => 'Сайт',
             ];
@@ -158,13 +157,13 @@ class Amo{
     public function newContact($vars){
         if($this->start() == true){
             $contacts['add'][0] = [
-                'name'=>$vars['name'],
-                'created_at'=>time(),
+                'name' => $vars['name'],
+                'created_at' => time(),
                 'tags' => 'Сайт',
                 'custom_fields' => [
                     [
-                      'id' => "148121",
-                      'values' => [
+                        'id' => "148121",
+                        'values' => [
                             [
                                 'value' => $vars['email'],
                                 'enum' => "WORK"
@@ -231,7 +230,7 @@ class Amo{
         };
     }
 
-    public function addNotesContact($amoid,$data){
+    public function addNotesContact($amoid, $data){
         if($this->start() == true){
             foreach($data as $dataItem){
                 $notes['add'][] = [
@@ -253,7 +252,7 @@ class Amo{
         }
     }
 
-    public function addNotesLead($amoid,$data){
+    public function addNotesLead($amoid, $data){
         if($this->start() == true){
             foreach($data as $dataItem){
                 $notes['add'][] = [

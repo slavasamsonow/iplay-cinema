@@ -9,7 +9,7 @@ return [
         'controller' => 'main',
         'action' => 'tests',
     ],
-    'lending/{pagename:\w+}'  => [
+    'lending/{pagename:\w+}' => [
         'controller' => 'main',
         'action' => 'lending',
     ],

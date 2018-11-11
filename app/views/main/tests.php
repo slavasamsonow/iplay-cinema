@@ -1,10 +1,10 @@
 <h1><?=$test['name']?></h1>
 <p><?=$test['description']?></p>
-<form action="<?=explode('?',$_SERVER['REQUEST_URI'])[0];?>" method="post">
+<form action="<?=explode('?', $_SERVER['REQUEST_URI'])[0];?>" method="post">
     <input type="hidden" name="testCode" value="<?=$test['code']?>">
     <?php foreach($test['questions'] as $keyQuestion => $question): ?>
         <p><b><?=$question['name']?></b></p>
-        <?php foreach($question['answers'] as $keyAnswer => $answer):?>
+        <?php foreach($question['answers'] as $keyAnswer => $answer): ?>
             <div class="radio">
                 <label>
                     <input type="radio" name="answers[<?=$keyQuestion?>]" value="<?=$keyAnswer?>" required>

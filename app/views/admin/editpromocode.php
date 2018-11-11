@@ -12,33 +12,44 @@
         </div>
         <div class="control-group form-group">
             <label>Дата и время начала</label>
-            <input type="text" class="form-control" name="timestart" required="true" value="<?=date('d.m.Y H:i:m', $promocode['timestart'])?>">
+            <input type="text" class="form-control" name="timestart" required="true"
+                   value="<?=date('d.m.Y H:i:m', $promocode['timestart'])?>">
         </div>
         <div class="control-group form-group">
             <label>Дата и время конца</label>
-            <input type="text" class="form-control" name="timeend" required="true" value="<?=date('d.m.Y H:i:m', $promocode['timeend'])?>">
+            <input type="text" class="form-control" name="timeend" required="true"
+                   value="<?=date('d.m.Y H:i:m', $promocode['timeend'])?>">
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="noEnd" value="1" <? if($promocode['noEnd']==1){echo 'checked' ;}?>>
+                <input type="checkbox" name="noEnd" value="1" <? if($promocode['noEnd'] == 1){
+                    echo 'checked';
+                } ?>>
                 <span> Без конца </span>
             </label>
         </div>
         <div class="control-group form-group">
             <label>Курс:</label>
             <select class="form-control" name="course">
-                <option value="all" <?if($promocode['course']=='all' ){echo 'selected' ;}?>>Все</option>
-                <?php foreach($coursesList as $coursesListItem):?>
-                <option value="<?=$coursesListItem['id']?>" <?if($promocode['course']==$coursesListItem['id']){echo
-                    'selected' ;}?>>
-                    <?=$coursesListItem['name']?>
+                <option value="all" <? if($promocode['course'] == 'all'){
+                    echo 'selected';
+                } ?>>Все
                 </option>
+                <?php foreach($coursesList as $coursesListItem): ?>
+                    <option value="<?=$coursesListItem['id']?>" <? if($promocode['course'] == $coursesListItem['id']){
+                        echo
+                        'selected';
+                    } ?>>
+                        <?=$coursesListItem['name']?>
+                    </option>
                 <?php endforeach ?>
             </select>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="active" value="1" <? if($promocode['active']==1){echo 'checked' ;}?>>
+                <input type="checkbox" name="active" value="1" <? if($promocode['active'] == 1){
+                    echo 'checked';
+                } ?>>
                 <span> Активный </span>
             </label>
         </div>

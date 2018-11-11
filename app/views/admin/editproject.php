@@ -26,10 +26,10 @@
         <div class="control-group form-group">
             <label>Автор:</label>
             <select class="form-control" name="creator">
-                <?php foreach($userList as $userListItem):?>
-                <option value="<?=$userListItem['id']?>" <?php if($project['creator'] == $userListItem['id'])echo 'selected' ?>>
-                    <?=$userListItem['fname'].' '.$userListItem['lname']?>
-                </option>
+                <?php foreach($userList as $userListItem): ?>
+                    <option value="<?=$userListItem['id']?>" <?php if($project['creator'] == $userListItem['id']) echo 'selected' ?>>
+                        <?=$userListItem['fname'].' '.$userListItem['lname']?>
+                    </option>
                 <?php endforeach ?>
             </select>
         </div>
@@ -37,17 +37,17 @@
             <label>Курс:</label>
             <select class="form-control" name="course">
                 <option value="0">Без привязки</option>
-                <?php foreach($coursesList as $coursesListItem):?>
-                <option value="<?=$coursesListItem['id']?>" <?php if($project['course'] == $coursesListItem['id'])echo 'selected'?>>
-                    <?=$coursesListItem['name']?>
-                </option>
+                <?php foreach($coursesList as $coursesListItem): ?>
+                    <option value="<?=$coursesListItem['id']?>" <?php if($project['course'] == $coursesListItem['id']) echo 'selected' ?>>
+                        <?=$coursesListItem['name']?>
+                    </option>
                 <?php endforeach ?>
             </select>
         </div>
 
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="active" value="1" <?php if($project['active'] == 1)echo 'checked' ?>>
+                <input type="checkbox" name="active" value="1" <?php if($project['active'] == 1) echo 'checked' ?>>
                 <span> Активный </span>
             </label>
         </div>

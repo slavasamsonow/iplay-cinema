@@ -11,36 +11,36 @@
         <th>Редактировать</th>
         <!-- <th>Удалить</th> -->
     </tr>
-    <?php foreach($courseTasks as $courseTask):?>
-    <tr>
-        <?php if($courseTask['timestart'] == 0):?>
-        <td>
-            Общее задание
-        </td>
-        <?php else: ?>
-        <td>
-            <?=date('d.m.y H:i', $courseTask['timestart'])?>
-        </td>
-        <?php endif ?>
-        <td>
-            <?=$courseTask['name']?>
-        </td>
-        <td>
-            <?=$courseTask['description']?>
-        </td>
-        <td>
-            <?=$courseTask['verify']?>
-        </td>
-        <td>
-            <?=$courseTask['active']?>
-        </td>
-        <td>
-            <?=$courseTask['percent']?>
-        </td>
-        <td>
-            <a class="btn btn-sm" href="/admin/edittask/<?=$courseTask['id']?>">Редактировать</a>
-        </td>
-        <!-- <td>
+    <?php foreach($courseTasks as $courseTask): ?>
+        <tr>
+            <?php if($courseTask['timestart'] == 0): ?>
+                <td>
+                    Общее задание
+                </td>
+            <?php else: ?>
+                <td>
+                    <?=date('d.m.y H:i', $courseTask['timestart'])?>
+                </td>
+            <?php endif ?>
+            <td>
+                <?=$courseTask['name']?>
+            </td>
+            <td>
+                <?=$courseTask['description']?>
+            </td>
+            <td>
+                <?=$courseTask['verify']?>
+            </td>
+            <td>
+                <?=$courseTask['active']?>
+            </td>
+            <td>
+                <?=$courseTask['percent']?>
+            </td>
+            <td>
+                <a class="btn btn-sm" href="/admin/edittask/<?=$courseTask['id']?>">Редактировать</a>
+            </td>
+            <!-- <td>
             <form action="/admin/taskslist/<?=$course['id']?>" method="post">
                 <input type="hidden" name="id" value="<?=$courseTask['id']?>">
                 <input type="hidden" name="course" value="<?=$course['id']?>">
@@ -48,6 +48,6 @@
                 <button type="submit" class="btn btn-sm">Удалить</button>
             </form>
         </td> -->
-    </tr>
+        </tr>
     <?php endforeach ?>
 </table>

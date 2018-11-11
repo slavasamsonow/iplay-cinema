@@ -11,12 +11,12 @@
 
     <meta name="description" content="<?=$seo['description']?>">
 
-    <?php require_once('include/favicon.php')?>
-    <?php require_once('include/css_js.php')?>
+    <?php require_once('include/favicon.php') ?>
+    <?php require_once('include/css_js.php') ?>
 
-    <?php require_once('include/yandexmetrika.php')?>
-    <?php require_once('include/googleanalitics.php')?>
-    <?php require_once('include/pixelvk.php')?>
+    <?php require_once('include/yandexmetrika.php') ?>
+    <?php require_once('include/googleanalitics.php') ?>
+    <?php require_once('include/pixelvk.php') ?>
 
 </head>
 

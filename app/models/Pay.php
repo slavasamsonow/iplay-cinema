@@ -111,12 +111,11 @@ class Pay extends Model{
 
         $payment = $this->db->row('SELECT p.* FROM payments p WHERE (p.email = :email OR p.user = :user) AND p.course = :course AND p.amount = :amount ORDER BY p.createdon DESC', $params);
 
-        if($payment && (int) $payment[0]['createdon'] + 3600*24 >= time()){
+        if($payment && (int)$payment[0]['createdon'] + 3600 * 24 >= time()){
             $idempotence = $payment[0]['createdon'];
             $id = $payment[0]['id'];
             $amoid = $payment[0]['amoid'];
-        }
-        else{
+        }else{
             $varsAmo = [
                 'name' => 'Покупка на сайте',
                 'sale' => $price,
@@ -228,7 +227,7 @@ class Pay extends Model{
         $params = [
             'yandexid' => $yandexPaymentId,
         ];
-        $payment = $this->db->row('SELECT * FROM `payments` WHERE `yandexid` = :yandexid',$params)[0];
+        $payment = $this->db->row('SELECT * FROM `payments` WHERE `yandexid` = :yandexid', $params)[0];
 
         $params = [
             'id' => $payment['id'],

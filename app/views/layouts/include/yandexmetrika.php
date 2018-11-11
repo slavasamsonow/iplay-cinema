@@ -10,7 +10,8 @@
                     accurateTrackBounce: true,
                     webvisor: true
                 });
-            } catch (e) {}
+            } catch (e) {
+            }
         });
 
         var n = d.getElementsByTagName("script")[0],
@@ -30,6 +31,6 @@
     })(document, window, "yandex_metrika_callbacks2");
 </script>
 <noscript>
-    <div><img src="https://mc.yandex.ru/watch/50277793" style="position:absolute; left:-9999px;" alt="" /></div>
+    <div><img src="https://mc.yandex.ru/watch/50277793" style="position:absolute; left:-9999px;" alt=""/></div>
 </noscript>
 <!-- /Yandex.Metrika counter -->

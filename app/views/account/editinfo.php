@@ -28,7 +28,7 @@
     </div>
     <div class="checkbox">
         <label>
-            <input type="checkbox" name="public" value="public" <? if($user['public']==1) echo 'checked' ;?>>
+            <input type="checkbox" name="public" value="public" <? if($user['public'] == 1) echo 'checked'; ?>>
             <span> Публичный профиль </span>
         </label>
     </div>

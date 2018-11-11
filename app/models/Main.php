@@ -57,7 +57,8 @@ class Main extends Model{
             <a href='https://iplay-cinema.ru/lending/intensiv?utm_medium=email&utm_source=email_site&utm_campaign=lead_magnet_profession&utm_content=other'
                style='display: inline-block; padding: 12px 20px; margin-right: 20px; border-radius: 20px; background-color: #d43; color: #fff; font-family: Arial, sans-serif; font-weight: bold;text-decoration: none;'>Интенсив-шоу</a>
             <a href='https://iplay-cinema.ru/course/16?utm_medium=email&utm_source=email_site&utm_campaign=lead_magnet_profession&utm_content=other'
-               style='display: inline-block; padding: 12px 20px; border-radius: 20px; background-color: #d43; color: #fff; font-family: Arial, sans-serif; font-weight: bold;text-decoration: none;'>Базовый курс</a>
+               style='display: inline-block; padding: 12px 20px; border-radius: 20px; background-color: #d43; color: #fff; font-family: Arial, sans-serif; font-weight: bold;text-decoration: none;'>Базовый
+                курс</a>
         </p>
         <?
         $body = ob_get_clean();

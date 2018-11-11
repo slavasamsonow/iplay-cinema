@@ -41,10 +41,10 @@
         </div>
     </div>
 
-    <?php if($course['id'] == 4):?>
-    <div class="all">
-        <a class="btn btn-primary" href="/lending/intensiv"> Более подробная информация</a>
-    </div>
+    <?php if($course['id'] == 4): ?>
+        <div class="all">
+            <a class="btn btn-primary" href="/lending/intensiv"> Более подробная информация</a>
+        </div>
     <?php endif ?>
 
     <div class="description">
