@@ -30,3 +30,86 @@
         font-size: 20px;
     }
 }
+
+@media(max-width: 767px){
+    h2{
+        font-size: 20px;
+    }
+
+    h3{
+        font-size: 17px;
+    }
+
+    .modal{
+        padding: 20px 30px;
+        font-size: 12px;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        transform: none;
+    }
+
+    .container-fluid{
+        padding: 0 30px 30px;
+    }
+
+    /*Лендинг*/
+    .lending-wrapper .lending-intro{
+        height: auto;
+        background: url(/public/img/lending/background-intensiv.png) no-repeat center 5vh/cover;;
+    }
+
+    .lending-wrapper .lending-intro .top{
+        text-align: center;
+    }
+
+    .lending-wrapper .lending-intro .lending-intro-content{
+        padding-top: 0;
+    }
+
+    .lending-wrapper .lending-intro h1{
+        font-size: 24px;
+        padding: 0 40px;
+    }
+
+    .lending-wrapper .lending-intro h1::before,
+    .lending-wrapper .lending-intro h1::after{
+        width: 60px;
+        height: 50px;
+    }
+
+    .lending-wrapper .lending-intro .description-text{
+        font-size: 20px;
+        padding: 0 40px;
+    }
+
+    .lending-wrapper .who .list{
+        position: relative;
+        margin: 0 -30px;
+        padding: 0 30px;
+    }
+
+    .lending-wrapper .invest{
+        text-align: left;
+    }
+
+    .lending-wrapper .invest .invest-content{
+        font-size: 14px;
+        margin: 0 -30px;
+        padding: 25px 30px;
+    }
+
+    .lending-wrapper .request-block .button button::before,
+    .lending-wrapper .request-block .button button::after{
+        width: 70px;
+    }
+
+    .lending-wrapper .contact .logo{
+        float: none;
+    }
+
+    .lending-wrapper .contact .contact-info{
+        float: none;
+    }
+}
