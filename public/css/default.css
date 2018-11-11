@@ -345,6 +345,7 @@ textarea {
     bottom: auto;
     color: #111;
     z-index: 1000;
+    max-width: 100%;
 }
 
 .modal-header {
