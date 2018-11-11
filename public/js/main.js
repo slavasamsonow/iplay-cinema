@@ -1,4 +1,4 @@
-// v.0.15.6
+// v.0.15.7
 function videoHeight() {
     $('.video iframe').each(function () {
         var widthVideo = $(this).width();
