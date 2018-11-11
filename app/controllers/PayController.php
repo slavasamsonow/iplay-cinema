@@ -3,8 +3,11 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\models\Pay;
 
 class PayController extends Controller{
+    /* @var $model Pay */
+    public $model;
 
     public function payAction(){
         if(!empty($_POST)){
