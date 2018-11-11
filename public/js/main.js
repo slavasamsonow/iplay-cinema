@@ -143,12 +143,11 @@ $(document).ready(function () {
         }
     }
 
-    if ($('.lending-intro-content').length) {
+    if ($('.lending-intro-content').length && $(window).width() > 767) {
         var headerHeight = $('.lending-intro .top').outerHeight();
         var baseHeight = $('.lending-intro-content').outerHeight();
         var windowHeight = $(window).height();
         var newPaddingBottom = Math.floor((windowHeight - headerHeight - baseHeight) / 2);
-        console.log(headerHeight);
         $('.lending-intro .top').css('margin-bottom', newPaddingBottom);
     }
 
