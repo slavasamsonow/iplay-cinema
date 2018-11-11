@@ -66,4 +66,9 @@ class Db{
             'V' => $paramV,
         ];
     }
+
+    public function getErrorCode($sql, $params = []){
+        $result = $this->query($sql, $params);
+        return $result->errorInfo();
+    }
 }
