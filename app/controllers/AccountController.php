@@ -3,8 +3,12 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\models\Account;
 
 class AccountController extends Controller{
+
+    /* @var $model Account */
+    public $model;
 
     public function indexAction(){
         if($this->model->auth == 'auth'){

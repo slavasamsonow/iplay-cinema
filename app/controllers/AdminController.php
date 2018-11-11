@@ -3,10 +3,13 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\models\Admin;
 use app\models\Project;
 
 class AdminController extends Controller{
 
+    /* @var $model Admin */
+    public $model;
     protected $modelProject;
 
     public function __construct($route){

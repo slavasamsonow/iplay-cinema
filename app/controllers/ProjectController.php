@@ -5,6 +5,10 @@ namespace app\controllers;
 use app\core\Controller;
 
 class ProjectController extends Controller{
+
+    /* @var $model Project */
+    public $model;
+
     public function __construct($route){
         parent::__construct($route);
     }

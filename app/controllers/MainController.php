@@ -4,8 +4,12 @@ namespace app\controllers;
 
 use app\core\Controller;
 use app\models\Account;
+use app\models\Main;
 
 class MainController extends Controller{
+
+    /* @var $model Main */
+    public $model;
     public $modelAccount;
 
     public function indexAction(){

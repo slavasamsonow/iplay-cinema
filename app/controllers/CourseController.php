@@ -4,12 +4,12 @@ namespace app\controllers;
 
 use app\core\Controller;
 use app\models\Account;
+use app\models\Course;
 
 class CourseController extends Controller{
 
-    public function __construct($route){
-        parent::__construct($route);
-    }
+    /* @var $model Course */
+    public $model;
 
     public function indexAction(){
         if($this->model->auth == 'auth'){
