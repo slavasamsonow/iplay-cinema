@@ -82,7 +82,7 @@
 <div class="plan">
     <h2>План мероприятия</h2>
     <div class="container-fluid">
-        <div class="plan-list">
+        <div class="row">
             <!--            <div class="item"><img src="/public/img/lending/plan/intensiv-1.png" alt="">-->
             <!--                <div>1. Знакомство</div>-->
             <!--            </div>-->
@@ -104,22 +104,25 @@
             <!--            <div class="item"><img src="/public/img/lending/plan/intensiv-7.png" alt="">-->
             <!--                <div><b>7. Показ</b></div>-->
             <!--            </div>-->
-            <div class="item"><img src="/public/img/lending/plan/intensiv-2.png" alt="">
+            <div class="item col-md-4 col-xs-6"><img src="/public/img/lending/plan/intensiv-2.png" alt="">
                 <div>1. Знакомство с экспертами</div>
             </div>
-            <div class="item"><img src="/public/img/lending/plan/intensiv-3.png" alt="">
+            <div class="item col-md-4 xol-xs-6"><img src="/public/img/lending/plan/intensiv-3.png" alt="">
                 <div>2. Выбор идеи и <br>разработка сценария</div>
             </div>
-            <div class="item"><img src="/public/img/lending/plan/intensiv-4.png" alt="">
+            <div class="row visible-xs"></div>
+            <div class="item col-md-4 col-xs-6"><img src="/public/img/lending/plan/intensiv-4.png" alt="">
                 <div>3. Кастинг актеров</div>
             </div>
-            <div class="item"><img src="/public/img/lending/plan/intensiv-5.png" alt="">
+            <div class="row hidden-xs"></div>
+            <div class="item col-md-4 col-xs-6"><img src="/public/img/lending/plan/intensiv-5.png" alt="">
                 <div>4. Съемка</div>
             </div>
-            <div class="item"><img src="/public/img/lending/plan/intensiv-6.png" alt="">
+            <div class="row visible-xs"></div>
+            <div class="item col-md-4 col-xs-6"><img src="/public/img/lending/plan/intensiv-6.png" alt="">
                 <div>5. Монтаж</div>
             </div>
-            <div class="item"><img src="/public/img/lending/plan/intensiv-7.png" alt="">
+            <div class="item col-md-4 col-xs-6"><img src="/public/img/lending/plan/intensiv-7.png" alt="">
                 <div><b>6. Показ</b></div>
             </div>
         </div>
