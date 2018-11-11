@@ -6,6 +6,10 @@ use app\core\Model;
 
 class Course extends Model{
 
+    /**
+     * Возвращает список курсов для обучения студента
+     * @return array
+     */
     public function getStudyCoursesList(){
         $params = [
             'userId' => $_SESSION['user']['id'],
@@ -30,6 +34,14 @@ class Course extends Model{
         return $courses;
     }
 
+    /**
+     * Возвращает список активных курсов
+     *
+     * @param $param
+     *
+     * @return array
+     */
+    // todo переименовать в getActiveCourses
     public function coursesList($param){
         $params = [
             'timestart' => time(),
@@ -54,6 +66,14 @@ class Course extends Model{
         return $coursesList;
     }
 
+    /**
+     * Вовращает информацию о курсе
+     *
+     * @param $courseId
+     *
+     * @return bool
+     */
+    //todo переисеновать в getCourseInfo
     public function courseInfo($courseId){
         $params = [
             'courseid' => $courseId,
@@ -67,6 +87,14 @@ class Course extends Model{
         }
     }
 
+    /**
+     * Возвращает список преподавателей курса
+     *
+     * @param $courseId
+     *
+     * @return array
+     */
+    // todo переименоваь в getCourseTeachers
     public function courseTeachers($courseId){
         $params = [
             'courseid' => $courseId,
@@ -82,6 +110,14 @@ class Course extends Model{
         return $teachers;
     }
 
+    /**
+     * Возвращает список кураторов курса
+     *
+     * @param $courseId
+     *
+     * @return array
+     */
+    // todo переименовать в getCourseCurators
     public function courseCurators($courseId){
         $params = [
             'courseid' => $courseId,
@@ -97,6 +133,14 @@ class Course extends Model{
         return $curators;
     }
 
+    /**
+     * Возвращает программу курса
+     *
+     * @param $courseId
+     *
+     * @return array
+     */
+    // todo переименовать в getCourseProgram
     public function courseProgram($courseId){
         $params = [
             'courseid' => $courseId,
@@ -104,6 +148,14 @@ class Course extends Model{
         return $this->db->row('SELECT cp.name, cp.description FROM courses_programs cp WHERE cp.course = :courseid', $params);
     }
 
+    /**
+     * Возвращает проекты курса
+     *
+     * @param $courseId
+     *
+     * @return array
+     */
+    // todo переименовать в getCourseProjects
     public function courseProjects($courseId){
         $params = [
             'courseid' => $courseId,
@@ -111,6 +163,30 @@ class Course extends Model{
         return $this->db->row('SELECT p.* FROM projects p WHERE p.course = :courseid', $params);
     }
 
+    /**
+     * Возвращает список проектов курса
+     *
+     * @param $courseId
+     *
+     * @return array
+     */
+    // todo Объединить с функцией выше
+    public function getProjectsCourse($courseId){
+        $params = [
+            'course' => $courseId,
+        ];
+        $projectsList = $this->db->row('SELECT * FROM projects p WHERE p.course = :course', $params);
+        return $projectsList;
+    }
+
+    /**
+     * Проверяет принадлежность студента к курсу
+     *
+     * @param $courseId
+     * @param string $userid
+     *
+     * @return bool
+     */
     public function checkCourse($courseId, $userid = ''){
         if($userid == ''){
             $userid = $_SESSION['user']['id'];
@@ -129,6 +205,14 @@ class Course extends Model{
         }
     }
 
+    /**
+     * Возвращает задания курса
+     *
+     * @param $courseId
+     * @param string $userId
+     *
+     * @return array
+     */
     public function getTasksCourse($courseId, $userId = ''){
         if($userId == ''){
             $userId = $_SESSION['user']['id'];
@@ -201,6 +285,13 @@ class Course extends Model{
         return $taskDate;
     }
 
+    /**
+     * Возвращает список студентов курса
+     *
+     * @param $courseId
+     *
+     * @return array
+     */
     public function getUsersCourse($courseId){
         $params = [
             'course' => $courseId,
@@ -214,14 +305,14 @@ class Course extends Model{
         return $usersList;
     }
 
-    public function getProjectsCourse($courseId){
-        $params = [
-            'course' => $courseId,
-        ];
-        $projectsList = $this->db->row('SELECT * FROM projects p WHERE p.course = :course', $params);
-        return $projectsList;
-    }
-
+    /**
+     * Изменение статуса задания
+     *
+     * @param $taskId
+     * @param string $userid
+     *
+     * @return array
+     */
     public function changeTask($taskId, $userid = ''){
         if($userid == ''){
             $userid = $_SESSION['user']['id'];
@@ -308,6 +399,7 @@ class Course extends Model{
         ];
     }
 
+    
     public function grantApplicationUser($data){
         $varsAmo = [
             'name' => 'Заявка на грант',

@@ -5,11 +5,25 @@ namespace app\models;
 use app\core\Model;
 
 class News extends Model{
+    /**
+     * Список активных новостей
+     * @return array
+     */
+    // todo перименовать в getActiveNews
+    // todo пагинация
     public function newsList(){
         $news = $this->db->row('SELECT * FROM news n WHERE n.active = 1 ORDER BY n.timestart DESC');
         return $news;
     }
 
+    /**
+     * Информация новости
+     *
+     * @param $newsid
+     *
+     * @return array|bool
+     */
+    // todo переименовать в getNewsInfo
     public function newsInfo($newsid){
         $params = [
             'id' => $newsid

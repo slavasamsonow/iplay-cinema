@@ -5,6 +5,7 @@ namespace app\models;
 use app\core\Model;
 
 class Pay extends Model{
+    // todo перенести в Course
     public function courseInfo($id){
         $params = [
             'id' => $id,
@@ -16,6 +17,7 @@ class Pay extends Model{
         return $course[0];
     }
 
+    // todo перенести в Account
     public function checkUserCourse($courseid){
         $params = [
             'user' => $_SESSION['user']['id'],
@@ -24,10 +26,19 @@ class Pay extends Model{
         return $this->db->column('SELECT uc.id FROM user_courses uc WHERE uc.user = :user AND uc.course = :course', $params);
     }
 
+    // todo Написать
     public function openPayPage($courseid){
         //Отправляются данные в АМО
     }
 
+    /**
+     * Проверка оплаты
+     *
+     * @param $courseId
+     *
+     * @return array
+     */
+    // todo переименовать в getPaymentStatus
     public function checkPayment($courseId){
         $params = [
             'user' => $_SESSION['user']['id'],
@@ -36,6 +47,14 @@ class Pay extends Model{
         return $this->db->row('SELECT `status` FROM `payments` WHERE `user` = :user AND `course` = :course ORDER BY `id` DESC', $params);
     }
 
+    /**
+     * Проверка промокода
+     *
+     * @param $courseid
+     * @param $promocode
+     *
+     * @return bool
+     */
     public function checkPromocode($courseid, $promocode){
         $params = [
             'course' => $courseid,
@@ -51,6 +70,15 @@ class Pay extends Model{
         }
     }
 
+    /**
+     * Рассчет окончательной суммы скидки промокода
+     *
+     * @param $course
+     * @param $promocode
+     *
+     * @return bool|float
+     */
+    // todo переименовать в getPromocodePrice
     public function pricePromocode($course, $promocode){
         if(!$sale = $this->checkPromocode($course['id'], $promocode)){
             return $course['price'];
@@ -66,6 +94,16 @@ class Pay extends Model{
         return $newPrice;
     }
 
+    /**
+     * Создание платежа
+     *
+     * @param $course
+     * @param $price
+     * @param $dataPayer
+     *
+     * @return array|bool
+     */
+    //todo Разделить на несколько функций
     public function createPayment($course, $price, $dataPayer){
         $userid = 0;
         $useremail = 0;
@@ -214,6 +252,13 @@ class Pay extends Model{
         ];
     }
 
+    /**
+     * Проверка оплаченности платежа
+     *
+     * @param $yandexPaymentId
+     *
+     * @return bool
+     */
     public function checkPaymentSuccess($yandexPaymentId){
         $yandexPaymentData = $this->yandexMoney->getPaymentInfo($yandexPaymentId);
         if($yandexPaymentData['status'] == 'succeeded'){
@@ -223,6 +268,11 @@ class Pay extends Model{
         }
     }
 
+    /**
+     * Подтверждение платежа и добавление к курсу
+     *
+     * @param $yandexPaymentId
+     */
     public function paymentSuccess($yandexPaymentId){
         $params = [
             'yandexid' => $yandexPaymentId,

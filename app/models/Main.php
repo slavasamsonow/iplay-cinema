@@ -5,6 +5,16 @@ namespace app\models;
 use app\core\Model;
 
 class Main extends Model{
+    /**
+     * Регистрация на мероприятие
+     *
+     * @param $data
+     * @param $user
+     *
+     * @return bool
+     * @throws \app\lib\phpmailer\Exception
+     */
+    // todo пересмотреть
     public function registerForm($data, $user){
         $email = 'slavasamsonow@yandex.ru';
         $name = 'Админ';
@@ -36,6 +46,12 @@ class Main extends Model{
         return true;
     }
 
+    /**
+     * Список мероприятий
+     * @return array
+     */
+    // todo перенести в Course
+    // todo переименовать в getActiveEvents
     public function events(){
         $params = [
             'timestart' => time(),
@@ -43,6 +59,16 @@ class Main extends Model{
         return $this->db->row('SELECT * FROM courses c WHERE c.type = 1 AND c.timestart > :timestart AND c.active = 1 AND c.private = 0 ORDER BY c.timestart ASC', $params);
     }
 
+    /**
+     * Результаты теста
+     *
+     * @param $test
+     * @param $result
+     * @param $data
+     *
+     * @return bool
+     * @throws \app\lib\phpmailer\Exception
+     */
     public function resultTestToEmail($test, $result, $data){
         $email = $data['email'];
         $name = $email;
@@ -71,6 +97,14 @@ class Main extends Model{
         return true;
     }
 
+    /**
+     * Регистрация на курс пользователя
+     *
+     * @param $data
+     *
+     * @return bool
+     */
+    // todo Перенести в Course
     public function registerCourseUser($data){
         $varsAmo = [
             'name' => 'Заявка на курс',
@@ -82,6 +116,14 @@ class Main extends Model{
         return true;
     }
 
+    /**
+     * Регистрация на курс гостя
+     *
+     * @param $data
+     *
+     * @return bool
+     */
+    // todo перенести в Course
     public function registerСourseGuest($data){
         $varsAmo = [
             'name' => 'Заявка на курс',
@@ -122,6 +164,13 @@ class Main extends Model{
         return true;
     }
 
+    /**
+     * Заявка на сотрудничество
+     *
+     * @param $data
+     *
+     * @return bool
+     */
     public function registerCooperation($data){
         $varsAmo = [
             'name' => 'Заявка сотрудничество',
