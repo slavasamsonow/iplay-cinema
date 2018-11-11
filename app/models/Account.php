@@ -142,7 +142,6 @@ class Account extends Model{
 
         $paramNV = $this->db->paramNandV($params);
 
-
         $this->db->query('INSERT INTO `users` ('.$paramNV['N'].') VALUES ('.$paramNV['V'].')', $params);
         $id = $this->db->lastInsertId();
         $params['id'] = $id;
@@ -290,6 +289,7 @@ class Account extends Model{
      * Список курсов пользователя
      * @return array
      */
+    // todo переименовать в getActiveCourses
     public function activeCoursesList(){
         $params = [
             'userid' => $_SESSION['user']['id'],
@@ -304,6 +304,7 @@ class Account extends Model{
      *
      * @return array
      */
+    // todo переимновать в getUsers
     public function usersList($param = []){
         $countElem = $this->db->column('SELECT COUNT(*) FROM `users`');
         //$pagination = $this->pagination($countElem);
@@ -335,6 +336,7 @@ class Account extends Model{
      *
      * @return bool
      */
+    // todo переименова в getUserInfo
     public function userInfo($username){
         if(preg_match('/^id[0-9]+$/', $username)){
             $params = [
@@ -361,6 +363,7 @@ class Account extends Model{
      *
      * @return array
      */
+    // todo переименовать в getUsersProjects
     public function userProjects($userid){
         $params = [
             'userid' => $userid
