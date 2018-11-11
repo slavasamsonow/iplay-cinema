@@ -5,7 +5,12 @@ namespace app\models;
 use app\core\Model;
 
 class Account extends Model{
-
+    /**
+     * @param $username
+     * @param string $remember
+     *
+     * @return bool
+     */
     public function login($username, $remember = ''){
         if(preg_match('#@#', $username)){
             $params = [
@@ -29,8 +34,15 @@ class Account extends Model{
         return true;
     }
 
+    /**
+     * @param $data
+     *
+     * @return array|bool
+     * @throws \app\lib\phpmailer\Exception
+     */
     public function register($data){
         $token = $this->createtoken(20);
+
         $params = [
             'email' => $data['email'],
             'createdon' => time(),
@@ -139,6 +151,13 @@ class Account extends Model{
         return $params;
     }
 
+    /**
+     * @param $id
+     * @param $token
+     *
+     * @return bool
+     * @throws \app\lib\phpmailer\Exception
+     */
     public function confirmation($id, $token){
         $params = [
             'id' => $id,
@@ -163,7 +182,7 @@ class Account extends Model{
 
         $this->db->query('UPDATE `users` SET `token` = NULL, '.$paramNV.' WHERE `id` = :id AND `token` = :token', $params);
 
-        if(isset($_SESSION['id'])){
+        if(isset($_SESSION['user'])){
             $_SESSION['user']['active'] = 1;
             $_SESSION['user']['token'] = '';
         }
@@ -181,13 +200,19 @@ class Account extends Model{
         $body = ob_get_clean();
 
         if($this->phpmailer($email, $name, $subject, $body) != true){
-            $this->error = 'Ошибка отправки';
+            $this->error = 'Ошибка отправки уведомления';
             return false;
         }
         return true;
     }
 
-    // Проверка правильности логина и пароля
+    /**
+     * Проверка логина и пароля
+     * @param $username
+     * @param $password
+     *
+     * @return bool
+     */
     public function checkUser($username, $password){
         if(preg_match('#@#', $username)){
             $params = [
@@ -206,7 +231,10 @@ class Account extends Model{
         return true;
     }
 
-    // Смена данных
+    /**
+     * @param $id
+     * @param $indata
+     */
     public function saveUserData($id, $indata){
         $params = $this->processTextIn($indata);
         foreach($params as $key => $val){
@@ -225,14 +253,24 @@ class Account extends Model{
         $this->db->query('UPDATE `users` SET '.$paramNV.' WHERE `id` = :id', $params);
     }
 
-    // Список курсов
+    /**
+     * Список курсов пользователя
+     * @return array
+     */
     public function activeCoursesList(){
         $params = [
             'userid' => $_SESSION['user']['id'],
         ];
-        return $this->db->row('SELECT c.id, c.timestart, c.type, c.name, c.description, uc.percent FROM courses c JOIN user_courses uc ON c.id = uc.course WHERE uc.user = :userid ORDER BY c.timestart ASC', $params);
+        return $this->db->row('SELECT c.*, uc.percent FROM courses c JOIN user_courses uc ON c.id = uc.course WHERE uc.user = :userid ORDER BY c.timestart ASC', $params);
     }
 
+    /**
+     * Добавить курс пользователю
+     * @param $course
+     * @param $user
+     *
+     * @return bool
+     */
     public function createUserCourse($course, $user){
         $params = [
             'course' => $course,
@@ -249,6 +287,12 @@ class Account extends Model{
         return true;
     }
 
+    /**
+     * Список всех пользователей
+     * @param array $param
+     *
+     * @return array
+     */
     public function usersList($param = []){
         $countElem = $this->db->column('SELECT COUNT(*) FROM `users`');
         //$pagination = $this->pagination($countElem);
@@ -273,6 +317,12 @@ class Account extends Model{
         return $usersList;
     }
 
+    /**
+     * Данные пользователя
+     * @param $username
+     *
+     * @return bool
+     */
     public function userInfo($username){
         if(preg_match('/^id[0-9]+$/', $username)){
             $params = [
@@ -292,6 +342,12 @@ class Account extends Model{
         return $userData[0];
     }
 
+    /**
+     * Проекты пользователя
+     * @param $userid
+     *
+     * @return array
+     */
     public function userProjects($userid){
         $params = [
             'userid' => $userid
