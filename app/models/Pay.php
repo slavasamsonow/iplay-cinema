@@ -293,6 +293,26 @@ class Pay extends Model{
             $paramNandV = $this->db->paramNandV($params);
 
             $this->db->query('INSERT INTO `user_courses` ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
+
+            $params = [
+                'user' => $payment['user'],
+            ];
+            $user = $this->db->row('SELECT u.* FROM users u WHERE u.id = :user', $params)[0];
+
+            ob_start();
+            ?>
+            <h1 style="font-family: Arial, sans-serif;font-size: 18px;">Оплата прошла успешно</h1>
+            <p style="line-height: 1.5em;">
+                Теперь вы можете зайти в личный кабинет на сайте и посмотреть подробные указания по купленному товару
+            </p>
+            <p style="text-align: center;">
+                <a href='https://iplay-cinema.ru/study'
+                   style='display: inline-block; padding: 12px 20px; margin-right: 20px; border-radius: 20px; background-color: #d43; color: #fff; font-family: Arial, sans-serif; font-weight: bold;text-decoration: none;'>Личный кабинет</a>
+            </p>
+            <?
+            $message = ob_get_clean();
+
+            $this->phpmailer($user['email'], $user['email'], 'Оплата прошла успешно', $message);
         }
 
         $this->amo->updateStatusLead($payment['amoid'], 142);
