@@ -6,6 +6,34 @@ use app\core\Model;
 
 class Account extends Model{
     /**
+     * Проверка логина и пароля
+     *
+     * @param $username
+     * @param $password
+     *
+     * @return bool
+     */
+    public function checkUser($username, $password){
+        if(preg_match('#@#', $username)){
+            $params = [
+                'email' => $username,
+            ];
+            $hash = $this->db->column('SELECT `password` FROM `users` WHERE `email` = :email', $params);
+        }else{
+            $params = [
+                'username' => $username,
+            ];
+            $hash = $this->db->column('SELECT `password` FROM `users` WHERE `username` = :username', $params);
+        }
+        if(!$hash or !password_verify($password, $hash)){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Авторизация
+     *
      * @param $username
      * @param string $remember
      *
@@ -35,6 +63,8 @@ class Account extends Model{
     }
 
     /**
+     * Регистрация
+     *
      * @param $data
      *
      * @return array|bool
@@ -152,6 +182,8 @@ class Account extends Model{
     }
 
     /**
+     * Подтверждение аккаунта
+     *
      * @param $id
      * @param $token
      *
@@ -207,31 +239,8 @@ class Account extends Model{
     }
 
     /**
-     * Проверка логина и пароля
-     * @param $username
-     * @param $password
+     * Сохранение данных пользователя
      *
-     * @return bool
-     */
-    public function checkUser($username, $password){
-        if(preg_match('#@#', $username)){
-            $params = [
-                'email' => $username,
-            ];
-            $hash = $this->db->column('SELECT `password` FROM `users` WHERE `email` = :email', $params);
-        }else{
-            $params = [
-                'username' => $username,
-            ];
-            $hash = $this->db->column('SELECT `password` FROM `users` WHERE `username` = :username', $params);
-        }
-        if(!$hash or !password_verify($password, $hash)){
-            return false;
-        }
-        return true;
-    }
-
-    /**
      * @param $id
      * @param $indata
      */
@@ -254,18 +263,8 @@ class Account extends Model{
     }
 
     /**
-     * Список курсов пользователя
-     * @return array
-     */
-    public function activeCoursesList(){
-        $params = [
-            'userid' => $_SESSION['user']['id'],
-        ];
-        return $this->db->row('SELECT c.*, uc.percent FROM courses c JOIN user_courses uc ON c.id = uc.course WHERE uc.user = :userid ORDER BY c.timestart ASC', $params);
-    }
-
-    /**
      * Добавить курс пользователю
+     *
      * @param $course
      * @param $user
      *
@@ -288,7 +287,19 @@ class Account extends Model{
     }
 
     /**
+     * Список курсов пользователя
+     * @return array
+     */
+    public function activeCoursesList(){
+        $params = [
+            'userid' => $_SESSION['user']['id'],
+        ];
+        return $this->db->row('SELECT c.*, uc.percent FROM courses c JOIN user_courses uc ON c.id = uc.course WHERE uc.user = :userid ORDER BY c.timestart ASC', $params);
+    }
+
+    /**
      * Список всех пользователей
+     *
      * @param array $param
      *
      * @return array
@@ -319,6 +330,7 @@ class Account extends Model{
 
     /**
      * Данные пользователя
+     *
      * @param $username
      *
      * @return bool
@@ -344,6 +356,7 @@ class Account extends Model{
 
     /**
      * Проекты пользователя
+     *
      * @param $userid
      *
      * @return array
