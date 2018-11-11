@@ -25,6 +25,8 @@ class AccountController extends Controller{
             $this->model->register($_POST);
             if($_POST['request_url']){
                 $this->view->location('login?request_url='.$_POST['request_url']);
+            }else{
+                $this->view->location('login');
             }
             $this->view->message('OK', 'регистрируем!');
         }
