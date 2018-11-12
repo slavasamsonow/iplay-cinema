@@ -32,7 +32,8 @@
             <label>тип:</label>
             <select class="form-control" name="type">
                 <?php foreach($coursesTypes as $coursesType): ?>
-                    <option value="<?=$coursesType['id']?>" <?php if($course['type'] == $coursesType['id']) echo 'selected'; ?>>
+                    <option value="<?=$coursesType['id']?>" <?php if($course['type'] == $coursesType['id'])
+                        echo 'selected'; ?>>
                         <?=$coursesType['name']?>
                     </option>
                 <?php endforeach ?>
@@ -44,19 +45,22 @@
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="active" value="1" <?php if($course['active'] == 1) echo 'checked'; ?>>
+                <input type="checkbox" name="active" value="1" <?php if($course['active'] == 1)
+                    echo 'checked'; ?>>
                 <span> Активный </span>
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="private" value="1" <?php if($course['private'] == 1) echo 'checked'; ?>>
+                <input type="checkbox" name="private" value="1" <?php if($course['private'] == 1)
+                    echo 'checked'; ?>>
                 <span> Приватный </span>
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="payment" value="1" <?php if($course['payment'] == 1) echo 'checked'; ?>>
+                <input type="checkbox" name="payment" value="1" <?php if($course['payment'] == 1)
+                    echo 'checked'; ?>>
                 <span> Разрешен к оплате </span>
             </label>
         </div>

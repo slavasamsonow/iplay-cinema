@@ -34,7 +34,8 @@ class MailChimp{
 
         if($httpCode == 200){
             return true;
-        }else{
+        }
+        else{
             return false;
         }
     }
@@ -68,7 +69,8 @@ class MailChimp{
 
         if($this->query($dataSend, $list)){
             return true;
-        }else{
+        }
+        else{
             return false;
         }
     }

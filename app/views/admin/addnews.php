@@ -23,8 +23,9 @@
             <label>Автор:</label>
             <select class="form-control" name="author">
                 <?php foreach($usersList as $userListItem): ?>
-                    <option value="<?=$userListItem['id']?>" <?php if($_SESSION['user']['id'] == $userListItem['id']) echo
-                    'checked'; ?>>
+                    <option value="<?=$userListItem['id']?>" <?php if($_SESSION['user']['id'] == $userListItem['id'])
+                        echo
+                        'checked'; ?>>
                         <?=$userListItem['fname'].' '.$userListItem['lname']?>
                     </option>
                 <?php endforeach ?>

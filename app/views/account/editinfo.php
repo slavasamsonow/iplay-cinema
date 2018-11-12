@@ -16,7 +16,8 @@
         <?php
         if(preg_match('#^id[0-9]+$#', $user['username'])){
             $oldusername = '';
-        }else{
+        }
+        else{
             $oldusername = $user['username'];;
         }
         ?>
@@ -28,7 +29,8 @@
     </div>
     <div class="checkbox">
         <label>
-            <input type="checkbox" name="public" value="public" <? if($user['public'] == 1) echo 'checked'; ?>>
+            <input type="checkbox" name="public" value="public" <? if($user['public'] == 1)
+                echo 'checked'; ?>>
             <span> Публичный профиль </span>
         </label>
     </div>

@@ -23,7 +23,8 @@
             <label>Автор:</label>
             <select class="form-control" name="author">
                 <?php foreach($usersList as $userListItem): ?>
-                    <option value="<?=$userListItem['id']?>" <?php if($news['author'] == $userListItem['id']) echo 'selected'; ?>>
+                    <option value="<?=$userListItem['id']?>" <?php if($news['author'] == $userListItem['id'])
+                        echo 'selected'; ?>>
                         <?=$userListItem['fname'].' '.$userListItem['lname']?>
                     </option>
                 <?php endforeach ?>
@@ -31,7 +32,8 @@
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="active" value="1" <?php if($news['active'] == 1) echo 'checked'; ?>>
+                <input type="checkbox" name="active" value="1" <?php if($news['active'] == 1)
+                    echo 'checked'; ?>>
                 <span> Активный </span>
             </label>
         </div>

@@ -18,7 +18,8 @@
                     Активный:
                     <?php if($news[$i]['active'] == 1){
                         echo 'Да';
-                    }else{
+                    }
+                    else{
                         echo 'Нет';
                     } ?> <br>
                     Автор:

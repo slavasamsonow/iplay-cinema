@@ -3,7 +3,8 @@
     <div class="col-md-3">
         <form action="/register" method="post">
             <input type="hidden" name="request_url"
-                   value="<?php if(isset($_GET['request_url'])) echo $_GET['request_url'] ?>">
+                   value="<?php if(isset($_GET['request_url']))
+                       echo $_GET['request_url'] ?>">
             <div class="row">
                 <div class="control-group form-group col-md-6">
                     <label>Имя:</label>

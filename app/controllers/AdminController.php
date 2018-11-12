@@ -179,7 +179,8 @@ class AdminController extends Controller{
                         break;
                 }
                 $this->view->data($data);
-            }else{
+            }
+            else{
                 exit();
             }
         }

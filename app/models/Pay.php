@@ -65,7 +65,8 @@ class Pay extends Model{
         $sale = $this->db->row('SELECT pp.* FROM payments_promocode pp WHERE pp.course IN (:all, :course) AND pp.code = :code AND pp.timestart < :nowtime AND (pp.timeend > :nowtime OR pp.noEnd = 1)', $params);
         if(empty($sale)){
             return false;
-        }else{
+        }
+        else{
             return $sale[0]['sale'];
         }
     }
@@ -87,7 +88,8 @@ class Pay extends Model{
         if(strpos($sale, '%') !== false){
             $saleSum = $course['price'] / 100 * $sale;
             $newPrice = floor($course['price'] - $saleSum);
-        }else{
+        }
+        else{
             $newPrice = $course['price'] - $sale;
         }
 
@@ -110,7 +112,8 @@ class Pay extends Model{
         if(isset($_SESSION['user']['id'])){
             $userid = $_SESSION['user']['id'];
             $user = $_SESSION['user'];
-        }else if(isset($dataPayer['email'])){
+        }
+        else if(isset($dataPayer['email'])){
             if($userid = $this->checkExists('email', $dataPayer['email'])){
                 $params = [
                     'id' => $userid,
@@ -121,7 +124,8 @@ class Pay extends Model{
                 $useremail = $dataPayer['email'];
                 $userid = 0;
             }
-        }else{
+        }
+        else{
             return [
                 'error' => 'Нет данных о пользователе'
             ];
@@ -153,7 +157,8 @@ class Pay extends Model{
             $idempotence = $payment[0]['createdon'];
             $id = $payment[0]['id'];
             $amoid = $payment[0]['amoid'];
-        }else{
+        }
+        else{
             $varsAmo = [
                 'name' => 'Покупка на сайте',
                 'sale' => $price,
@@ -167,17 +172,20 @@ class Pay extends Model{
 
             if(isset($user['amoid'])){
                 $varsAmo['contact_id'] = $user['amoid'];
-            }else if(!empty($dataPayer)){
+            }
+            else if(!empty($dataPayer)){
                 if($AmoContact = $this->amo->searchContact($useremail)){
                     $varsAmo['contact_id'] = $AmoContact['id'];
-                }else{
+                }
+                else{
                     $varsAmoNew = [
                         'email' => $dataPayer['email'],
                     ];
 
                     if(isset($dataPayer['fio'])){
                         $varsAmoNew['name'] = $dataPayer['fio'];
-                    }else{
+                    }
+                    else{
                         $varsAmoNew['name'] = $dataPayer['email'];
                     }
 
@@ -215,7 +223,8 @@ class Pay extends Model{
             if(isset($user)){
                 $params['user'] = $user['id'];
                 $params['description'] = 'Пользователь '.$user['fname'].' '.$user['lname'].' за '.$course['name'];
-            }else{
+            }
+            else{
                 $params['email'] = $dataPayer['email'];
                 $params['description'] = 'Оплата без регистрации email: '.$dataPayer['email'].' за '.$course['name'];
             }
@@ -233,7 +242,8 @@ class Pay extends Model{
         ];
         if(isset($user)){
             $paymentData['email'] = $user['email'];
-        }else{
+        }
+        else{
             $paymentData['email'] = $dataPayer['email'];
         }
 
@@ -263,7 +273,8 @@ class Pay extends Model{
         $yandexPaymentData = $this->yandexMoney->getPaymentInfo($yandexPaymentId);
         if($yandexPaymentData['status'] == 'succeeded'){
             return true;
-        }else{
+        }
+        else{
             return false;
         }
     }
@@ -307,7 +318,8 @@ class Pay extends Model{
             </p>
             <p style="text-align: center;">
                 <a href='https://iplay-cinema.ru/study'
-                   style='display: inline-block; padding: 12px 20px; margin-right: 20px; border-radius: 20px; background-color: #d43; color: #fff; font-family: Arial, sans-serif; font-weight: bold;text-decoration: none;'>Личный кабинет</a>
+                   style='display: inline-block; padding: 12px 20px; margin-right: 20px; border-radius: 20px; background-color: #d43; color: #fff; font-family: Arial, sans-serif; font-weight: bold;text-decoration: none;'>Личный
+                    кабинет</a>
             </p>
             <?
             $message = ob_get_clean();

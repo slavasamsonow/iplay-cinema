@@ -16,7 +16,8 @@ class AccountController extends Controller{
     public function indexAction(){
         if($this->model->auth == 'auth'){
             $this->view->redirect('study');
-        }else{
+        }
+        else{
             $this->view->redirect('login');
         }
     }
@@ -29,20 +30,23 @@ class AccountController extends Controller{
         if(!empty($_POST)){
             if(!$this->model->validate(['email', 'password'], $_POST)){
                 $this->view->message('Ошибка', $this->model->error);
-            }else if($this->model->checkExists('email', $_POST['email'])){
+            }
+            else if($this->model->checkExists('email', $_POST['email'])){
                 $this->view->message('Ошибка', 'Пользователь с таким E-mail уже существует');
             }
             $this->model->register($_POST);
             if($_POST['request_url']){
                 $this->view->location('login?request_url='.$_POST['request_url']);
-            }else{
+            }
+            else{
                 $this->view->location('login');
             }
             $this->view->message('OK', 'регистрируем!');
         }
         if($this->model->auth == 'guest'){
             $this->view->render('Регистрация');
-        }else{
+        }
+        else{
             $this->view->redirect('account');
         }
     }
@@ -61,10 +65,12 @@ class AccountController extends Controller{
                 }
                 $this->view->render();
                 $this->view->redirect('account');
-            }else{
+            }
+            else{
                 $this->view->errorCode(404);
             }
-        }else{
+        }
+        else{
             $this->view->errorCode(404);
         }
 
@@ -80,7 +86,8 @@ class AccountController extends Controller{
             }
             if(isset($_POST['remember'])){
                 $remember = $_POST['remember'];
-            }else{
+            }
+            else{
                 $remember = '';
             }
             $this->model->login($_POST['username'], $remember);
@@ -96,7 +103,8 @@ class AccountController extends Controller{
                 ]
             ];
             $this->view->render($vars);
-        }else{
+        }
+        else{
             $this->view->redirect('account');
         }
     }
@@ -126,9 +134,11 @@ class AccountController extends Controller{
         if(!empty($_POST)){
             if(!$this->model->validate(['password'], $_POST)){
                 $this->view->message('Ошибка', $this->model->error);
-            }else if($_POST['password'] != $_POST['password_confim']){
+            }
+            else if($_POST['password'] != $_POST['password_confim']){
                 $this->view->message('Ошибка', 'Пароли не совпадают');
-            }else if(!password_verify($_POST['oldpassword'], $_SESSION['user']['password'])){
+            }
+            else if(!password_verify($_POST['oldpassword'], $_SESSION['user']['password'])){
                 $this->view->message('Ошибка', 'Старый пароль указан неверно');
             }
             $data = [
@@ -144,7 +154,8 @@ class AccountController extends Controller{
                 ]
             ];
             $this->view->render($vars);
-        }else{
+        }
+        else{
             $this->view->redirect('account');
         }
     }
@@ -174,10 +185,12 @@ class AccountController extends Controller{
             if(isset($data['public'])){
                 if($data['public'] == 'public'){
                     $data['public'] = 1;
-                }else{
+                }
+                else{
                     $data['public'] = 0;
                 }
-            }else{
+            }
+            else{
                 $data['public'] = 0;
             }
 
@@ -208,7 +221,8 @@ class AccountController extends Controller{
                 ]
             ];
             $this->view->render($vars);
-        }else{
+        }
+        else{
             $this->view->redirect('account');
         }
     }
@@ -226,7 +240,8 @@ class AccountController extends Controller{
                 'users' => $users
             ];
             $this->view->render($vars);
-        }else{
+        }
+        else{
             $this->view->redirect('account');
         }
     }

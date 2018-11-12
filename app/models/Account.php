@@ -19,7 +19,8 @@ class Account extends Model{
                 'email' => $username,
             ];
             $hash = $this->db->column('SELECT `password` FROM `users` WHERE `email` = :email', $params);
-        }else{
+        }
+        else{
             $params = [
                 'username' => $username,
             ];
@@ -45,7 +46,8 @@ class Account extends Model{
                 'email' => $username,
             ];
             $data = $this->db->row('SELECT * FROM `users` WHERE `email` = :email', $params)[0];
-        }else{
+        }
+        else{
             $params = [
                 'username' => $username,
             ];
@@ -55,7 +57,8 @@ class Account extends Model{
         if($remember == 'remember'){
             setcookie('i', $data['id'], time() + 3600 * 24 * 30, '/');
             setcookie('p', $data['password'], time() + 3600 * 24 * 30, '/');
-        }else{
+        }
+        else{
             setcookie('i', '', time(), '/');
             setcookie('p', '', time(), '/');
         }
@@ -82,7 +85,8 @@ class Account extends Model{
         if(isset($data['username'])){
             $params['username'] = $data['username'];
             $login = $data['username'];
-        }else{
+        }
+        else{
             $login = $data['email'];
         }
 
@@ -111,22 +115,26 @@ class Account extends Model{
 
         if(isset($data['password'])){
             $password = $data['password'];
-        }else{
+        }
+        else{
             $password = $this->createtoken(10);
         }
         $params['password'] = password_hash($password, PASSWORD_BCRYPT);
 
         if($amo = $this->amo->searchContact($data['email'])){
             $params['amoid'] = $amo['id'];
-        }else{
+        }
+        else{
             if(isset($data['fio'])){
                 $varsAmo['name'] = $data['fio'];
-            }else if(isset($data['fname'])){
+            }
+            else if(isset($data['fname'])){
                 $varsAmo['name'] = $data['fname'];
                 if(isset($data['lname'])){
                     $varsAmo['name'] .= $data['lname'];
                 }
-            }else{
+            }
+            else{
                 $varsAmo['name'] = $data['email'];
             }
 
@@ -343,7 +351,8 @@ class Account extends Model{
                 'id' => substr($username, 2),
             ];
             $usl = 'WHERE id = :id';
-        }else{
+        }
+        else{
             $params = [
                 'username' => $username,
             ];

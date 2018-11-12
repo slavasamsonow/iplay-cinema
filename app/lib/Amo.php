@@ -67,7 +67,8 @@ class Amo{
         );
         $link = 'private/api/auth.php?type=json';
         $Response = $this->query($link, $user);
-        if($Response['response']['auth'] == true) return true;
+        if($Response['response']['auth'] == true)
+            return true;
         return false;
     }
 
@@ -123,10 +124,12 @@ class Amo{
             $Response = $this->query($link, $leads);
             if(isset($Response['_embedded']['items']['0']['id'])){
                 return $Response['_embedded']['items']['0']['id'];
-            }else{
+            }
+            else{
                 return false;
             }
-        }else{
+        }
+        else{
             //echo 'Не авторизован';
             // Писать на email об ошибке
         };
@@ -145,10 +148,12 @@ class Amo{
             $Response = $this->query($link, $leads);
             if(isset($Response['_embedded']['items']['0']['id'])){
                 return true;
-            }else{
+            }
+            else{
                 return false;
             }
-        }else{
+        }
+        else{
             //echo 'Не авторизован';
             // Писать на email об ошибке
         };
@@ -209,7 +214,8 @@ class Amo{
             $Response = $this->query($link, $contacts);
             if(isset($Response['_embedded']['items']['0']['id'])){
                 return $Response['_embedded']['items']['0']['id'];
-            }else{
+            }
+            else{
                 return false;
             }
         }
@@ -221,10 +227,12 @@ class Amo{
             $Response = $this->query($link);
             if(isset($Response['_embedded']['items']['0'])){
                 return $Response['_embedded']['items']['0'];
-            }else{
+            }
+            else{
                 return false;
             }
-        }else{
+        }
+        else{
             //echo 'Не авторизован';
             // Писать на email об ошибке
         };
@@ -246,7 +254,8 @@ class Amo{
             $Response = $this->query($link, $notes);
             if(isset($Response['_embedded']['items']['0']['id'])){
                 return true;
-            }else{
+            }
+            else{
                 return false;
             }
         }
@@ -268,7 +277,8 @@ class Amo{
             $Response = $this->query($link, $notes);
             if(isset($Response['_embedded']['items']['0']['id'])){
                 return true;
-            }else{
+            }
+            else{
                 return false;
             }
         }

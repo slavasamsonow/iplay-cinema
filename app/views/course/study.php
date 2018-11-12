@@ -46,7 +46,8 @@
                         <?php foreach($day['taskslist'] as $task): ?>
                             <?php
                             $taskClassList = '';
-                            if($task['active'] == 1) $taskClassList .= 'active';
+                            if($task['active'] == 1)
+                                $taskClassList .= 'active';
                             ?>
                             <div class="task <?=$taskClassList?>" data-status="<?=$task['status']?>">
                                 <div class="task-info">

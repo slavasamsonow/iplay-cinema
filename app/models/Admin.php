@@ -146,7 +146,8 @@ class Admin extends Model{
 
         if(isset($params['datatimenull'])){
             $params['timestart'] = 0;
-        }else{
+        }
+        else{
             $params['timestart'] = $this->toUnixTime($params['timestart']);
         }
         unset($params['datetimenull']);
@@ -169,7 +170,8 @@ class Admin extends Model{
 
         if(isset($params['datatimenull'])){
             $params['timestart'] = 0;
-        }else{
+        }
+        else{
             $params['timestart'] = $this->toUnixTime($params['datetime']);
         }
         unset($params['datetime']);
@@ -219,7 +221,8 @@ class Admin extends Model{
         foreach($userCoursesList as $key => $userCourses){
             if($userCourses['type'] == 0){
                 unset($userCoursesList[$key]);
-            }else{
+            }
+            else{
                 $userCoursesList[$key]['fullName'] = $userCourses['fname'].' '.$userCourses['lname'];
             }
         }

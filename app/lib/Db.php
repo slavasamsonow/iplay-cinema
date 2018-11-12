@@ -19,7 +19,8 @@ class Db{
             foreach($params as $key => $val){
                 if(is_int($val)){
                     $type = PDO::PARAM_INT;
-                }else{
+                }
+                else{
                     $type = PDO::PARAM_STR;
                 }
                 $stmt->bindValue(':'.$key, $val, $type);

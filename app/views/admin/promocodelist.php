@@ -42,7 +42,8 @@
                     Активный:
                     <?php if($promocodes[$i]['active'] == 1){
                         echo 'Да';
-                    }else{
+                    }
+                    else{
                         echo 'Нет';
                     } ?>
                 </div>

@@ -22,19 +22,22 @@
                     Активный:
                     <?php if($courses[$i]['active'] == 1){
                         echo 'Да';
-                    }else{
+                    }
+                    else{
                         echo 'Нет';
                     } ?> <br>
                     Приватный:
                     <?php if($courses[$i]['private'] == 1){
                         echo 'Да';
-                    }else{
+                    }
+                    else{
                         echo 'Нет';
                     } ?> <br>
                     Оплата:
                     <?php if($courses[$i]['payment'] == 1){
                         echo 'Да';
-                    }else{
+                    }
+                    else{
                         echo 'Нет';
                     } ?> <br>
                     Цена:

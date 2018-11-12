@@ -63,7 +63,8 @@ abstract class Model{
 
         if(isset($toName)){
             $mail->addAddress($toEmail, $toName);
-        }else{
+        }
+        else{
             $mail->addAddress($toEmail);
         }
 
@@ -83,7 +84,8 @@ abstract class Model{
         if(!$mail->send()){
             //echo "Mailer Error: " . $mail->ErrorInfo;
             return false;
-        }else{
+        }
+        else{
             return true;
         }
     }
@@ -97,19 +99,22 @@ abstract class Model{
                 'id' => $_SESSION['user']['id'],
             ];
             $password = $_SESSION['user']['password'];
-        }else if(isset($_COOKIE['i']) && isset($_COOKIE['p'])){
+        }
+        else if(isset($_COOKIE['i']) && isset($_COOKIE['p'])){
             $params = [
                 'id' => $_COOKIE['i'],
             ];
             $password = $_COOKIE['p'];
-        }else{
+        }
+        else{
             return 'guest';
         }
 
         $data = $this->db->row('SELECT * FROM `users` WHERE `id` = :id', $params);
 
         if(empty($data[0])){
-            if(isset($_SESSION['user'])) unset($_SESSION['user']);
+            if(isset($_SESSION['user']))
+                unset($_SESSION['user']);
             setcookie('i', '', time());
             setcookie('p', '', time());
             return 'guest';
@@ -117,7 +122,8 @@ abstract class Model{
         $data = $data[0];
 
         if($data['password'] != $password){
-            if(isset($_SESSION['user'])) unset($_SESSION['user']);
+            if(isset($_SESSION['user']))
+                unset($_SESSION['user']);
             setcookie('i', '', time());
             setcookie('p', '', time());
             return 'guest';
@@ -207,7 +213,8 @@ abstract class Model{
     protected function SxGeoCity(){
         if(isset($_SESSION['geo'])){
             return $_SESSION['geo'];
-        }else{
+        }
+        else{
             $ip = $_SERVER['REMOTE_ADDR'];
             if($ip == '127.0.0.1'){
                 $ip = '46.147.163.208';
@@ -228,7 +235,8 @@ abstract class Model{
 
         if($currentPage > $countPage){
             $currentPage = $countPage;
-        }else if($currentPage < 1){
+        }
+        else if($currentPage < 1){
             $currentPage = 1;
         }
 
@@ -237,7 +245,8 @@ abstract class Model{
         if($countPage != 1){
             $strPagination = '';
             $url = explode('?', $_SERVER['REQUEST_URI']);
-        }else{
+        }
+        else{
             $strPagination = '';
         }
 
@@ -378,7 +387,8 @@ abstract class Model{
                 $newstring = preg_replace("/(\r\n){3,}/", "\r\n\r\n", $newstring);
                 $newstring = preg_replace('/\r\n/', '</p><p>', $newstring);
                 $newstring = preg_replace(array('/\[b\]/', '/\[\/b\]/'), array("<b>", "</b>"), $newstring);
-            }else{
+            }
+            else{
                 $newstring = preg_replace(array("/\r\n/"), '<br>', $newstring);
             }
             $newstrings[$key] = $newstring;
@@ -415,10 +425,12 @@ abstract class Model{
 
         if(isset($_SESSION['user'])){
             $varsAmo['contact_id'] = $_SESSION['user']['amoid'];
-        }else if(isset($data['email'])){
+        }
+        else if(isset($data['email'])){
             if($amoContact = $this->amo->searchContact($data['email'])){
                 $varsAmo['contact_id'] = $amoContact['id'];
-            }else{
+            }
+            else{
                 $notes[] = 'Email: '.$data['email'];
                 $notes[] = 'ФИО: '.$data['fio'];
             }

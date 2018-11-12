@@ -20,19 +20,22 @@
     </div>
     <div class="checkbox">
         <label>
-            <input type="checkbox" name="datetimenull" value="0" <?php if($task['timestart'] == 0) echo 'checked' ?>>
+            <input type="checkbox" name="datetimenull" value="0" <?php if($task['timestart'] == 0)
+                echo 'checked' ?>>
             <span> Основное задание курса (не привязано к дате) </span>
         </label>
     </div>
     <div class="checkbox">
         <label>
-            <input type="checkbox" name="verify" value="1" <?php if($task['verify'] == 1) echo 'checked' ?>>
+            <input type="checkbox" name="verify" value="1" <?php if($task['verify'] == 1)
+                echo 'checked' ?>>
             <span> Нужно подтверждение </span>
         </label>
     </div>
     <div class="checkbox">
         <label>
-            <input type="checkbox" name="active" value="1" <?php if($task['active'] == 1) echo 'checked' ?>>
+            <input type="checkbox" name="active" value="1" <?php if($task['active'] == 1)
+                echo 'checked' ?>>
             <span> Активный </span>
         </label>
     </div>

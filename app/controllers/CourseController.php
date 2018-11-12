@@ -21,7 +21,8 @@ class CourseController extends Controller{
             ];
 
             $this->view->render($vars);
-        }else{
+        }
+        else{
             $this->view->redirect('login');
         }
     }
@@ -47,7 +48,8 @@ class CourseController extends Controller{
             if($_POST['form'] == 'registergrant'){
                 if(isset($_SESSION['user'])){
                     $this->model->grantApplicationUser($_POST);
-                }else{
+                }
+                else{
                     if(!$this->model->validate(['email', 'phone'], $_POST)){
                         $this->view->message('Ошибка', $this->model->error);
                     }
@@ -67,7 +69,8 @@ class CourseController extends Controller{
                 if(isset($_SESSION['user'])){
                     $this->model->registerCourseUser($_POST);
                     $this->view->location('pay/'.$_POST['courseid']);
-                }else{
+                }
+                else{
                     if(!$this->model->validate(['email', 'phone'], $_POST)){
                         $this->view->message('Ошибка', $this->model->error);
                     }
@@ -123,7 +126,8 @@ class CourseController extends Controller{
                 'projects' => $this->model->getProjectsCourse($course['id']),
             ];
             $this->view->render($vars);
-        }else{
+        }
+        else{
             $this->view->redirect('login');
         }
     }
@@ -133,7 +137,8 @@ class CourseController extends Controller{
             $task = (int)$_POST['task'];
             $data = $this->model->changeTask($task);
             $this->view->data($data);
-        }else{
+        }
+        else{
             $this->model->errorCode(404);
         }
     }

@@ -25,7 +25,8 @@ class View{
             //$seo['title'] = 'Киношкола iPlay '.$geo['city'];
             $seo['title'] = 'Продюсерский центр ИГРА';
 
-        }else{
+        }
+        else{
             // $seo['title'] .= ' | Киношкола iPlay '.$geo['city'];
             $seo['title'] .= ' | Продюсерский центр ИГРА';
         }
@@ -42,7 +43,8 @@ class View{
             require 'app/views/'.$this->path.'.php';
             $content = ob_get_clean();
             require 'app/views/layouts/'.$this->layout.'.php';
-        }else{
+        }
+        else{
             $this->errorCode('204');
         }
     }

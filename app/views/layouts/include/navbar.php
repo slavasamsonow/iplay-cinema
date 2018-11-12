@@ -3,7 +3,8 @@
         <div class="row">
             <div class="col-md-2 logo">
                 <a href="/">
-                    <?php if(!isset($logoColor)) $logoColor = 'black'; ?>
+                    <?php if(!isset($logoColor))
+                        $logoColor = 'black'; ?>
                     <img src="/public/img/content/logo-<?=$logoColor?>.png" alt="Продюсерский центр ИГРА">
                 </a>
             </div>

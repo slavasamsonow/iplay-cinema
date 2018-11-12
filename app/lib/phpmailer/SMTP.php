@@ -323,7 +323,8 @@ class SMTP{
                 $socket_context
             );
             restore_error_handler();
-        }else{
+        }
+        else{
             //Fall back to fsockopen which should work in more places, but is missing some features
             $this->edebug(
                 'Connection: stream_socket_client not available, falling back to fsockopen',
@@ -474,7 +475,8 @@ class SMTP{
 
                 return false;
             }
-        }else if(empty($authtype)){
+        }
+        else if(empty($authtype)){
             $authtype = 'LOGIN';
         }
         switch($authtype){
@@ -676,7 +678,8 @@ class SMTP{
                     $pos = self::MAX_LINE_LENGTH - 1;
                     $lines_out[] = substr($line, 0, $pos);
                     $line = substr($line, $pos);
-                }else{
+                }
+                else{
                     //Break at the found point
                     $lines_out[] = substr($line, 0, $pos);
                     //Move along by the amount we dealt with
@@ -743,7 +746,8 @@ class SMTP{
         $this->helo_rply = $this->last_reply;
         if($noerror){
             $this->parseHelloFields($hello);
-        }else{
+        }
+        else{
             $this->server_caps = null;
         }
 
@@ -771,7 +775,8 @@ class SMTP{
                 if(!$n){
                     $name = $type;
                     $fields = $fields[0];
-                }else{
+                }
+                else{
                     $name = array_shift($fields);
                     switch($name){
                         case 'SIZE':
@@ -898,7 +903,8 @@ class SMTP{
                 '',
                 $this->last_reply
             );
-        }else{
+        }
+        else{
             // Fall back to simple parsing if regex fails
             $code = substr($this->last_reply, 0, 3);
             $code_ex = null;
@@ -996,7 +1002,8 @@ class SMTP{
         if(self::DEBUG_LOWLEVEL > $this->do_debug and
             in_array($command, ['User & Password', 'Username', 'Password'], true)){
             $this->edebug('CLIENT -> SERVER: <credentials hidden>', self::DEBUG_CLIENT);
-        }else{
+        }
+        else{
             $this->edebug('CLIENT -> SERVER: '.$data, self::DEBUG_CLIENT);
         }
         set_error_handler([$this, 'errorHandler']);
@@ -1260,7 +1267,8 @@ class SMTP{
 
         if(empty($reply)){
             $this->last_smtp_transaction_id = null;
-        }else{
+        }
+        else{
             $this->last_smtp_transaction_id = false;
             foreach($this->smtp_transaction_id_patterns as $smtp_transaction_id_pattern){
                 if(preg_match($smtp_transaction_id_pattern, $reply, $matches)){

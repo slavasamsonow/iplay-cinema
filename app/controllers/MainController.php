@@ -154,7 +154,8 @@ class MainController extends Controller{
                     $points = $test['questions'][$key]['points'];
                     if(!isset($totalPoint[$answer])){
                         $totalPoint[$answer] = $points;
-                    }else{
+                    }
+                    else{
                         $totalPoint[$answer] += $points;
                     }
                 }
