@@ -80,19 +80,8 @@ class CourseController extends Controller{
                     }
 
                     $this->model->registerСourseGuest($_POST);
-                    if(isset($_POST['email'])){
-                        $_SESSION['guest']['email'] = $_POST['email'];
-                    }
-                    if(isset($_POST['fio'])){
-                        $_SESSION['guest']['fio'] = $_POST['fio'];
-                    }
-                    if(isset($_POST['phone'])){
-                        $_SESSION['guest']['phone'] = $_POST['phone'];
-                    }
-                    if(isset($_POST['city'])){
-                        $_SESSION['guest']['city'] = $_POST['city'];
-                    }
-                    $this->view->location('pay/'.$_POST['courseid']);
+                    $messageBody = "В скором времени мы свяжемся с вами. <br> А пока вы можете оплатить участие по ссылке: <a href='/pay/".$_POST['courseid']."' class='btn'>Оплатить</a>";
+                    $this->view->message('Ваша заявка отправлена', $messageBody);
                 }
                 $this->view->message('Ваша заявка отправлена', 'В скором времени мы свяжемся с вами');
             }
