@@ -5,6 +5,7 @@ namespace app\models;
 use app\core\Model;
 
 class Main extends Model{
+
     /**
      * Регистрация на мероприятие
      *
@@ -117,54 +118,6 @@ class Main extends Model{
     }
 
     /**
-     * Регистрация на курс гостя
-     *
-     * @param $data
-     *
-     * @return bool
-     */
-    // todo перенести в Course
-    public function registerСourseGuest($data){
-        $varsAmo = [
-            'name' => 'Заявка на курс',
-            'nameCourse' => $data['course'],
-            'sale' => 0,
-        ];
-        if($amoContact = $this->amo->searchContact($data['email'])){
-            $varsAmo['contact_id'] = $amoContact['id'];
-            $notes = [
-                'Email: '.$data['email'],
-                'Телефон: '.$data['phone'],
-                'Город: '.$data['city'],
-            ];
-            $this->amo->addNotesContact($amoContact['id'], $notes);
-        }else{
-            $varsAmoNew = [
-                'email' => $data['email'],
-            ];
-
-            if(isset($data['fio'])){
-                $varsAmoNew['name'] = $data['fio'];
-            }else{
-                $varsAmoNew['name'] = $data['email'];
-            }
-
-            if(isset($dataPayer['city'])){
-                $varsAmoNew['city'] = $data['city'];
-            }
-
-            if(isset($dataPayer['phone'])){
-                $varsAmoNew['phone'] = $data['phone'];
-            }
-
-            $varsAmo['contact_id'] = $this->amo->newContact($varsAmoNew);
-        }
-        $amoid = $this->amo->newLead($varsAmo);
-
-        return true;
-    }
-
-    /**
      * Заявка на сотрудничество
      *
      * @param $data
@@ -185,14 +138,16 @@ class Main extends Model{
                 'Сообщение: '.$data['content']
             ];
             $this->amo->addNotesContact($amoContact['id'], $notes);
-        }else{
+        }
+        else{
             $varsAmoNew = [
                 'email' => $data['email'],
             ];
 
             if(isset($data['fio'])){
                 $varsAmoNew['name'] = $data['fio'];
-            }else{
+            }
+            else{
                 $varsAmoNew['name'] = $data['email'];
             }
 
