@@ -10,6 +10,9 @@ class AccountController extends Controller{
     /* @var $model Account */
     public $model;
 
+    /**
+     * Главная страница
+     */
     public function indexAction(){
         if($this->model->auth == 'auth'){
             $this->view->redirect('study');
@@ -18,12 +21,15 @@ class AccountController extends Controller{
         }
     }
 
+    /**
+     * Страница регистрации
+     * @throws \app\lib\phpmailer\Exception
+     */
     public function registerAction(){
         if(!empty($_POST)){
-            if(!$this->model->validate(['email','password'], $_POST)){
+            if(!$this->model->validate(['email', 'password'], $_POST)){
                 $this->view->message('Ошибка', $this->model->error);
-            }
-            elseif($this->model->checkExists('email', $_POST['email'])){
+            }else if($this->model->checkExists('email', $_POST['email'])){
                 $this->view->message('Ошибка', 'Пользователь с таким E-mail уже существует');
             }
             $this->model->register($_POST);
@@ -41,6 +47,10 @@ class AccountController extends Controller{
         }
     }
 
+    /**
+     * Страница подтверждения email
+     * @throws \app\lib\phpmailer\Exception
+     */
     public function confirmationAction(){
         if(!empty($_GET)){
             if(isset($_GET['id']) && isset($_GET['token'])){
@@ -54,13 +64,15 @@ class AccountController extends Controller{
             }else{
                 $this->view->errorCode(404);
             }
-        }
-        else{
+        }else{
             $this->view->errorCode(404);
         }
 
     }
 
+    /**
+     * Страница входа
+     */
     public function loginAction(){
         if(!empty($_POST)){
             if(!$this->model->checkUser($_POST['username'], $_POST['password'])){
@@ -89,9 +101,12 @@ class AccountController extends Controller{
         }
     }
 
+    /**
+     * Страница выхода
+     */
     public function logoutAction(){
-        setcookie('i','',time(),'/');
-        setcookie('p','',time(),'/');
+        setcookie('i', '', time(), '/');
+        setcookie('p', '', time(), '/');
         unset($_SESSION['user']);
 
         if(isset($_SERVER['HTTP_REFERER'])){
@@ -104,15 +119,16 @@ class AccountController extends Controller{
         $this->view->redirect('login');
     }
 
+    /**
+     * Страница редактирования пароля
+     */
     public function editpasswordAction(){
         if(!empty($_POST)){
             if(!$this->model->validate(['password'], $_POST)){
                 $this->view->message('Ошибка', $this->model->error);
-            }
-            elseif($_POST['password'] != $_POST['password_confim']){
+            }else if($_POST['password'] != $_POST['password_confim']){
                 $this->view->message('Ошибка', 'Пароли не совпадают');
-            }
-            elseif(!password_verify($_POST['oldpassword'], $_SESSION['user']['password'])){
+            }else if(!password_verify($_POST['oldpassword'], $_SESSION['user']['password'])){
                 $this->view->message('Ошибка', 'Старый пароль указан неверно');
             }
             $data = [
@@ -133,11 +149,15 @@ class AccountController extends Controller{
         }
     }
 
+    /**
+     * Страница редактирования информации
+     * @throws \ImagickException
+     */
     public function editinfoAction(){
         if(!empty($_POST)){
             if($_POST['username'] != ''){
                 $_POST['username'] = mb_strtolower($_POST['username']);
-                 if(!$this->model->validate(['username'], $_POST)){
+                if(!$this->model->validate(['username'], $_POST)){
                     $this->view->message('Ошибка', $this->model->error);
                 }
                 if($_POST['username'] != $_SESSION['user']['username']){
@@ -193,6 +213,9 @@ class AccountController extends Controller{
         }
     }
 
+    /**
+     * Список пользователей
+     */
     public function usersAction(){
         if($this->model->auth == 'auth'){
             $users = $this->model->usersList($_GET);
@@ -208,6 +231,9 @@ class AccountController extends Controller{
         }
     }
 
+    /**
+     * Страница пользователя
+     */
     public function userAction(){
         if(!$userPage = $this->model->userInfo($this->route['username'])){
             $this->view->errorCode('404');
