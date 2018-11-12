@@ -82,7 +82,8 @@ class Course extends Model{
 
         if(isset($course[0])){
             return $course[0];
-        }else{
+        }
+        else{
             return false;
         }
     }
@@ -200,7 +201,8 @@ class Course extends Model{
 
         if(isset($course[0])){
             return $course[0];
-        }else{
+        }
+        else{
             return false;
         }
     }
@@ -240,7 +242,8 @@ class Course extends Model{
                 $params['user'.$i] = $_SESSION['user']['id'];
                 if($i == 0){
                     $values = '(:task'.$i.',:user'.$i.')';
-                }else{
+                }
+                else{
                     $values .= ', (:task'.$i.',:user'.$i.')';
                 }
                 $i++;
@@ -262,13 +265,15 @@ class Course extends Model{
         ];
         foreach($tasks as $task){
             $index = date('d.m.Y', $task['timestart']);
-            if($task['timestart'] == 0) $index = 'Общие';
+            if($task['timestart'] == 0)
+                $index = 'Общие';
 
             $taskDate[$index]['taskslist'][] = $task;
 
             if(!isset($taskDate[$index]['count'])){
                 $taskDate[$index]['count'] = 1;
-            }else{
+            }
+            else{
                 $taskDate[$index]['count']++;
             }
 
@@ -328,7 +333,8 @@ class Course extends Model{
             return [
                 'error' => 'Ошибка инициализации'
             ];
-        }else{
+        }
+        else{
             $task = $task[0];
         }
         if($task['status'] == 'verify'){
@@ -350,19 +356,23 @@ class Course extends Model{
             if($task['taskid'] == '1'){
                 if($_SESSION['user']['active'] == 1){
                     $params['status'] = 'done';
-                }else{
+                }
+                else{
                     return [
                         'error' => 'Вы не подтвердили свой email'
                     ];
                 }
-            }else{
+            }
+            else{
                 $params['status'] = 'verify';
                 $params['comment'] = 'Запрос на проверку домашнего задания отправлен';
             }
-        }else{
+        }
+        else{
             if($task['status'] == 'done'){
                 $params['status'] = 'ndone';
-            }else if($task['status'] == 'ndone'){
+            }
+            else if($task['status'] == 'ndone'){
                 $params['status'] = 'done';
             }
         }
@@ -382,8 +392,10 @@ class Course extends Model{
         foreach($allTask as $task){
             $allpercent += $task['percent'];
         }
-        if($allpercent < 0) $allpercent = 0;
-        if($allpercent > 100) $allpercent = 100;
+        if($allpercent < 0)
+            $allpercent = 0;
+        if($allpercent > 100)
+            $allpercent = 100;
 
         $params = [
             'percent' => $allpercent,
@@ -399,7 +411,7 @@ class Course extends Model{
         ];
     }
 
-    
+
     public function grantApplicationUser($data){
         $varsAmo = [
             'name' => 'Заявка на грант',
@@ -425,14 +437,16 @@ class Course extends Model{
                 'Город: '.$data['city'],
             ];
             $this->amo->addNotesContact($amoContact['id'], $notes);
-        }else{
+        }
+        else{
             $varsAmoNew = [
                 'email' => $data['email'],
             ];
 
             if(isset($data['fio'])){
                 $varsAmoNew['name'] = $data['fio'];
-            }else{
+            }
+            else{
                 $varsAmoNew['name'] = $data['email'];
             }
 
@@ -462,6 +476,13 @@ class Course extends Model{
         return true;
     }
 
+    /**
+     * Регистрация гостя на курс
+     *
+     * @param $data
+     *
+     * @return bool
+     */
     public function registerСourseGuest($data){
         $varsAmo = [
             'name' => 'Заявка на курс',
@@ -476,14 +497,16 @@ class Course extends Model{
                 'Город: '.$data['city'],
             ];
             $this->amo->addNotesContact($amoContact['id'], $notes);
-        }else{
+        }
+        else{
             $varsAmoNew = [
                 'email' => $data['email'],
             ];
 
             if(isset($data['fio'])){
                 $varsAmoNew['name'] = $data['fio'];
-            }else{
+            }
+            else{
                 $varsAmoNew['name'] = $data['email'];
             }
 
@@ -497,7 +520,32 @@ class Course extends Model{
 
             $varsAmo['contact_id'] = $this->amo->newContact($varsAmoNew);
         }
+
         $amoid = $this->amo->newLead($varsAmo);
+
+        if(isset($data['email'])){
+            $_SESSION['guest']['email'] = $data['email'];
+        }
+        if(isset($data['fio'])){
+            $_SESSION['guest']['fio'] = $data['fio'];
+        }
+        if(isset($data['phone'])){
+            $_SESSION['guest']['phone'] = $data['phone'];
+        }
+        if(isset($data['city'])){
+            $_SESSION['guest']['city'] = $data['city'];
+        }
+
+        ob_start();
+        ?>
+        <h1 style="font-family: Arial, sans-serif;font-size: 18px;">Ваша заявка принята</h1>
+        <p style="line-height: 1.5em;">
+            В скором времени мы с вами свяжемся
+        </p>
+        <?
+        $message = ob_get_clean();
+
+        $this->phpmailer($data['email'], $data['fio'], 'Ваша заявка принята', $message);
 
         return true;
     }
