@@ -1,31 +1,31 @@
 /* v.0.15.7 */
 
 /* Шрифты */
-@font-face {
+@font-face{
     font-family: Montserrat;
     font-weight: 300;
     src: url('/public/fonts/Montserrat-Regular.ttf');
 }
 
-@font-face {
+@font-face{
     font-family: Montserrat;
     /* font-weight: 500; */
     src: url('/public/fonts/Montserrat-Medium.ttf');
 }
 
-@font-face {
+@font-face{
     font-family: Montserrat;
     font-weight: bold;
     src: url('/public/fonts/Montserrat-Bold.ttf');
 }
 
 /* Главные */
-html {
+html{
     width: 100%;
     height: 100%;
 }
 
-body {
+body{
     width: 100%;
     height: 100%;
     background-color: #fff;
@@ -36,12 +36,12 @@ body {
     line-height: 2em;
 }
 
-body.modalopen {
+body.modalopen{
     height: 100vh;
     overflow: hidden;
 }
 
-h1 {
+h1{
     margin: 20px auto;
     font-size: 40px;
     font-weight: bold;
@@ -49,13 +49,13 @@ h1 {
     line-height: 2em;
 }
 
-h1 .big {
+h1 .big{
     text-transform: uppercase;
     position: relative;
     line-height: 1.8em;
 }
 
-h1 .big:before {
+h1 .big:before{
     content: '';
     display: block;
     position: absolute;
@@ -67,7 +67,7 @@ h1 .big:before {
     background-color: #111;
 }
 
-h2 {
+h2{
     padding: 50px 0 70px;
     margin: 0;
     font-size: 24px;
@@ -75,7 +75,7 @@ h2 {
     letter-spacing: 0.1em;
 }
 
-h2 .big {
+h2 .big{
     display: inline-block;
     text-transform: uppercase;
     font-size: 40px;
@@ -83,7 +83,7 @@ h2 .big {
     position: relative;
 }
 
-h2 .big:before {
+h2 .big:before{
     content: '';
     display: block;
     position: absolute;
@@ -95,54 +95,54 @@ h2 .big:before {
     background-color: #111;
 }
 
-h3 {
+h3{
     font-size: 20px;
     font-weight: bold;
 }
 
-svg {
+svg{
     fill: #111;
 }
 
-img {
+img{
     max-width: 100%;
 }
 
-video {
+video{
     max-width: 100%;
 }
 
-iframe {
+iframe{
     max-width: 100%;
 }
 
 /* Ссылки и кнопки */
-a {
+a{
     color: #111;
     text-decoration: underline;
 }
 
-a:hover {
+a:hover{
     color: #d43;
     text-decoration: underline;
 }
 
-a:focus {
+a:focus{
     outline: none;
     color: #111;
 }
 
-a.thisPage {
+a.thisPage{
     cursor: pointer;
     color: #d43;
 }
 
 /* Кнопки */
-a.btn {
+a.btn{
     text-decoration: none;
 }
 
-.btn {
+.btn{
     padding: 10px 30px;
     font-size: 16px;
     font-weight: normal;
@@ -154,20 +154,20 @@ a.btn {
     transition: 0.2s;
 }
 
-.btn:hover {
+.btn:hover{
     color: #fff;
     background-color: #d43;
     border-color: #d43;
 }
 
-.btn:focus {
+.btn:focus{
     outline: none;
     background-color: #fff;
     border-color: #fff;
     color: #111;
 }
 
-.btn:active:focus {
+.btn:active:focus{
     outline: none;
     background-color: #d43;
     border-color: #d43;
@@ -185,27 +185,27 @@ a.btn {
 
 .btn.process,
 .btn.process:focus,
-.btn.process:active:focus {
+.btn.process:active:focus{
     background-color: #777;
     border-color: #777;
     color: #111;
     box-shadow: none;
 }
 
-.btn-sm {
+.btn-sm{
     padding: 6px 20px;
 }
 
-.btn-primary {
+.btn-primary{
     background-color: #d43;
     border: 2px solid #d43;
     color: #fff;
 }
 
-.btn-primary:hover {
-    -webkit-box-shadow:  0px 5px 2px #111;
-    -moz-box-shadow:  0px 5px 2px #111;
-    box-shadow:  0 5px 2px #111;
+.btn-primary:hover{
+    -webkit-box-shadow: 0px 5px 2px #111;
+    -moz-box-shadow: 0px 5px 2px #111;
+    box-shadow: 0 5px 2px #111;
     -webkit-transform: translateY(-2px);
     -moz-transform: translateY(-2px);
     -ms-transform: translateY(-2px);
@@ -225,7 +225,6 @@ a.btn {
     background-color: #d43;
     border-color: #d43;
 }
-
 
 /*
 .btn-default {
@@ -257,9 +256,8 @@ a.btn {
 }
 */
 
-
 /* Формы */
-.form-control {
+.form-control{
     border: 2px solid #111;
     border-radius: 20px;
     box-shadow: none;
@@ -267,16 +265,16 @@ a.btn {
     height: auto;
 }
 
-.form-control:focus {
+.form-control:focus{
     box-shadow: none;
     border-color: #d43;
 }
 
-.form-group {
+.form-group{
     position: relative;
 }
 
-input[type='checkbox']::before {
+input[type='checkbox']::before{
     content: '';
     display: block;
     position: absolute;
@@ -293,26 +291,26 @@ input[type='checkbox']::before {
     transition: 0.3s;
 }
 
-input[type='checkbox']:checked::before {
+input[type='checkbox']:checked::before{
     background-size: 40%;
 }
 
-.checkbox {
+.checkbox{
     margin-bottom: 20px;
 }
 
-.checkbox input[type='checkbox'] {
+.checkbox input[type='checkbox']{
     cursor: pointer;
     margin-right: 20px;
     position: relative;
 }
 
-input[type='checkbox']+span {
+input[type='checkbox'] + span{
     display: inline-block;
     vertical-align: top;
 }
 
-textarea {
+textarea{
     border: 2px solid #111;
     /* background-color: transparent; */
     color: #111;
@@ -321,14 +319,14 @@ textarea {
     width: 100%;
 }
 
-.input-group-btn:last-child>.btn {
+.input-group-btn:last-child > .btn{
     margin-left: -2px;
     padding: 10px 20px;
     font-size: 14px;
 }
 
 /* Модальные окна */
-.modal {
+.modal{
     position: fixed;
     top: 50%;
     left: 50%;
@@ -348,7 +346,7 @@ textarea {
     max-width: 100%;
 }
 
-.modal-header {
+.modal-header{
     font-size: 35px;
     font-weight: bold;
     text-align: center;
@@ -356,12 +354,12 @@ textarea {
     max-width: 440px;
 }
 
-.modal input[type='submit'] {
+.modal input[type='submit']{
     display: block;
     margin: 0 auto;
 }
 
-.close {
+.close{
     float: none;
     position: absolute;
     right: 15px;
@@ -371,11 +369,11 @@ textarea {
     font-size: 50px;
 }
 
-.close:hover {
+.close:hover{
     opacity: 1;
 }
 
-#overlay {
+#overlay{
     display: none;
     position: fixed;
     left: 0;
@@ -387,7 +385,7 @@ textarea {
 }
 
 /* Загрузка */
-.process-load {
+.process-load{
     position: fixed;
     top: 0;
     bottom: 0;
@@ -399,11 +397,11 @@ textarea {
     display: none;
 }
 
-.process-load.active {
+.process-load.active{
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-.process-load .right-top {
+.process-load .right-top{
     position: absolute;
     right: 0;
     top: 0;
@@ -417,11 +415,11 @@ textarea {
     transform: translate(100%, -100%);
 }
 
-.process-load.active .right-top {
+.process-load.active .right-top{
     transform: none;
 }
 
-.process-load .right-top img {
+.process-load .right-top img{
     position: absolute;
     width: 50px;
     height: 50px;
@@ -431,17 +429,17 @@ textarea {
 }
 
 /* Прогресс */
-.progress {
+.progress{
     box-shadow: none;
     border: none;
     border-radius: 1000px;
 }
 
-.progress-bar {
+.progress-bar{
     background-color: #fd0;
 }
 
-.sr-only {
+.sr-only{
     position: initial;
     padding: 2px 5px;
     color: #111;
@@ -453,41 +451,41 @@ textarea {
 }
 
 /* Таблицы */
-table {
+table{
     border: 2px solid #fff;
     max-width: 100%;
     width: 100%;
 }
 
 th,
-td {
+td{
     border-bottom: 1px solid #fff;
     padding: 10px 8px;
 }
 
-th {
+th{
     border-bottom-width: 2px;
 }
 
-td {
+td{
     transition: 0.5s;
 }
 
-tr:hover td {
+tr:hover td{
     background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Пункт пользователя */
-.user a {
+.user a{
     text-decoration: none;
     display: inline-block;
 }
 
-.user a:hover .name {
+.user a:hover .name{
     text-decoration: underline;
 }
 
-.user .photo {
+.user .photo{
     display: inline-block;
     width: 50px;
     height: 50px;
@@ -498,7 +496,7 @@ tr:hover td {
     margin-right: 15px;
 }
 
-.user .photo img {
+.user .photo img{
     max-height: 100%;
     position: relative;
     top: 50%;
@@ -506,13 +504,13 @@ tr:hover td {
     transform: translate(-50%, -50%);
 }
 
-.user .name {
+.user .name{
     display: inline-block;
     vertical-align: middle;
 }
 
 /* Заголовок с фоном */
-.headline {
+.headline{
     position: relative;
     margin: 0 -90px 40px;
     padding: 40px 90px 40px;
@@ -528,16 +526,17 @@ tr:hover td {
 .headline h1{
     margin-top: 0;
 }
-.headline h1 .big {
+
+.headline h1 .big{
     text-transform: none;
 }
 
-.headline h1 .big:before {
+.headline h1 .big:before{
     background-color: #fff;
 }
 
 /* Шапка */
-.navbar {
+.navbar{
     padding: 30px 0;
     margin-bottom: 0;
     font-size: 16px;
@@ -545,42 +544,42 @@ tr:hover td {
     position: relative;
 }
 
-.navbar .logo img {
+.navbar .logo img{
     width: 180px;
 }
 
-.navbar .city {
+.navbar .city{
     padding: 15px 0;
 }
 
-.navbar .city svg {
+.navbar .city svg{
     width: 21px;
     margin-right: 12px;
     vertical-align: top;
 }
 
-.navbar .menu_lk {
+.navbar .menu_lk{
     text-align: right;
     padding: 15px 0;
 }
 
-.navbar .menu {
+.navbar .menu{
     display: inline-block;
     vertical-align: top;
     list-style: none;
     margin: 0;
 }
 
-.navbar .menu li {
+.navbar .menu li{
     display: inline-block;
 }
 
-.navbar .login {
+.navbar .login{
     display: inline-block;
     margin-left: 20px;
 }
 
-.navbar .user {
+.navbar .user{
     display: inline-block;
     position: relative;
     padding: 10px;
@@ -593,7 +592,7 @@ tr:hover td {
     text-align: left;
 }
 
-.navbar .user:before {
+.navbar .user:before{
     content: '';
     position: absolute;
     right: 10px;
@@ -606,23 +605,23 @@ tr:hover td {
     transition: 0.5s;
 }
 
-.navbar .user.active:before {
+.navbar .user.active:before{
     transform: translateY(-50%) rotate(180deg);
 }
 
 .navbar .user:hover,
-.navbar .user.active {
+.navbar .user.active{
     /* background-color: rgba(255, 255, 255, 0.2); */
     /* background-color: #6ae; */
     border-color: #111;
     background-color: #fff;
 }
 
-.navbar .user.active {
+.navbar .user.active{
     border-radius: 5px 5px 0 0;
 }
 
-.navbar .user .user-menu {
+.navbar .user .user-menu{
     display: none;
     position: absolute;
     top: 100%;
@@ -636,13 +635,13 @@ tr:hover td {
     overflow: hidden;
 }
 
-.navbar .user .user-menu a {
+.navbar .user .user-menu a{
     text-decoration: none;
     padding: 10px;
     display: block;
 }
 
-.navbar .user .user-menu a:hover {
+.navbar .user .user-menu a:hover{
     background-color: #cee;
     color: #111;
     font-weight: bold;
@@ -659,9 +658,11 @@ tr:hover td {
     background-color: #cee;
     overflow: hidden;
 }
+
 .left-menu nav{
     text-align: center;
 }
+
 .left-menu a{
     display: block;
     padding: 15px 0;
@@ -671,14 +672,17 @@ tr:hover td {
     opacity: 0.5;
     transition: 0.2s;
 }
+
 .left-menu a.thisPage,
 .left-menu a:hover{
     opacity: 1;
     /* color: #111; */
 }
+
 .left-menu a.thisPage{
     background-color: #7ab;
 }
+
 .left-menu svg{
     display: block;
     margin: 0 auto;
@@ -688,37 +692,98 @@ tr:hover td {
     /* fill: #111; */
     /* fill: #fff; */
 }
+
 .left-menu a.thisPage svg{
     fill: #111;
 }
 
 /* Основная часть */
-.wrapper {
+.wrapper{
     position: relative;
     z-index: 1;
     padding-left: 100px;
 }
 
-.container-fluid {
+.container-fluid{
     padding-left: 90px;
     padding-right: 90px;
     padding-bottom: 50px;
 }
 
 /* Подвал */
-footer {
+footer{
     width: 100%;
     padding: 30px 0;
     z-index: 10;
     position: relative;
+    background-color: #eee;
+    color: #888;
 }
 
 footer .container-fluid{
     padding-bottom: 0;
 }
 
+footer a{
+    text-decoration: none;
+    color: #888;
+    transition: 0.2s;
+}
+footer a:hover{
+    color: #111;
+    text-decoration: none;
+}
+
+footer a.thisPage{
+    color: #888;
+}
+
+footer a.thisPage:hover{
+    color: #111;
+}
+
+footer .info{
+    /*font-size: 12px;*/
+}
+
+footer .info p{
+    margin-bottom: 0;
+}
+
+footer .center{
+    text-align: center;
+}
+
+footer .center .nav-footer{
+    margin-bottom: 20px;
+}
+
+footer .social a{
+    margin-right: 10px;
+}
+
+footer .social a svg{
+    max-width: 30px;
+    max-height: 30px;
+    fill: #888;
+    transition: 0.2s;
+}
+
+footer .social a svg:hover{
+    fill: #111;
+}
+
+footer .contact{
+    text-align: right;
+}
+
+footer .contact .phone{
+    font-size: 20px;
+    font-weight: bold;
+}
+
 /* Цветные фоны */
-.bg-blue {
+.bg-blue{
     background-color: #cee;
 }
 
@@ -731,28 +796,29 @@ footer .container-fluid{
 }
 
 /* Стилизация текста */
-.white-text {
+.white-text{
     color: #fff;
 }
 
-.white-text a {
+.white-text a{
     color: #fff;
 }
 
-.white-text a:hover {
+.white-text a:hover{
     color: #d43;
 }
 
-.white-text svg {
+.white-text svg{
     fill: #fff;
 }
 
 /* Проекты */
-.project {
+.project{
     /* background-color: #fff; */
     position: relative;
     overflow: hidden;
 }
+
 .project .name{
     font-size: 20px;
     font-weight: 300;
@@ -761,10 +827,11 @@ footer .container-fluid{
 }
 
 /* Галерея */
-.portfolioItem {
+.portfolioItem{
     position: relative;
     overflow: hidden;
 }
+
 .portfolioItem .name{
     font-size: 20px;
     font-weight: 300;
@@ -776,7 +843,7 @@ footer .container-fluid{
     position: relative;
 }
 
-.portfolioItem .play {
+.portfolioItem .play{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -785,14 +852,14 @@ footer .container-fluid{
     transform: translate(-50%, -50%);
 }
 
-.portfolioItem:hover .play {
+.portfolioItem:hover .play{
     opacity: 1;
 }
 
-.portfolioItem .play button {
+.portfolioItem .play button{
     background-color: #fff;
 }
 
-.portfolioItem .play button:hover {
+.portfolioItem .play button:hover{
     color: #d43;
 }
