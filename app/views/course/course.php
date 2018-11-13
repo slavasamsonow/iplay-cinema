@@ -1,8 +1,8 @@
-<div class="container-fluid">
-    <div class="coursePage">
-        <div class="headline" style="<?php if($course['image']){
-            echo 'background-image: url(/public/img/courses/'.$course['image'].')';
-        } ?>">
+<div class="coursePage">
+    <div class="headline" style="<?php if($course['image']){
+        echo 'background-image: url(/public/img/courses/'.$course['image'].')';
+    } ?>">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-8">
                     <h1>
@@ -42,25 +42,31 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <?php if($course['id'] == 4): ?>
-            <div class="all">
+    <?php if($course['id'] == 4): ?>
+        <div class="all">
+            <div class="container-fluid">
                 <a class="btn btn-primary" href="/lending/intensiv"> Более подробная информация</a>
             </div>
-        <?php endif ?>
+        </div>
+    <?php endif ?>
 
-        <div class="description">
+    <div class="description">
+        <div class="container-fluid">
             <?=$course['description']?>
             <div class="background-triangles">
                 <img src="/public/img/content/pattern-more-triangle-blue.svg" alt="">
             </div>
         </div>
+    </div>
 
 
-        <?php if(!empty($teachers)): ?>
-            <div class="teachers bg-purple white-text">
+    <?php if(!empty($teachers)): ?>
+        <div class="teachers bg-purple white-text">
+            <div class="container-fluid">
                 <h2>Преподаватели</h2>
-                <div class="row">
+                <div class="row userList">
                     <?php foreach($teachers as $teacher): ?>
                         <div class="user col-md-4">
                             <a href="/user/<?=$teacher['username']?>" target="_blank">
@@ -68,21 +74,30 @@
                                     <img src="/public/img/users/thumb/<?=$teacher['photo']?>"
                                          alt="<?=$teacher['fname'].' '.$teacher['lname'].' | Продюсерский центр ИГРА'?>">
                                 </div>
-                                <div class="name">
-                                    <?=$teacher['fname']?> <br>
-                                    <?=$teacher['lname']?>
+                                <div class="about">
+                                    <div class="name">
+                                        <?=$teacher['fname']?> <br>
+                                        <?=$teacher['lname']?>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab asperiores, cumque ea eaque error facere ipsam modi nemo non odio praesentium provident quidem, quod repellat sapiente, sed soluta totam voluptatem?
+                                    </p>
                                 </div>
+
                             </a>
                         </div>
                     <?php endforeach ?>
                 </div>
             </div>
-        <?php endif ?>
 
-        <?php if(!empty($curators)): ?>
-            <div class="courators">
+        </div>
+    <?php endif ?>
+
+    <?php if(!empty($curators)): ?>
+        <div class="courators">
+            <div class="container-fluid">
                 <h2>Кураторы</h2>
-                <div class="row">
+                <div class="row userList">
                     <?php foreach($curators as $curator): ?>
                         <div class="user col-md-4">
                             <a href="/user/<?=$curator['username']?>" target="_blank">
@@ -99,10 +114,12 @@
                     <?php endforeach ?>
                 </div>
             </div>
-        <?php endif ?>
+        </div>
+    <?php endif ?>
 
-        <?php if(!empty($program)): ?>
-            <div class="program">
+    <?php if(!empty($program)): ?>
+        <div class="program">
+            <div class="container-fluid">
                 <h2>Программа:</h2>
                 <?php if($course['program']): ?>
                     <p>
@@ -124,10 +141,12 @@
                     </ul>
                 </div>
             </div>
-        <?php endif ?>
+        </div>
+    <?php endif ?>
 
-        <?php if(!empty($projects)): ?>
-            <div class="projects bg-purple white-text">
+    <?php if(!empty($projects)): ?>
+        <div class="projects bg-purple white-text">
+            <div class="container-fluid">
                 <h2>Наши проекты</h2>
                 <p>
                     <?=$course['projects']?>
@@ -159,14 +178,16 @@
                     <?php endforeach ?>
                 </div>
             </div>
-        <?php endif ?>
+        </div>
+    <?php endif ?>
 
-        <div class="portfolio">
+    <div class="portfolio">
+        <div class="container-fluid">
             <h2>Работы наших выпускников</h2>
             <p>
                 <?=$course['portfolio']?>
             </p>
-            <div class="portfoliolist row owl-carousel">
+            <div class="portfoliolist owl-carousel">
                 <div class="portfolioItem">
                     <div class="image">
                         <img src="/public/img/portfolio/mugur.png"
@@ -274,12 +295,13 @@
                         Разговор о танце в Ижевске.
                     </div>
                 </div>
-
             </div>
         </div>
+    </div>
 
-        <?php if($course['id'] != 4): ?>
-            <div class="sale bg-red">
+    <?php if($course['id'] != 4): ?>
+        <div class="sale bg-red">
+            <div class="container-fluid">
                 <div class="row">
                     <!-- <div class="col-md-6">
                         <h4>Акция запуск: 50% скидка</h4>
@@ -308,13 +330,16 @@
                         <?php endif ?>
                     </div>
                 </div>
-                <div class="background-triangles">
-                    <img src="/public/img/content/pattern-more-triangle-white.svg" alt="">
-                </div>
-            </div>
-        <?php endif ?>
 
-        <div class="question">
+            </div>
+            <div class="background-triangles">
+                <img src="/public/img/content/pattern-more-triangle-white.svg" alt="">
+            </div>
+        </div>
+    <?php endif ?>
+
+    <div class="question">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
                     <h2>Задать вопрос</h2>
@@ -342,7 +367,9 @@
             </div>
 
         </div>
+
     </div>
+</div>
 
 </div>
 </div>
@@ -444,4 +471,4 @@
 </div>
 
 <div>
-    <div></div>
+    <div>
