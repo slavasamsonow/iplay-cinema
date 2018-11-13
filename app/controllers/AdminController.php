@@ -441,6 +441,27 @@ class AdminController extends Controller{
     }
 
     public function courseteachersAction(){
+        if(!empty($_POST)){
+            $data = $_POST;
+            $courseid = $this->route['courseid'];
+            if(!$this->modelCourse->getCourse($courseid)){
+                $this->view->message('Ошибка', 'Неизвестный курс');
+            }
+
+            switch($data['action']){
+                case 'delete':
+                    $this->modelCourse->removeTeacher($courseid, $data['teacher']);
+                    $status = [
+                        'status' => 'delete'
+                    ];
+                    $this->view->data($status);
+                    break;
+                default:
+                    $this->view->message('неизвестное действие');
+            }
+
+            $this->view->location('admin/course'.$courseid.'/teachers');
+        }
         if(!$course = $this->modelCourse->getCourse($this->route['courseid'])){
             $this->view->error(404);
         }
@@ -455,11 +476,16 @@ class AdminController extends Controller{
     public function courseteachersaddAction(){
         if(!empty($_POST)){
             $data = $_POST;
-            if($this->modelCourse->getCourse($this->route['courseid'])){
+            $courseid = $this->route['courseid'];
+            if(!$this->modelCourse->getCourse($courseid)){
                 $this->view->message('Ошибка', 'Неизвестный курс');
             }
 
-            $this->modelCourse
+            if(!$this->modelCourse->addTeachers($courseid, $data)){
+                $this->view->message('Ошибка', $this->modelCourse->error);
+            }
+
+            $this->view->location('admin/course'.$courseid.'/teachers');
         }
         if(!$course = $this->modelCourse->getCourse($this->route['courseid'])){
             $this->view->error(404);
