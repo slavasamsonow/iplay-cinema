@@ -93,7 +93,10 @@ class CourseController extends Controller{
                 $this->view->message('Ваша заявка отправлена', 'В скором времени мы свяжемся с вами');
             }
         }
-        if(!$course = $this->model->courseInfo($this->route['courseid'])){
+        if(!$course = $this->model->getCourse($this->route['courseid'])){
+            $this->view->redirect('account');
+        }
+        if($course['active'] == 0){
             $this->view->redirect('account');
         }
 

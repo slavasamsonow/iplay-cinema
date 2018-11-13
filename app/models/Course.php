@@ -7,6 +7,42 @@ use app\core\Model;
 class Course extends Model{
 
     /**
+     * Создает курс
+     *
+     * @param $data
+     *
+     * @return string
+     */
+    public function createCourse($data){
+        $params = $this->processTextIn($data);
+        $params['timestart'] = $this->toUnixTime($params['timestart']);
+        $params['timeend'] = $this->toUnixTime($params['timeend']);
+        $paramNandV = $this->db->paramNandV($params);
+
+        $this->db->query('INSERT INTO `courses` ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
+        return $this->db->lastInsertId();
+    }
+
+    /**
+     * Обвновление информации курса
+     *
+     * @param $id
+     * @param $data
+     *
+     * @return bool
+     */
+    public function updateCourse($id, $data){
+        $params = $this->processTextIn($data);
+        $params['timestart'] = $this->toUnixTime($params['timestart']);
+        $params['timeend'] = $this->toUnixTime($params['timeend']);
+        $paramNV = $this->db->paramNV($params);
+        $params['id'] = $id;
+
+        $this->db->query('UPDATE `courses` SET '.$paramNV.' WHERE `id` = :id', $params);
+        return true;
+    }
+
+    /**
      * Возвращает список курсов для обучения студента
      * @return array
      */
@@ -35,6 +71,15 @@ class Course extends Model{
     }
 
     /**
+     * Возвращает список всех курсов
+     * @return array
+     */
+    public function getCourses(){
+        $courses = $this->db->row('SELECT * FROM courses c ORDER BY c.timestart ASC');
+        return $courses;
+    }
+
+    /**
      * Возвращает список активных курсов
      *
      * @param $param
@@ -42,7 +87,7 @@ class Course extends Model{
      * @return array
      */
     // todo переименовать в getActiveCourses
-    public function coursesList($param){
+    public function coursesList($param = []){
         $params = [
             'timestart' => time(),
         ];
@@ -64,28 +109,6 @@ class Course extends Model{
 
         $coursesList = $this->db->row('SELECT * FROM courses c WHERE c.active = 1 AND c.type != 0 AND c.timestart > :timestart '.$usl.' ORDER BY c.timestart ASC', $params);
         return $coursesList;
-    }
-
-    /**
-     * Вовращает информацию о курсе
-     *
-     * @param $courseId
-     *
-     * @return bool
-     */
-    //todo переисеновать в getCourseInfo
-    public function courseInfo($courseId){
-        $params = [
-            'courseid' => $courseId,
-        ];
-        $course = $this->db->row('SELECT c.* FROM courses c WHERE c.id = :courseid AND c.active = 1', $params);
-
-        if(isset($course[0])){
-            return $course[0];
-        }
-        else{
-            return false;
-        }
     }
 
     /**

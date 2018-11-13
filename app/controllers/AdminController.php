@@ -77,7 +77,7 @@ class AdminController extends Controller{
         }
         $vars = [
             'usersList' => $this->modelAccount->getUsers(),
-            'coursesList' => $this->model->courseslist(),
+            'coursesList' => $this->modelCourse->getCourses(),
         ];
         $this->view->render($vars);
     }
@@ -115,7 +115,7 @@ class AdminController extends Controller{
         }
         $vars = [
             'userList' => $this->modelAccount->getUsers(),
-            'coursesList' => $this->model->courseslist(),
+            'coursesList' => $this->modelCourse->getCourses(),
             'project' => $this->modelProject->projectEditInfo($this->route['projectid']),
         ];
         $this->view->render($vars);
@@ -126,7 +126,7 @@ class AdminController extends Controller{
             'seo' => [
                 'title' => 'Список курсов',
             ],
-            'courses' => $this->model->coursesList(),
+            'courses' => $this->modelCourse->getCourses(),
         ];
         $this->view->render($vars);
     }
@@ -134,7 +134,7 @@ class AdminController extends Controller{
     public function addcourseAction(){
         if(!empty($_POST)){
             $data = $_POST;
-            if($courseid = $this->model->createCourse($data)){
+            if($courseid = $this->modelCourse->createCourse($data)){
                 $this->view->location('admin/courses');
             }
         }
@@ -158,10 +158,11 @@ class AdminController extends Controller{
                     $data['image'] = $file;
                 }
             }
+            // todo удаление старых фото
 
             // $this->view->message("+", json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ));
 
-            if($this->model->updateCourse($id, $data)){
+            if($this->modelCourse->updateCourse($id, $data)){
                 $this->view->location('admin/courses');
             }
         }
@@ -199,7 +200,7 @@ class AdminController extends Controller{
             ],
             'userCoursesList' => $this->model->userCoursesList(),
             'usersList' => $this->modelAccount->getUsers(),
-            'coursesList' => $this->model->coursesList()
+            'coursesList' => $this->modelCourse->getCourses()
         ];
         // debug($vars);
         $this->view->render($vars);
@@ -339,7 +340,7 @@ class AdminController extends Controller{
             }
         }
         $vars = [
-            'coursesList' => $this->model->coursesList(),
+            'coursesList' => $this->modelCourse->getCourses(),
         ];
         $this->view->render($vars);
     }
@@ -361,7 +362,7 @@ class AdminController extends Controller{
             $this->view->errorCode(404);
         }
         $vars = [
-            'coursesList' => $this->model->coursesList(),
+            'coursesList' => $this->modelCourse->getCourses(),
             'promocode' => $promocode,
         ];
         $this->view->render($vars);

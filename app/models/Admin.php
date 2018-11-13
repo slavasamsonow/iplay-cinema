@@ -84,55 +84,6 @@ class Admin extends Model{
     }
 
     /**
-     * Возвращает список курсов
-     * @return array
-     */
-    // todo перенести в Course
-    // todo переименовать в getCourses
-    public function coursesList(){
-        $courses = $this->db->row('SELECT * FROM courses c ORDER BY c.timestart ASC');
-        return $courses;
-    }
-
-    /**
-     * Создает курс
-     *
-     * @param $indata
-     *
-     * @return string
-     */
-    // todo перенести в Course
-    public function createCourse($indata){
-        $params = $this->processTextIn($indata);
-        $params['timestart'] = $this->toUnixTime($params['timestart']);
-        $params['timeend'] = $this->toUnixTime($params['timeend']);
-        $paramNandV = $this->db->paramNandV($params);
-
-        $this->db->query('INSERT INTO `courses` ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
-        return $this->db->lastInsertId();
-    }
-
-    /**
-     * Обновление информации курса
-     *
-     * @param $id
-     * @param $indata
-     *
-     * @return bool
-     */
-    // todo перенести в Course
-    public function updateCourse($id, $indata){
-        $params = $this->processTextIn($indata);
-        $params['timestart'] = $this->toUnixTime($params['timestart']);
-        $params['timeend'] = $this->toUnixTime($params['timeend']);
-        $paramNV = $this->db->paramNV($params);
-        $params['id'] = $id;
-
-        $this->db->query('UPDATE `courses` SET '.$paramNV.' WHERE `id` = :id', $params);
-        return true;
-    }
-
-    /**
      * Вовзращает список заданий курса
      *
      * @param $courseid
@@ -147,7 +98,6 @@ class Admin extends Model{
         ];
         return $this->db->row('SELECT * FROM courses_tasks ct WHERE ct.course = :id ORDER BY ct.timestart ASC', $params);
     }
-
 
     public function taskEditInfo($taskid){
         if(!$task = $this->taskInfo($taskid)){
