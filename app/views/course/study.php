@@ -115,8 +115,10 @@
                                          alt="<?=$userItem['fname'].' '.$userItem['lname'].' | Продюсерский центр ИГРА'?>">
                                 <? endif ?>
                             </div>
-                            <div class="name">
-                                <?=$userItem['fname'].' '.$userItem['lname']?>
+                            <div class="about">
+                                <div class="name">
+                                    <?=$userItem['fname'].' '.$userItem['lname']?>
+                                </div>
                             </div>
                         </a>
                     </div>

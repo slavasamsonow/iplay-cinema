@@ -685,6 +685,10 @@
 }
 
 /* Страница курса */
+.coursePage h2{
+    padding-bottom: 30px;
+}
+
 .coursePage .headline .date{
     margin-bottom: 20px;
 }
@@ -702,10 +706,6 @@
     width: 400px;
 }
 
-.coursePage .program h2{
-    padding-bottom: 30px;
-}
-
 .coursePage .program ul{
     list-style: none;
     padding: 0;
@@ -721,19 +721,8 @@
     margin-top: 10px;
 }
 
-.coursePage .projects{
-    margin: 0 -90px;
-    padding: 0 90px 50px;
-}
-
-.coursePage .portfolio{
-    margin-bottom: 30px;
-}
-
 .coursePage .sale{
     position: relative;
-    margin: 0 -90px;
-    padding: 50px 90px;
 }
 
 .coursePage .sale .ostatok{
@@ -756,36 +745,20 @@
     width: 400px;
 }
 
-.userList .user a{
-    text-decoration: none;
-    display: inline-block;
-    padding: 10px;
-    transition: 0.2s;
-    border-radius: 5px;
+.coursePage .teachers .user .name{
+    font-size: 20px;
+    font-weight: 300;
 }
 
-.userList .user a:hover{
-    background-color: #cee;
-    color: #111;
+.coursePage .teachers .user a:hover{
+    background-color: #fff;
+    /*background-color: transparent;*/
+    /*color: inherit;*/
 }
 
-.userList .user a:hover .name{
-    text-decoration: none;
+.coursePage .teachers .user a:hover .name{
+    /*text-decoration: underline;*/
 }
-
-.userList .user .photo,
-.userList .user .name{
-    display: inline-block;
-    vertical-align: middle;
-}
-
-/* Подвал
-.intro-wrapper footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    padding-top: 0;
-} */
 
 /* OWL-slider */
 .owl-carousel{
