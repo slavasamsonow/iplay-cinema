@@ -22,6 +22,7 @@ abstract class Model{
     public $role;
     public $geo;
     public $geoCity;
+    public $error;
 
     public function __construct(){
         $this->db = new Db;
