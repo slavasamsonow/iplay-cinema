@@ -181,5 +181,9 @@ return [
         'controller' => 'admin',
         'action' => 'createuser',
     ],
+    'admin/edituser/{username:\w+}' => [
+        'controller' => 'admin',
+        'action' => 'edituser',
+    ],
 
 ];

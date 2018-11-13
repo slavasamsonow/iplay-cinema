@@ -382,4 +382,51 @@ class AdminController extends Controller{
         ];
         $this->view->render($vars);
     }
+
+    public function edituserAction(){
+        $this->modelAccount = $this->loadModel('account');
+
+        if(!empty($_POST)){
+            $userid = $_POST['userid'];
+            unset($_POST['userid']);
+
+            $data =$_POST;
+
+            if(!isset($data['public'])){
+                $data['public'] = 0;
+            }
+
+            if(isset($_FILES['photo']['tmp_name']) && $_FILES['photo']['tmp_name'] != ''){
+                if($file = $this->model->saveFile($_FILES['photo'], 'public/img/users/', 'image')){
+                    $data['photo'] = $file;
+                    if(!empty($data['oldphoto'])){
+                        $oldPhotoPath = $_SERVER['DOCUMENT_ROOT'].'/public/img/users/'.$data['oldphoto'];
+                        $oldPhotoThumbPath = $_SERVER['DOCUMENT_ROOT'].'/public/img/users/thumb/'.$data['oldphoto'];
+                        if(file_exists($oldPhotoPath)){
+                            unlink($oldPhotoPath);
+                        }
+                        if(file_exists($oldPhotoThumbPath)){
+                            unlink($oldPhotoThumbPath);
+                        }
+                    }
+                }
+            }
+            unset($data['oldphoto']);
+
+            $this->modelAccount->saveUserData($userid, $data);
+            $this->view->message('Данные сохранены', '');
+        }
+
+        if(!$userInfo = $this->modelAccount->userInfo($this->route['username'])){
+            $this->view->errorCode('404');
+        }
+
+        $vars = [
+            'seo' => [
+                'title' => 'Редактирование информации'
+            ],
+            'userInfo' => $userInfo,
+        ];
+        $this->view->render($vars);
+    }
 }
