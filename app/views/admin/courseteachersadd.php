@@ -7,11 +7,9 @@
     </div>
     <div class="control-group form-group">
         <label>Автор:</label>
-        <select class="form-control" name="author">
+        <select class="form-control" name="teacher">
             <?php foreach($usersList as $userListItem): ?>
-                <option value="<?=$userListItem['id']?>" <?php if($_SESSION['user']['id'] == $userListItem['id'])
-                    echo
-                    'checked'; ?>>
+                <option value="<?=$userListItem['id']?>">
                     <?=$userListItem['fname'].' '.$userListItem['lname']?>
                 </option>
             <?php endforeach ?>
