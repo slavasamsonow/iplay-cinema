@@ -100,7 +100,7 @@ class Course extends Model{
         $params = [
             'courseid' => $courseId,
         ];
-        $teachers = $this->db->row('SELECT u.id, u.username, u.fname, u.lname, u.photo FROM courses_teachers ct JOIN users u ON ct.teacher=u.id WHERE ct.course = :courseid', $params);
+        $teachers = $this->db->row('SELECT u.* FROM courses_teachers ct JOIN users u ON ct.teacher=u.id WHERE ct.course = :courseid', $params);
 
         foreach($teachers as $key => $teacher){
             if($teacher['username'] == ''){
