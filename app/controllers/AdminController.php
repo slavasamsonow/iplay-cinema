@@ -18,7 +18,7 @@ class AdminController extends Controller{
             $this->view->errorCode('403');
         }
 
-        $this->modelProject = $this->loadModel('project');;
+        $this->modelProject = $this->loadModel('project');
     }
 
     public function indexAction(){
@@ -354,6 +354,78 @@ class AdminController extends Controller{
         $vars = [
             'coursesList' => $this->model->coursesList(),
             'promocode' => $promocode,
+        ];
+        $this->view->render($vars);
+    }
+
+    public function createuserAction(){
+        if(!empty($_POST)){
+            $data = $_POST;
+
+            if(!$this->model->validate(['email'], $data)){
+                $this->view->message('Ошибка', $this->model->error);
+            }
+            else if($this->model->checkExists('email', $data['email'])){
+                $this->view->message('Ошибка', 'Пользователь с таким E-mail уже существует');
+            }
+
+            $this->modelAccount = $this->loadModel('account');
+
+            $this->modelAccount->register($data);
+
+            $this->view->message('Пользователь создан', '');
+        }
+        $vars = [
+            'seo' => [
+                'title' => 'Создание пользователя',
+            ]
+        ];
+        $this->view->render($vars);
+    }
+
+    public function edituserAction(){
+        $this->modelAccount = $this->loadModel('account');
+
+        if(!empty($_POST)){
+            $userid = $_POST['userid'];
+            unset($_POST['userid']);
+
+            $data =$_POST;
+
+            if(!isset($data['public'])){
+                $data['public'] = 0;
+            }
+
+            if(isset($_FILES['photo']['tmp_name']) && $_FILES['photo']['tmp_name'] != ''){
+                if($file = $this->model->saveFile($_FILES['photo'], 'public/img/users/', 'image')){
+                    $data['photo'] = $file;
+                    if(!empty($data['oldphoto'])){
+                        $oldPhotoPath = $_SERVER['DOCUMENT_ROOT'].'/public/img/users/'.$data['oldphoto'];
+                        $oldPhotoThumbPath = $_SERVER['DOCUMENT_ROOT'].'/public/img/users/thumb/'.$data['oldphoto'];
+                        if(file_exists($oldPhotoPath)){
+                            unlink($oldPhotoPath);
+                        }
+                        if(file_exists($oldPhotoThumbPath)){
+                            unlink($oldPhotoThumbPath);
+                        }
+                    }
+                }
+            }
+            unset($data['oldphoto']);
+
+            $this->modelAccount->saveUserData($userid, $data);
+            $this->view->message('Данные сохранены', '');
+        }
+
+        if(!$userInfo = $this->modelAccount->userInfo($this->route['username'])){
+            $this->view->errorCode('404');
+        }
+
+        $vars = [
+            'seo' => [
+                'title' => 'Редактирование информации'
+            ],
+            'userInfo' => $userInfo,
         ];
         $this->view->render($vars);
     }

@@ -2,6 +2,7 @@
     <li><a href="/admin/projects">Проекты</a></li>
     <li><a href="/admin/newslist">Новости</a></li>
     <li><a href="/admin/promocodelist">Промокоды</a></li>
+    <li><a href="/admin/createuser">Создать пользователя</a></li>
     <li class="parent"><span>Курсы</span>
         <ul>
             <li><a href="/admin/confirmtasks">Проверка заданий</a></li>

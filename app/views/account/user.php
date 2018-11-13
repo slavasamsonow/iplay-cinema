@@ -1,6 +1,14 @@
 <h1>
     <?=$userPage['fname'].' '.$userPage['lname']?>
 </h1>
+<?php if(isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin'): ?>
+    <p>
+        <small>
+            <a href="/admin/edituser/id<?=$userPage['id']?>">Редактировать</a>
+        </small>
+    </p>
+
+<?php endif ?>
 
 <div class="row">
     <?php if(!empty($userPage['photo'])): ?>
