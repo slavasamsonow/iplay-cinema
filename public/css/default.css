@@ -485,14 +485,18 @@ tr:hover td{
     text-decoration: underline;
 }
 
-.user .photo{
+.user .photo,
+.user .about{
     display: inline-block;
+    vertical-align: middle;
+}
+
+.user .photo{
     width: 50px;
     height: 50px;
     border-radius: 50px;
     overflow: hidden;
     background: #111;
-    vertical-align: middle;
     margin-right: 15px;
 }
 
@@ -504,16 +508,39 @@ tr:hover td{
     transform: translate(-50%, -50%);
 }
 
-.user .name{
+.user .about{
+    max-width: calc(100% - 70px);
+}
+.user .about p{
+    font-size: 12px;
+}
+
+/* Список пользователей */
+.userList .user a{
+    text-decoration: none;
     display: inline-block;
-    vertical-align: middle;
+    padding: 10px;
+    transition: 0.2s;
+    border-radius: 5px;
+}
+
+.userList .user a:hover{
+    background-color: #cee;
+    color: #111;
+}
+
+.userList .user a:hover .name{
+    text-decoration: none;
+}
+
+.userList .user .photo,
+.userList .user .about{
+    vertical-align: top;
 }
 
 /* Заголовок с фоном */
 .headline{
     position: relative;
-    margin: 0 -90px 40px;
-    padding: 40px 90px 40px;
     background-color: #204;
     background-size: cover;
     background-position: center;
@@ -705,9 +732,11 @@ tr:hover td{
 }
 
 .container-fluid{
-    padding-left: 90px;
-    padding-right: 90px;
-    padding-bottom: 50px;
+    padding: 40px 90px;
+}
+
+.container-fluid>h2{
+    padding-top: 0;
 }
 
 /* Подвал */
