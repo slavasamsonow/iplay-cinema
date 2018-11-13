@@ -439,4 +439,36 @@ class AdminController extends Controller{
         ];
         $this->view->render($vars);
     }
+
+    public function courseteachersAction(){
+        if(!$course = $this->modelCourse->getCourse($this->route['courseid'])){
+            $this->view->error(404);
+        }
+
+        $vars = [
+            'course' => $course,
+            'teachers' => $this->modelCourse->getCourseTeachers($course['id'])
+        ];
+        $this->view->render($vars);
+    }
+
+    public function courseteachersaddAction(){
+        if(!empty($_POST)){
+            $data = $_POST;
+            if($this->modelCourse->getCourse($this->route['courseid'])){
+                $this->view->message('Ошибка', 'Неизвестный курс');
+            }
+
+            $this->modelCourse
+        }
+        if(!$course = $this->modelCourse->getCourse($this->route['courseid'])){
+            $this->view->error(404);
+        }
+
+        $vars = [
+            'course' => $course,
+            'usersList' => $this->modelAccount->getUsers(),
+        ];
+        $this->view->render($vars);
+    }
 }

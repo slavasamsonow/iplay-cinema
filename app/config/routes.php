@@ -186,4 +186,13 @@ return [
         'action' => 'edituser',
     ],
 
+    'admin/course{courseid:\d+}/teachers' => [
+        'controller' => 'admin',
+        'action' => 'courseteachers',
+    ],
+    'admin/course{courseid:\d+}/teachers/add' => [
+        'controller' => 'admin',
+        'action' => 'courseteachersadd',
+    ],
+
 ];
