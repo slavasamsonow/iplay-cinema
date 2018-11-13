@@ -5,6 +5,12 @@ namespace app\models;
 use app\core\Model;
 
 class Admin extends Model{
+    /**
+     * Возвращает список непроверенных заданий
+     *
+     * @return array
+     */
+    // todo перенести в работу Course
     public function getNoverifyTasks(){
         $params = [
             'status' => 'verify',
@@ -19,6 +25,13 @@ class Admin extends Model{
         return $tasks;
     }
 
+    /**
+     * Сохраняет статус здаания
+     *
+     * @param $data
+     *
+     * @return array
+     */
     public function saveStatusTask($data){
         $params = [
             'status' => $data['status'],
@@ -60,14 +73,25 @@ class Admin extends Model{
         ];
     }
 
+    /**
+     * Возвращает список всех пользователей
+     *
+     * @return array
+     */
+    // todo переименовать в getUsers
     public function userslist(){
         return $this->db->row('SELECT u.id, u.fname, u.lname FROM users u');
     }
 
-    public function projectsList(){
-        return $this->db->row('SELECT p.*, u.id AS creatorid,u.fname AS creatorfname, u.lname AS creatorlname FROM projects p JOIN users u ON p.creator = u.id');
-    }
-
+    /**
+     * Возвращает инфу о курсе для редактирования
+     *
+     * @param $courseid
+     *
+     * @return bool|mixed
+     */
+    // todo перенести в Course
+    // todo переименовать в getCourseInfoEdit
     public function courseEditInfo($courseid){
         if(!$course = $this->courseInfo($courseid)){
             return false;
@@ -75,6 +99,15 @@ class Admin extends Model{
         return $this->processTextOut($course);
     }
 
+    /**
+     * Возвращает инфу о курсе
+     *
+     * @param $courseid
+     *
+     * @return bool
+     */
+    // todo переименовать в getCourseInfo
+    // todo переименовать в getCourseInfo
     public function courseInfo($courseid){
         $params = [
             'id' => $courseid,
@@ -86,15 +119,35 @@ class Admin extends Model{
         return $course[0];
     }
 
+    /**
+     * Возвращает список типов курсов
+     * @return array
+     */
+    // todo перенести в Course
+    // todo переименовать в getCoursesTypes
     public function coursesTypeList(){
         return $this->db->row('SELECT ct.id, ct.name FROM courses_type ct');
     }
 
+    /**
+     * Возвращает список курсов
+     * @return array
+     */
+    // todo перенести в Course
+    // todo переименовать в getCourses
     public function coursesList(){
         $courses = $this->db->row('SELECT * FROM courses c ORDER BY c.timestart ASC');
         return $courses;
     }
 
+    /**
+     * Создает курс
+     *
+     * @param $indata
+     *
+     * @return string
+     */
+    // todo перенести в Course
     public function createCourse($indata){
         $params = $this->processTextIn($indata);
         $params['timestart'] = $this->toUnixTime($params['timestart']);
@@ -105,6 +158,15 @@ class Admin extends Model{
         return $this->db->lastInsertId();
     }
 
+    /**
+     * Обновление информации курса
+     *
+     * @param $id
+     * @param $indata
+     *
+     * @return bool
+     */
+    // todo перенести в Course
     public function updateCourse($id, $indata){
         $params = $this->processTextIn($indata);
         $params['timestart'] = $this->toUnixTime($params['timestart']);
@@ -116,12 +178,22 @@ class Admin extends Model{
         return true;
     }
 
+    /**
+     * Вовзращает список заданий курса
+     *
+     * @param $courseid
+     *
+     * @return array
+     */
+    // todo перенести в Course
+    // todo переименовать в getCoursesTasks
     public function courseTasks($courseid){
         $params = [
             'id' => $courseid,
         ];
         return $this->db->row('SELECT * FROM courses_tasks ct WHERE ct.course = :id ORDER BY ct.timestart ASC', $params);
     }
+
 
     public function taskEditInfo($taskid){
         if(!$task = $this->taskInfo($taskid)){
