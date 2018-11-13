@@ -338,6 +338,14 @@ class Account extends Model{
     }
 
     /**
+     * Возвращает список всех участников проекта
+     * @return array
+     */
+    public function getUsers(){
+        return $this->db->row('SELECT u.* FROM users u');
+    }
+
+    /**
      * Данные пользователя
      *
      * @param $username

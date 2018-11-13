@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\models\Account;
 use app\models\Admin;
 use app\models\Project;
 
@@ -10,7 +11,10 @@ class AdminController extends Controller{
 
     /* @var $model Admin */
     public $model;
-    protected $modelProject;
+    /* @var $modelProject Project */
+    public $modelProject;
+    /* @var $modelAccount Account*/
+    public $modelAccount;
 
     public function __construct($route){
         parent::__construct($route);
@@ -19,6 +23,7 @@ class AdminController extends Controller{
         }
 
         $this->modelProject = $this->loadModel('project');
+        $this->modelAccount = $this->loadModel('account');
     }
 
     public function indexAction(){
@@ -67,7 +72,7 @@ class AdminController extends Controller{
             }
         }
         $vars = [
-            'usersList' => $this->model->userslist(),
+            'usersList' => $this->modelAccount->getUsers(),
             'coursesList' => $this->model->courseslist(),
         ];
         $this->view->render($vars);
@@ -105,7 +110,7 @@ class AdminController extends Controller{
             $this->view->errorCode(404);
         }
         $vars = [
-            'userList' => $this->model->userslist(),
+            'userList' => $this->modelAccount->getUsers(),
             'coursesList' => $this->model->courseslist(),
             'project' => $this->modelProject->projectEditInfo($this->route['projectid']),
         ];
@@ -189,7 +194,7 @@ class AdminController extends Controller{
                 'title' => 'Список студентов по курсам',
             ],
             'userCoursesList' => $this->model->userCoursesList(),
-            'usersList' => $this->model->userslist(),
+            'usersList' => $this->modelAccount->getUsers(),
             'coursesList' => $this->model->coursesList()
         ];
         // debug($vars);
@@ -281,7 +286,7 @@ class AdminController extends Controller{
             }
         }
         $vars = [
-            'usersList' => $this->model->userslist(),
+            'usersList' => $this->modelAccount->getUsers(),
         ];
         $this->view->render($vars);
     }
@@ -305,7 +310,7 @@ class AdminController extends Controller{
             $this->view->errorCode(404);
         }
         $vars = [
-            'usersList' => $this->model->userslist(),
+            'usersList' => $this->modelAccount->getUsers(),
             'news' => $news,
         ];
         $this->view->render($vars);

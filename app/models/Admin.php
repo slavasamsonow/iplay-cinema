@@ -74,16 +74,6 @@ class Admin extends Model{
     }
 
     /**
-     * Возвращает список всех пользователей
-     *
-     * @return array
-     */
-    // todo переименовать в getUsers
-    public function userslist(){
-        return $this->db->row('SELECT u.id, u.fname, u.lname FROM users u');
-    }
-
-    /**
      * Возвращает инфу о курсе для редактирования
      *
      * @param $courseid
