@@ -26,9 +26,9 @@
     <?php require_once('include/navbar.php') ?>
 
     <div class="content">
-        <div class="container-fluid">
+<!--        <div class="container-fluid">-->
             <?=$content?>
-        </div>
+<!--        </div>-->
     </div>
 
     <?php require_once('include/footer_default.php') ?>
