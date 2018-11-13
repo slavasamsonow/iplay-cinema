@@ -41,7 +41,6 @@ class AccountController extends Controller{
             else{
                 $this->view->location('login');
             }
-            $this->view->message('OK', 'регистрируем!');
         }
         if($this->model->auth == 'guest'){
             $this->view->render('Регистрация');
