@@ -6,4 +6,4 @@
 <script src="/public/js/jquery.js"></script>
 <script src="/public/js/jquery.maskedinput.min.js"></script>
 <script src="/public/js/owl.carousel.min.js"></script>
-<script src="/public/js/main.js?v=0.15.7"></script>
+<script src="/public/js/main.js?v=0.16.0"></script>
