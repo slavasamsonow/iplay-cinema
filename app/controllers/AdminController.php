@@ -27,7 +27,7 @@ class AdminController extends Controller{
                 'title' => 'Админ-панель'
             ]
         ];
-        $this->view->render();
+        $this->view->render($vars);
     }
 
     public function confirmTasksAction(){
@@ -47,7 +47,7 @@ class AdminController extends Controller{
             'seo' => [
                 'title' => 'Список проектов',
             ],
-            'projects' => $this->model->projectsList(),
+            'projects' => $this->modelProject->getProjects(),
         ];
         $this->view->render($vars);
     }
