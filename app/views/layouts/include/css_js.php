@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/public/css/bootstrap.min.css">
-<link rel="stylesheet" href="/public/css/default.css?v=0.15.11">
-<link rel="stylesheet" href="/public/css/main.css?v=0.15.7">
+<link rel="stylesheet" href="/public/css/default.css?v=0.16.1">
+<link rel="stylesheet" href="/public/css/main.css?v=0.16.1">
 <link rel="stylesheet" href="/public/css/media.css?v=0.15.7">
 
 <script src="/public/js/jquery.js"></script>
