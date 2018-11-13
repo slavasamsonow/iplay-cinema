@@ -177,5 +177,9 @@ return [
         'controller' => 'admin',
         'action' => 'editpromocode',
     ],
+    'admin/createuser' => [
+        'controller' => 'admin',
+        'action' => 'createuser',
+    ],
 
 ];

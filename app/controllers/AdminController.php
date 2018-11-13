@@ -18,7 +18,7 @@ class AdminController extends Controller{
             $this->view->errorCode('403');
         }
 
-        $this->modelProject = $this->loadModel('project');;
+        $this->modelProject = $this->loadModel('project');
     }
 
     public function indexAction(){
@@ -354,6 +354,31 @@ class AdminController extends Controller{
         $vars = [
             'coursesList' => $this->model->coursesList(),
             'promocode' => $promocode,
+        ];
+        $this->view->render($vars);
+    }
+
+    public function createuserAction(){
+        if(!empty($_POST)){
+            $data = $_POST;
+
+            if(!$this->model->validate(['email'], $data)){
+                $this->view->message('Ошибка', $this->model->error);
+            }
+            else if($this->model->checkExists('email', $data['email'])){
+                $this->view->message('Ошибка', 'Пользователь с таким E-mail уже существует');
+            }
+
+            $this->modelAccount = $this->loadModel('account');
+
+            $this->modelAccount->register($data);
+
+            $this->view->message('Пользователь создан', '');
+        }
+        $vars = [
+            'seo' => [
+                'title' => 'Создание пользователя',
+            ]
         ];
         $this->view->render($vars);
     }
