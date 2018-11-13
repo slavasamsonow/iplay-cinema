@@ -56,7 +56,7 @@
 
 
     <?php if(!empty($teachers)): ?>
-        <div class="teachers">
+        <div class="teachers bg-purple white-text">
             <h2>Преподаватели</h2>
             <div class="row">
                 <?php foreach($teachers as $teacher): ?>
