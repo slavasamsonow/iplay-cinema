@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\models\Project;
 
 class ProjectController extends Controller{
 
@@ -40,7 +41,7 @@ class ProjectController extends Controller{
             'seo' => [
                 'title' => 'Список проектов',
             ],
-            'projects' => $this->model->projectsList(),
+            'projects' => $this->model->getActiveProjects(),
         ];
         $this->view->render($vars);
     }
