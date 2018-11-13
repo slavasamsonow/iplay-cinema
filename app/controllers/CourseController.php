@@ -102,7 +102,7 @@ class CourseController extends Controller{
                 'title' => $course['name'],
             ],
             'course' => $course,
-            'teachers' => $this->model->courseTeachers($course['id']),
+            'teachers' => $this->model->getCourseTeachers($course['id']),
             'curators' => $this->model->courseCurators($course['id']),
             'program' => $this->model->courseProgram($course['id']),
             'projects' => $this->model->courseProjects($course['id']),

@@ -95,8 +95,7 @@ class Course extends Model{
      *
      * @return array
      */
-    // todo переименоваь в getCourseTeachers
-    public function courseTeachers($courseId){
+    public function getCourseTeachers($courseId){
         $params = [
             'courseid' => $courseId,
         ];
