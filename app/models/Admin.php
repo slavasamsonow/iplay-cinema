@@ -10,7 +10,6 @@ class Admin extends Model{
      *
      * @return array
      */
-    // todo перенести в работу Course
     public function getNoverifyTasks(){
         $params = [
             'status' => 'verify',
@@ -90,7 +89,6 @@ class Admin extends Model{
      *
      * @return array
      */
-    // todo перенести в Course
     // todo переименовать в getCoursesTasks
     public function courseTasks($courseid){
         $params = [
@@ -99,6 +97,13 @@ class Admin extends Model{
         return $this->db->row('SELECT * FROM courses_tasks ct WHERE ct.course = :id ORDER BY ct.timestart ASC', $params);
     }
 
+    /**
+     * Возвращает информацию по заданию курса для редактивания
+     *
+     * @param $taskid
+     *
+     * @return bool|mixed
+     */
     public function taskEditInfo($taskid){
         if(!$task = $this->taskInfo($taskid)){
             return false;
@@ -106,6 +111,13 @@ class Admin extends Model{
         return $this->processTextOut($task);
     }
 
+    /**
+     * Возвращает информацию по заданию курса
+     *
+     * @param $taskid
+     *
+     * @return bool
+     */
     public function taskInfo($taskid){
         $params = [
             'id' => $taskid,
@@ -117,6 +129,14 @@ class Admin extends Model{
         return $task[0];
     }
 
+    /**
+     * Обновление задания курса
+     *
+     * @param $id
+     * @param $indata
+     *
+     * @return bool
+     */
     public function updateTask($id, $indata){
         $params = $this->processTextIn($indata);
 
@@ -141,6 +161,13 @@ class Admin extends Model{
         return true;
     }
 
+    /**
+     * Добавление задания курса
+     *
+     * @param $indata
+     *
+     * @return string
+     */
     public function addTask($indata){
         $params = $this->processTextIn($indata);
 
@@ -159,6 +186,11 @@ class Admin extends Model{
         return $this->db->lastInsertId();
     }
 
+    /**
+     * Удаление задания курса
+     *
+     * @param $taskid
+     */
     public function deleteTask($taskid){
         $params = [
             'id' => $taskid,
@@ -166,6 +198,7 @@ class Admin extends Model{
         $this->db->query('DELETE FROM courses_tasks WHERE id = :id', $params);
     }
 
+    // todo перенести в Course
     public function userCoursesList($param = []){
         if(isset($param['users'])){
             $usl['users'] = 'uc.user IN('.$param['users'].')';
@@ -205,6 +238,7 @@ class Admin extends Model{
         return $userCoursesList;
     }
 
+    //todo перенести в Course
     public function deleteUserCourse($data){
         if(!isset($data['user']) || !isset($data['course'])){
             return ['error' => 'Нет входных данных'];
@@ -228,6 +262,8 @@ class Admin extends Model{
         ];
     }
 
+
+    // todo перенести в Course
     public function addUserCourse($data){
         if(!isset($data['user']) || !isset($data['course'])){
             return ['error' => 'Нет входных данных'];
@@ -256,6 +292,7 @@ class Admin extends Model{
         ];
     }
 
+    // todo перенести в News
     public function newsList(){
         $news = $this->db->row('SELECT n.*, u.fname, u.lname, u.id AS authorId FROM news n JOIN users u ON n.author = u.id ORDER BY n.timestart DESC');
         foreach($news as $key => $newsitem){
@@ -265,6 +302,7 @@ class Admin extends Model{
         return $news;
     }
 
+    // todo перенести в News
     public function createNews($indata){
         $params = $this->processTextIn($indata);
         $params['timestart'] = $this->toUnixTime($params['datetime']);
@@ -275,6 +313,7 @@ class Admin extends Model{
         return $this->db->lastInsertId();
     }
 
+    // todo перенести в News
     public function newsEditInfo($newsid){
         if(!$news = $this->newsInfo($newsid)){
             return false;
@@ -282,6 +321,7 @@ class Admin extends Model{
         return $this->processTextOut($news);
     }
 
+    // todo перенести в News
     public function newsInfo($newsid){
         $params = [
             'id' => $newsid,
@@ -293,6 +333,7 @@ class Admin extends Model{
         return $news[0];
     }
 
+    // todo перенести в News
     public function updateNews($id, $indata){
         $params = $this->processTextIn($indata);
         $params['timestart'] = $this->toUnixTime($params['datetime']);
