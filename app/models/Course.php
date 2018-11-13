@@ -148,10 +148,11 @@ class Course extends Model{
         return $this->processTextOut($course);
     }
 
+
+
     /**
      * Работа с преподавателями курса
      */
-
 
     /**
      * Возвращает список преподавателей курса
@@ -175,10 +176,35 @@ class Course extends Model{
         return $teachers;
     }
 
+    public function addTeachers($courseId, $data){
+        $teachers = $this->getCourseTeachers($courseId);
+        foreach($teachers as $teacher){
+            if($teacher['id'] == $data['teacher']){
+                $this->error = 'Этот пользователь уже является преподавателем этого курса';
+                return false;
+            }
+        }
+        $params = $this->processTextIn($data);
+        $params['course'] = $courseId;
+        $paramNandV = $this->db->paramNandV($params);
+
+        $this->db->query('INSERT INTO `courses_teachers` ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
+        return $this->db->lastInsertId();
+    }
+
+    public function removeTeacher($courseId, $teacherId){
+        $params = [
+            'course' => $courseId,
+            'teacher' => $teacherId
+        ];
+        $this->db->query('DELETE FROM courses_teachers WHERE course = :course AND teacher = :teacher', $params);
+    }
+
+
+
     /**
      * Работа с кураторами курса
      */
-
 
     /**
      * Возвращает список кураторов курса
@@ -203,10 +229,11 @@ class Course extends Model{
         return $curators;
     }
 
+
+
     /**
      * Работа с программой курса
      */
-
 
     /**
      * Возвращает программу курса
@@ -223,10 +250,11 @@ class Course extends Model{
         return $this->db->row('SELECT cp.name, cp.description FROM courses_programs cp WHERE cp.course = :courseid', $params);
     }
 
+
+
     /**
      * Работа с проектами курса
      */
-
 
     /**
      * Возвращает проекты курса
@@ -286,10 +314,11 @@ class Course extends Model{
         }
     }
 
+
+
     /**
      * Работа с заданиями курса
      */
-
 
     /**
      * Возвращает задания курса
@@ -475,10 +504,11 @@ class Course extends Model{
         ];
     }
 
+
+
     /**
      * Работа с участниками курса
      */
-
 
     /**
      * Возвращает список студентов курса
