@@ -7,6 +7,10 @@ use app\core\Model;
 class Course extends Model{
 
     /**
+     * Работа с кусом
+     */
+
+    /**
      * Создает курс
      *
      * @param $data
@@ -145,6 +149,11 @@ class Course extends Model{
     }
 
     /**
+     * Работа с преподавателями курса
+     */
+
+
+    /**
      * Возвращает список преподавателей курса
      *
      * @param $courseId
@@ -165,6 +174,11 @@ class Course extends Model{
 
         return $teachers;
     }
+
+    /**
+     * Работа с кураторами курса
+     */
+
 
     /**
      * Возвращает список кураторов курса
@@ -190,6 +204,11 @@ class Course extends Model{
     }
 
     /**
+     * Работа с программой курса
+     */
+
+
+    /**
      * Возвращает программу курса
      *
      * @param $courseId
@@ -203,6 +222,11 @@ class Course extends Model{
         ];
         return $this->db->row('SELECT cp.name, cp.description FROM courses_programs cp WHERE cp.course = :courseid', $params);
     }
+
+    /**
+     * Работа с проектами курса
+     */
+
 
     /**
      * Возвращает проекты курса
@@ -261,6 +285,11 @@ class Course extends Model{
             return false;
         }
     }
+
+    /**
+     * Работа с заданиями курса
+     */
+
 
     /**
      * Возвращает задания курса
@@ -343,26 +372,6 @@ class Course extends Model{
             unset($taskDate['Общие']);
         }
         return $taskDate;
-    }
-
-    /**
-     * Возвращает список студентов курса
-     *
-     * @param $courseId
-     *
-     * @return array
-     */
-    public function getUsersCourse($courseId){
-        $params = [
-            'course' => $courseId,
-        ];
-        $usersList = $this->db->row('SELECT * FROM user_courses uc JOIN users u ON uc.user = u.id WHERE uc.course = :course', $params);
-        foreach($usersList as $key => $user){
-            if($user['username'] == ''){
-                $usersList[$key]['username'] = 'id'.$user['id'];
-            }
-        }
-        return $usersList;
     }
 
     /**
@@ -464,6 +473,31 @@ class Course extends Model{
             'percent' => $allpercent,
             'comment' => $comment,
         ];
+    }
+
+    /**
+     * Работа с участниками курса
+     */
+
+
+    /**
+     * Возвращает список студентов курса
+     *
+     * @param $courseId
+     *
+     * @return array
+     */
+    public function getUsersCourse($courseId){
+        $params = [
+            'course' => $courseId,
+        ];
+        $usersList = $this->db->row('SELECT * FROM user_courses uc JOIN users u ON uc.user = u.id WHERE uc.course = :course', $params);
+        foreach($usersList as $key => $user){
+            if($user['username'] == ''){
+                $usersList[$key]['username'] = 'id'.$user['id'];
+            }
+        }
+        return $usersList;
     }
 
 
