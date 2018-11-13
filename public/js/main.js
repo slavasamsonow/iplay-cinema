@@ -277,6 +277,43 @@ $(document).ready(function () {
         })
     })
 
+    $('button[data-type="courseteacher"]').click(function () {
+        var elem = $(this);
+        if (elem.hasClass('process')) {
+            return;
+        }
+        var action = elem.attr('data-action');
+        switch (action) {
+            case 'delete':
+                var teacher = elem.attr('data-teacher');
+                var course = elem.attr('data-course');
+                break;
+        }
+        elem.addClass('process');
+        $.ajax({
+            url: '/admin/course' + course + '/teachers',
+            type: 'post',
+            data: {
+                action: action,
+                teacher: teacher
+            },
+            success: function (result) {
+                json = jQuery.parseJSON(result);
+                if (json.data.status) {
+                    switch (json.data.status) {
+                        case 'delete':
+                            elem.closest('tr').fadeOut();
+                            break;
+                    }
+                }
+                if (json.data.error) {
+                    openModal('message', 'Ошибка', json.data.error);
+                }
+                elem.removeClass('process');
+            }
+        })
+    })
+
     $('button[data-type="show"]').click(function () {
         var elem = $(this);
         var show = elem.attr('data-action');
