@@ -74,42 +74,6 @@ class Admin extends Model{
     }
 
     /**
-     * Возвращает инфу о курсе для редактирования
-     *
-     * @param $courseid
-     *
-     * @return bool|mixed
-     */
-    // todo перенести в Course
-    // todo переименовать в getCourseInfoEdit
-    public function courseEditInfo($courseid){
-        if(!$course = $this->courseInfo($courseid)){
-            return false;
-        }
-        return $this->processTextOut($course);
-    }
-
-    /**
-     * Возвращает инфу о курсе
-     *
-     * @param $courseid
-     *
-     * @return bool
-     */
-    // todo переименовать в getCourseInfo
-    // todo переименовать в getCourseInfo
-    public function courseInfo($courseid){
-        $params = [
-            'id' => $courseid,
-        ];
-        $course = $this->db->row('SELECT * FROM courses c WHERE c.id = :id', $params);
-        if(empty($course)){
-            return false;
-        }
-        return $course[0];
-    }
-
-    /**
      * Возвращает список типов курсов
      * @return array
      */

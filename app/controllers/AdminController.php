@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\core\Controller;
 use app\models\Account;
 use app\models\Admin;
+use app\models\Course;
 use app\models\Project;
 
 class AdminController extends Controller{
@@ -15,6 +16,8 @@ class AdminController extends Controller{
     public $modelProject;
     /* @var $modelAccount Account*/
     public $modelAccount;
+    /* @var $modelCourse Course*/
+    public $modelCourse;
 
     public function __construct($route){
         parent::__construct($route);
@@ -24,6 +27,7 @@ class AdminController extends Controller{
 
         $this->modelProject = $this->loadModel('project');
         $this->modelAccount = $this->loadModel('account');
+        $this->modelCourse = $this->loadModel('course');
     }
 
     public function indexAction(){
@@ -161,7 +165,7 @@ class AdminController extends Controller{
                 $this->view->location('admin/courses');
             }
         }
-        if(!$course = $this->model->courseEditInfo($this->route['courseid'])){
+        if(!$course = $this->modelCourse->getCourseEdit($this->route['courseid'])){
             $this->view->errorCode(404);
         }
         $vars = [
@@ -208,7 +212,7 @@ class AdminController extends Controller{
             //     $this->view->location('admin/taskslist/'.$_POST['course']);
             // }
         }
-        if(!$course = $this->model->courseInfo($this->route['courseid'])){
+        if(!$course = $this->modelCourse->getCourse($this->route['courseid'])){
             $this->view->errorCode(404);
         }
         $vars = [
@@ -256,7 +260,7 @@ class AdminController extends Controller{
             }
         }
         $vars = [
-            'course' => $this->model->courseInfo($this->route['courseid']),
+            'course' => $this->modelCourse->getCourse($this->route['courseid']),
         ];
         $this->view->render($vars);
     }

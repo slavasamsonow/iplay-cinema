@@ -89,6 +89,39 @@ class Course extends Model{
     }
 
     /**
+     * Возвращает данные о курсе
+     *
+     * @param $courseId
+     *
+     * @return bool
+     */
+    public function getCourse($courseId){
+        $params = [
+            'id' => $courseId,
+        ];
+        $course = $this->db->row('SELECT c.* FROM courses c WHERE c.id = :id', $params);
+
+        if(empty($course)){
+            return false;
+        }
+        return $course[0];
+    }
+
+    /**
+     * Возвращает данные о курсе для редактирования
+     *
+     * @param $courseId
+     *
+     * @return bool|mixed
+     */
+    public function getCourseEdit($courseId){
+        if(!$course = $this->getCourse($courseId)){
+            return false;
+        }
+        return $this->processTextOut($course);
+    }
+
+    /**
      * Возвращает список преподавателей курса
      *
      * @param $courseId
