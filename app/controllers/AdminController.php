@@ -14,9 +14,9 @@ class AdminController extends Controller{
     public $model;
     /* @var $modelProject Project */
     public $modelProject;
-    /* @var $modelAccount Account*/
+    /* @var $modelAccount Account */
     public $modelAccount;
-    /* @var $modelCourse Course*/
+    /* @var $modelCourse Course */
     public $modelCourse;
 
     public function __construct($route){
@@ -400,7 +400,7 @@ class AdminController extends Controller{
             $userid = $_POST['userid'];
             unset($_POST['userid']);
 
-            $data =$_POST;
+            $data = $_POST;
 
             if(!isset($data['public'])){
                 $data['public'] = 0;
@@ -467,6 +467,9 @@ class AdminController extends Controller{
         }
 
         $vars = [
+            'seo' => [
+                'title' => 'Список преподавателей курса',
+            ],
             'course' => $course,
             'teachers' => $this->modelCourse->getCourseTeachers($course['id'])
         ];
@@ -492,6 +495,9 @@ class AdminController extends Controller{
         }
 
         $vars = [
+            'seo' => [
+                'title' => 'Добавление преподавателя к курсу',
+            ],
             'course' => $course,
             'usersList' => $this->modelAccount->getUsers(),
         ];
