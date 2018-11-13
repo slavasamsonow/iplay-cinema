@@ -6,13 +6,20 @@ use app\core\Model;
 
 class Project extends Model{
     /**
-     * Список проектов
+     * Возвращает список всех проектов
+     * @return array
+     */
+    public function getProjects(){
+        return $this->db->row('SELECT p.*, u.id AS creatorid, u.fname AS creatorfname, u.lname AS creatorlname FROM projects p JOIN users u ON p.creator = u.id');
+    }
+
+    /**
+     * Список активных проектов
      *
      * @return array
      */
-    // todo Переименовать в getActiveProjects
-    public function projectsList(){
-        return $this->db->row('SELECT p.*, u.id AS creatorid,u.fname AS creatorfname, u.lname AS creatorlname FROM projects p JOIN users u ON p.creator = u.id WHERE p.active = 1');
+    public function getActiveProjects(){
+        return $this->db->row('SELECT p.*, u.id AS creatorid, u.fname AS creatorfname, u.lname AS creatorlname FROM projects p JOIN users u ON p.creator = u.id WHERE p.active = 1');
     }
 
     /**
@@ -70,8 +77,12 @@ class Project extends Model{
      *
      * @return bool
      */
-    public function updateProject($id, $indata){
-        $params = $this->processTextIn($indata);
+    public function updateProject($id, $data){
+        if(!isset($data['active'])){
+            $data['active'] = 0;
+        }
+
+        $params = $this->processTextIn($data);
         $paramNV = $this->db->paramNV($params);
         $params['id'] = $id;
 
