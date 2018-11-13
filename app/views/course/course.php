@@ -372,7 +372,6 @@
 </div>
 
 </div>
-</div>
 
 <div class="modal video">
     <button type="button" class="close">&times;</button>
@@ -471,4 +470,3 @@
 </div>
 
 <div>
-    <div>
