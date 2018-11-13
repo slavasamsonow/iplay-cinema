@@ -732,6 +732,10 @@ tr:hover td{
 }
 
 .container-fluid{
+    padding: 0 90px;
+}
+
+.content .container-fluid{
     padding: 40px 90px;
 }
 
