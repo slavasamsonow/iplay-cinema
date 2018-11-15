@@ -149,10 +149,6 @@ return [
         'controller' => 'admin',
         'action' => 'edittask',
     ],
-    'admin/usercourses' => [
-        'controller' => 'admin',
-        'action' => 'usercourses',
-    ],
     'admin/newslist' => [
         'controller' => 'admin',
         'action' => 'newslist',
@@ -193,6 +189,15 @@ return [
     'admin/course-{courseid:\d+}/teachers/add' => [
         'controller' => 'admin',
         'action' => 'courseteachersadd',
+    ],
+
+    'admin/course-{courseid:\d+}/students' => [
+        'controller' => 'admin',
+        'action' => 'coursestudents',
+    ],
+    'admin/course-{courseid:\d+}/students/add' => [
+        'controller' => 'admin',
+        'action' => 'coursestudentsadd',
     ],
 
 ];
