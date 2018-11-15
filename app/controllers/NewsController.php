@@ -19,13 +19,13 @@ class NewsController extends Controller{
             'seo' => [
                 'title' => 'Новости',
             ],
-            'newslist' => $this->model->newsList(),
+            'newslist' => $this->model->getActive(),
         ];
         $this->view->render($vars);
     }
 
     public function newsinfoAction(){
-        if(!$news = $this->model->newsInfo($this->route['newsid'])){
+        if(!$news = $this->model->getItemActive($this->route['newsid'])){
             $this->view->errorCode(404);
         }
         $vars = [
