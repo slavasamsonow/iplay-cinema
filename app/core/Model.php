@@ -331,15 +331,6 @@ abstract class Model{
         return $newFilename;
     }
 
-    // todo Удалить
-    public function textformatting($data){
-        foreach($data as $key => $val){
-            $datanew = trim($val);
-            $dataout[$key] = htmlspecialchars($datanew);
-        }
-        return $dataout;
-    }
-
     /**
      * @param $datetime
      *
@@ -361,16 +352,6 @@ abstract class Model{
         $s = $timeAr[2];
 
         return mktime($h, $i, $s, $m, $d, $y);
-    }
-
-    // todo Удалить
-    public function descriptionText($strings){
-        foreach($strings as $key => $string){
-            $newstring = '<p>'.$string.'.</p>';
-            $newstring = preg_replace(array("/\r\n/", "/\r/", "/\n/"), '<p></p>', $newstring);
-            $newstrings[$key] = $newstring;
-        }
-        return $newstrings;
     }
 
     /**
