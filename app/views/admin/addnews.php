@@ -8,7 +8,7 @@
             </div>
             <div class="control-group form-group">
                 <label>Дата и время</label>
-                <input type="text" class="form-control" name="datetime" required="true"
+                <input type="text" class="form-control" name="timestart" required="true"
                        value="<?=date('d.m.Y H:i:m', time())?>">
             </div>
             <div class="control-group form-group">
