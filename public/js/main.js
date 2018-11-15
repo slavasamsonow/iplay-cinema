@@ -285,17 +285,54 @@ $(document).ready(function () {
         var action = elem.attr('data-action');
         switch (action) {
             case 'delete':
-                var teacher = elem.attr('data-teacher');
+                var user = elem.attr('data-user');
                 var course = elem.attr('data-course');
                 break;
         }
         elem.addClass('process');
         $.ajax({
-            url: '/admin/course' + course + '/teachers',
+            url: '/admin/course-' + course + '/teachers',
             type: 'post',
             data: {
                 action: action,
-                teacher: teacher
+                user: user
+            },
+            success: function (result) {
+                json = jQuery.parseJSON(result);
+                if (json.data.status) {
+                    switch (json.data.status) {
+                        case 'delete':
+                            elem.closest('tr').fadeOut();
+                            break;
+                    }
+                }
+                if (json.data.error) {
+                    openModal('message', 'Ошибка', json.data.error);
+                }
+                elem.removeClass('process');
+            }
+        })
+    })
+
+    $('button[data-type="coursestudent"]').click(function () {
+        var elem = $(this);
+        if (elem.hasClass('process')) {
+            return;
+        }
+        var action = elem.attr('data-action');
+        switch (action) {
+            case 'delete':
+                var user = elem.attr('data-user');
+                var course = elem.attr('data-course');
+                break;
+        }
+        elem.addClass('process');
+        $.ajax({
+            url: '/admin/course-' + course + '/students',
+            type: 'post',
+            data: {
+                action: action,
+                user: user
             },
             success: function (result) {
                 json = jQuery.parseJSON(result);
