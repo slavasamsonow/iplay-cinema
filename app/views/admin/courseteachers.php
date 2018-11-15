@@ -20,7 +20,7 @@
                     </td>
                     <td>
                         <button class="btn" data-type="courseteacher" data-action="delete"
-                                data-course="<?=$course['id']?>" data-teacher="<?=$teacher['id']?>">
+                                data-course="<?=$course['id']?>" data-user="<?=$teacher['id']?>">
                             Удалить
                         </button>
                     </td>
