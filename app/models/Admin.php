@@ -6,6 +6,10 @@ use app\core\Model;
 
 class Admin extends Model{
     /**
+     * Работа с заданиями
+     */
+
+    /**
      * Возвращает список непроверенных заданий
      *
      * @return array
@@ -70,16 +74,6 @@ class Admin extends Model{
             'id' => $data['id'],
             'status' => $data['status'],
         ];
-    }
-
-    /**
-     * Возвращает список типов курсов
-     * @return array
-     */
-    // todo перенести в Course
-    // todo переименовать в getCoursesTypes
-    public function coursesTypeList(){
-        return $this->db->row('SELECT ct.id, ct.name FROM courses_type ct');
     }
 
     /**
@@ -198,6 +192,11 @@ class Admin extends Model{
         $this->db->query('DELETE FROM courses_tasks WHERE id = :id', $params);
     }
 
+
+
+
+
+
     // todo перенести в Course
     public function userCoursesList($param = []){
         if(isset($param['users'])){
@@ -291,6 +290,12 @@ class Admin extends Model{
             'user' => $userCourse
         ];
     }
+
+
+
+
+
+
 
     // todo перенести в News
     public function newsList(){
