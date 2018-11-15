@@ -29,8 +29,7 @@ class Project extends Model{
      *
      * @return bool
      */
-    // todo переименовать в getProjectInfo
-    public function projectInfo($projectid){
+    public function getItem($projectid){
         $params = [
             'id' => $projectid,
         ];
@@ -48,9 +47,8 @@ class Project extends Model{
      *
      * @return mixed
      */
-    // todo переименовать в getProjectEditInfo
-    public function projectEditInfo($projectid){
-        return $this->processTextOut($this->projectInfo($projectid));
+    public function getItemEdit($projectid){
+        return $this->processTextOut($this->getItem($projectid));
     }
 
     /**
