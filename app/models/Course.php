@@ -151,6 +151,19 @@ class Course extends Model{
 
 
     /**
+     * Работа с типами курсов
+     */
+    /**
+     * Возвращает список типов курсов
+     * @return array
+     */
+    public function getCoursesTypes(){
+        return $this->db->row('SELECT ct.id, ct.name FROM courses_type ct');
+    }
+
+
+
+    /**
      * Работа с преподавателями курса
      */
 
@@ -176,16 +189,21 @@ class Course extends Model{
         return $teachers;
     }
 
-    public function addTeachers($courseId, $data){
-        $teachers = $this->getCourseTeachers($courseId);
-        foreach($teachers as $teacher){
-            if($teacher['id'] == $data['teacher']){
-                $this->error = 'Этот пользователь уже является преподавателем этого курса';
-                return false;
-            }
+    public function addTeachers($courseId, $userId){
+        $params = [
+            'teacher' => $userId,
+            'course' => $courseId,
+        ];
+        $id = $this->db->column('SELECT ct.id FROM courses_teachers ct WHERE ct.teacher = :teacher AND ct.course = :course', $params);
+        if($id){
+            $this->error = 'Этот пользователь уже является преподавателем этого курса';
+            return false;
         }
-        $params = $this->processTextIn($data);
-        $params['course'] = $courseId;
+
+        $params = [
+            'course' => $courseId,
+            'teacher' => $userId,
+        ];
         $paramNandV = $this->db->paramNandV($params);
 
         $this->db->query('INSERT INTO `courses_teachers` ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
@@ -517,7 +535,50 @@ class Course extends Model{
      *
      * @return array
      */
-    public function getUsersCourse($courseId){
+    public function getCourseStudents($courseId, $params = []){
+        $params = [
+            'course' => $courseId,
+        ];
+
+        if(isset($param['users'])){
+            $usl['users'] = 'uc.user IN('.$param['users'].')';
+        }
+        if(isset($param['courses'])){
+            $usl['courses'] = 'uc.course IN('.$param['courses'].')';
+        }
+
+
+        $uslText = '';
+        if(!empty($usl)){
+            foreach($usl as $uslItem){
+                $uslText .= 'AND '.$uslItem;
+            }
+        }
+        $query = 'SELECT
+        u.id AS userid, u.fname, u.lname, u.photo, u.username,
+        c.id AS courseid, c.name AS coursename, c.type,
+        uc.percent
+        FROM user_courses uc
+        JOIN users u ON uc.user = u.id
+        JOIN courses c ON uc.course = c.id
+        WHERE uc.course = :course '.
+            $uslText
+            .'
+        ORDER BY uc.course ASC, u.fname ASC, u.lname ASC';
+        //        debug($params);
+        $userCoursesList = $this->db->row($query, $params);
+
+        foreach($userCoursesList as $key => $userCourses){
+            if($userCourses['type'] == 0){
+                unset($userCoursesList[$key]);
+            }
+            else{
+                $userCoursesList[$key]['fullName'] = $userCourses['fname'].' '.$userCourses['lname'];
+            }
+        }
+        return $userCoursesList;
+
+
         $params = [
             'course' => $courseId,
         ];
@@ -528,6 +589,42 @@ class Course extends Model{
             }
         }
         return $usersList;
+    }
+
+    public function addCourseStudent($courseId, $userId){
+        $params = [
+            'user' => $userId,
+            'course' => $courseId,
+        ];
+        $id = $this->db->column('SELECT uc.id FROM user_courses uc WHERE uc.user = :user AND uc.course = :course', $params);
+        if($id){
+            $this->error = 'У этого пользователя уже есть этот курс';
+            return false;
+        }
+
+        $paramNandV = $this->db->paramNandV($params);
+        $this->db->query('INSERT INTO user_courses ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
+        return $this->db->lastInsertId();
+    }
+
+    public function removeCourseStudent($courseId, $userId){
+        $params = [
+            'user' => $userId,
+            'course' => $courseId
+        ];
+        $id = $this->db->column('SELECT uc.id FROM user_courses uc WHERE uc.user = :user AND uc.course = :course', $params);
+        if(!$id){
+            $this->error = 'У этого пользователя нет этого курса';
+            return false;
+        }
+
+        $params = [
+            'id' => $id,
+        ];
+        $this->db->query('DELETE FROM user_courses WHERE id = :id', $params);
+        return [
+            'status' => 'delete',
+        ];
     }
 
 
