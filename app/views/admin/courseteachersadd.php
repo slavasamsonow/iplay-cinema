@@ -1,14 +1,13 @@
 <div class="container-fluid">
-    <h1>Страница создания задания</h1>
+    <h1>Страница прикрепления преподавателя</h1>
     <form action="<?=explode('?', $_SERVER['REQUEST_URI'])[0];?>" method="post">
-        <input type="hidden" name="course" value="<?=$course['id']?>">
         <div class="control-group form-group">
             <label>Курс: </label>
             <input type="text" class="form-control" value="<?=$course['name']?>" readonly>
         </div>
         <div class="control-group form-group">
-            <label>Автор:</label>
-            <select class="form-control" name="teacher">
+            <label>Преподаватель:</label>
+            <select class="form-control" name="user">
                 <?php foreach($usersList as $userListItem): ?>
                     <option value="<?=$userListItem['id']?>">
                         <?=$userListItem['fname'].' '.$userListItem['lname']?>
