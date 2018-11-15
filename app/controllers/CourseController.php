@@ -37,7 +37,7 @@ class CourseController extends Controller{
             'seo' => [
                 'title' => 'Список курсов и мероприятий',
             ],
-            'coursesList' => $this->model->coursesList($paramsCourses),
+            'coursesList' => $this->model->getActive($paramsCourses),
         ];
 
         $this->view->render($vars);
@@ -93,7 +93,7 @@ class CourseController extends Controller{
                 $this->view->message('Ваша заявка отправлена', 'В скором времени мы свяжемся с вами');
             }
         }
-        if(!$course = $this->model->getCourse($this->route['courseid'])){
+        if(!$course = $this->model->getItem($this->route['courseid'])){
             $this->view->redirect('account');
         }
         if($course['active'] == 0){
@@ -105,10 +105,10 @@ class CourseController extends Controller{
                 'title' => $course['name'],
             ],
             'course' => $course,
-            'teachers' => $this->model->getCourseTeachers($course['id']),
-            'curators' => $this->model->courseCurators($course['id']),
-            'program' => $this->model->courseProgram($course['id']),
-            'projects' => $this->model->courseProjects($course['id']),
+            'teachers' => $this->model->getTeachers($course['id']),
+            'curators' => $this->model->getCurators($course['id']),
+            'program' => $this->model->getProgram($course['id']),
+            'projects' => $this->model->getProjectsCourse($course['id']),
         ];
         if($course['caption'] != ''){
             $vars['seo']['description'] = $course['caption'];
