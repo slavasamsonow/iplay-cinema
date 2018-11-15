@@ -192,11 +192,22 @@ class Admin extends Model{
         $this->db->query('DELETE FROM courses_tasks WHERE id = :id', $params);
     }
 
+    /**
+     * Возвращает список промокодов
+     * @return array
+     */
     public function promocodeList(){
         $promocode = $this->db->row('SELECT pp.*, c.name AS `courseName` FROM payments_promocode pp LEFT JOIN courses c ON pp.course = c.id ORDER BY pp.timestart DESC');
         return $promocode;
     }
 
+    /**
+     * Создает промокод
+     *
+     * @param $indata
+     *
+     * @return string
+     */
     public function createPromocode($indata){
         $params = $this->processTextIn($indata);
         $params['timestart'] = $this->toUnixTime($params['timestart']);
@@ -206,6 +217,13 @@ class Admin extends Model{
         return $this->db->lastInsertId();
     }
 
+    /**
+     * Возвращает информацию о промокоде
+     *
+     * @param $promocodeid
+     *
+     * @return bool
+     */
     public function promocodeInfo($promocodeid){
         $params = [
             'id' => $promocodeid,
@@ -217,6 +235,14 @@ class Admin extends Model{
         return $promocode[0];
     }
 
+    /**
+     * Обновление информации  промокоде
+     *
+     * @param $id
+     * @param $indata
+     *
+     * @return bool
+     */
     public function updatePromocode($id, $indata){
         $params = $this->processTextIn($indata);
         $params['timestart'] = $this->toUnixTime($params['timestart']);
