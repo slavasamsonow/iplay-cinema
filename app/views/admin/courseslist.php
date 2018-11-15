@@ -53,6 +53,7 @@
                     <a href="/admin/editcourse/<?=$courses[$i]['id']?>" class="btn btn-default btn-sm">Редактировать</a>
                     <a href="/admin/taskslist/<?=$courses[$i]['id']?>" class="btn btn-sm">Задания</a>
                     <a href="/admin/course-<?=$courses[$i]['id']?>/teachers" class="btn btn-sm">Преподаватели</a>
+                    <a href="/admin/course-<?=$courses[$i]['id']?>/students" class="btn btn-sm">Студенты</a>
                 </div>
                 <?php if($i % 3 == 2 || $i + 1 == count($courses)): ?>
                     </div>
