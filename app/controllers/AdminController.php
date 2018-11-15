@@ -81,7 +81,7 @@ class AdminController extends Controller{
         }
         $vars = [
             'usersList' => $this->modelAccount->getUsers(),
-            'coursesList' => $this->modelCourse->getCourses(),
+            'coursesList' => $this->modelCourse->getAll(),
         ];
         $this->view->render($vars);
     }
@@ -119,8 +119,8 @@ class AdminController extends Controller{
         }
         $vars = [
             'userList' => $this->modelAccount->getUsers(),
-            'coursesList' => $this->modelCourse->getCourses(),
-            'project' => $this->modelProject->projectEditInfo($this->route['projectid']),
+            'coursesList' => $this->modelCourse->getAll(),
+            'project' => $this->modelProject->getItemEdit($this->route['projectid']),
         ];
         $this->view->render($vars);
     }
@@ -130,7 +130,7 @@ class AdminController extends Controller{
             'seo' => [
                 'title' => 'Список курсов',
             ],
-            'courses' => $this->modelCourse->getCourses(),
+            'courses' => $this->modelCourse->getAll(),
         ];
         $this->view->render($vars);
     }
@@ -138,7 +138,7 @@ class AdminController extends Controller{
     public function addcourseAction(){
         if(!empty($_POST)){
             $data = $_POST;
-            if($courseid = $this->modelCourse->createCourse($data)){
+            if($courseid = $this->modelCourse->create($data)){
                 $this->view->location('admin/courses');
             }
         }
@@ -166,11 +166,11 @@ class AdminController extends Controller{
 
             // $this->view->message("+", json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ));
 
-            if($this->modelCourse->updateCourse($id, $data)){
+            if($this->modelCourse->update($id, $data)){
                 $this->view->location('admin/courses');
             }
         }
-        if(!$course = $this->modelCourse->getCourseEdit($this->route['courseid'])){
+        if(!$course = $this->modelCourse->getItemActive($this->route['courseid'])){
             $this->view->errorCode(404);
         }
         $vars = [
@@ -187,7 +187,7 @@ class AdminController extends Controller{
             //     $this->view->location('admin/taskslist/'.$_POST['course']);
             // }
         }
-        if(!$course = $this->modelCourse->getCourse($this->route['courseid'])){
+        if(!$course = $this->modelCourse->getItem($this->route['courseid'])){
             $this->view->errorCode(404);
         }
         $vars = [
@@ -235,7 +235,7 @@ class AdminController extends Controller{
             }
         }
         $vars = [
-            'course' => $this->modelCourse->getCourse($this->route['courseid']),
+            'course' => $this->modelCourse->getItem($this->route['courseid']),
         ];
         $this->view->render($vars);
     }
@@ -314,7 +314,7 @@ class AdminController extends Controller{
             }
         }
         $vars = [
-            'coursesList' => $this->modelCourse->getCourses(),
+            'coursesList' => $this->modelCourse->getAll(),
         ];
         $this->view->render($vars);
     }
@@ -336,7 +336,7 @@ class AdminController extends Controller{
             $this->view->errorCode(404);
         }
         $vars = [
-            'coursesList' => $this->modelCourse->getCourses(),
+            'coursesList' => $this->modelCourse->getAll(),
             'promocode' => $promocode,
         ];
         $this->view->render($vars);
@@ -418,7 +418,7 @@ class AdminController extends Controller{
         if(!empty($_POST)){
             $data = $_POST;
             $courseid = $this->route['courseid'];
-            if(!$this->modelCourse->getCourse($courseid)){
+            if(!$this->modelCourse->getItem($courseid)){
                 $this->view->message('Ошибка', 'Неизвестный курс');
             }
 
@@ -436,7 +436,7 @@ class AdminController extends Controller{
 
             $this->view->location('admin/course-'.$courseid.'/teachers');
         }
-        if(!$course = $this->modelCourse->getCourse($this->route['courseid'])){
+        if(!$course = $this->modelCourse->getItem($this->route['courseid'])){
             $this->view->error(404);
         }
 
@@ -445,7 +445,7 @@ class AdminController extends Controller{
                 'title' => 'Список преподавателей курса '.$course['name'],
             ],
             'course' => $course,
-            'teachers' => $this->modelCourse->getCourseTeachers($course['id'])
+            'teachers' => $this->modelCourse->getTeachers($course['id'])
         ];
         $this->view->render($vars);
     }
@@ -454,7 +454,7 @@ class AdminController extends Controller{
         if(!empty($_POST)){
             $data = $_POST;
             $courseId = $this->route['courseid'];
-            if(!$this->modelCourse->getCourse($courseId)){
+            if(!$this->modelCourse->getItem($courseId)){
                 $this->view->message('Ошибка', 'Неизвестный курс');
             }
 
@@ -466,7 +466,7 @@ class AdminController extends Controller{
 
             $this->view->location('admin/course-'.$courseId.'/teachers');
         }
-        if(!$course = $this->modelCourse->getCourse($this->route['courseid'])){
+        if(!$course = $this->modelCourse->getItem($this->route['courseid'])){
             $this->view->error(404);
         }
 
@@ -484,7 +484,7 @@ class AdminController extends Controller{
         if(!empty($_POST)){
             $data = $_POST;
             $courseId = $this->route['courseid'];
-            if(!$this->modelCourse->getCourse($courseId)){
+            if(!$this->modelCourse->getItem($courseId)){
                 $this->view->message('Ошибка', 'Неизвестный курс');
             }
 
@@ -505,7 +505,7 @@ class AdminController extends Controller{
             $this->view->location('admin/course-'.$courseId.'/students');
         }
 
-        if(!$course = $this->modelCourse->getCourse($this->route['courseid'])){
+        if(!$course = $this->modelCourse->getItem($this->route['courseid'])){
             $this->view->error(404);
         }
 
@@ -523,7 +523,7 @@ class AdminController extends Controller{
         if(!empty($_POST)){
             $data = $_POST;
             $courseId = $this->route['courseid'];
-            if(!$this->modelCourse->getCourse($courseId)){
+            if(!$this->modelCourse->getItem($courseId)){
                 $this->view->message('Ошибка', 'Неизвестный курс');
             }
 
@@ -535,7 +535,7 @@ class AdminController extends Controller{
 
             $this->view->location('admin/course-'.$courseId.'/students');
         }
-        if(!$course = $this->modelCourse->getCourse($this->route['courseid'])){
+        if(!$course = $this->modelCourse->getItem($this->route['courseid'])){
             $this->view->error(404);
         }
 
