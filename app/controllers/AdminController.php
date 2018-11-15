@@ -6,6 +6,7 @@ use app\core\Controller;
 use app\models\Account;
 use app\models\Admin;
 use app\models\Course;
+use app\models\News;
 use app\models\Project;
 
 class AdminController extends Controller{
@@ -18,6 +19,8 @@ class AdminController extends Controller{
     public $modelAccount;
     /* @var $modelCourse Course */
     public $modelCourse;
+    /* @var $modelNews News*/
+    public $modelNews;
 
     public function __construct($route){
         parent::__construct($route);
@@ -28,6 +31,7 @@ class AdminController extends Controller{
         $this->modelProject = $this->loadModel('project');
         $this->modelAccount = $this->loadModel('account');
         $this->modelCourse = $this->loadModel('course');
+        $this->modelNews = $this->loadModel('news');
     }
 
     public function indexAction(){
@@ -241,7 +245,7 @@ class AdminController extends Controller{
             'seo' => [
                 'title' => 'Список новостей',
             ],
-            'news' => $this->model->newsList(),
+            'news' => $this->modelNews->getAll(),
         ];
         $this->view->render($vars);
     }
@@ -256,7 +260,7 @@ class AdminController extends Controller{
                 }
             }
 
-            if($id = $this->model->createNews($data)){
+            if($id = $this->modelNews->create($data)){
                 $this->view->location('admin/newslist');
             }
         }
@@ -277,11 +281,11 @@ class AdminController extends Controller{
 
             // $this->view->message("+", json_encode($data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ));
 
-            if($this->model->updateNews($id, $data)){
+            if($this->modelNews->update($id, $data)){
                 $this->view->location('admin/newslist');
             }
         }
-        if(!$news = $this->model->newsEditInfo($this->route['newsid'])){
+        if(!$news = $this->modelNews->getItemEdit($this->route['newsid'])){
             $this->view->errorCode(404);
         }
         $vars = [
