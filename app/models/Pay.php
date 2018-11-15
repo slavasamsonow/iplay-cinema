@@ -5,18 +5,6 @@ namespace app\models;
 use app\core\Model;
 
 class Pay extends Model{
-    // todo перенести в Course
-    public function courseInfo($id){
-        $params = [
-            'id' => $id,
-        ];
-        $course = $this->db->row('SELECT c.*, ct.eng AS `type` FROM courses c JOIN courses_type ct ON c.type = ct.id WHERE c.id=:id', $params);
-        if(empty($course)){
-            return false;
-        }
-        return $course[0];
-    }
-
     // todo перенести в Account
     public function checkUserCourse($courseid){
         $params = [
