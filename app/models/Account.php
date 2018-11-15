@@ -277,6 +277,7 @@ class Account extends Model{
      *
      * @return bool
      */
+    // todo перенести в Course
     public function createUserCourse($course, $user){
         $params = [
             'course' => $course,
