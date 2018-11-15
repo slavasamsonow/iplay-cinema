@@ -139,7 +139,7 @@ class AdminController extends Controller{
             }
         }
         $vars = [
-            'coursesTypes' => $this->model->coursesTypeList(),
+            'coursesTypes' => $this->modelCourse->getCoursesTypes(),
         ];
         $this->view->render($vars);
     }
@@ -170,39 +170,9 @@ class AdminController extends Controller{
             $this->view->errorCode(404);
         }
         $vars = [
-            'coursesTypes' => $this->model->coursesTypeList(),
+            'coursesTypes' => $this->modelCourse->getCoursesTypes(),
             'course' => $course,
         ];
-        $this->view->render($vars);
-    }
-
-    public function usercoursesAction(){
-        if(!empty($_POST)){
-            if(isset($_POST['action'])){
-                $data = [];
-                switch($_POST['action']){
-                    case 'delete':
-                        $data = $this->model->deleteUserCourse($_POST);
-                        break;
-                    case 'add':
-                        $data = $this->model->addUserCourse($_POST);
-                        break;
-                }
-                $this->view->data($data);
-            }
-            else{
-                exit();
-            }
-        }
-        $vars = [
-            'seo' => [
-                'title' => 'Список студентов по курсам',
-            ],
-            'userCoursesList' => $this->model->userCoursesList(),
-            'usersList' => $this->modelAccount->getUsers(),
-            'coursesList' => $this->modelCourse->getCourses()
-        ];
-        // debug($vars);
         $this->view->render($vars);
     }
 
@@ -450,17 +420,17 @@ class AdminController extends Controller{
 
             switch($data['action']){
                 case 'delete':
-                    $this->modelCourse->removeTeacher($courseid, $data['teacher']);
+                    $this->modelCourse->removeTeacher($courseid, $data['user']);
                     $status = [
                         'status' => 'delete'
                     ];
                     $this->view->data($status);
                     break;
                 default:
-                    $this->view->message('неизвестное действие');
+                    $this->view->message('неизвестное действие', '');
             }
 
-            $this->view->location('admin/course'.$courseid.'/teachers');
+            $this->view->location('admin/course-'.$courseid.'/teachers');
         }
         if(!$course = $this->modelCourse->getCourse($this->route['courseid'])){
             $this->view->error(404);
@@ -468,7 +438,7 @@ class AdminController extends Controller{
 
         $vars = [
             'seo' => [
-                'title' => 'Список преподавателей курса',
+                'title' => 'Список преподавателей курса '.$course['name'],
             ],
             'course' => $course,
             'teachers' => $this->modelCourse->getCourseTeachers($course['id'])
@@ -479,16 +449,87 @@ class AdminController extends Controller{
     public function courseteachersaddAction(){
         if(!empty($_POST)){
             $data = $_POST;
-            $courseid = $this->route['courseid'];
-            if(!$this->modelCourse->getCourse($courseid)){
+            $courseId = $this->route['courseid'];
+            if(!$this->modelCourse->getCourse($courseId)){
                 $this->view->message('Ошибка', 'Неизвестный курс');
             }
 
-            if(!$this->modelCourse->addTeachers($courseid, $data)){
+            $userId = $_POST['user'];
+
+            if(!$this->modelCourse->addTeachers($courseId, $userId)){
                 $this->view->message('Ошибка', $this->modelCourse->error);
             }
 
-            $this->view->location('admin/course'.$courseid.'/teachers');
+            $this->view->location('admin/course-'.$courseId.'/teachers');
+        }
+        if(!$course = $this->modelCourse->getCourse($this->route['courseid'])){
+            $this->view->error(404);
+        }
+
+        $vars = [
+            'seo' => [
+                'title' => 'Добавление преподавателя к курсу',
+            ],
+            'course' => $course,
+            'usersList' => $this->modelAccount->getUsers(),
+        ];
+        $this->view->render($vars);
+    }
+
+    public function coursestudentsAction(){
+        if(!empty($_POST)){
+            $data = $_POST;
+            $courseId = $this->route['courseid'];
+            if(!$this->modelCourse->getCourse($courseId)){
+                $this->view->message('Ошибка', 'Неизвестный курс');
+            }
+
+            $userId = $data['user'];
+
+            switch($data['action']){
+                case 'delete':
+                    $this->modelCourse->removeCourseStudent($courseId, $userId);
+                    $status = [
+                        'status' => 'delete'
+                    ];
+                    $this->view->data($status);
+                    break;
+                default:
+                    $this->view->message('неизвестное действие', '');
+            }
+
+            $this->view->location('admin/course-'.$courseId.'/students');
+        }
+
+        if(!$course = $this->modelCourse->getCourse($this->route['courseid'])){
+            $this->view->error(404);
+        }
+
+        $vars = [
+            'seo' => [
+                'title' => 'Список студентов курса '.$course['name'],
+            ],
+            'course' => $course,
+            'students' => $this->modelCourse->getCourseStudents($course['id'])
+        ];
+        $this->view->render($vars);
+    }
+
+    public function coursestudentsaddAction(){
+        if(!empty($_POST)){
+            $data = $_POST;
+            $courseId = $this->route['courseid'];
+            if(!$this->modelCourse->getCourse($courseId)){
+                $this->view->message('Ошибка', 'Неизвестный курс');
+            }
+
+            $userId = $data['user'];
+
+            if(!$this->modelCourse->addCourseStudent($courseId, $userId)){
+                $this->view->message('Ошибка', $this->modelCourse->error);
+            }
+
+            $this->view->location('admin/course-'.$courseId.'/students');
         }
         if(!$course = $this->modelCourse->getCourse($this->route['courseid'])){
             $this->view->error(404);
