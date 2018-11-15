@@ -294,15 +294,11 @@ class Account extends Model{
     }
 
     /**
-     * Список курсов пользователя
+     * Возвращает список всех участников проекта
      * @return array
      */
-    // todo переименовать в getActiveCourses
-    public function activeCoursesList(){
-        $params = [
-            'userid' => $_SESSION['user']['id'],
-        ];
-        return $this->db->row('SELECT c.*, uc.percent FROM courses c JOIN user_courses uc ON c.id = uc.course WHERE uc.user = :userid ORDER BY c.timestart ASC', $params);
+    public function getUsers(){
+        return $this->db->row('SELECT u.* FROM users u');
     }
 
     /**
@@ -312,8 +308,7 @@ class Account extends Model{
      *
      * @return array
      */
-    // todo переимновать в getUsers
-    public function usersList($param = []){
+    public function getActiveUsers($param = []){
         $countElem = $this->db->column('SELECT COUNT(*) FROM `users`');
         //$pagination = $this->pagination($countElem);
 
@@ -328,7 +323,7 @@ class Account extends Model{
         }
 
         //$usersList = $this->db->row('SELECT `id`, `username`, `fname`, `lname`, `photo` FROM `users` WHERE `active` = 1 '.$noId.' LIMIT :start,:limit', $params);
-        $usersList = $this->db->row('SELECT `id`, `username`, `fname`, `lname`, `photo` FROM `users` WHERE `active` = 1 '.$noId, $params);
+        $usersList = $this->db->row('SELECT u.* FROM users u WHERE `active` = 1 '.$noId, $params);
         foreach($usersList as $key => $user){
             if($user['username'] == ''){
                 $usersList[$key]['username'] = 'id'.$user['id'];
@@ -338,22 +333,13 @@ class Account extends Model{
     }
 
     /**
-     * Возвращает список всех участников проекта
-     * @return array
-     */
-    public function getUsers(){
-        return $this->db->row('SELECT u.* FROM users u');
-    }
-
-    /**
      * Данные пользователя
      *
      * @param $username
      *
      * @return bool
      */
-    // todo переименова в getUserInfo
-    public function userInfo($username){
+    public function getUser($username){
         if(preg_match('/^id[0-9]+$/', $username)){
             $params = [
                 'id' => substr($username, 2),
@@ -380,8 +366,7 @@ class Account extends Model{
      *
      * @return array
      */
-    // todo переименовать в getUsersProjects
-    public function userProjects($userid){
+    public function getUsersProjects($userid){
         $params = [
             'userid' => $userid
         ];

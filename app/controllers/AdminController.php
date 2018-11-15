@@ -427,7 +427,7 @@ class AdminController extends Controller{
             $this->view->message('Данные сохранены', '');
         }
 
-        if(!$userInfo = $this->modelAccount->userInfo($this->route['username'])){
+        if(!$userInfo = $this->modelAccount->getUser($this->route['username'])){
             $this->view->errorCode('404');
         }
 

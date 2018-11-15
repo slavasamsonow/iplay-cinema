@@ -231,7 +231,7 @@ class AccountController extends Controller{
      */
     public function usersAction(){
         if($this->model->auth == 'auth'){
-            $users = $this->model->usersList($_GET);
+            $users = $this->model->getActiveUsers($_GET);
             $vars = [
                 'seo' => [
                     'title' => 'Пользователи',
@@ -249,7 +249,7 @@ class AccountController extends Controller{
      * Страница пользователя
      */
     public function userAction(){
-        if(!$userPage = $this->model->userInfo($this->route['username'])){
+        if(!$userPage = $this->model->getUser($this->route['username'])){
             $this->view->errorCode('404');
         }
 
@@ -258,7 +258,7 @@ class AccountController extends Controller{
                 'title' => $userPage['fname'].' '.$userPage['lname'],
             ],
             'userPage' => $userPage,
-            'userProjects' => $this->model->userProjects($userPage['id']),
+            'userProjects' => $this->model->getUsersProjects($userPage['id']),
         ];
         $this->view->render($vars);
     }
