@@ -3,12 +3,21 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\models\Course;
 use app\models\Pay;
 
 class PayController extends Controller{
 
     /* @var $model Pay */
     public $model;
+    /* @var $modelCourse Course*/
+    protected $modelCourse;
+
+    public function __construct($route){
+        parent::__construct($route);
+
+        $this->modelCourse = $this->loadModel('course');
+    }
 
     public function payAction(){
         if(!empty($_POST)){
@@ -28,7 +37,7 @@ class PayController extends Controller{
                 case 'pay':
                     unset($_POST['action']);
                     unset($_POST['price']);
-                    $course = $this->model->courseInfo($_POST['course']);
+                    $course = $this->modelCourse->getItem($_POST['course']);
                     unset($_POST['course']);
 
                     $price = $course['price'];
@@ -55,7 +64,7 @@ class PayController extends Controller{
             }
         }
 
-        if(!$course = $this->model->courseInfo($this->route['courseid'])){
+        if(!$course = $this->modelCourse->getItem($this->route['courseid'])){
             $this->view->redirect('courses');
         }
         if(!$course['timestart'] > time() || $course['payment'] == 0){
