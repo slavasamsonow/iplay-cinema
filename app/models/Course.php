@@ -17,7 +17,7 @@ class Course extends Model{
      *
      * @return string
      */
-    public function createCourse($data){
+    public function create($data){
         $params = $this->processTextIn($data);
         $params['timestart'] = $this->toUnixTime($params['timestart']);
         $params['timeend'] = $this->toUnixTime($params['timeend']);
@@ -35,7 +35,7 @@ class Course extends Model{
      *
      * @return bool
      */
-    public function updateCourse($id, $data){
+    public function update($id, $data){
         $params = $this->processTextIn($data);
         $params['timestart'] = $this->toUnixTime($params['timestart']);
         $params['timeend'] = $this->toUnixTime($params['timeend']);
@@ -78,7 +78,7 @@ class Course extends Model{
      * Возвращает список всех курсов
      * @return array
      */
-    public function getCourses(){
+    public function getAll(){
         $courses = $this->db->row('SELECT * FROM courses c ORDER BY c.timestart ASC');
         return $courses;
     }
@@ -90,8 +90,7 @@ class Course extends Model{
      *
      * @return array
      */
-    // todo переименовать в getActiveCourses
-    public function coursesList($param = []){
+    public function getActive($param = []){
         $params = [
             'timestart' => time(),
         ];
@@ -122,11 +121,11 @@ class Course extends Model{
      *
      * @return bool
      */
-    public function getCourse($courseId){
+    public function getItem($courseId){
         $params = [
             'id' => $courseId,
         ];
-        $course = $this->db->row('SELECT c.* FROM courses c WHERE c.id = :id', $params);
+        $course = $this->db->row('SELECT c.*, ct.eng AS `type` FROM courses c JOIN courses_type ct ON c.type = ct.id WHERE c.id = :id', $params);
 
         if(empty($course)){
             return false;
@@ -141,8 +140,8 @@ class Course extends Model{
      *
      * @return bool|mixed
      */
-    public function getCourseEdit($courseId){
-        if(!$course = $this->getCourse($courseId)){
+    public function getItemActive($courseId){
+        if(!$course = $this->getItem($courseId)){
             return false;
         }
         return $this->processTextOut($course);
@@ -174,7 +173,7 @@ class Course extends Model{
      *
      * @return array
      */
-    public function getCourseTeachers($courseId){
+    public function getTeachers($courseId){
         $params = [
             'courseid' => $courseId,
         ];
@@ -231,8 +230,7 @@ class Course extends Model{
      *
      * @return array
      */
-    // todo переименовать в getCourseCurators
-    public function courseCurators($courseId){
+    public function getCurators($courseId){
         $params = [
             'courseid' => $courseId,
         ];
@@ -260,8 +258,7 @@ class Course extends Model{
      *
      * @return array
      */
-    // todo переименовать в getCourseProgram
-    public function courseProgram($courseId){
+    public function getProgram($courseId){
         $params = [
             'courseid' => $courseId,
         ];
@@ -275,61 +272,18 @@ class Course extends Model{
      */
 
     /**
-     * Возвращает проекты курса
-     *
-     * @param $courseId
-     *
-     * @return array
-     */
-    // todo переименовать в getCourseProjects
-    public function courseProjects($courseId){
-        $params = [
-            'courseid' => $courseId,
-        ];
-        return $this->db->row('SELECT p.* FROM projects p WHERE p.course = :courseid', $params);
-    }
-
-    /**
      * Возвращает список проектов курса
      *
      * @param $courseId
      *
      * @return array
      */
-    // todo Объединить с функцией выше
     public function getProjectsCourse($courseId){
         $params = [
             'course' => $courseId,
         ];
-        $projectsList = $this->db->row('SELECT * FROM projects p WHERE p.course = :course', $params);
+        $projectsList = $this->db->row('SELECT p.* FROM projects p WHERE p.course = :course', $params);
         return $projectsList;
-    }
-
-    /**
-     * Проверяет принадлежность студента к курсу
-     *
-     * @param $courseId
-     * @param string $userid
-     *
-     * @return bool
-     */
-    public function checkCourse($courseId, $userid = ''){
-        if($userid == ''){
-            $userid = $_SESSION['user']['id'];
-        }
-
-        $params = [
-            'userid' => $userid,
-            'courseid' => $courseId,
-        ];
-        $course = $this->db->row('SELECT c.*, u.percent FROM courses c JOIN user_courses u ON c.id=u.course WHERE u.user=:userid AND u.course = :courseid', $params);
-
-        if(isset($course[0])){
-            return $course[0];
-        }
-        else{
-            return false;
-        }
     }
 
 
@@ -535,6 +489,33 @@ class Course extends Model{
      *
      * @return array
      */
+    /**
+     * Проверяет принадлежность студента к курсу
+     *
+     * @param $courseId
+     * @param string $userid
+     *
+     * @return bool
+     */
+    public function checkCourse($courseId, $userid = ''){
+        if($userid == ''){
+            $userid = $_SESSION['user']['id'];
+        }
+
+        $params = [
+            'userid' => $userid,
+            'courseid' => $courseId,
+        ];
+        $course = $this->db->row('SELECT c.*, u.percent FROM courses c JOIN user_courses u ON c.id=u.course WHERE u.user=:userid AND u.course = :courseid', $params);
+
+        if(isset($course[0])){
+            return $course[0];
+        }
+        else{
+            return false;
+        }
+    }
+
     public function getCourseStudents($courseId, $params = []){
         $params = [
             'course' => $courseId,
