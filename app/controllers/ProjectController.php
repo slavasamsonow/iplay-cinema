@@ -15,17 +15,9 @@ class ProjectController extends Controller{
     }
 
     public function projectAction(){
-        if(!$project = $this->model->projectInfo($this->route['projectid'])){
+        if(!$project = $this->model->getItem($this->route['projectid'])){
             $this->view->errorCode(404);
         }
-
-        $arraynewtext = [
-            'description' => $project['description'],
-        ];
-        $newtext = $this->model->descriptionText($arraynewtext);
-        foreach($newtext as $key => $newtextstr){
-            $project[$key] = $newtextstr;
-        };
 
         $vars = [
             'seo' => [
