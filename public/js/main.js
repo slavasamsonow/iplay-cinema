@@ -15,7 +15,6 @@ $(document).ready(function () {
         var footerHeight = $('footer').height();
         var windowHeight = $(window).height();
         $('.content .intro').css('padding-top', headerHeight + 'px');
-        console.log(headerHeight)
 
         // Минимальная высота сайта
         if (!$('.content.intro').length) {
