@@ -42,7 +42,7 @@ body.modalopen{
 }
 
 h1{
-    margin: 20px auto;
+    padding: 20px auto;
     font-size: 40px;
     font-weight: bold;
     letter-spacing: 0.1em;
