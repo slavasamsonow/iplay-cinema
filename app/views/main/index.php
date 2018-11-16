@@ -1,12 +1,12 @@
 <div class="intro">
     <div class="container-fluid">
         <div class="row topLine">
-            <div class="col-md-4 offset-md-2">
+            <div class="col-md-4 col-md-offset-2">
                 <h1>Создай <br>
                     свою <br>
                     историю</h1>
             </div>
-            <div class="col-md-4 offset-md-1 eventAdv">
+            <div class="col-md-4 col-md-offset-1 eventAdv">
                 <h2>Базовый курс 2<span class="date">21/11</span></h2>
                 <p>
                     Пройдите весь путь съемочного процесса от идеи до результата за месяц. Попробуйте киноспециальности
@@ -17,17 +17,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-10 offset-md-1">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="row sections">
-                    <div class="col">
+                    <div class="col-md-4">
                         <img src="/public/img/content/logo-symbol-white.png" alt=""> <br>
                         Продакшн
                     </div>
-                    <div class="col">
+                    <div class="col-md-4">
                         <img src="/public/img/content/logo-symbol-white.png" alt=""> <br>
                         Киношкола
                     </div>
-                    <div class="col">
+                    <div class="col-md-4">
                         <img src="/public/img/content/logo-symbol-white.png" alt=""> <br>
                         Продюсерский центр
                     </div>
@@ -36,7 +36,7 @@
 
         </div>
         <div class="background">
-            <!--            <img src="/public/img/content/background-main-intro.jpg" alt="">-->
+            <img src="/public/img/content/background-main-intro.jpg" alt="">
             <!-- <video preload muted loop id="introVideo">
                 <source src="/public/video/intro.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
                 <source src="/public/video/intro.webm" type='video/webm; codecs="vp8, vorbis"' />
@@ -50,7 +50,7 @@
     <div class="events">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-8 offset-md-2">
+                <div class="col-md-8 col-md-offset-2">
                     <h2><span class="big">Ближайшие мероприятия</span></h2>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                 <?php if($i % 3 == 0): ?>
                     <div class="row">
                 <?php endif ?>
-                <div class="event col-md-4">
+                <div class="event col-md-3 col-md-offset-1">
                     <h3>
                         <?=$events[$i]['name']?> <span class="date">
                         <?=date('d/m', $events[$i]['timestart'])?></span></h3>
@@ -190,61 +190,38 @@
         <button class="btn btn-primary">Получить</button>
     </div>
 </div> -->
-<div class="plus row no-gutters">
+<div class="plus">
 
-    <div class="col-md-6 order-1 plus-item">
-        <div class="row no-gutters">
-            <div class="col">
-                <img src="/public/img/content/plus-1.jpg" alt="">
-            </div>
-            <div class="col">
-                <div class="text">
-                    Стоимость обучения в 20 раз ниже, чем в московских киношколах
-                </div>
-            </div>
+    <div class="col-md-6 plus-item">
+        <img src="/public/img/content/plus-1.jpg" alt="">
+        <div class="text">
+            Стоимость обучения в 20 раз ниже, чем в московских киношколах
         </div>
     </div>
-    <div class="col-md-6 order-3 order-md-2 plus-item">
-        <div class="row no-gutters">
-            <div class="col">
-                <img src="/public/img/content/plus-2.jpg" alt="">
-            </div>
-            <div class="col">
-                <div class="text">
-                    Целостное представление о индустрии и других профессиях <br>(10 профессий)
-                </div>
-            </div>
+    <div class="col-md-6 plus-item">
+        <img src="/public/img/content/plus-2.jpg" alt="">
+        <div class="text">
+            Целостное представление о индустрии и других профессиях <br>(10 профессий в одном информационном поле)
         </div>
     </div>
-    <div class="col-md-6 order-2 order-md-3 plus-item">
-        <div class="row no-gutters">
-            <div class="col">
-                <div class="text">
-                    Опыт в индустрии <br>(за 3 года снято и реализовано большое количество проектов)
-                </div>
-            </div>
-            <div class="col">
-                <img src="/public/img/content/plus-3.jpg" alt="">
-            </div>
+    <div class="col-md-6 plus-item">
+        <div class="text">
+            Опыт в индустрии <br>(за 3 года снято и реализовано большое количество проектов)
         </div>
+        <img src="/public/img/content/plus-3.jpg" alt="">
+
     </div>
-    <div class="col-md-6 order-4 plus-item">
-        <div class="row no-gutters">
-            <div class="col">
-                <div class="text">
-                    Кураторы <br>(15 кураторов в новом сезоне)
-                </div>
-            </div>
-            <div class="col">
-                <img src="/public/img/content/plus-4.jpg" alt="">
-            </div>
+    <div class="col-md-6 plus-item">
+        <div class="text">
+            Кураторы <br>(15 кураторов в новом сезоне)
         </div>
+        <img src="/public/img/content/plus-4.jpg" alt="">
     </div>
 </div>
 <div class="question">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8 offset-md-2">
+            <div class="col-md-8 col-md-offset-2">
                 <h2><span class="big">Задать вопрос</span></h2>
                 <form action="/" method="post">
                     <input type="hidden" name="form" value="question">

@@ -83,18 +83,42 @@
     <h2>План мероприятия</h2>
     <div class="container-fluid">
         <div class="row">
+            <!--            <div class="item"><img src="/public/img/lending/plan/intensiv-1.png" alt="">-->
+            <!--                <div>1. Знакомство</div>-->
+            <!--            </div>-->
+            <!--            <div class="item"><img src="/public/img/lending/plan/intensiv-2.png" alt="">-->
+            <!--                <div>2. Выступление экспертов</div>-->
+            <!--            </div>-->
+            <!--            <div class="item"><img src="/public/img/lending/plan/intensiv-3.png" alt="">-->
+            <!--                <div>3. Выбор идеи и <br>разработка сценария</div>-->
+            <!--            </div>-->
+            <!--            <div class="item"><img src="/public/img/lending/plan/intensiv-4.png" alt="">-->
+            <!--                <div>4. Кастинг актеров</div>-->
+            <!--            </div>-->
+            <!--            <div class="item"><img src="/public/img/lending/plan/intensiv-5.png" alt="">-->
+            <!--                <div>5. Съемка</div>-->
+            <!--            </div>-->
+            <!--            <div class="item"><img src="/public/img/lending/plan/intensiv-6.png" alt="">-->
+            <!--                <div>6. Монтаж</div>-->
+            <!--            </div>-->
+            <!--            <div class="item"><img src="/public/img/lending/plan/intensiv-7.png" alt="">-->
+            <!--                <div><b>7. Показ</b></div>-->
+            <!--            </div>-->
             <div class="item col-md-4 col-xs-6"><img src="/public/img/lending/plan/intensiv-2.png" alt="">
                 <div>1. Знакомство с экспертами</div>
             </div>
             <div class="item col-md-4 xol-xs-6"><img src="/public/img/lending/plan/intensiv-3.png" alt="">
                 <div>2. Выбор идеи и <br>разработка сценария</div>
             </div>
+            <div class="row visible-xs"></div>
             <div class="item col-md-4 col-xs-6"><img src="/public/img/lending/plan/intensiv-4.png" alt="">
                 <div>3. Кастинг актеров</div>
             </div>
+            <div class="row hidden-xs"></div>
             <div class="item col-md-4 col-xs-6"><img src="/public/img/lending/plan/intensiv-5.png" alt="">
                 <div>4. Съемка</div>
             </div>
+            <div class="row visible-xs"></div>
             <div class="item col-md-4 col-xs-6"><img src="/public/img/lending/plan/intensiv-6.png" alt="">
                 <div>5. Монтаж</div>
             </div>
@@ -276,11 +300,11 @@
     <div class="container-fluid">
         <div class="prices">
             <div class="row">
-                <div class="col-md-3 offset-md-2 item">
+                <div class="col-md-3 col-md-offset-2 item">
                     <div class="name">До 11 ноября</div>
                     <div class="value">1000 р.</div>
                 </div>
-                <div class="col-md-3 offset-md-2 item">
+                <div class="col-md-3 col-md-offset-2 item">
                     <div class="name">До 18 ноября</div>
                     <div class="value">1500 р.</div>
                 </div>
@@ -355,20 +379,17 @@
 
 <div class="contact white-text">
     <div class="container-fluid">
-        <div class="row justify-content-between">
-            <div class="col col-auto logo">
-                <img src="/public/img/content/logo-white.png" alt="">
+        <div class="logo">
+            <img src="/public/img/content/logo-white.png" alt="">
+        </div>
+        <div class="contact-info">
+            <div class="email">
+                <a href="mailto: videolab.play@gmail.com">videolab.play@gmail.com</a>
             </div>
-            <div class="col col-auto ">
-                <div class="email">
-                    <a href="mailto: videolab.play@gmail.com">videolab.play@gmail.com</a>
-                </div>
-                <div class="phone">
-                    <a href="tel:8(952)2271003">8(952)2271003</a>
-                </div>
+            <div class="phone">
+                <a href="tel:8(952)2271003">8(952)2271003</a>
             </div>
         </div>
-
     </div>
 </div>
 
