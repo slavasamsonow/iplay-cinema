@@ -110,14 +110,16 @@ $(document).ready(function () {
     })
 
     // Для блока интро
-    var headerHeight = $('.navbar').css('height');
-    var footerHeight = $('footer').css('height');
+    var headerHeight = $('.navbar').height();
+    var footerHeight = $('footer').height();
+    var windowHeight = $(window).height();
     //$('.content .intro').css('margin-bottom', '-' + footerHeight);
-    $('.content .intro').css('padding-top', headerHeight);
+    $('.content .intro').css('padding-top', headerHeight + 'px');
 
     // Минимальная высота сайта
     if (!$('.content.intro').length) {
-        $('.content').css('min-height', 'calc(100vh - ' + headerHeight + ' - ' + footerHeight + ')');
+        var minHeight = windowHeight - headerHeight - footerHeight;
+        $('.content').css('min-height', minHeight+'px');
         $('footer').removeClass('load');
     }
 
@@ -420,7 +422,6 @@ $(window).resize(function () {
         var baseHeight = $('.lending-intro-content').outerHeight();
         var windowHeight = $(window).height();
         var newPaddingBottom = Math.floor((windowHeight - headerHeight - baseHeight) / 2);
-        console.log(headerHeight);
         $('.lending-intro .top').css('margin-bottom', newPaddingBottom);
     }
 });
