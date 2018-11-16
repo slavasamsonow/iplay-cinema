@@ -70,3 +70,18 @@
         Админ
     </a>
 <?php endif ?>
+
+<hr>
+
+<? if(isset($user)): ?>
+    <a href="/account" class="lk">Личный кабинет</a>
+    <a href="/user/<?=$user['username']?>">Моя страница</a>
+    <a href="/account/editinfo">Редактировать профиль</a>
+    <a href="/account/editpass">Сменить пароль</a>
+    <a href="/account/logout">Выйти</a>
+<?php else: ?>
+    <div class="login">
+        <a href="/login">Вход</a>
+        <a href="/register">Регистрация</a>
+    </div>
+<?php endif ?>
