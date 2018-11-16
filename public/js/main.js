@@ -1,15 +1,4 @@
 // v.0.16.3
-<<<<<<< HEAD
-function videoHeight() {
-    $('.video iframe').each(function () {
-        var widthVideo = $(this).width();
-        var heightVideo = widthVideo / 16 * 9;
-        $(this).css('height', heightVideo);
-    });
-}
-
-$(document).ready(function () {
-=======
 
 $(document).ready(function () {
     function videoHeight() {
@@ -38,7 +27,6 @@ $(document).ready(function () {
 
     minHeightContent();
 
->>>>>>> mobile
     // Выпадающее меню юзера
     $('.navbar .user').click(function () {
         var userController = $(this);
@@ -138,18 +126,6 @@ $(document).ready(function () {
         var video = $(this).data('video');
         $('.modal.video .modal-body').html(video);
     })
-
-    // Для блока интро
-    var headerHeight = $('.navbar').css('height');
-    var footerHeight = $('footer').css('height');
-    //$('.content .intro').css('margin-bottom', '-' + footerHeight);
-    $('.content .intro').css('padding-top', headerHeight);
-
-    // Минимальная высота сайта
-    if (!$('.content.intro').length) {
-        $('.content').css('min-height', 'calc(100vh - ' + headerHeight + ' - ' + footerHeight + ')');
-        $('footer').removeClass('load');
-    }
 
 
     if ($('#introVideo').length) {
@@ -468,17 +444,4 @@ $(document).ready(function () {
         }
     });
 
-<<<<<<< HEAD
-$(window).resize(function () {
-    videoHeight();
-    if ($('.lending-intro-content').length) {
-        var headerHeight = $('.lending-intro .top').outerHeight();
-        var baseHeight = $('.lending-intro-content').outerHeight();
-        var windowHeight = $(window).height();
-        var newPaddingBottom = Math.floor((windowHeight - headerHeight - baseHeight) / 2);
-        console.log(headerHeight);
-        $('.lending-intro .top').css('margin-bottom', newPaddingBottom);
-    }
-=======
->>>>>>> mobile
 });

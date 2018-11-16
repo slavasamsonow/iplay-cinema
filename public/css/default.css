@@ -42,7 +42,7 @@ body.modalopen{
 }
 
 h1{
-    margin: 20px auto;
+    padding: 20px auto;
     font-size: 40px;
     font-weight: bold;
     letter-spacing: 0.1em;
@@ -564,11 +564,15 @@ tr:hover td{
 
 /* Шапка */
 .navbar{
-    padding: 30px 0;
+    padding: 30px 75px;
     margin-bottom: 0;
     font-size: 16px;
     z-index: 11;
     position: relative;
+}
+
+.navbar .logo{
+    text-decoration: none;
 }
 
 .navbar .logo img{
@@ -586,8 +590,7 @@ tr:hover td{
 }
 
 .navbar .menu_lk{
-    text-align: right;
-    padding: 15px 0;
+    padding-top: 15px;
 }
 
 .navbar .menu{
@@ -859,6 +862,7 @@ footer a.thisPage:hover{
 }
 
 footer .info{
+    margon-bottom: 20px
     /*font-size: 12px;*/
 }
 
@@ -868,6 +872,7 @@ footer .info p{
 
 footer .center{
     text-align: center;
+    margin-bottom: 20px;
 }
 
 footer .center .nav-footer{
