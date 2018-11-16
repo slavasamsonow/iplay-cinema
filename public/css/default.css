@@ -564,11 +564,15 @@ tr:hover td{
 
 /* Шапка */
 .navbar{
-    padding: 30px 0;
+    padding: 30px 90px;
     margin-bottom: 0;
     font-size: 16px;
     z-index: 10;
     position: relative;
+}
+
+.navbar .logo{
+    text-decoration: none;
 }
 
 .navbar .logo img{
