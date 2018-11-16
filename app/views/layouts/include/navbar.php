@@ -1,5 +1,5 @@
 <nav class="navbar">
-    <div class="col-md col-md-auto">
+    <div class="col col-md-auto">
         <a class="logo" href="/">
             <?php if(!isset($logoColor))
                 $logoColor = 'black'; ?>
@@ -53,5 +53,19 @@
                 <a href="/login">Вход</a> / <a href="/register">Регистрация</a>
             </div>
         <?php endif ?>
+    </div>
+    <div class="col col-auto d-md-none mobile-menu">
+        <button data-type="mobileMenu" data-action="open">Меню</button>
+        <div class="mobile-menu-wrapper default-text">
+            <button data-type="mobileMenu" data-action="close" class="close"></button>
+            <div class="mobile-menu-content">
+                <div class="logo">
+                    <img src="/public/img/content/logo-black.png" alt="">
+                </div>
+                <div class="mobile-menu-content-require">
+                    <?php require_once "mobile-menu.php"?>
+                </div>
+            </div>
+        </div>
     </div>
 </nav>
