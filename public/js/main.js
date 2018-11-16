@@ -7,7 +7,7 @@ function videoHeight() {
     });
 }
 
-function minHeightContent(){
+function minHeightContent() {
     // Для блока интро
     var headerHeight = $('.navbar').height();
     var footerHeight = $('footer').height();
@@ -18,7 +18,7 @@ function minHeightContent(){
     // Минимальная высота сайта
     if (!$('.content.intro').length) {
         var minHeight = windowHeight - headerHeight - footerHeight;
-        $('.content').css('min-height', minHeight+'px');
+        $('.content').css('min-height', minHeight + 'px');
         $('footer').removeClass('load');
     }
 }
@@ -51,8 +51,6 @@ $(document).ready(function () {
     $('a[href="' + thisPageFull + '"]').addClass('thisPage');
     var thisPage = document.location.pathname;
     $('.left-menu a[href="' + thisPage + '"]').addClass('thisPage');
-    // $('a[href="' + thisPage + '"]').removeAttr('href');
-    $('.left-menu .thisPage').parents('ul').slideDown();
 
     // Маски ввода
     $("input[type=tel]").mask("+7 (999) 999-99-99");
@@ -161,7 +159,7 @@ $(document).ready(function () {
     $('.tasks .day .name').click(function () {
         $(this).next('.tasks-list').slideToggle();
         $(this).parent().toggleClass('open');
-    })
+    });
     $('.tasks .day.today').children('.tasks-list').slideDown();
     // Взаимодействие с заданием курса
     $('.tasks .task.active button').click(function () {
@@ -204,7 +202,7 @@ $(document).ready(function () {
                 parent.removeClass('process');
             }
         })
-    })
+    });
 
     $('button[data-action="confimTask"]').click(function () {
         var elem = $(this);
@@ -232,7 +230,7 @@ $(document).ready(function () {
                 elem.removeClass('process');
             }
         })
-    })
+    });
 
     $('button[data-type="usercourses"]').click(function () {
         var elem = $(this);
@@ -281,7 +279,7 @@ $(document).ready(function () {
                 $('button[data-action=".newusercourses"]').fadeIn();
             }
         })
-    })
+    });
 
     $('button[data-type="courseteacher"]').click(function () {
         var elem = $(this);
@@ -318,7 +316,7 @@ $(document).ready(function () {
                 elem.removeClass('process');
             }
         })
-    })
+    });
 
     $('button[data-type="coursestudent"]').click(function () {
         var elem = $(this);
@@ -355,14 +353,14 @@ $(document).ready(function () {
                 elem.removeClass('process');
             }
         })
-    })
+    });
 
     $('button[data-type="show"]').click(function () {
         var elem = $(this);
         var show = elem.attr('data-action');
         elem.fadeOut();
         $(show).fadeIn();
-    })
+    });
 
     $('button[data-type="payPromocode"]').click(function () {
         var elem = $(this);
@@ -406,7 +404,21 @@ $(document).ready(function () {
                 elem.removeClass('process');
             }
         })
-    })
+    });
+
+    $('button[data-type="mobileMenu"]').click(function () {
+        var elem = $(this);
+        var action = elem.attr('data-action');
+        if(action == 'open'){
+            $('body').addClass('modalopen');
+            $('.mobile-menu-wrapper').slideDown();
+        }
+        if(action == 'close'){
+            $('body').removeClass('modalopen');
+            $('.mobile-menu-wrapper').slideUp();
+        }
+
+    });
 
     $(".owl-carousel").owlCarousel({
         items: 4,
