@@ -677,6 +677,18 @@ tr:hover td{
     font-weight: bold;
 }
 
+.mobile-menu-burger{
+    display: block;
+    position: relative;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.mobile-menu-burger svg{
+    width: 30px;
+}
+
 /* Мобильное меню */
 .mobile-menu-wrapper{
     display: none;
@@ -718,18 +730,10 @@ tr:hover td{
     transform: translateX(-50%) rotate(-45deg);
 }
 
-.mobile-menu-content{
-    text-align: center;
-}
-.mobile-menu-content .logo{
-    margin-bottom: 30px;
-}
 
-.mobile-menu-content-require{
-    display: block;
-    width: 50%;
-    text-align: left;
-    margin: 0 auto;
+.mobile-menu-content .logo{
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .navbar .mobile-menu-wrapper .mobile-menu-content a{
@@ -739,7 +743,11 @@ tr:hover td{
     margin-bottom: 10px;
 }
 
-.navbar .mobile-menu-wrapper .mobile-menu-content a.thisPage{
+.navbar .mobile-menu-wrapper .mobile-menu-content svg{
+    fill: #111;
+}
+
+.navbar .mobile-menu-wrapper .mobile-menu-content a.thisParent{
     font-weight: bold;
 }
 
@@ -774,13 +782,13 @@ tr:hover td{
     transition: 0.2s;
 }
 
-.left-menu a.thisPage,
+.left-menu a.thisParent,
 .left-menu a:hover{
     opacity: 1;
     /* color: #111; */
 }
 
-.left-menu a.thisPage{
+.left-menu a.thisParent{
     background-color: #7ab;
 }
 
@@ -794,7 +802,7 @@ tr:hover td{
     /* fill: #fff; */
 }
 
-.left-menu a.thisPage svg{
+.left-menu a.thisParent svg{
     fill: #111;
 }
 
