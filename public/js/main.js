@@ -7,7 +7,25 @@ function videoHeight() {
     });
 }
 
+function minHeightContent(){
+    // Для блока интро
+    var headerHeight = $('.navbar').height();
+    var footerHeight = $('footer').height();
+    var windowHeight = $(window).height();
+    //$('.content .intro').css('margin-bottom', '-' + footerHeight);
+    $('.content .intro').css('padding-top', headerHeight + 'px');
+
+    // Минимальная высота сайта
+    if (!$('.content.intro').length) {
+        var minHeight = windowHeight - headerHeight - footerHeight;
+        $('.content').css('min-height', minHeight+'px');
+        $('footer').removeClass('load');
+    }
+}
+
 $(document).ready(function () {
+    minHeightContent();
+
     // Выпадающее меню юзера
     $('.navbar .user').click(function () {
         var userController = $(this);
@@ -108,20 +126,6 @@ $(document).ready(function () {
         var video = $(this).data('video');
         $('.modal.video .modal-body').html(video);
     })
-
-    // Для блока интро
-    var headerHeight = $('.navbar').height();
-    var footerHeight = $('footer').height();
-    var windowHeight = $(window).height();
-    //$('.content .intro').css('margin-bottom', '-' + footerHeight);
-    $('.content .intro').css('padding-top', headerHeight + 'px');
-
-    // Минимальная высота сайта
-    if (!$('.content.intro').length) {
-        var minHeight = windowHeight - headerHeight - footerHeight;
-        $('.content').css('min-height', minHeight+'px');
-        $('footer').removeClass('load');
-    }
 
 
     if ($('#introVideo').length) {
