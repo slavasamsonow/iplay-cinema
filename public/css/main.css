@@ -54,6 +54,7 @@
     position: relative;
     z-index: 1;
     color: #fff;
+    overflow: hidden;
 }
 
 .content .intro h1{
@@ -566,13 +567,12 @@
     background: linear-gradient(36deg, rgba(208, 0, 0, 0.2), rgba(54, 19, 88, 0.2)), #280d42;
 }
 
-.lending-wrapper .contact .logo{
-    float: left;
+.lending-wrapper .contact .logo img{
     width: 200px;
 }
 
-.lending-wrapper .contact .contact-info{
-    float: right;
+.lending-wrapper .contact .logo{
+
 }
 
 /* Страница курса - чекбоксы */
