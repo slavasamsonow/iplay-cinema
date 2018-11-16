@@ -32,6 +32,10 @@
 }
 
 @media(max-width: 767px){
+    h1{
+        font-size: 24px;
+    }
+
     h2{
         font-size: 20px;
     }
@@ -40,6 +44,21 @@
         font-size: 17px;
     }
 
+<<<<<<< HEAD
+=======
+    .navbar{
+        padding: 30px 15px;
+    }
+
+    .navbar .logo img{
+        width: 150px;
+    }
+
+    .navbar .city svg{
+        margin-right: 4px;
+    }
+
+>>>>>>> mobile
     .modal{
         padding: 20px 30px;
         font-size: 12px;
@@ -50,8 +69,44 @@
         transform: none;
     }
 
+<<<<<<< HEAD
     .container-fluid{
         padding: 0 30px 30px;
+=======
+    .content .container-fluid{
+        padding: 30px 30px;
+    }
+
+    .wrapper{
+        padding-left: 0;
+    }
+
+    footer .container-fluid{
+        padding: 0 30px;
+        text-align: center;
+    }
+
+    footer .contact{
+        text-align: center;
+    }
+
+    /* Главная */
+    .content .intro{
+        height: auto;
+    }
+
+    .content .intro .eventAdv .date{
+        position: relative;
+        right: auto;
+        transform: none;
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    .intro-wrapper .plus .plus-item .text{
+        padding: 20px;
+        font-size: 12px;
+>>>>>>> mobile
     }
 
     /*Лендинг*/

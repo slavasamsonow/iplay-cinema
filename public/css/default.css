@@ -567,7 +567,7 @@ tr:hover td{
     padding: 30px 0;
     margin-bottom: 0;
     font-size: 16px;
-    z-index: 10;
+    z-index: 11;
     position: relative;
 }
 
@@ -674,6 +674,85 @@ tr:hover td{
     font-weight: bold;
 }
 
+.mobile-menu-burger{
+    display: block;
+    position: relative;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.mobile-menu-burger svg{
+    width: 30px;
+}
+
+/* Мобильное меню */
+.mobile-menu-wrapper{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 30px;
+
+    background: #fff;
+}
+
+.mobile-menu-wrapper .close{
+    top: 30px;
+    right: 30px;
+    height: 30px;
+    width: 30px;
+    opacity: 1;
+}
+
+.mobile-menu-wrapper .close::before,
+.mobile-menu-wrapper .close::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 5px;
+    height: 100%;
+    background-color: black;
+}
+
+.mobile-menu-wrapper .close::before{
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.mobile-menu-wrapper .close::after{
+    transform: translateX(-50%) rotate(-45deg);
+}
+
+
+.mobile-menu-content .logo{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.navbar .mobile-menu-wrapper .mobile-menu-content a{
+    display: block;
+    color: #111;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.navbar .mobile-menu-wrapper .mobile-menu-content svg{
+    fill: #111;
+}
+
+.navbar .mobile-menu-wrapper .mobile-menu-content a.thisParent{
+    font-weight: bold;
+}
+
+.navbar .mobile-menu-wrapper .mobile-menu-content a svg{
+    max-width: 30px;
+    margin-right: 10px;
+}
+
 /* Левое меню */
 .left-menu{
     position: fixed;
@@ -700,13 +779,13 @@ tr:hover td{
     transition: 0.2s;
 }
 
-.left-menu a.thisPage,
+.left-menu a.thisParent,
 .left-menu a:hover{
     opacity: 1;
     /* color: #111; */
 }
 
-.left-menu a.thisPage{
+.left-menu a.thisParent{
     background-color: #7ab;
 }
 
@@ -720,7 +799,7 @@ tr:hover td{
     /* fill: #fff; */
 }
 
-.left-menu a.thisPage svg{
+.left-menu a.thisParent svg{
     fill: #111;
 }
 

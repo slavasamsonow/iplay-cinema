@@ -50,10 +50,13 @@
 
 /* Описание самого блока */
 .content .intro{
-    height: 100vh;
     position: relative;
     z-index: 1;
     color: #fff;
+}
+
+.content .intro .container-fluid{
+    padding-top: 0;
 }
 
 .content .intro h1{

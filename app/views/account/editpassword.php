@@ -1,4 +1,4 @@
-<div class="contaner-fluid">
+<div class="container-fluid">
     <h1>Сменить пароль</h1>
     <form action="/account/editpass" method="post">
         <div class="col-md-6">

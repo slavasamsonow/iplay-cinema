@@ -1,4 +1,5 @@
 // v.0.16.3
+<<<<<<< HEAD
 function videoHeight() {
     $('.video iframe').each(function () {
         var widthVideo = $(this).width();
@@ -8,6 +9,36 @@ function videoHeight() {
 }
 
 $(document).ready(function () {
+=======
+
+$(document).ready(function () {
+    function videoHeight() {
+        $('.video iframe').each(function () {
+            var widthVideo = $(this).width();
+            var heightVideo = widthVideo / 16 * 9;
+            $(this).css('height', heightVideo);
+        });
+    }
+
+    function minHeightContent() {
+        // Для блока интро
+        var headerHeight = $('nav.navbar').height();
+        var footerHeight = $('footer').height();
+        var windowHeight = $(window).height();
+        $('.content .intro').css('padding-top', headerHeight + 'px');
+        console.log(headerHeight)
+
+        // Минимальная высота сайта
+        if (!$('.content.intro').length) {
+            var minHeight = windowHeight - headerHeight - footerHeight;
+            $('.content').css('min-height', minHeight + 'px');
+            $('footer').removeClass('load');
+        }
+    }
+
+    minHeightContent();
+
+>>>>>>> mobile
     // Выпадающее меню юзера
     $('.navbar .user').click(function () {
         var userController = $(this);
@@ -32,9 +63,8 @@ $(document).ready(function () {
     var thisPageFull = document.location.pathname + document.location.search;
     $('a[href="' + thisPageFull + '"]').addClass('thisPage');
     var thisPage = document.location.pathname;
-    $('.left-menu a[href="' + thisPage + '"]').addClass('thisPage');
-    // $('a[href="' + thisPage + '"]').removeAttr('href');
-    $('.left-menu .thisPage').parents('ul').slideDown();
+    $('.left-menu a[href="' + thisPage + '"]').addClass('thisParent');
+    $('.mobile-menu a[href="' + thisPage + '"]').addClass('thisParent');
 
     // Маски ввода
     $("input[type=tel]").mask("+7 (999) 999-99-99");
@@ -155,7 +185,7 @@ $(document).ready(function () {
     $('.tasks .day .name').click(function () {
         $(this).next('.tasks-list').slideToggle();
         $(this).parent().toggleClass('open');
-    })
+    });
     $('.tasks .day.today').children('.tasks-list').slideDown();
     // Взаимодействие с заданием курса
     $('.tasks .task.active button').click(function () {
@@ -198,7 +228,7 @@ $(document).ready(function () {
                 parent.removeClass('process');
             }
         })
-    })
+    });
 
     $('button[data-action="confimTask"]').click(function () {
         var elem = $(this);
@@ -226,7 +256,7 @@ $(document).ready(function () {
                 elem.removeClass('process');
             }
         })
-    })
+    });
 
     $('button[data-type="usercourses"]').click(function () {
         var elem = $(this);
@@ -275,7 +305,7 @@ $(document).ready(function () {
                 $('button[data-action=".newusercourses"]').fadeIn();
             }
         })
-    })
+    });
 
     $('button[data-type="courseteacher"]').click(function () {
         var elem = $(this);
@@ -312,7 +342,7 @@ $(document).ready(function () {
                 elem.removeClass('process');
             }
         })
-    })
+    });
 
     $('button[data-type="coursestudent"]').click(function () {
         var elem = $(this);
@@ -349,14 +379,14 @@ $(document).ready(function () {
                 elem.removeClass('process');
             }
         })
-    })
+    });
 
     $('button[data-type="show"]').click(function () {
         var elem = $(this);
         var show = elem.attr('data-action');
         elem.fadeOut();
         $(show).fadeIn();
-    })
+    });
 
     $('button[data-type="payPromocode"]').click(function () {
         var elem = $(this);
@@ -400,7 +430,21 @@ $(document).ready(function () {
                 elem.removeClass('process');
             }
         })
-    })
+    });
+
+    $('button[data-type="mobileMenu"]').click(function () {
+        var elem = $(this);
+        var action = elem.attr('data-action');
+        if(action == 'open'){
+            $('body').addClass('modalopen');
+            $('.mobile-menu-wrapper').slideDown();
+        }
+        if(action == 'close'){
+            $('body').removeClass('modalopen');
+            $('.mobile-menu-wrapper').slideUp();
+        }
+
+    });
 
     $(".owl-carousel").owlCarousel({
         items: 4,
@@ -411,8 +455,20 @@ $(document).ready(function () {
     });
 
     videoHeight();
-});
+    
+    $(window).resize(function () {
+        videoHeight();
+        minHeightContent();
+        if ($('.lending-intro-content').length) {
+            var headerHeight = $('.lending-intro .top').outerHeight();
+            var baseHeight = $('.lending-intro-content').outerHeight();
+            var windowHeight = $(window).height();
+            var newPaddingBottom = Math.floor((windowHeight - headerHeight - baseHeight) / 2);
+            $('.lending-intro .top').css('margin-bottom', newPaddingBottom);
+        }
+    });
 
+<<<<<<< HEAD
 $(window).resize(function () {
     videoHeight();
     if ($('.lending-intro-content').length) {
@@ -423,4 +479,6 @@ $(window).resize(function () {
         console.log(headerHeight);
         $('.lending-intro .top').css('margin-bottom', newPaddingBottom);
     }
+=======
+>>>>>>> mobile
 });
