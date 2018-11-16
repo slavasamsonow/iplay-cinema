@@ -1,12 +1,12 @@
 <div class="intro">
     <div class="container-fluid">
         <div class="row topLine">
-            <div class="col-md-4 col-md-offset-2">
+            <div class="col-md-4 offset-2">
                 <h1>Создай <br>
                     свою <br>
                     историю</h1>
             </div>
-            <div class="col-md-4 col-md-offset-1 eventAdv">
+            <div class="col-md-4 offset-1 eventAdv">
                 <h2>Базовый курс 2<span class="date">21/11</span></h2>
                 <p>
                     Пройдите весь путь съемочного процесса от идеи до результата за месяц. Попробуйте киноспециальности
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-10 offset-1">
                 <div class="row sections">
                     <div class="col-md-4">
                         <img src="/public/img/content/logo-symbol-white.png" alt=""> <br>
@@ -50,7 +50,7 @@
     <div class="events">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-8 offset-md-2">
                     <h2><span class="big">Ближайшие мероприятия</span></h2>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                 <?php if($i % 3 == 0): ?>
                     <div class="row">
                 <?php endif ?>
-                <div class="event col-md-3 col-md-offset-1">
+                <div class="event col-md-3 offset-md-1">
                     <h3>
                         <?=$events[$i]['name']?> <span class="date">
                         <?=date('d/m', $events[$i]['timestart'])?></span></h3>
@@ -190,7 +190,7 @@
         <button class="btn btn-primary">Получить</button>
     </div>
 </div> -->
-<div class="plus">
+<div class="plus row no-gutters">
 
     <div class="col-md-6 plus-item">
         <img src="/public/img/content/plus-1.jpg" alt="">
