@@ -1,29 +1,30 @@
 // v.0.16.3
-function videoHeight() {
-    $('.video iframe').each(function () {
-        var widthVideo = $(this).width();
-        var heightVideo = widthVideo / 16 * 9;
-        $(this).css('height', heightVideo);
-    });
-}
-
-function minHeightContent() {
-    // Для блока интро
-    var headerHeight = $('.navbar').height();
-    var footerHeight = $('footer').height();
-    var windowHeight = $(window).height();
-    //$('.content .intro').css('margin-bottom', '-' + footerHeight);
-    $('.content .intro').css('padding-top', headerHeight + 'px');
-
-    // Минимальная высота сайта
-    if (!$('.content.intro').length) {
-        var minHeight = windowHeight - headerHeight - footerHeight;
-        $('.content').css('min-height', minHeight + 'px');
-        $('footer').removeClass('load');
-    }
-}
 
 $(document).ready(function () {
+    function videoHeight() {
+        $('.video iframe').each(function () {
+            var widthVideo = $(this).width();
+            var heightVideo = widthVideo / 16 * 9;
+            $(this).css('height', heightVideo);
+        });
+    }
+
+    function minHeightContent() {
+        // Для блока интро
+        var headerHeight = $('nav.navbar').height();
+        var footerHeight = $('footer').height();
+        var windowHeight = $(window).height();
+        $('.content .intro').css('padding-top', headerHeight + 'px');
+        console.log(headerHeight)
+
+        // Минимальная высота сайта
+        if (!$('.content.intro').length) {
+            var minHeight = windowHeight - headerHeight - footerHeight;
+            $('.content').css('min-height', minHeight + 'px');
+            $('footer').removeClass('load');
+        }
+    }
+
     minHeightContent();
 
     // Выпадающее меню юзера
@@ -50,7 +51,8 @@ $(document).ready(function () {
     var thisPageFull = document.location.pathname + document.location.search;
     $('a[href="' + thisPageFull + '"]').addClass('thisPage');
     var thisPage = document.location.pathname;
-    $('.left-menu a[href="' + thisPage + '"]').addClass('thisPage');
+    $('.left-menu a[href="' + thisPage + '"]').addClass('thisParent');
+    $('.mobile-menu a[href="' + thisPage + '"]').addClass('thisParent');
 
     // Маски ввода
     $("input[type=tel]").mask("+7 (999) 999-99-99");
@@ -429,16 +431,17 @@ $(document).ready(function () {
     });
 
     videoHeight();
-});
+    
+    $(window).resize(function () {
+        videoHeight();
+        minHeightContent();
+        if ($('.lending-intro-content').length) {
+            var headerHeight = $('.lending-intro .top').outerHeight();
+            var baseHeight = $('.lending-intro-content').outerHeight();
+            var windowHeight = $(window).height();
+            var newPaddingBottom = Math.floor((windowHeight - headerHeight - baseHeight) / 2);
+            $('.lending-intro .top').css('margin-bottom', newPaddingBottom);
+        }
+    });
 
-$(window).resize(function () {
-    videoHeight();
-    minHeightContent();
-    if ($('.lending-intro-content').length) {
-        var headerHeight = $('.lending-intro .top').outerHeight();
-        var baseHeight = $('.lending-intro-content').outerHeight();
-        var windowHeight = $(window).height();
-        var newPaddingBottom = Math.floor((windowHeight - headerHeight - baseHeight) / 2);
-        $('.lending-intro .top').css('margin-bottom', newPaddingBottom);
-    }
 });
