@@ -1,5 +1,5 @@
 <nav class="navbar">
-    <div class="col col-auto">
+    <div class="col-md col-md-auto">
         <a class="logo" href="/">
             <?php if(!isset($logoColor))
                 $logoColor = 'black'; ?>
@@ -22,7 +22,7 @@
         <? endif ?>
     </div>
 
-    <div class="col col-auto menu_lk">
+    <div class="col-md col-md-auto menu_lk d-none d-md-block">
         <ul class="menu">
             <li>
                 <a href="/news">Новости</a>
