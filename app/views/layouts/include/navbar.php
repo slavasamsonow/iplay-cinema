@@ -55,7 +55,14 @@
         <?php endif ?>
     </div>
     <div class="col col-auto d-md-none mobile-menu">
-        <button data-type="mobileMenu" data-action="open">Меню</button>
+        <button class="mobile-menu-burger" data-type="mobileMenu" data-action="open">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                 viewBox="0 0 53 53">
+        <path d="M2,13.5h49c1.104,0,2-0.896,2-2s-0.896-2-2-2H2c-1.104,0-2,0.896-2,2S0.896,13.5,2,13.5z"/>
+                <path d="M2,28.5h49c1.104,0,2-0.896,2-2s-0.896-2-2-2H2c-1.104,0-2,0.896-2,2S0.896,28.5,2,28.5z"/>
+                <path d="M2,43.5h49c1.104,0,2-0.896,2-2s-0.896-2-2-2H2c-1.104,0-2,0.896-2,2S0.896,43.5,2,43.5z"/>
+            </svg>
+        </button>
         <div class="mobile-menu-wrapper default-text">
             <button data-type="mobileMenu" data-action="close" class="close"></button>
             <div class="mobile-menu-content">
@@ -63,7 +70,7 @@
                     <img src="/public/img/content/logo-black.png" alt="">
                 </div>
                 <div class="mobile-menu-content-require">
-                    <?php require_once "mobile-menu.php"?>
+                    <?php require_once "mobile-menu.php" ?>
                 </div>
             </div>
         </div>
