@@ -421,6 +421,7 @@ $(document).ready(function () {
 
 $(window).resize(function () {
     videoHeight();
+    minHeightContent();
     if ($('.lending-intro-content').length) {
         var headerHeight = $('.lending-intro .top').outerHeight();
         var baseHeight = $('.lending-intro-content').outerHeight();
