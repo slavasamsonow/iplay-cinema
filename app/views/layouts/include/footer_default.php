@@ -1,12 +1,12 @@
 <footer>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4 info">
+            <div class="col-md info">
                 <p> &#169; Продюсерский центр Игра, 2015—<?=date('Y')?> </p>
                 <a href="/public/docs/protect_policy_of_personal_information.pdf" target="_blank">Политика
                     конфеденциальности</a>
             </div>
-            <div class="col-md-4 center">
+            <div class="col-md center">
                 <div class="nav-footer">
                     <a href="/courses">Курсы</a>
                 </div>
@@ -54,7 +54,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-4 contact">
+            <div class="col-md contact">
                 <div class="phone">
                     <a href="tel: +7 (952) 227-10-03" target="_blank">+7 (952) 227-10-03</a>
                 </div>
