@@ -50,12 +50,15 @@
 
 /* Описание самого блока */
 .content .intro{
-    height: 100vh;
     position: relative;
     z-index: 1;
     color: #fff;
     overflow: hidden;
     background: url("/public/img/content/background-main-intro.jpg") no-repeat center/cover;
+}
+
+.content .intro .container-fluid{
+    padding-top: 0;
 }
 
 .content .intro h1{
