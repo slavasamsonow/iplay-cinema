@@ -55,6 +55,7 @@
     z-index: 1;
     color: #fff;
     overflow: hidden;
+    background: url("/public/img/content/background-main-intro.jpg") no-repeat center/cover;
 }
 
 .content .intro h1{
@@ -132,8 +133,9 @@
     transform: translate(-50%, -50%);
 }
 
-.intro-wrapper .events{
-    padding: 50px 0;
+.intro-wrapper .events .event{
+    padding-left: 70px;
+    margin-bottom: 20px;
 }
 
 .intro-wrapper .events .event h3{
@@ -147,10 +149,6 @@
     top: 20px;
     font-size: 34px;
     font-weight: normal;
-}
-
-.intro-wrapper .courses{
-    padding: 20px 0;
 }
 
 .intro-wrapper .courses h3{
@@ -175,10 +173,6 @@
     font-size: 40px;
 }
 
-.intro-wrapper .plus{
-    letter-spacing: -0.2em;
-}
-
 .intro-wrapper .plus .container-fluid{
     padding: 0;
 }
@@ -186,22 +180,16 @@
 .intro-wrapper .plus .plus-item{
     background-color: #d43;
     color: #fff;
-    padding: 0;
-}
-
-.intro-wrapper .plus .plus-item img,
-.intro-wrapper .plus .plus-item .text{
-    display: inline-block;
-    width: 49.9%;
-    vertical-align: middle;
 }
 
 .intro-wrapper .plus .plus-item .text{
     padding: 50px;
-    letter-spacing: normal;
     text-align: center;
     font-size: 16px;
     line-height: 2em;
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
 }
 
 /* Лендинг */
