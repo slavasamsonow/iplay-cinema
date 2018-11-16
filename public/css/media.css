@@ -75,6 +75,10 @@
         padding: 30px 30px;
     }
 
+    .wrapper{
+        padding-left: 0;
+    }
+
     footer .container-fluid{
         padding: 0 30px;
         text-align: center;
