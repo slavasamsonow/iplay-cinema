@@ -80,7 +80,7 @@
                                         <?=$teacher['lname']?>
                                     </div>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab asperiores, cumque ea eaque error facere ipsam modi nemo non odio praesentium provident quidem, quod repellat sapiente, sed soluta totam voluptatem?
+                                        <?=$teacher['about']?>
                                     </p>
                                 </div>
 
