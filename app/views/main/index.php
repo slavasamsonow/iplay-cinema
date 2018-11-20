@@ -62,8 +62,12 @@
                 <?php endif ?>
                 <div class="event col-md-4">
                     <h3>
-                        <?=$events[$i]['name']?> <span class="date">
-                        <?=date('d/m', $events[$i]['timestart'])?></span></h3>
+                        <?=$events[$i]['name']?>
+                        <?php if($events[$i]['noShowDate'] == 0):?>
+                        <span class="date">
+                        <?=date('d/m', $events[$i]['timestart'])?></span>
+                        <?php endif?>
+                    </h3>
                     <p>
                         <?=$events[$i]['caption']?>
                     </p>

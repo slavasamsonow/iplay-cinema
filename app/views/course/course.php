@@ -15,6 +15,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
+                    <?php if($course['noShowDate'] == 0):?>
                     <div class="date">
                         Дата старта: <br>
                         <?=date('d', $course['timestart'])?>
@@ -23,6 +24,7 @@
                         echo $months[date('n', $course['timestart'])];
                         ?>
                     </div>
+                    <?php endif ?>
                     <?php if($course['payment'] == 1): ?>
                         <div class="zapis">
                             <?php if(isset($_SESSION['user'])): ?>
