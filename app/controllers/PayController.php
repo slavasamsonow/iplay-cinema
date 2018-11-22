@@ -55,7 +55,7 @@ class PayController extends Controller{
                         $this->view->locationOut($paymentData['yandexConfirmation']);
                     }
                     if($paymentData == 'freePayment'){
-                        $this->view->message('Ваша заявка принята', 'В скором времени мы с вами свяжемся');
+                        $this->view->location('study');
                     }
                     break;
                 default:
