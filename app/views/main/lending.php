@@ -361,10 +361,10 @@
             </div>
             <div class="col col-auto ">
                 <div class="email">
-                    <a href="mailto: videolab.play@gmail.com">videolab.play@gmail.com</a>
+                    <a href="mailto: videolab.play@gmail.com" target="_blank">videolab.play@gmail.com</a>
                 </div>
                 <div class="phone">
-                    <a href="tel:8(952)2271003">8(952)2271003</a>
+                    <a href="tel: +7 (903) 298-82-28" target="_blank">+7 (903) 298-82-28</a>
                 </div>
             </div>
         </div>
