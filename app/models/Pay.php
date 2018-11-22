@@ -148,13 +148,13 @@ class Pay extends Model{
         }
         else{
             $varsAmo = [
-                'name' => 'Покупка на сайте',
+                'name' => 'Билет на '.$course['name'],
                 'sale' => $price,
                 'nameCourse' => $course['name'],
                 'status_id' => 21604234,
             ];
             if($price == 0){
-                $varsAmo['name'] = 'Бесплатно';
+                $varsAmo['name'] = 'Билет на '.$course['name'];
                 $varsAmo['status_id'] = 22355580;
             }
 
