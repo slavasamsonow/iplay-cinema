@@ -813,6 +813,10 @@ tr:hover td{
     padding-left: 100px;
 }
 
+.wrapper.no-left{
+    padding-left: 0;
+}
+
 .container-fluid{
     padding: 0 90px;
 }
