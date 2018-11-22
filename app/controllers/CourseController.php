@@ -10,6 +10,13 @@ class CourseController extends Controller{
 
     /* @var $model Course */
     public $model;
+    /* @var $modelAccount Account*/
+    public $modelAccount;
+
+    public function __construct($route){
+        parent::__construct($route);
+        $this->modelAccount = $this->loadModel('account');
+    }
 
     public function indexAction(){
         if($this->model->auth == 'auth'){
@@ -55,9 +62,8 @@ class CourseController extends Controller{
                     }
 
                     if(isset($_POST['register'])){
-                        $this->modelAccount = $this->loadModel('account');
                         if(!$this->model->checkExists('email', $_POST['email'], 'users')){
-                            $user = $this->modelAccount->register($_POST);
+                            $this->modelAccount->register($_POST);
                         }
                     }
 
@@ -76,9 +82,8 @@ class CourseController extends Controller{
                     }
 
                     if(isset($_POST['register'])){
-                        $this->modelAccount = $this->loadModel('account');
                         if(!$this->model->checkExists('email', $_POST['email'], 'users')){
-                            $user = $this->modelAccount->register($_POST);
+                            $this->modelAccount->register($_POST);
                         }
                     }
 
@@ -142,7 +147,23 @@ class CourseController extends Controller{
             $this->view->data($data);
         }
         else{
-            $this->model->errorCode(404);
+            $this->view->errorCode(404);
+        }
+    }
+
+    public function liveAction(){
+        if($this->model->auth == 'auth'){
+            if(!$course = $this->model->checkCourse($this->route['courseid'])){
+                $this->view->redirect('account');
+            }
+            $vars = [
+                'course' => $course
+            ];
+            $this->view->layout='live';
+            $this->view->render($vars);
+        }
+        else{
+            $this->view->redirect('login');
         }
     }
 }
