@@ -17,12 +17,20 @@
                 <div class="col-md-4">
                     <?php if($course['noShowDate'] == 0):?>
                     <div class="date">
-                        Дата старта: <br>
+                        <?php if($course['type'] == 'event'):?>
+                        Дата и время начала:
+                        <?php else: ?>
+                        Дата старта курса:
+                        <?php endif ?>
+                        <br>
                         <?=date('d', $course['timestart'])?>
                         <?
                         $months = array(1 => 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря');
                         echo $months[date('n', $course['timestart'])];
                         ?>
+                        <?php if($course['type'] == 'event'):?>
+                            <?=date('H:i', $course['timestart'])?>
+                        <?php endif ?>
                     </div>
                     <?php endif ?>
                     <?php if($course['payment'] == 1): ?>
