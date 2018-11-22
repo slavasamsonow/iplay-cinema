@@ -79,6 +79,16 @@ class Amo{
                 'created_at' => time(),
                 'status_id' => '11316085',
                 'tags' => 'Сайт',
+                'custom_fields' => [
+                    [
+                        'id' => 452727,
+                        'values' => [
+                            [
+                                'value' => 984051,
+                            ]
+                        ]
+                    ]
+                ]
             ];
 
             if(isset($data['name'])){
@@ -99,7 +109,7 @@ class Amo{
 
             if(isset($data['nameCourse'])){
                 $leads['add'][0]['custom_fields'][] = [
-                    'id' => "450871",
+                    'id' => 450871,
                     'values' => [
                         [
                             'value' => $data['nameCourse']
@@ -110,7 +120,7 @@ class Amo{
 
             if(isset($data['page'])){
                 $leads['add'][0]['custom_fields'][] = [
-                    'id' => "452021",
+                    'id' => 452021,
                     'values' => [
                         [
                             'value' => $data['page']
