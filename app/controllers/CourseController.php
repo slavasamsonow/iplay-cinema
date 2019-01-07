@@ -150,20 +150,4 @@ class CourseController extends Controller{
             $this->view->errorCode(404);
         }
     }
-
-    public function liveAction(){
-        if($this->model->auth == 'auth'){
-            if(!$course = $this->model->checkCourse($this->route['courseid'])){
-                $this->view->redirect('account');
-            }
-            $vars = [
-                'course' => $course
-            ];
-            $this->view->layout='live';
-            $this->view->render($vars);
-        }
-        else{
-            $this->view->redirect('login');
-        }
-    }
 }
