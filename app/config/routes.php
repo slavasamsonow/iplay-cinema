@@ -73,10 +73,6 @@ return [
         'controller' => 'course',
         'action' => 'checkTask',
     ],
-    'live/{courseid:\d+}' => [
-        'controller' => 'course',
-        'action' => 'live',
-    ],
 
     // projectController
     'projects' => [
