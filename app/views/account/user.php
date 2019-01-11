@@ -12,14 +12,20 @@
     <?php endif ?>
 
     <div class="row">
-        <?php if(!empty($userPage['photo'])): ?>
-            <div class="col-md-3">
+        <div class="col-md-3">
+            <?php if(!empty($userPage['photo'])): ?>
                 <img src="/public/img/users/<?=$userPage['photo']?>"
                      alt="<?=$userPage['fname'].' '.$userPage['lname'].' | Продюсерский центр ИГРА'?>"
-                     width="200">
+                     width="200" style="margin-bottom: 20px;">
+            <?php endif ?>
+
+            <?php if(isset($_SESSION['user']) && $_SESSION['user']['id'] != $userPage['id']): ?>
+            <div>
+                <button class="btn btn-sm">Написать сообщение</button>
             </div>
-        <?php endif ?>
-        <div class="<?=($userPage['photo']) ? 'col-md-9' : 'col-md-12'?>">
+            <?php endif ?>
+        </div>
+        <div class="col-md-9">
             <?php if(!$userPage['public'] && !isset($_SESSION['user'])): ?>
                 Пользователь ограничил доступ к информации
             <?php else: ?>
