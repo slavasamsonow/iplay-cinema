@@ -83,6 +83,14 @@ return [
         'controller' => 'project',
         'action' => 'project',
     ],
+    'project/{projectid:\w+}/addvideo' => [
+        'controller' => 'project',
+        'action' => 'addVideo',
+    ],
+    'project/{projectid:\w+}/editvideo/{videoid:\w+}' => [
+        'controller' => 'project',
+        'action' => 'editVideo',
+    ],
 
     // payController
     'pay/{courseid:\d+}' => [
