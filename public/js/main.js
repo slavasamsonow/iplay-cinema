@@ -1,4 +1,4 @@
-// v.0.17.0
+// v.0.18.0
 
 $(document).ready(function () {
     function videoHeight() {
