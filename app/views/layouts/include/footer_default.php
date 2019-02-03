@@ -56,7 +56,7 @@
             </div>
             <div class="col-md contact">
                 <div class="phone">
-                    <a href="tel: +7 (903) 298-82-28" target="_blank">+7 (903) 298-82-28</a>
+                    <a href="tel: +7 (903) 298-82-28" target="_blank">+7 (982) 115-88-22</a>
                 </div>
                 <div class="email">
                     <a href="mailto:videolab.play@gmail.com" target="_blank">videolab.play@gmail.com</a>
