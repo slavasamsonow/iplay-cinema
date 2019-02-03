@@ -323,9 +323,18 @@ abstract class Model{
             $image->cropThumbnailImage(100, 100);
             $image->writeImage($uploadFileThumb);
         }
-        if(!move_uploaded_file($file['tmp_name'], $uploadFile)){
-            $this->error = 'Не удалось осуществить сохранение файла';
-            return false;
+        if($path = 'public/img/projects/videos'){
+            $uploadFileThumb = $uploadDir.$newFilename;
+            $image = new Imagick($file['tmp_name']);
+            $image->setImageCompressionQuality(80);
+            $image->cropThumbnailImage(293, 165);
+            $image->writeImage($uploadFileThumb);
+        }
+        if($path != 'public/img/projects/videos'){
+            if(!move_uploaded_file($file['tmp_name'], $uploadFile)){
+                $this->error = 'Не удалось осуществить сохранение файла';
+                return false;
+            }
         }
 
         return $newFilename;
