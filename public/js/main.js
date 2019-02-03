@@ -119,11 +119,13 @@ $(document).ready(function () {
         $('#overlay').show();
     })
 
-    $(".coursePage button[data-modal='video']").click(function () {
+    $("button[data-modal='video']").click(function () {
         var videoName = $(this).data('videoname');
         $('.modal.video .modal-header').html(videoName);
+        var videoDescription = $(this).data('videodescription');
+        $('.modal.video .modal-body .description').html(videoDescription);
         var video = $(this).data('video');
-        $('.modal.video .modal-body').html(video);
+        $('.modal.video .modal-body .video').html(video);
     })
 
 
