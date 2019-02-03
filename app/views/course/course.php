@@ -389,6 +389,8 @@
         Видео
     </div>
     <div class="modal-body">
+        <div class="video"></div>
+        <div class="description"></div>
     </div>
 </div>
 
