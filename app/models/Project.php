@@ -41,6 +41,34 @@ class Project extends Model{
     }
 
     /**
+     * Видео проекта
+     *
+     * @param $projecid
+     */
+    public function getItemVideo($videoid){
+        $params = [
+            'id' => $videoid,
+        ];
+        $video = $this->db->row('SELECT pv.* FROM project_video pv WHERE pv.id = :id', $params);
+        if(!empty($video)){
+            return $video[0];
+        }
+    }
+
+    /**
+     * Видео проекта
+     *
+     * @param $projecid
+     */
+    public function getItemVideos($projectid){
+        $params = [
+            'project' => $projectid,
+        ];
+        $videos = $this->db->row('SELECT pv.* FROM project_video pv WHERE pv.project = :project ORDER BY pv.id DESC ', $params);
+        return $videos;
+    }
+
+    /**
      * Возврат информации для редактировани
      *
      * @param $projectid
@@ -85,6 +113,36 @@ class Project extends Model{
         $params['id'] = $id;
 
         $this->db->query('UPDATE `projects` SET '.$paramNV.' WHERE `id` = :id', $params);
+        return true;
+    }
+
+    public function checkAccess($project){
+        if(isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin' || isset($_SESSION['user']) && $project['creatorid'] == $_SESSION['user']['id']){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function addVideo($indata){
+        $params = $this->processTextIn($indata);
+        $params['timestart'] = time();
+        if(!isset($params['active'])){
+            $params['active'] = 0;
+        }
+        $paramNandV = $this->db->paramNandV($params);
+
+        $this->db->query('INSERT INTO `project_video` ('.$paramNandV['N'].') VALUES ('.$paramNandV['V'].')', $params);
+        return $this->db->lastInsertId();
+    }
+
+    public function editVideo($id, $indata){
+        $params = $this->processTextIn($indata);
+        $paramNV = $this->db->paramNV($params);
+        $params['id'] = $id;
+
+        $this->db->query('UPDATE `project_video` SET '.$paramNV.' WHERE `id` = :id', $params);
         return true;
     }
 }
