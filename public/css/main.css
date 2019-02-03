@@ -751,6 +751,63 @@
     /*text-decoration: underline;*/
 }
 
+/* Страница проекта  */
+
+.projectPage .creator{
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.projectPage .description{
+    margin-bottom: 50px;
+}
+
+.projectPage h2{
+    padding-bottom: 30px;
+}
+
+.projectVideo button{
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 10px 20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.projectVideo button:hover{
+    cursor: pointer;
+    background-color: #cee;
+}
+
+.projectVideo img{
+    /*display: block;*/
+    margin-bottom: 20px;
+}
+
+.projectVideo h3 a{
+    margin-left: 10px;
+    opacity: 0;
+    transition: 0.5s;
+    position: relative;
+    top: -4px;
+}
+
+.projectVideo h3:hover a{
+    opacity: 1;
+}
+
+.projectVideo h3 a svg{
+    height: 16px;
+}
+
+.projectVideo h3 a:hover svg{
+    fill: #d43;
+}
+
 /* OWL-slider */
 .owl-carousel{
     display: none;
